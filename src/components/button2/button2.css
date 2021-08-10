@@ -1,0 +1,29 @@
+@import "../../css/colors.css";
+
+.button {
+    border-radius: 5px;
+    background-color: #4C97FF;
+    padding: .5rem;
+    line-height: 1.5rem;
+    font-size: .75rem;
+    font-weight: bold;
+    color: white;
+    box-pack: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    user-select: none;
+}
+.button:active {
+    /* background-color: $motion-transparent; */
+}
+.highlighted.button {
+    /* background-color: $motion-transparent; */
+}
+.mod-disabled {
+    cursor: auto;
+    opacity: .5;
+}
+.mod-disabled:active {
+    background: none;
+}

@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import PaintEditor from '..';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
+import Button2Component from '../components/button2/button2.jsx'
 import reducer from './reducers/combine-reducers';
 import {intlInitialState, IntlProvider} from './reducers/intl.js';
 import styles from './playground.css';
@@ -174,9 +175,9 @@ class Playground extends React.Component {
                     onUpdateName={this.handleUpdateName}
                     onUpdateImage={this.handleUpdateImage}
                 />
-                <button className={styles.playgroundButton}  onClick={this.uploadImage}>Upload</button>
+                <Button2Component className={styles.playgroundButton}  onClick={this.uploadImage}>Upload</Button2Component>
                 <input id={styles.fileInput} type="file" name="name" onChange={this.onUploadImage} />
-                <button className={styles.playgroundButton} onClick={this.downloadImage}>Download</button>
+                <Button2Component className={styles.playgroundButton} onClick={this.downloadImage}>Download</Button2Component>
             </div>
         );
     }
