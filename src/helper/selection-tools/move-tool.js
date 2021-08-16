@@ -1,12 +1,17 @@
-import paper from '@scratch/paper';
-import Modes, {BitmapModes} from '../../lib/modes';
-import {isGroup} from '../group';
-import {isCompoundPathItem, getRootItem} from '../item';
-import {checkPointsClose, snapDeltaToAngle} from '../math';
-import {getActionBounds, CENTER} from '../view';
-import {clearSelection, cloneSelection, getSelectedLeafItems, getSelectedRootItems, setItemSelection}
-    from '../selection';
-import {getDragCrosshairLayer, CROSSHAIR_FULL_OPACITY} from '../layer';
+import paper from "@scratch/paper";
+import Modes, { BitmapModes } from "../../lib/modes";
+import { isGroup } from "../group";
+import { isCompoundPathItem, getRootItem } from "../item";
+import { checkPointsClose, snapDeltaToAngle } from "../math";
+import { getActionBounds, CENTER } from "../view";
+import {
+    clearSelection,
+    cloneSelection,
+    getSelectedLeafItems,
+    getSelectedRootItems,
+    setItemSelection,
+} from "../selection";
+import { getDragCrosshairLayer, CROSSHAIR_FULL_OPACITY } from "../layer";
 
 /** Snap to align selection center to rotation center within this distance */
 const SNAPPING_THRESHOLD = 4;
@@ -23,7 +28,13 @@ class MoveTool {
      * @param {!function} onUpdateImage A callback to call when the image visibly changes
      * @param {?function} switchToTextTool A callback to call to switch to the text tool
      */
-    constructor (mode, setSelectedItems, clearSelectedItems, onUpdateImage, switchToTextTool) {
+    constructor(
+        mode,
+        setSelectedItems,
+        clearSelectedItems,
+        onUpdateImage,
+        switchToTextTool
+    ) {
         this.mode = mode;
         this.setSelectedItems = setSelectedItems;
         this.clearSelectedItems = clearSelectedItems;
@@ -44,24 +55,35 @@ class MoveTool {
      * @param {?boolean} hitProperties.subselect True if we allow selection of subgroups, false if we should
      *     select the whole group.
      */
-    onMouseDown (hitProperties) {
+    onMouseDown(hitProperties) {
         let item = hitProperties.hitResult.item;
         if (!hitProperties.subselect) {
             const root = getRootItem(hitProperties.hitResult.item);
-            item = isCompoundPathItem(root) || isGroup(root) ? root : hitProperties.hitResult.item;
+            item =
+                isCompoundPathItem(root) || isGroup(root)
+                    ? root
+                    : hitProperties.hitResult.item;
         }
         if (item.selected) {
             // Double click causes all points to be selected in subselect mode. If the target is text, it
             // enters text edit.
             if (hitProperties.doubleClicked) {
                 if (!hitProperties.multiselect) {
-                    if (this.switchToTextTool && item instanceof paper.PointText) {
+                    if (
+                        this.switchToTextTool &&
+                        item instanceof paper.PointText
+                    ) {
                         this.switchToTextTool();
                         return;
                     }
                     clearSelection(this.clearSelectedItems);
                 }
-                this._select(item, true /* state */, hitProperties.subselect, true /* fullySelect */);
+                this._select(
+                    item,
+                    true /* state */,
+                    hitProperties.subselect,
+                    true /* fullySelect */
+                );
             } else if (hitProperties.multiselect) {
                 this._select(item, false /* state */, hitProperties.subselect);
             }
@@ -72,9 +94,13 @@ class MoveTool {
             }
             this._select(item, true, hitProperties.subselect);
         }
-        if (hitProperties.clone) cloneSelection(hitProperties.subselect, this.onUpdateImage);
+        if (hitProperties.clone)
+            cloneSelection(hitProperties.subselect, this.onUpdateImage);
 
-        this.selectedItems = this.mode === Modes.RESHAPE ? getSelectedLeafItems() : getSelectedRootItems();
+        this.selectedItems =
+            this.mode === Modes.RESHAPE
+                ? getSelectedLeafItems()
+                : getSelectedRootItems();
         if (this.selectedItems.length === 0) {
             return;
         }
@@ -95,7 +121,7 @@ class MoveTool {
 
         this.firstDrag = true;
     }
-    setBoundsPath (boundsPath) {
+    setBoundsPath(boundsPath) {
         this.boundsPath = boundsPath;
     }
     /**
@@ -108,7 +134,7 @@ class MoveTool {
      *     control points should be selected. False if the item should be selected but not its
      *     points. Only relevant when subselect is true.
      */
-    _select (item, state, subselect, fullySelect) {
+    _select(item, state, subselect, fullySelect) {
         if (subselect) {
             item.selected = false;
             if (fullySelect) {
@@ -121,23 +147,31 @@ class MoveTool {
         }
         this.setSelectedItems();
     }
-    onMouseDrag (event) {
+    onMouseDrag(event) {
         const point = event.point;
         const actionBounds = getActionBounds(this.mode in BitmapModes);
 
-        point.x = Math.max(actionBounds.left, Math.min(point.x, actionBounds.right));
-        point.y = Math.max(actionBounds.top, Math.min(point.y, actionBounds.bottom));
-        
+        point.x = Math.max(
+            actionBounds.left,
+            Math.min(point.x, actionBounds.right)
+        );
+        point.y = Math.max(
+            actionBounds.top,
+            Math.min(point.y, actionBounds.bottom)
+        );
+
         const dragVector = point.subtract(event.downPoint);
         let snapVector;
 
         // Snapping to align center. Not in reshape mode, because reshape doesn't show center crosshair
         if (!event.modifiers.shift && this.mode !== Modes.RESHAPE) {
-            if (checkPointsClose(
-                this.selectionCenter.add(dragVector),
-                CENTER,
-                SNAPPING_THRESHOLD / paper.view.zoom /* threshold */)) {
-
+            if (
+                checkPointsClose(
+                    this.selectionCenter.add(dragVector),
+                    CENTER,
+                    SNAPPING_THRESHOLD / paper.view.zoom /* threshold */
+                )
+            ) {
                 snapVector = CENTER.subtract(this.selectionCenter);
             }
         }
@@ -156,7 +190,9 @@ class MoveTool {
             if (snapVector) {
                 item.position = item.data.origPos.add(snapVector);
             } else if (event.modifiers.shift) {
-                item.position = item.data.origPos.add(snapDeltaToAngle(dragVector, Math.PI / 4));
+                item.position = item.data.origPos.add(
+                    snapDeltaToAngle(dragVector, Math.PI / 4)
+                );
             } else {
                 item.position = item.data.origPos.add(dragVector);
             }
@@ -167,7 +203,7 @@ class MoveTool {
                 bounds = item.bounds;
             }
         }
-        
+
         if (this.firstDrag) {
             // Show the center crosshair above the selected item while dragging.
             getDragCrosshairLayer().visible = true;
@@ -178,29 +214,47 @@ class MoveTool {
         // totally transparent outside the selection bounding box.
         let opacityMultiplier = 1;
         const newCenter = this.selectionCenter.add(dragVector);
-        if ((CENTER.y < bounds.top && CENTER.x < bounds.left) ||
+        if (
+            (CENTER.y < bounds.top && CENTER.x < bounds.left) ||
             (CENTER.y > bounds.bottom && CENTER.x < bounds.left) ||
             (CENTER.y < bounds.top && CENTER.x > bounds.right) ||
-            (CENTER.y > bounds.bottom && CENTER.x > bounds.right)) {
-
+            (CENTER.y > bounds.bottom && CENTER.x > bounds.right)
+        ) {
             // rotation center is to one of the 4 corners of the selection bounding box
-            const distX = Math.max(CENTER.x - bounds.right, bounds.left - CENTER.x);
-            const distY = Math.max(CENTER.y - bounds.bottom, bounds.top - CENTER.y);
-            const dist = Math.sqrt((distX * distX) + (distY * distY));
-            opacityMultiplier =
-                Math.max(0, (1 - (dist / (FADE_DISTANCE / paper.view.zoom))));
+            const distX = Math.max(
+                CENTER.x - bounds.right,
+                bounds.left - CENTER.x
+            );
+            const distY = Math.max(
+                CENTER.y - bounds.bottom,
+                bounds.top - CENTER.y
+            );
+            const dist = Math.sqrt(distX * distX + distY * distY);
+            opacityMultiplier = Math.max(
+                0,
+                1 - dist / (FADE_DISTANCE / paper.view.zoom)
+            );
         } else if (CENTER.y < bounds.top || CENTER.y > bounds.bottom) {
             // rotation center is above or below the selection bounding box
-            opacityMultiplier = Math.max(0,
-                (1 - ((Math.abs(CENTER.y - newCenter.y) - (bounds.height / 2)) / (FADE_DISTANCE / paper.view.zoom))));
+            opacityMultiplier = Math.max(
+                0,
+                1 -
+                    (Math.abs(CENTER.y - newCenter.y) - bounds.height / 2) /
+                        (FADE_DISTANCE / paper.view.zoom)
+            );
         } else if (CENTER.x < bounds.left || CENTER.x > bounds.right) {
             // rotation center is left or right of the selection bounding box
-            opacityMultiplier = Math.max(0,
-                (1 - ((Math.abs(CENTER.x - newCenter.x) - (bounds.width / 2)) / (FADE_DISTANCE / paper.view.zoom))));
+            opacityMultiplier = Math.max(
+                0,
+                1 -
+                    (Math.abs(CENTER.x - newCenter.x) - bounds.width / 2) /
+                        (FADE_DISTANCE / paper.view.zoom)
+            );
         } // else the rotation center is within selection bounds, always show drag crosshair at full opacity
-        getDragCrosshairLayer().opacity = CROSSHAIR_FULL_OPACITY * opacityMultiplier;
+        getDragCrosshairLayer().opacity =
+            CROSSHAIR_FULL_OPACITY * opacityMultiplier;
     }
-    onMouseUp () {
+    onMouseUp() {
         this.firstDrag = false;
         let moved = false;
         // resetting the items origin point for the next usage

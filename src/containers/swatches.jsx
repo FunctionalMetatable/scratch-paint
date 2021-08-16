@@ -1,30 +1,30 @@
-import bindAll from 'lodash.bindall';
-import {connect} from 'react-redux';
-import paper from '@scratch/paper';
-import PropTypes from 'prop-types';
-import React from 'react';
+import bindAll from "lodash.bindall";
+import { connect } from "react-redux";
+import paper from "@scratch/paper";
+import PropTypes from "prop-types";
+import React from "react";
 
-import {clearSelectedItems} from '../reducers/selected-items';
-import {activateEyeDropper} from '../reducers/eye-dropper';
+import { clearSelectedItems } from "../reducers/selected-items";
+import { activateEyeDropper } from "../reducers/eye-dropper";
 
-import SwatchesComponent from '../components/swatches/swatches.jsx';
-import {colorsEqual} from '../helper/style-path';
-import {getRow1Colors, getRow2Colors} from '../lib/colors';
-import Modes from '../lib/modes';
-import ColorProptype from '../lib/color-proptype';
+import SwatchesComponent from "../components/swatches/swatches.jsx";
+import { colorsEqual } from "../helper/style-path";
+import { getRow1Colors, getRow2Colors } from "../lib/colors";
+import Modes from "../lib/modes";
+import ColorProptype from "../lib/color-proptype";
 
 class Swatches extends React.Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         bindAll(this, [
-            'colorMatchesActiveColor',
-            'handleSwatch',
-            'handleTransparent',
-            'handleActivateEyeDropper',
-            'transparentSwatchEnabled'
+            "colorMatchesActiveColor",
+            "handleSwatch",
+            "handleTransparent",
+            "handleActivateEyeDropper",
+            "transparentSwatchEnabled",
         ]);
     }
-    colorMatchesActiveColor (color) {
+    colorMatchesActiveColor(color) {
         // Eyedropper is the "active color" when eyedropping
         if (this.props.isEyeDropping) return false;
         let activeColor;
@@ -45,43 +45,55 @@ class Swatches extends React.Component {
     }
     // Transparent swatch is disabled in shape, line, and brush tools to help
     // prevent confusion (the drawing won't be visible)
-    transparentSwatchEnabled () {
+    transparentSwatchEnabled() {
         switch (this.props.mode) {
-        case Modes.SELECT:
-        case Modes.FILL:
-        case Modes.RESHAPE:
-        case Modes.BIT_SELECT:
-        case Modes.BIT_FILL:
-            return true;
-        default:
-            return false;
+            case Modes.SELECT:
+            case Modes.FILL:
+            case Modes.RESHAPE:
+            case Modes.BIT_SELECT:
+            case Modes.BIT_FILL:
+                return true;
+            default:
+                return false;
         }
     }
     /**
      * @param{string} color - a hex color
      */
-    handleSwatch (color) {
+    handleSwatch(color) {
         this.props.onChangeColor(color);
     }
-    handleTransparent () {
+    handleTransparent() {
         this.props.onChangeColor(null);
     }
-    handleActivateEyeDropper () {
+    handleActivateEyeDropper() {
         this.props.onActivateEyeDropper(
             paper.tool, // get the currently active tool from paper
             this.props.onChangeColor
         );
     }
-    render () {
+    render() {
         return (
             <SwatchesComponent
-                color={this.props.isStrokeColor ? this.props.strokeColor : this.props.fillColor}
-                color2={this.props.isStrokeColor ? this.props.strokeColor2 : this.props.fillColor2}
+                color={
+                    this.props.isStrokeColor
+                        ? this.props.strokeColor
+                        : this.props.fillColor
+                }
+                color2={
+                    this.props.isStrokeColor
+                        ? this.props.strokeColor2
+                        : this.props.fillColor2
+                }
                 containerStyle={this.props.containerStyle}
                 row1Colors={getRow1Colors()}
                 row2Colors={getRow2Colors()}
                 colorMatchesActiveColor={this.colorMatchesActiveColor}
-                colorIndex={this.props.isStrokeColor ? this.props.strokeColorIndex : this.props.fillColorIndex}
+                colorIndex={
+                    this.props.isStrokeColor
+                        ? this.props.strokeColorIndex
+                        : this.props.fillColorIndex
+                }
                 isEyeDropping={this.props.isEyeDropping}
                 isTransparentSwatchEnabled={this.transparentSwatchEnabled}
                 isStrokeColor={this.props.isStrokeColor}
@@ -107,10 +119,10 @@ Swatches.propTypes = {
     strokeColor2: ColorProptype,
     strokeColorIndex: PropTypes.number.isRequired,
     onActivateEyeDropper: PropTypes.func.isRequired,
-    onChangeColor: PropTypes.func.isRequired
+    onChangeColor: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     isEyeDropping: state.scratchPaint.color.eyeDropper.active,
     fillColorIndex: state.scratchPaint.color.fillColor.activeIndex,
     fillColor: state.scratchPaint.color.fillColor.primary,
@@ -118,19 +130,16 @@ const mapStateToProps = state => ({
     mode: state.scratchPaint.mode,
     strokeColor: state.scratchPaint.color.strokeColor.primary,
     strokeColor2: state.scratchPaint.color.strokeColor.secondary,
-    strokeColorIndex: state.scratchPaint.color.strokeColor.activeIndex
+    strokeColorIndex: state.scratchPaint.color.strokeColor.activeIndex,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
     clearSelectedItems: () => {
         dispatch(clearSelectedItems());
     },
     onActivateEyeDropper: (currentTool, callback) => {
         dispatch(activateEyeDropper(currentTool, callback));
-    }
+    },
 });
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Swatches);
+export default connect(mapStateToProps, mapDispatchToProps)(Swatches);

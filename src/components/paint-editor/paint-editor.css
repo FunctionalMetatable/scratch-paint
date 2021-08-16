@@ -51,7 +51,7 @@ $border-radius: 0.25rem;
     display: inline-block;
     border: 1px solid $ui-pane-border;
     border-radius: 0;
-    padding: .35rem;
+    padding: 0.35rem;
 }
 
 [dir="ltr"] .button-group-button {
@@ -133,7 +133,7 @@ $border-radius: 0.25rem;
     min-width: 402px; /* Leave room for the border */
     box-sizing: content-box;
     border: 1px solid #e8edf1;
-    border-radius: .25rem;
+    border-radius: 0.25rem;
     position: relative;
     overflow: visible;
 }
@@ -216,7 +216,7 @@ $border-radius: 0.25rem;
     border: none;
     display: none;
     margin: 0px;
-    opacity: .8;
+    opacity: 0.8;
     outline: none;
     overflow: hidden;
     padding: 0px;

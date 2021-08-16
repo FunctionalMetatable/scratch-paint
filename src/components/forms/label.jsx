@@ -2,14 +2,18 @@
 @todo This file is copied from GUI and should be pulled out into a shared library.
 See https://github.com/LLK/scratch-paint/issues/13 */
 
-import PropTypes from 'prop-types';
-import React from 'react';
+import PropTypes from "prop-types";
+import React from "react";
 
-import styles from './label.css';
+import styles from "./label.css";
 
-const Label = props => (
+const Label = (props) => (
     <label className={styles.inputGroup}>
-        <span className={props.secondary ? styles.inputLabelSecondary : styles.inputLabel}>
+        <span
+            className={
+                props.secondary ? styles.inputLabelSecondary : styles.inputLabel
+            }
+        >
             {props.text}
         </span>
         {props.children}
@@ -19,11 +23,11 @@ const Label = props => (
 Label.propTypes = {
     children: PropTypes.node,
     secondary: PropTypes.bool,
-    text: PropTypes.string.isRequired
+    text: PropTypes.string.isRequired,
 };
 
 Label.defaultProps = {
-    secondary: false
+    secondary: false,
 };
 
 export default Label;

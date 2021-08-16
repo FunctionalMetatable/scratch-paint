@@ -1,10 +1,20 @@
-import paper from '@scratch/paper';
-import Modes from '../lib/modes';
+import paper from "@scratch/paper";
+import Modes from "../lib/modes";
 
-import {getItemsGroup, isGroup} from './group';
-import {getRootItem, isCompoundPathItem, isBoundsItem, isPathItem, isPGTextItem} from './item';
-import {getItemsCompoundPath, isCompoundPath, isCompoundPathChild} from './compound-path';
-import {sortItemsByZIndex} from './math';
+import { getItemsGroup, isGroup } from "./group";
+import {
+    getRootItem,
+    isCompoundPathItem,
+    isBoundsItem,
+    isPathItem,
+    isPGTextItem,
+} from "./item";
+import {
+    getItemsCompoundPath,
+    isCompoundPath,
+    isCompoundPathChild,
+} from "./compound-path";
+import { sortItemsByZIndex } from "./math";
 
 /**
  * Wrapper for paper.project.getItems that excludes our helper items
@@ -13,14 +23,17 @@ import {sortItemsByZIndex} from './math';
  */
 const getItems = function (options) {
     const newMatcher = function (item) {
-        return !(item instanceof paper.Layer) &&
-            item.layer.data && item.layer.data.isPaintingLayer &&
+        return (
+            !(item instanceof paper.Layer) &&
+            item.layer.data &&
+            item.layer.data.isPaintingLayer &&
             !item.locked &&
             !item.isClipMask() &&
             !(item.data && item.data.isHelperItem) &&
-            (!options.match || options.match(item));
+            (!options.match || options.match(item))
+        );
     };
-    const newOptions = {...options, match: newMatcher};
+    const newOptions = { ...options, match: newMatcher };
     return paper.project.getItems(newOptions);
 };
 
@@ -98,7 +111,7 @@ const _setGroupSelection = function (root, selected, fullySelected) {
 const setItemSelection = function (item, state, fullySelected) {
     const parentGroup = getItemsGroup(item);
     const itemsCompoundPath = getItemsCompoundPath(item);
-    
+
     // if selection is in a group, select group
     if (parentGroup) {
         // do it recursive
@@ -111,14 +124,13 @@ const setItemSelection = function (item, state, fullySelected) {
         }
         _setGroupSelection(item, state, fullySelected);
     }
-    
 };
 
 /** @return {boolean} true if anything was selected */
 const selectAllItems = function () {
     const items = getAllSelectableRootItems();
     if (items.length === 0) return false;
-    
+
     for (let i = 0; i < items.length; i++) {
         setItemSelection(items[i], true);
     }
@@ -129,7 +141,7 @@ const selectAllItems = function () {
 const selectAllSegments = function () {
     const items = getAllSelectableRootItems();
     if (items.length === 0) return false;
-    
+
     for (let i = 0; i < items.length; i++) {
         selectItemSegments(items[i], true);
     }
@@ -182,7 +194,12 @@ const getSelectedLeafItems = function () {
 
     for (let i = 0; i < allItems.length; i++) {
         const item = allItems[i];
-        if (!(item instanceof paper.Layer) && !isGroup(item) && item.data && !item.data.isSelectionBound) {
+        if (
+            !(item instanceof paper.Layer) &&
+            !isGroup(item) &&
+            item.data &&
+            !item.data.isSelectionBound
+        ) {
             items.push(item);
         }
     }
@@ -225,7 +242,7 @@ const _deleteItemSelection = function (items, onUpdateImage) {
 // Return true if anything was removed
 const _removeSelectedSegments = function (items, onUpdateImage) {
     const segmentsToRemove = [];
-    
+
     for (let i = 0; i < items.length; i++) {
         if (!items[i].segments) continue;
         const segments = items[i].segments;
@@ -236,7 +253,7 @@ const _removeSelectedSegments = function (items, onUpdateImage) {
             }
         }
     }
-    
+
     let removedSegments = false;
     for (let i = 0; i < segmentsToRemove.length; i++) {
         const seg = segmentsToRemove[i];
@@ -264,7 +281,9 @@ const deleteSelection = function (mode, onUpdateImage) {
 };
 
 const cloneSelection = function (recursive, onUpdateImage) {
-    const selectedItems = recursive ? getSelectedLeafItems() : getSelectedRootItems();
+    const selectedItems = recursive
+        ? getSelectedLeafItems()
+        : getSelectedRootItems();
     for (let i = 0; i < selectedItems.length; i++) {
         const item = selectedItems[i];
         item.clone();
@@ -278,34 +297,40 @@ const _checkBoundsItem = function (selectionRect, item, event) {
         item.localToGlobal(item.internalBounds.topLeft),
         item.localToGlobal(item.internalBounds.topRight),
         item.localToGlobal(item.internalBounds.bottomRight),
-        item.localToGlobal(item.internalBounds.bottomLeft)
+        item.localToGlobal(item.internalBounds.bottomLeft),
     ]);
     itemBounds.closed = true;
     itemBounds.guide = true;
 
     for (let i = 0; i < itemBounds.segments.length; i++) {
         const seg = itemBounds.segments[i];
-        if (selectionRect.contains(seg.point) ||
-            (i === 0 && selectionRect.getIntersections(itemBounds).length > 0)) {
+        if (
+            selectionRect.contains(seg.point) ||
+            (i === 0 && selectionRect.getIntersections(itemBounds).length > 0)
+        ) {
             if (event.modifiers.shift && item.selected) {
                 setItemSelection(item, false);
-
             } else {
                 setItemSelection(item, true);
             }
             itemBounds.remove();
             return true;
-            
         }
     }
 
     itemBounds.remove();
 };
 
-const _handleRectangularSelectionItems = function (item, event, rect, mode, root) {
+const _handleRectangularSelectionItems = function (
+    item,
+    event,
+    rect,
+    mode,
+    root
+) {
     if (isPathItem(item)) {
         let segmentMode = false;
-        
+
         // first round checks for segments inside the selectionRect
         for (let j = 0; j < item.segments.length; j++) {
             const seg = item.segments[j];
@@ -352,7 +377,6 @@ const _handleRectangularSelectionItems = function (item, event, rect, mode, root
             } else {
                 if (event.modifiers.shift && item.selected) {
                     setItemSelection(item, false);
-
                 } else {
                     setItemSelection(item, true);
                 }
@@ -360,7 +384,6 @@ const _handleRectangularSelectionItems = function (item, event, rect, mode, root
             }
         }
         // @todo: Update toolbar state on change
-
     } else if (isBoundsItem(item)) {
         if (_checkBoundsItem(rect, item, event)) {
             return false;
@@ -370,10 +393,16 @@ const _handleRectangularSelectionItems = function (item, event, rect, mode, root
 };
 
 // if the rectangular selection found a group, drill into it recursively
-const _rectangularSelectionGroupLoop = function (group, rect, root, event, mode) {
+const _rectangularSelectionGroupLoop = function (
+    group,
+    rect,
+    root,
+    event,
+    mode
+) {
     for (let i = 0; i < group.children.length; i++) {
         const child = group.children[i];
-        
+
         if (isGroup(child) || isCompoundPathItem(child)) {
             _rectangularSelectionGroupLoop(child, rect, root, event, mode);
         } else {
@@ -393,7 +422,7 @@ const _rectangularSelectionGroupLoop = function (group, rect, root, event, mode)
  */
 const processRectangularSelection = function (event, rect, mode) {
     const allItems = getAllSelectableRootItems();
-    
+
     for (let i = 0; i < allItems.length; i++) {
         const item = allItems[i];
         if (mode === Modes.RESHAPE && isPGTextItem(getRootItem(item))) {
@@ -441,5 +470,5 @@ export {
     getSelectedRootItems,
     getSelectedSegments,
     processRectangularSelection,
-    selectRootItem
+    selectRootItem,
 };

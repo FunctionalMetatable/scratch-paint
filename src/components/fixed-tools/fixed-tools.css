@@ -31,7 +31,7 @@ $border-radius: 0.25rem;
     display: inline-block;
     border: 1px solid $ui-pane-border;
     border-radius: 0;
-    padding: .35rem;
+    padding: 0.35rem;
 }
 
 [dir="ltr"] .button-group-button {

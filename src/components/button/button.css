@@ -6,14 +6,14 @@
     user-select: none;
 }
 .button:active {
-    background-color: $motion-transparent; 
+    background-color: $motion-transparent;
 }
 .highlighted.button {
-    background-color: $motion-transparent; 
+    background-color: $motion-transparent;
 }
 .mod-disabled {
     cursor: auto;
-    opacity: .5;
+    opacity: 0.5;
 }
 .mod-disabled:active {
     background: none;

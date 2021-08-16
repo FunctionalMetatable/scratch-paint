@@ -1,11 +1,11 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import messages from '../../lib/messages.js';
-import ToolSelectComponent from '../tool-select-base/tool-select-base.jsx';
+import React from "react";
+import PropTypes from "prop-types";
+import messages from "../../lib/messages.js";
+import ToolSelectComponent from "../tool-select-base/tool-select-base.jsx";
 
-import textIcon from './text.svg';
+import textIcon from "./text.svg";
 
-const TextModeComponent = props => (
+const TextModeComponent = (props) => (
     <ToolSelectComponent
         imgDescriptor={messages.text}
         imgSrc={textIcon}
@@ -16,7 +16,7 @@ const TextModeComponent = props => (
 
 TextModeComponent.propTypes = {
     isSelected: PropTypes.bool.isRequired,
-    onMouseDown: PropTypes.func.isRequired
+    onMouseDown: PropTypes.func.isRequired,
 };
 
 export default TextModeComponent;

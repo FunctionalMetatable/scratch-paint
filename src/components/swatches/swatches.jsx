@@ -1,41 +1,41 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import classNames from 'classnames';
+import React from "react";
+import PropTypes from "prop-types";
+import classNames from "classnames";
 
-import styles from './swatches.css';
+import styles from "./swatches.css";
 
-import eyeDropperIcon from '../color-picker/icons/eye-dropper.svg';
-import noFillIcon from '../color-button/no-fill.svg';
-import {getColorName, getColorObj} from '../../lib/colors';
-import ColorProptype from '../../lib/color-proptype';
+import eyeDropperIcon from "../color-picker/icons/eye-dropper.svg";
+import noFillIcon from "../color-button/no-fill.svg";
+import { getColorName, getColorObj } from "../../lib/colors";
+import ColorProptype from "../../lib/color-proptype";
 
 /*
  * The transparent icon, eyedropper icon, and the preset colors which can be clicked to set
  * the selected color.
  */
-const SwatchesComponent = props => {
-    const swatchClickFactory = color =>
-        () => props.onSwatch(color);
+const SwatchesComponent = (props) => {
+    const swatchClickFactory = (color) => () => props.onSwatch(color);
 
-    const colorToSwatchMap = colorKey => {
+    const colorToSwatchMap = (colorKey) => {
         const color = getColorObj(colorKey);
         const colorsMatch = props.colorMatchesActiveColor(color);
-        return (<div
-            key={colorKey}
-            role="img"
-            alt={getColorName(colorKey)}
-            title={getColorName(colorKey)}
-            className={classNames({
-                [styles.swatch]: true,
-                [styles.smallSwatch]: props.small,
-                [styles.activeSwatch]: colorsMatch,
-                [styles.smallActiveSwatch]: colorsMatch && props.small
-            })}
-            style={{
-                backgroundColor: color.toCSS()
-            }}
-            onClick={swatchClickFactory(color)}
-        />
+        return (
+            <div
+                key={colorKey}
+                role="img"
+                alt={getColorName(colorKey)}
+                title={getColorName(colorKey)}
+                className={classNames({
+                    [styles.swatch]: true,
+                    [styles.smallSwatch]: props.small,
+                    [styles.activeSwatch]: colorsMatch,
+                    [styles.smallActiveSwatch]: colorsMatch && props.small,
+                })}
+                style={{
+                    backgroundColor: color.toCSS(),
+                }}
+                onClick={swatchClickFactory(color)}
+            />
         );
     };
 
@@ -44,7 +44,7 @@ const SwatchesComponent = props => {
         (props.colorIndex === 1 && props.color2 === null);
 
     return (
-        <div className={props.containerStyle || ''} >
+        <div className={props.containerStyle || ""}>
             <div className={styles.swatchRow}>
                 <div
                     className={classNames({
@@ -52,21 +52,24 @@ const SwatchesComponent = props => {
                         [styles.swatch]: true,
                         [styles.smallSwatch]: props.small,
                         [styles.activeSwatch]: isTransparent(),
-                        [styles.smallActiveSwatch]: isTransparent() && props.small,
-                        [styles.disabled]: !props.isTransparentSwatchEnabled()
+                        [styles.smallActiveSwatch]:
+                            isTransparent() && props.small,
+                        [styles.disabled]: !props.isTransparentSwatchEnabled(),
                     })}
                     onClick={props.onTransparent}
                 >
                     <img
                         className={classNames({
                             [styles.swatchIcon]: true,
-                            [styles.smallSwatchIcon]: props.small
+                            [styles.smallSwatchIcon]: props.small,
                         })}
                         draggable={false}
                         src={noFillIcon}
                     />
                 </div>
-                {props.row1Colors ? props.row1Colors.map(colorToSwatchMap) : null}
+                {props.row1Colors
+                    ? props.row1Colors.map(colorToSwatchMap)
+                    : null}
             </div>
             <div className={styles.swatchRow}>
                 <div
@@ -75,20 +78,23 @@ const SwatchesComponent = props => {
                         [styles.swatch]: true,
                         [styles.smallSwatch]: props.small,
                         [styles.activeSwatch]: props.isEyeDropping,
-                        [styles.smallActiveSwatch]: props.isEyeDropping && props.small
+                        [styles.smallActiveSwatch]:
+                            props.isEyeDropping && props.small,
                     })}
                     onClick={props.onActivateEyeDropper}
                 >
                     <img
                         className={classNames({
                             [styles.swatchIcon]: true,
-                            [styles.smallSwatchIcon]: props.small
+                            [styles.smallSwatchIcon]: props.small,
                         })}
                         draggable={false}
                         src={eyeDropperIcon}
                     />
                 </div>
-                {props.row2Colors ? props.row2Colors.map(colorToSwatchMap) : null}
+                {props.row2Colors
+                    ? props.row2Colors.map(colorToSwatchMap)
+                    : null}
             </div>
         </div>
     );
@@ -107,10 +113,10 @@ SwatchesComponent.propTypes = {
     isTransparentSwatchEnabled: PropTypes.func.isRequired,
     small: PropTypes.bool,
     row1Colors: PropTypes.arrayOf(PropTypes.string),
-    row2Colors: PropTypes.arrayOf(PropTypes.string)
+    row2Colors: PropTypes.arrayOf(PropTypes.string),
 };
 
 SwatchesComponent.defaultProps = {
-    small: false
+    small: false,
 };
 export default SwatchesComponent;

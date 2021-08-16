@@ -1,4 +1,4 @@
-import {clearSelection, getSelectedLeafItems} from '../selection';
+import { clearSelection, getSelectedLeafItems } from "../selection";
 
 /** Sub tool of the Reshape tool for moving handles, which adjust bezier curves. */
 class HandleTool {
@@ -7,7 +7,7 @@ class HandleTool {
      * @param {function} clearSelectedItems Callback to clear the set of selected items in the Redux state
      * @param {!function} onUpdateImage A callback to call when the image visibly changes
      */
-    constructor (setSelectedItems, clearSelectedItems, onUpdateImage) {
+    constructor(setSelectedItems, clearSelectedItems, onUpdateImage) {
         this.hitType = null;
         this.setSelectedItems = setSelectedItems;
         this.clearSelectedItems = clearSelectedItems;
@@ -19,16 +19,16 @@ class HandleTool {
      * @param {?boolean} hitProperties.multiselect Whether to multiselect on mouse down (e.g. shift key held)
      *     select the whole group.
      */
-    onMouseDown (hitProperties) {
+    onMouseDown(hitProperties) {
         if (!hitProperties.multiselect) {
             clearSelection(this.clearSelectedItems);
         }
-        
+
         hitProperties.hitResult.segment.handleIn.selected = true;
         hitProperties.hitResult.segment.handleOut.selected = true;
         this.hitType = hitProperties.hitResult.type;
     }
-    onMouseDrag (event) {
+    onMouseDrag(event) {
         this.selectedItems = getSelectedLeafItems();
 
         for (const item of this.selectedItems) {
@@ -39,32 +39,42 @@ class HandleTool {
                     seg.origPoint = seg.point.clone();
                 }
 
-                if (seg.handleOut.selected && this.hitType === 'handle-out'){
+                if (seg.handleOut.selected && this.hitType === "handle-out") {
                     // if option is pressed or handles have been split,
                     // they're no longer parallel and move independently
-                    if (event.modifiers.option ||
-                        !seg.handleOut.isColinear(seg.handleIn)) {
+                    if (
+                        event.modifiers.option ||
+                        !seg.handleOut.isColinear(seg.handleIn)
+                    ) {
                         seg.handleOut = seg.handleOut.add(event.delta);
                     } else {
                         seg.handleOut = seg.handleOut.add(event.delta);
-                        seg.handleIn = seg.handleOut.multiply(-seg.handleIn.length / seg.handleOut.length);
+                        seg.handleIn = seg.handleOut.multiply(
+                            -seg.handleIn.length / seg.handleOut.length
+                        );
                     }
-                } else if (seg.handleIn.selected && this.hitType === 'handle-in') {
+                } else if (
+                    seg.handleIn.selected &&
+                    this.hitType === "handle-in"
+                ) {
                     // if option is pressed or handles have been split,
                     // they're no longer parallel and move independently
-                    if (event.modifiers.option ||
-                        !seg.handleOut.isColinear(seg.handleIn)) {
+                    if (
+                        event.modifiers.option ||
+                        !seg.handleOut.isColinear(seg.handleIn)
+                    ) {
                         seg.handleIn = seg.handleIn.add(event.delta);
-
                     } else {
                         seg.handleIn = seg.handleIn.add(event.delta);
-                        seg.handleOut = seg.handleIn.multiply(-seg.handleOut.length / seg.handleIn.length);
+                        seg.handleOut = seg.handleIn.multiply(
+                            -seg.handleOut.length / seg.handleIn.length
+                        );
                     }
                 }
             }
         }
     }
-    onMouseUp () {
+    onMouseUp() {
         // resetting the items and segments origin points for the next usage
         let moved = false;
         for (const item of this.selectedItems) {

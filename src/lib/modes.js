@@ -1,4 +1,4 @@
-import keyMirror from 'keymirror';
+import keyMirror from "keymirror";
 
 const vectorModesObj = {
     BRUSH: null,
@@ -10,7 +10,7 @@ const vectorModesObj = {
     OVAL: null,
     RECT: null,
     ROUNDED_RECT: null,
-    TEXT: null
+    TEXT: null,
 };
 const bitmapModesObj = {
     BIT_BRUSH: null,
@@ -20,11 +20,11 @@ const bitmapModesObj = {
     BIT_TEXT: null,
     BIT_FILL: null,
     BIT_ERASER: null,
-    BIT_SELECT: null
+    BIT_SELECT: null,
 };
 const VectorModes = keyMirror(vectorModesObj);
 const BitmapModes = keyMirror(bitmapModesObj);
-const Modes = keyMirror({...vectorModesObj, ...bitmapModesObj});
+const Modes = keyMirror({ ...vectorModesObj, ...bitmapModesObj });
 
 const GradientToolsModes = keyMirror({
     FILL: null,
@@ -37,12 +37,7 @@ const GradientToolsModes = keyMirror({
     BIT_OVAL: null,
     BIT_RECT: null,
     BIT_SELECT: null,
-    BIT_FILL: null
+    BIT_FILL: null,
 });
 
-export {
-    Modes as default,
-    VectorModes,
-    BitmapModes,
-    GradientToolsModes
-};
+export { Modes as default, VectorModes, BitmapModes, GradientToolsModes };

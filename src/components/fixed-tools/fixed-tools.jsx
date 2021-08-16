@@ -1,90 +1,93 @@
-import classNames from 'classnames';
-import {connect} from 'react-redux';
-import PropTypes from 'prop-types';
-import React from 'react';
-import MediaQuery from 'react-responsive';
+import classNames from "classnames";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import React from "react";
+import MediaQuery from "react-responsive";
 
-import {shouldShowGroup, shouldShowUngroup} from '../../helper/group';
-import {shouldShowBringForward, shouldShowSendBackward} from '../../helper/order';
+import { shouldShowGroup, shouldShowUngroup } from "../../helper/group";
+import {
+    shouldShowBringForward,
+    shouldShowSendBackward,
+} from "../../helper/order";
 
-import BufferedInputHOC from '../forms/buffered-input-hoc.jsx';
-import Button from '../button/button.jsx';
-import ButtonGroup from '../button-group/button-group.jsx';
-import Dropdown from '../dropdown/dropdown.jsx';
-import {defineMessages, injectIntl, intlShape} from 'react-intl';
-import Formats, {isVector} from '../../lib/format';
-import Input from '../forms/input.jsx';
-import InputGroup from '../input-group/input-group.jsx';
-import Label from '../forms/label.jsx';
-import LabeledIconButton from '../labeled-icon-button/labeled-icon-button.jsx';
-import layout from '../../lib/layout-constants';
-import {hideLabel} from '../../lib/hide-label';
-import styles from './fixed-tools.css';
+import BufferedInputHOC from "../forms/buffered-input-hoc.jsx";
+import Button from "../button/button.jsx";
+import ButtonGroup from "../button-group/button-group.jsx";
+import Dropdown from "../dropdown/dropdown.jsx";
+import { defineMessages, injectIntl, intlShape } from "react-intl";
+import Formats, { isVector } from "../../lib/format";
+import Input from "../forms/input.jsx";
+import InputGroup from "../input-group/input-group.jsx";
+import Label from "../forms/label.jsx";
+import LabeledIconButton from "../labeled-icon-button/labeled-icon-button.jsx";
+import layout from "../../lib/layout-constants";
+import { hideLabel } from "../../lib/hide-label";
+import styles from "./fixed-tools.css";
 
-import groupIcon from './icons/group.svg';
-import redoIcon from './icons/redo.svg';
-import sendBackIcon from './icons/send-back.svg';
-import sendBackwardIcon from './icons/send-backward.svg';
-import sendForwardIcon from './icons/send-forward.svg';
-import sendFrontIcon from './icons/send-front.svg';
-import undoIcon from './icons/undo.svg';
-import ungroupIcon from './icons/ungroup.svg';
+import groupIcon from "./icons/group.svg";
+import redoIcon from "./icons/redo.svg";
+import sendBackIcon from "./icons/send-back.svg";
+import sendBackwardIcon from "./icons/send-backward.svg";
+import sendForwardIcon from "./icons/send-forward.svg";
+import sendFrontIcon from "./icons/send-front.svg";
+import undoIcon from "./icons/undo.svg";
+import ungroupIcon from "./icons/ungroup.svg";
 
 const BufferedInput = BufferedInputHOC(Input);
 const messages = defineMessages({
     costume: {
-        id: 'paint.paintEditor.costume',
-        description: 'Label for the name of a costume',
-        defaultMessage: 'Costume'
+        id: "paint.paintEditor.costume",
+        description: "Label for the name of a costume",
+        defaultMessage: "Costume",
     },
     group: {
-        defaultMessage: 'Group',
-        description: 'Label for the button to group shapes',
-        id: 'paint.paintEditor.group'
+        defaultMessage: "Group",
+        description: "Label for the button to group shapes",
+        id: "paint.paintEditor.group",
     },
     ungroup: {
-        defaultMessage: 'Ungroup',
-        description: 'Label for the button to ungroup shapes',
-        id: 'paint.paintEditor.ungroup'
+        defaultMessage: "Ungroup",
+        description: "Label for the button to ungroup shapes",
+        id: "paint.paintEditor.ungroup",
     },
     undo: {
-        defaultMessage: 'Undo',
-        description: 'Alt to image for the button to undo an action',
-        id: 'paint.paintEditor.undo'
+        defaultMessage: "Undo",
+        description: "Alt to image for the button to undo an action",
+        id: "paint.paintEditor.undo",
     },
     redo: {
-        defaultMessage: 'Redo',
-        description: 'Alt to image for the button to redo an action',
-        id: 'paint.paintEditor.redo'
+        defaultMessage: "Redo",
+        description: "Alt to image for the button to redo an action",
+        id: "paint.paintEditor.redo",
     },
     forward: {
-        defaultMessage: 'Forward',
-        description: 'Label for the `Send forward on canvas` button',
-        id: 'paint.paintEditor.forward'
+        defaultMessage: "Forward",
+        description: "Label for the `Send forward on canvas` button",
+        id: "paint.paintEditor.forward",
     },
     backward: {
-        defaultMessage: 'Backward',
-        description: 'Label for the `Send backward on canvas` button',
-        id: 'paint.paintEditor.backward'
+        defaultMessage: "Backward",
+        description: "Label for the `Send backward on canvas` button",
+        id: "paint.paintEditor.backward",
     },
     front: {
-        defaultMessage: 'Front',
-        description: 'Label for the `Send to front of canvas` button',
-        id: 'paint.paintEditor.front'
+        defaultMessage: "Front",
+        description: "Label for the `Send to front of canvas` button",
+        id: "paint.paintEditor.front",
     },
     back: {
-        defaultMessage: 'Back',
-        description: 'Label for the `Send to back of canvas` button',
-        id: 'paint.paintEditor.back'
+        defaultMessage: "Back",
+        description: "Label for the `Send to back of canvas` button",
+        id: "paint.paintEditor.back",
     },
     more: {
-        defaultMessage: 'More',
-        description: 'Label for dropdown to access more action buttons',
-        id: 'paint.paintEditor.more'
-    }
+        defaultMessage: "More",
+        description: "Label for dropdown to access more action buttons",
+        id: "paint.paintEditor.more",
+    },
 });
 
-const FixedToolsComponent = props => {
+const FixedToolsComponent = (props) => {
     const redoDisabled = !props.canRedo();
     const undoDisabled = !props.canUndo();
 
@@ -116,14 +119,9 @@ const FixedToolsComponent = props => {
             <InputGroup>
                 <ButtonGroup>
                     <Button
-                        className={
-                            classNames(
-                                styles.buttonGroupButton,
-                                {
-                                    [styles.modNoEndBorder]: !redoDisabled
-                                }
-                            )
-                        }
+                        className={classNames(styles.buttonGroupButton, {
+                            [styles.modNoEndBorder]: !redoDisabled,
+                        })}
                         disabled={undoDisabled}
                         onClick={props.onUndo}
                     >
@@ -138,14 +136,9 @@ const FixedToolsComponent = props => {
                         />
                     </Button>
                     <Button
-                        className={
-                            classNames(
-                                styles.buttonGroupButton,
-                                {
-                                    [styles.modStartBorder]: !redoDisabled
-                                }
-                            )
-                        }
+                        className={classNames(styles.buttonGroupButton, {
+                            [styles.modStartBorder]: !redoDisabled,
+                        })}
                         disabled={redoDisabled}
                         onClick={props.onRedo}
                     >
@@ -160,7 +153,7 @@ const FixedToolsComponent = props => {
             </InputGroup>
 
             {/* Group/Ungroup */}
-            {isVector(props.format) ?
+            {isVector(props.format) ? (
                 <InputGroup className={styles.modDashedBorder}>
                     <LabeledIconButton
                         disabled={!shouldShowGroup()}
@@ -176,11 +169,11 @@ const FixedToolsComponent = props => {
                         title={props.intl.formatMessage(messages.ungroup)}
                         onClick={props.onUngroup}
                     />
-                </InputGroup> : null
-            }
+                </InputGroup>
+            ) : null}
 
             {/* Forward/Backward */}
-            {isVector(props.format) ?
+            {isVector(props.format) ? (
                 <InputGroup className={styles.modDashedBorder}>
                     <LabeledIconButton
                         disabled={!shouldShowBringForward()}
@@ -196,10 +189,10 @@ const FixedToolsComponent = props => {
                         title={props.intl.formatMessage(messages.backward)}
                         onClick={props.onSendBackward}
                     />
-                </InputGroup> : null
-            }
+                </InputGroup>
+            ) : null}
 
-            {isVector(props.format) ?
+            {isVector(props.format) ? (
                 <MediaQuery minWidth={layout.fullSizeEditorMinWidth}>
                     <InputGroup className={styles.row}>
                         <LabeledIconButton
@@ -227,9 +220,9 @@ const FixedToolsComponent = props => {
                             onClick={function () {}}
                         />
                     </InputGroup> */}
-                </MediaQuery> : null
-            }
-            {isVector(props.format) ?
+                </MediaQuery>
+            ) : null}
+            {isVector(props.format) ? (
                 <MediaQuery maxWidth={layout.fullSizeEditorMinWidth - 1}>
                     <InputGroup>
                         <Dropdown
@@ -241,9 +234,13 @@ const FixedToolsComponent = props => {
                                     rtl={props.rtl}
                                 >
                                     <Button
-                                        className={classNames(styles.modMenuItem, {
-                                            [styles.modDisabled]: !shouldShowBringForward()
-                                        })}
+                                        className={classNames(
+                                            styles.modMenuItem,
+                                            {
+                                                [styles.modDisabled]:
+                                                    !shouldShowBringForward(),
+                                            }
+                                        )}
                                         disabled={!shouldShowBringForward()}
                                         onClick={props.onSendToFront}
                                     >
@@ -252,12 +249,20 @@ const FixedToolsComponent = props => {
                                             draggable={false}
                                             src={sendFrontIcon}
                                         />
-                                        <span>{props.intl.formatMessage(messages.front)}</span>
+                                        <span>
+                                            {props.intl.formatMessage(
+                                                messages.front
+                                            )}
+                                        </span>
                                     </Button>
                                     <Button
-                                        className={classNames(styles.modMenuItem, {
-                                            [styles.modDisabled]: !shouldShowSendBackward()
-                                        })}
+                                        className={classNames(
+                                            styles.modMenuItem,
+                                            {
+                                                [styles.modDisabled]:
+                                                    !shouldShowSendBackward(),
+                                            }
+                                        )}
                                         disabled={!shouldShowSendBackward()}
                                         onClick={props.onSendToBack}
                                     >
@@ -266,7 +271,11 @@ const FixedToolsComponent = props => {
                                             draggable={false}
                                             src={sendBackIcon}
                                         />
-                                        <span>{props.intl.formatMessage(messages.back)}</span>
+                                        <span>
+                                            {props.intl.formatMessage(
+                                                messages.back
+                                            )}
+                                        </span>
                                     </Button>
 
                                     {/* To be rotation point */}
@@ -283,13 +292,13 @@ const FixedToolsComponent = props => {
                                     </Button> */}
                                 </InputGroup>
                             }
-                            tipSize={.01}
+                            tipSize={0.01}
                         >
                             {props.intl.formatMessage(messages.more)}
                         </Dropdown>
                     </InputGroup>
-                </MediaQuery> : null
-            }
+                </MediaQuery>
+            ) : null}
         </div>
     );
 };
@@ -309,16 +318,14 @@ FixedToolsComponent.propTypes = {
     onUndo: PropTypes.func.isRequired,
     onUngroup: PropTypes.func.isRequired,
     onUpdateName: PropTypes.func.isRequired,
-    rtl: PropTypes.bool.isRequired
+    rtl: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     format: state.scratchPaint.format,
     rtl: state.scratchPaint.layout.rtl,
     selectedItems: state.scratchPaint.selectedItems,
-    undoState: state.scratchPaint.undo
+    undoState: state.scratchPaint.undo,
 });
 
-export default connect(
-    mapStateToProps
-)(injectIntl(FixedToolsComponent));
+export default connect(mapStateToProps)(injectIntl(FixedToolsComponent));

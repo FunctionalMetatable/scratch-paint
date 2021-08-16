@@ -1,5 +1,5 @@
-import paper from '@scratch/paper';
-import log from '../../log/log';
+import paper from "@scratch/paper";
+import log from "../../log/log";
 
 /**
  * Tool for drawing rounded rectangles
@@ -12,7 +12,13 @@ class RoundedRectTool extends paper.Tool {
      * @param {function} clearSelectedItems Callback to clear the set of selected items in the Redux state
      * @param {!function} onUpdateImage A callback to call when the image visibly changes
      */
-    constructor (setHoveredItem, clearHoveredItem, setSelectedItems, clearSelectedItems, onUpdateImage) {
+    constructor(
+        setHoveredItem,
+        clearHoveredItem,
+        setSelectedItems,
+        clearSelectedItems,
+        onUpdateImage
+    ) {
         super();
         this.setHoveredItem = setHoveredItem;
         this.clearHoveredItem = clearHoveredItem;
@@ -20,7 +26,7 @@ class RoundedRectTool extends paper.Tool {
         this.clearSelectedItems = clearSelectedItems;
         this.onUpdateImage = onUpdateImage;
         this.prevHoveredItemId = null;
-        
+
         // We have to set these functions instead of just declaring them because
         // paper.js tools hook up the listeners in the setter functions.
         this.onMouseDown = this.handleMouseDown;
@@ -35,20 +41,16 @@ class RoundedRectTool extends paper.Tool {
      * @param {paper.Item} prevHoveredItemId ID of the highlight item that indicates the mouse is
      *     over a given item currently
      */
-    setPrevHoveredItemId (prevHoveredItemId) {
+    setPrevHoveredItemId(prevHoveredItemId) {
         this.prevHoveredItemId = prevHoveredItemId;
     }
-    handleMouseDown () {
-        log.warn('Rounded Rectangle tool not yet implemented');
+    handleMouseDown() {
+        log.warn("Rounded Rectangle tool not yet implemented");
     }
-    handleMouseMove () {
-    }
-    handleMouseDrag () {
-    }
-    handleMouseUp () {
-    }
-    deactivateTool () {
-    }
+    handleMouseMove() {}
+    handleMouseDrag() {}
+    handleMouseUp() {}
+    deactivateTool() {}
 }
 
 export default RoundedRectTool;

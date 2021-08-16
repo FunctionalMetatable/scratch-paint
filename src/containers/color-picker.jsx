@@ -1,31 +1,31 @@
-import bindAll from 'lodash.bindall';
-import {connect} from 'react-redux';
-import paper from '@scratch/paper';
-import ColorProptype from '../lib/color-proptype';
-import PropTypes from 'prop-types';
-import React from 'react';
+import bindAll from "lodash.bindall";
+import { connect } from "react-redux";
+import paper from "@scratch/paper";
+import ColorProptype from "../lib/color-proptype";
+import PropTypes from "prop-types";
+import React from "react";
 
-import {changeStrokeColorIndex} from '../reducers/stroke-style';
-import {changeFillColorIndex} from '../reducers/fill-style';
-import {clearSelectedItems} from '../reducers/selected-items';
-import GradientTypes from '../lib/gradient-types';
+import { changeStrokeColorIndex } from "../reducers/stroke-style";
+import { changeFillColorIndex } from "../reducers/fill-style";
+import { clearSelectedItems } from "../reducers/selected-items";
+import GradientTypes from "../lib/gradient-types";
 
-import ColorPickerComponent from '../components/color-picker/color-picker.jsx';
-import {colorsEqual} from '../helper/style-path';
-import Modes from '../lib/modes';
-import {getHsv} from '../lib/colors';
+import ColorPickerComponent from "../components/color-picker/color-picker.jsx";
+import { colorsEqual } from "../helper/style-path";
+import Modes from "../lib/modes";
+import { getHsv } from "../lib/colors";
 
 class ColorPicker extends React.Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         bindAll(this, [
-            'handleChangeGradientTypeHorizontal',
-            'handleChangeGradientTypeRadial',
-            'handleChangeGradientTypeSolid',
-            'handleChangeGradientTypeVertical',
-            'handleHueChange',
-            'handleSaturationChange',
-            'handleBrightnessChange'
+            "handleChangeGradientTypeHorizontal",
+            "handleChangeGradientTypeRadial",
+            "handleChangeGradientTypeSolid",
+            "handleChangeGradientTypeVertical",
+            "handleHueChange",
+            "handleSaturationChange",
+            "handleBrightnessChange",
         ]);
 
         const color = props.colorIndex === 0 ? props.color : props.color2;
@@ -33,56 +33,60 @@ class ColorPicker extends React.Component {
         this.state = {
             hue: hsv[0],
             saturation: hsv[1],
-            brightness: hsv[2]
+            brightness: hsv[2],
         };
     }
-    componentWillReceiveProps (newProps) {
-        const color = newProps.colorIndex === 0 ? this.props.color : this.props.color2;
-        const newColor = newProps.colorIndex === 0 ? newProps.color : newProps.color2;
+    componentWillReceiveProps(newProps) {
+        const color =
+            newProps.colorIndex === 0 ? this.props.color : this.props.color2;
+        const newColor =
+            newProps.colorIndex === 0 ? newProps.color : newProps.color2;
         if (!colorsEqual(color, newColor)) {
             const hsv = getHsv(newColor);
             this.setState({
                 hue: hsv[0],
                 saturation: hsv[1],
-                brightness: hsv[2]
+                brightness: hsv[2],
             });
         }
     }
-    handleHueChange (hue) {
-        this.setState({hue: hue}, () => {
+    handleHueChange(hue) {
+        this.setState({ hue: hue }, () => {
             this.handleColorChange();
         });
     }
-    handleSaturationChange (saturation) {
-        this.setState({saturation: saturation}, () => {
+    handleSaturationChange(saturation) {
+        this.setState({ saturation: saturation }, () => {
             this.handleColorChange();
         });
     }
-    handleBrightnessChange (brightness) {
-        this.setState({brightness: brightness}, () => {
+    handleBrightnessChange(brightness) {
+        this.setState({ brightness: brightness }, () => {
             this.handleColorChange();
         });
     }
-    handleColorChange () {
-        this.props.onChangeColor(new paper.Color({
-            hue: this.state.hue * (360 / 100),
-            saturation: this.state.saturation / 100,
-            brightness: this.state.brightness / 100
-        }));
+    handleColorChange() {
+        this.props.onChangeColor(
+            new paper.Color({
+                hue: this.state.hue * (360 / 100),
+                saturation: this.state.saturation / 100,
+                brightness: this.state.brightness / 100,
+            })
+        );
     }
-    handleChangeGradientTypeHorizontal () {
+    handleChangeGradientTypeHorizontal() {
         this.props.onChangeGradientType(GradientTypes.HORIZONTAL);
     }
-    handleChangeGradientTypeRadial () {
+    handleChangeGradientTypeRadial() {
         this.props.onChangeGradientType(GradientTypes.RADIAL);
     }
-    handleChangeGradientTypeSolid () {
+    handleChangeGradientTypeSolid() {
         this.props.onChangeGradientType(GradientTypes.SOLID);
     }
-    handleChangeGradientTypeVertical () {
+    handleChangeGradientTypeVertical() {
         this.props.onChangeGradientType(GradientTypes.VERTICAL);
     }
-    render () {
+    render() {
         return (
             <ColorPickerComponent
                 brightness={this.state.brightness}
@@ -98,10 +102,14 @@ class ColorPicker extends React.Component {
                 shouldShowGradientTools={this.props.shouldShowGradientTools}
                 onBrightnessChange={this.handleBrightnessChange}
                 onChangeColor={this.props.onChangeColor}
-                onChangeGradientTypeHorizontal={this.handleChangeGradientTypeHorizontal}
+                onChangeGradientTypeHorizontal={
+                    this.handleChangeGradientTypeHorizontal
+                }
                 onChangeGradientTypeRadial={this.handleChangeGradientTypeRadial}
                 onChangeGradientTypeSolid={this.handleChangeGradientTypeSolid}
-                onChangeGradientTypeVertical={this.handleChangeGradientTypeVertical}
+                onChangeGradientTypeVertical={
+                    this.handleChangeGradientTypeVertical
+                }
                 onHueChange={this.handleHueChange}
                 onSaturationChange={this.handleSaturationChange}
                 onSelectColor={this.props.onSelectColor}
@@ -125,21 +133,21 @@ ColorPicker.propTypes = {
     onSelectColor2: PropTypes.func.isRequired,
     onSwap: PropTypes.func,
     rtl: PropTypes.bool.isRequired,
-    shouldShowGradientTools: PropTypes.bool.isRequired
+    shouldShowGradientTools: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => ({
-    color: ownProps.isStrokeColor ?
-        state.scratchPaint.color.strokeColor.primary :
-        state.scratchPaint.color.fillColor.primary,
-    color2: ownProps.isStrokeColor ?
-        state.scratchPaint.color.strokeColor.secondary :
-        state.scratchPaint.color.fillColor.secondary,
-    colorIndex: ownProps.isStrokeColor ?
-        state.scratchPaint.color.strokeColor.activeIndex :
-        state.scratchPaint.color.fillColor.activeIndex,
+    color: ownProps.isStrokeColor
+        ? state.scratchPaint.color.strokeColor.primary
+        : state.scratchPaint.color.fillColor.primary,
+    color2: ownProps.isStrokeColor
+        ? state.scratchPaint.color.strokeColor.secondary
+        : state.scratchPaint.color.fillColor.secondary,
+    colorIndex: ownProps.isStrokeColor
+        ? state.scratchPaint.color.strokeColor.activeIndex
+        : state.scratchPaint.color.fillColor.activeIndex,
     mode: state.scratchPaint.mode,
-    rtl: state.scratchPaint.layout.rtl
+    rtl: state.scratchPaint.layout.rtl,
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
@@ -159,10 +167,7 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
         } else {
             dispatch(changeFillColorIndex(1));
         }
-    }
+    },
 });
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(ColorPicker);
+export default connect(mapStateToProps, mapDispatchToProps)(ColorPicker);

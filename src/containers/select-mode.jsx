@@ -1,33 +1,33 @@
-import paper from '@scratch/paper';
-import PropTypes from 'prop-types';
-import React from 'react';
-import {connect} from 'react-redux';
-import bindAll from 'lodash.bindall';
-import Modes from '../lib/modes';
+import paper from "@scratch/paper";
+import PropTypes from "prop-types";
+import React from "react";
+import { connect } from "react-redux";
+import bindAll from "lodash.bindall";
+import Modes from "../lib/modes";
 
-import {changeMode} from '../reducers/modes';
-import {clearHoveredItem, setHoveredItem} from '../reducers/hover';
-import {clearSelectedItems, setSelectedItems} from '../reducers/selected-items';
-import {setCursor} from '../reducers/cursor';
+import { changeMode } from "../reducers/modes";
+import { clearHoveredItem, setHoveredItem } from "../reducers/hover";
+import {
+    clearSelectedItems,
+    setSelectedItems,
+} from "../reducers/selected-items";
+import { setCursor } from "../reducers/cursor";
 
-import {getSelectedLeafItems} from '../helper/selection';
-import SelectTool from '../helper/selection-tools/select-tool';
-import SelectModeComponent from '../components/select-mode/select-mode.jsx';
+import { getSelectedLeafItems } from "../helper/selection";
+import SelectTool from "../helper/selection-tools/select-tool";
+import SelectModeComponent from "../components/select-mode/select-mode.jsx";
 
 class SelectMode extends React.Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
-        bindAll(this, [
-            'activateTool',
-            'deactivateTool'
-        ]);
+        bindAll(this, ["activateTool", "deactivateTool"]);
     }
-    componentDidMount () {
+    componentDidMount() {
         if (this.props.isSelectModeActive) {
             this.activateTool(this.props);
         }
     }
-    componentWillReceiveProps (nextProps) {
+    componentWillReceiveProps(nextProps) {
         if (this.tool && nextProps.hoveredItemId !== this.props.hoveredItemId) {
             this.tool.setPrevHoveredItemId(nextProps.hoveredItemId);
         }
@@ -37,19 +37,22 @@ class SelectMode extends React.Component {
 
         if (nextProps.isSelectModeActive && !this.props.isSelectModeActive) {
             this.activateTool();
-        } else if (!nextProps.isSelectModeActive && this.props.isSelectModeActive) {
+        } else if (
+            !nextProps.isSelectModeActive &&
+            this.props.isSelectModeActive
+        ) {
             this.deactivateTool();
         }
     }
-    shouldComponentUpdate (nextProps) {
+    shouldComponentUpdate(nextProps) {
         return nextProps.isSelectModeActive !== this.props.isSelectModeActive;
     }
-    componentWillUnmount () {
+    componentWillUnmount() {
         if (this.tool) {
             this.deactivateTool();
         }
     }
-    activateTool () {
+    activateTool() {
         this.tool = new SelectTool(
             this.props.setHoveredItem,
             this.props.clearHoveredItem,
@@ -61,12 +64,12 @@ class SelectMode extends React.Component {
         );
         this.tool.activate();
     }
-    deactivateTool () {
+    deactivateTool() {
         this.tool.deactivateTool();
         this.tool.remove();
         this.tool = null;
     }
-    render () {
+    render() {
         return (
             <SelectModeComponent
                 isSelected={this.props.isSelectModeActive}
@@ -87,16 +90,16 @@ SelectMode.propTypes = {
     setCursor: PropTypes.func.isRequired,
     setHoveredItem: PropTypes.func.isRequired,
     setSelectedItems: PropTypes.func.isRequired,
-    switchToTextTool: PropTypes.func.isRequired
+    switchToTextTool: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     isSelectModeActive: state.scratchPaint.mode === Modes.SELECT,
     hoveredItemId: state.scratchPaint.hoveredItemId,
-    selectedItems: state.scratchPaint.selectedItems
+    selectedItems: state.scratchPaint.selectedItems,
 });
-const mapDispatchToProps = dispatch => ({
-    setHoveredItem: hoveredItemId => {
+const mapDispatchToProps = (dispatch) => ({
+    setHoveredItem: (hoveredItemId) => {
         dispatch(setHoveredItem(hoveredItemId));
     },
     clearHoveredItem: () => {
@@ -106,9 +109,11 @@ const mapDispatchToProps = dispatch => ({
         dispatch(clearSelectedItems());
     },
     setSelectedItems: () => {
-        dispatch(setSelectedItems(getSelectedLeafItems(), false /* bitmapMode */));
+        dispatch(
+            setSelectedItems(getSelectedLeafItems(), false /* bitmapMode */)
+        );
     },
-    setCursor: cursorString => {
+    setCursor: (cursorString) => {
         dispatch(setCursor(cursorString));
     },
     handleMouseDown: () => {
@@ -116,10 +121,7 @@ const mapDispatchToProps = dispatch => ({
     },
     switchToTextTool: () => {
         dispatch(changeMode(Modes.TEXT));
-    }
+    },
 });
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(SelectMode);
+export default connect(mapStateToProps, mapDispatchToProps)(SelectMode);

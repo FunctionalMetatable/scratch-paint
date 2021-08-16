@@ -1,25 +1,30 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {defineMessages, FormattedMessage, injectIntl, intlShape} from 'react-intl';
+import React from "react";
+import PropTypes from "prop-types";
+import {
+    defineMessages,
+    FormattedMessage,
+    injectIntl,
+    intlShape,
+} from "react-intl";
 
-import classNames from 'classnames';
+import classNames from "classnames";
 
-import Slider, {CONTAINER_WIDTH, HANDLE_WIDTH} from '../forms/slider.jsx';
-import LabeledIconButton from '../labeled-icon-button/labeled-icon-button.jsx';
-import styles from './color-picker.css';
-import swatchStyles from '../swatches/swatches.css';
-import GradientTypes from '../../lib/gradient-types';
-import Swatches from '../../containers/swatches.jsx';
-import {MIXED} from '../../helper/style-path';
+import Slider, { CONTAINER_WIDTH, HANDLE_WIDTH } from "../forms/slider.jsx";
+import LabeledIconButton from "../labeled-icon-button/labeled-icon-button.jsx";
+import styles from "./color-picker.css";
+import swatchStyles from "../swatches/swatches.css";
+import GradientTypes from "../../lib/gradient-types";
+import Swatches from "../../containers/swatches.jsx";
+import { MIXED } from "../../helper/style-path";
 
-import noFillIcon from '../color-button/no-fill.svg';
-import mixedFillIcon from '../color-button/mixed-fill.svg';
-import fillHorzGradientIcon from './icons/fill-horz-gradient-enabled.svg';
-import fillRadialIcon from './icons/fill-radial-enabled.svg';
-import fillSolidIcon from './icons/fill-solid-enabled.svg';
-import fillVertGradientIcon from './icons/fill-vert-gradient-enabled.svg';
-import swapIcon from './icons/swap.svg';
-import ColorProptype from '../../lib/color-proptype';
+import noFillIcon from "../color-button/no-fill.svg";
+import mixedFillIcon from "../color-button/mixed-fill.svg";
+import fillHorzGradientIcon from "./icons/fill-horz-gradient-enabled.svg";
+import fillRadialIcon from "./icons/fill-radial-enabled.svg";
+import fillSolidIcon from "./icons/fill-solid-enabled.svg";
+import fillVertGradientIcon from "./icons/fill-vert-gradient-enabled.svg";
+import swapIcon from "./icons/swap.svg";
+import ColorProptype from "../../lib/color-proptype";
 
 /**
  * Converts the color picker's internal color representation (HSV 0-100) into a CSS color string.
@@ -30,39 +35,51 @@ import ColorProptype from '../../lib/color-proptype';
  */
 const hsvToCssString = (h, s, v) => {
     const scaledValue = v * 0.01;
-    const hslLightness = scaledValue - ((scaledValue * (s * 0.01)) / 2);
+    const hslLightness = scaledValue - (scaledValue * (s * 0.01)) / 2;
     const m = Math.min(hslLightness, 1 - hslLightness);
-    const hslSaturation = (m === 0) ? 0 : (scaledValue - hslLightness) / m;
+    const hslSaturation = m === 0 ? 0 : (scaledValue - hslLightness) / m;
 
     return `hsl(${h * 3.6}, ${hslSaturation * 100}%, ${hslLightness * 100}%)`;
 };
 
 const messages = defineMessages({
     swap: {
-        defaultMessage: 'Swap',
-        description: 'Label for button that swaps the two colors in a gradient',
-        id: 'paint.colorPicker.swap'
-    }
+        defaultMessage: "Swap",
+        description: "Label for button that swaps the two colors in a gradient",
+        id: "paint.colorPicker.swap",
+    },
 });
 
 class ColorPickerComponent extends React.Component {
-    _makeBackground (channel) {
+    _makeBackground(channel) {
         const stops = [];
         // Generate the color slider background CSS gradients by adding
         // color stops depending on the slider.
         for (let n = 100; n >= 0; n -= 10) {
             switch (channel) {
-            case 'hue':
-                stops.push(hsvToCssString(n, this.props.saturation, this.props.brightness));
-                break;
-            case 'saturation':
-                stops.push(hsvToCssString(this.props.hue, n, this.props.brightness));
-                break;
-            case 'brightness':
-                stops.push(hsvToCssString(this.props.hue, this.props.saturation, n));
-                break;
-            default:
-                throw new Error(`Unknown channel for color sliders: ${channel}`);
+                case "hue":
+                    stops.push(
+                        hsvToCssString(
+                            n,
+                            this.props.saturation,
+                            this.props.brightness
+                        )
+                    );
+                    break;
+                case "saturation":
+                    stops.push(
+                        hsvToCssString(this.props.hue, n, this.props.brightness)
+                    );
+                    break;
+                case "brightness":
+                    stops.push(
+                        hsvToCssString(this.props.hue, this.props.saturation, n)
+                    );
+                    break;
+                default:
+                    throw new Error(
+                        `Unknown channel for color sliders: ${channel}`
+                    );
             }
         }
 
@@ -73,15 +90,17 @@ class ColorPickerComponent extends React.Component {
         // to where the rounded cap begins.
         const halfHandleWidth = HANDLE_WIDTH / 2;
         stops[0] += ` 0 ${halfHandleWidth}px`;
-        stops[stops.length - 1] += ` ${CONTAINER_WIDTH - halfHandleWidth}px 100%`;
+        stops[stops.length - 1] += ` ${
+            CONTAINER_WIDTH - halfHandleWidth
+        }px 100%`;
 
-        return `linear-gradient(to left, ${stops.join(',')})`;
+        return `linear-gradient(to left, ${stops.join(",")})`;
     }
-    render () {
+    render() {
         return (
             <div
                 className={styles.colorPickerContainer}
-                dir={this.props.rtl ? 'rtl' : 'ltr'}
+                dir={this.props.rtl ? "rtl" : "ltr"}
             >
                 {this.props.shouldShowGradientTools ? (
                     <div>
@@ -89,45 +108,62 @@ class ColorPickerComponent extends React.Component {
                             <div className={styles.gradientPickerRow}>
                                 <img
                                     className={classNames({
-                                        [styles.inactiveGradient]: this.props.gradientType !== GradientTypes.SOLID,
-                                        [styles.clickable]: true
+                                        [styles.inactiveGradient]:
+                                            this.props.gradientType !==
+                                            GradientTypes.SOLID,
+                                        [styles.clickable]: true,
                                     })}
                                     draggable={false}
                                     src={fillSolidIcon}
-                                    onClick={this.props.onChangeGradientTypeSolid}
+                                    onClick={
+                                        this.props.onChangeGradientTypeSolid
+                                    }
                                 />
                                 <img
                                     className={classNames({
                                         [styles.inactiveGradient]:
-                                            this.props.gradientType !== GradientTypes.HORIZONTAL,
-                                        [styles.clickable]: true
+                                            this.props.gradientType !==
+                                            GradientTypes.HORIZONTAL,
+                                        [styles.clickable]: true,
                                     })}
                                     draggable={false}
                                     src={fillHorzGradientIcon}
-                                    onClick={this.props.onChangeGradientTypeHorizontal}
+                                    onClick={
+                                        this.props
+                                            .onChangeGradientTypeHorizontal
+                                    }
                                 />
                                 <img
                                     className={classNames({
-                                        [styles.inactiveGradient]: this.props.gradientType !== GradientTypes.VERTICAL,
-                                        [styles.clickable]: true
+                                        [styles.inactiveGradient]:
+                                            this.props.gradientType !==
+                                            GradientTypes.VERTICAL,
+                                        [styles.clickable]: true,
                                     })}
                                     draggable={false}
                                     src={fillVertGradientIcon}
-                                    onClick={this.props.onChangeGradientTypeVertical}
+                                    onClick={
+                                        this.props.onChangeGradientTypeVertical
+                                    }
                                 />
                                 <img
                                     className={classNames({
-                                        [styles.inactiveGradient]: this.props.gradientType !== GradientTypes.RADIAL,
-                                        [styles.clickable]: true
+                                        [styles.inactiveGradient]:
+                                            this.props.gradientType !==
+                                            GradientTypes.RADIAL,
+                                        [styles.clickable]: true,
                                     })}
                                     draggable={false}
                                     src={fillRadialIcon}
-                                    onClick={this.props.onChangeGradientTypeRadial}
+                                    onClick={
+                                        this.props.onChangeGradientTypeRadial
+                                    }
                                 />
                             </div>
                         </div>
                         <div className={styles.divider} />
-                        {this.props.gradientType === GradientTypes.SOLID ? null : (
+                        {this.props.gradientType ===
+                        GradientTypes.SOLID ? null : (
                             <div className={styles.row}>
                                 <div
                                     className={classNames(
@@ -139,23 +175,31 @@ class ColorPickerComponent extends React.Component {
                                         className={classNames({
                                             [styles.clickable]: true,
                                             [styles.largeSwatch]: true,
-                                            [swatchStyles.activeSwatch]: this.props.colorIndex === 0
+                                            [swatchStyles.activeSwatch]:
+                                                this.props.colorIndex === 0,
                                         })}
                                         style={{
-                                            backgroundColor: this.props.color === null || this.props.color === MIXED ?
-                                                'white' : this.props.color.toCSS()
+                                            backgroundColor:
+                                                this.props.color === null ||
+                                                this.props.color === MIXED
+                                                    ? "white"
+                                                    : this.props.color.toCSS(),
                                         }}
                                         onClick={this.props.onSelectColor}
                                     >
                                         {this.props.color === null ? (
                                             <img
-                                                className={styles.largeSwatchIcon}
+                                                className={
+                                                    styles.largeSwatchIcon
+                                                }
                                                 draggable={false}
                                                 src={noFillIcon}
                                             />
                                         ) : this.props.color === MIXED ? (
                                             <img
-                                                className={styles.largeSwatchIcon}
+                                                className={
+                                                    styles.largeSwatchIcon
+                                                }
                                                 draggable={false}
                                                 src={mixedFillIcon}
                                             />
@@ -164,30 +208,40 @@ class ColorPickerComponent extends React.Component {
                                     <LabeledIconButton
                                         className={styles.swapButton}
                                         imgSrc={swapIcon}
-                                        title={this.props.intl.formatMessage(messages.swap)}
+                                        title={this.props.intl.formatMessage(
+                                            messages.swap
+                                        )}
                                         onClick={this.props.onSwap}
                                     />
                                     <div
                                         className={classNames({
                                             [styles.clickable]: true,
                                             [styles.largeSwatch]: true,
-                                            [swatchStyles.activeSwatch]: this.props.colorIndex === 1
+                                            [swatchStyles.activeSwatch]:
+                                                this.props.colorIndex === 1,
                                         })}
                                         style={{
-                                            backgroundColor: this.props.color2 === null || this.props.color2 === MIXED ?
-                                                'white' : this.props.color2.toCSS()
+                                            backgroundColor:
+                                                this.props.color2 === null ||
+                                                this.props.color2 === MIXED
+                                                    ? "white"
+                                                    : this.props.color2.toCSS(),
                                         }}
                                         onClick={this.props.onSelectColor2}
                                     >
                                         {this.props.color2 === null ? (
                                             <img
-                                                className={styles.largeSwatchIcon}
+                                                className={
+                                                    styles.largeSwatchIcon
+                                                }
                                                 draggable={false}
                                                 src={noFillIcon}
                                             />
                                         ) : this.props.color2 === MIXED ? (
                                             <img
-                                                className={styles.largeSwatchIcon}
+                                                className={
+                                                    styles.largeSwatchIcon
+                                                }
                                                 draggable={false}
                                                 src={mixedFillIcon}
                                             />
@@ -218,7 +272,7 @@ class ColorPickerComponent extends React.Component {
                     </div>
                     <div className={styles.rowSlider}>
                         <Slider
-                            background={this._makeBackground('hue')}
+                            background={this._makeBackground("hue")}
                             value={this.props.hue}
                             onChange={this.props.onHueChange}
                         />
@@ -239,7 +293,7 @@ class ColorPickerComponent extends React.Component {
                     </div>
                     <div className={styles.rowSlider}>
                         <Slider
-                            background={this._makeBackground('saturation')}
+                            background={this._makeBackground("saturation")}
                             value={this.props.saturation}
                             onChange={this.props.onSaturationChange}
                         />
@@ -260,7 +314,7 @@ class ColorPickerComponent extends React.Component {
                     </div>
                     <div className={styles.rowSlider}>
                         <Slider
-                            background={this._makeBackground('brightness')}
+                            background={this._makeBackground("brightness")}
                             value={this.props.brightness}
                             onChange={this.props.onBrightnessChange}
                         />
@@ -293,7 +347,7 @@ ColorPickerComponent.propTypes = {
     onSwap: PropTypes.func,
     rtl: PropTypes.bool.isRequired,
     saturation: PropTypes.number.isRequired,
-    shouldShowGradientTools: PropTypes.bool.isRequired
+    shouldShowGradientTools: PropTypes.bool.isRequired,
 };
 
 export default injectIntl(ColorPickerComponent);

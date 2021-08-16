@@ -1,7 +1,7 @@
-import paper from '@scratch/paper';
-import {getRaster, createCanvas, getGuideLayer} from '../layer';
-import {forEachLinePoint, getBrushMark} from '../bitmap';
-import {ART_BOARD_WIDTH, ART_BOARD_HEIGHT} from '../view';
+import paper from "@scratch/paper";
+import { getRaster, createCanvas, getGuideLayer } from "../layer";
+import { forEachLinePoint, getBrushMark } from "../bitmap";
+import { ART_BOARD_WIDTH, ART_BOARD_HEIGHT } from "../view";
 
 /**
  * Tool for drawing lines with the bitmap brush.
@@ -10,10 +10,10 @@ class LineTool extends paper.Tool {
     /**
      * @param {!function} onUpdateImage A callback to call when the image visibly changes
      */
-    constructor (onUpdateImage) {
+    constructor(onUpdateImage) {
         super();
         this.onUpdateImage = onUpdateImage;
-        
+
         // We have to set these functions instead of just declaring them because
         // paper.js tools hook up the listeners in the setter functions.
         this.onMouseMove = this.handleMouseMove;
@@ -28,21 +28,24 @@ class LineTool extends paper.Tool {
         // Raster to which to draw
         this.drawTarget = null;
     }
-    setColor (color) {
+    setColor(color) {
         this.color = color;
         this.tmpCanvas = getBrushMark(this.size, this.color);
     }
-    setLineSize (size) {
+    setLineSize(size) {
         // For performance, make sure this is an integer
         this.size = Math.max(1, ~~size);
         this.tmpCanvas = getBrushMark(this.size, this.color);
     }
     // Draw a brush mark at the given point
-    draw (x, y) {
+    draw(x, y) {
         const roundedUpRadius = Math.ceil(this.size / 2);
-        this.drawTarget.drawImage(this.tmpCanvas, new paper.Point(~~x - roundedUpRadius, ~~y - roundedUpRadius));
+        this.drawTarget.drawImage(
+            this.tmpCanvas,
+            new paper.Point(~~x - roundedUpRadius, ~~y - roundedUpRadius)
+        );
     }
-    updateCursorIfNeeded () {
+    updateCursorIfNeeded() {
         if (!this.size) {
             return;
         }
@@ -52,7 +55,10 @@ class LineTool extends paper.Tool {
             this.cursorPreview = null;
         }
 
-        if (!this.cursorPreview || !(this.lastSize === this.size && this.lastColor === this.color)) {
+        if (
+            !this.cursorPreview ||
+            !(this.lastSize === this.size && this.lastColor === this.color)
+        ) {
             if (this.cursorPreview) {
                 this.cursorPreview.remove();
             }
@@ -66,11 +72,14 @@ class LineTool extends paper.Tool {
         this.lastSize = this.size;
         this.lastColor = this.color;
     }
-    handleMouseMove (event) {
+    handleMouseMove(event) {
         this.updateCursorIfNeeded();
-        this.cursorPreview.position = new paper.Point(~~event.point.x, ~~event.point.y);
+        this.cursorPreview.position = new paper.Point(
+            ~~event.point.x,
+            ~~event.point.y
+        );
     }
-    handleMouseDown (event) {
+    handleMouseDown(event) {
         if (event.event.button > 0) return; // only first mouse button
         this.active = true;
 
@@ -86,18 +95,18 @@ class LineTool extends paper.Tool {
         this.draw(event.point.x, event.point.y);
         this.startPoint = event.point;
     }
-    handleMouseDrag (event) {
+    handleMouseDrag(event) {
         if (event.event.button > 0 || !this.active) return; // only first mouse button
 
         // Clear
-        const context = this.drawTarget.canvas.getContext('2d');
+        const context = this.drawTarget.canvas.getContext("2d");
         context.clearRect(0, 0, ART_BOARD_WIDTH, ART_BOARD_HEIGHT);
 
         forEachLinePoint(this.startPoint, event.point, this.draw.bind(this));
     }
-    handleMouseUp (event) {
+    handleMouseUp(event) {
         if (event.event.button > 0 || !this.active) return; // only first mouse button
-        
+
         this.drawTarget.remove();
         this.drawTarget = getRaster();
         forEachLinePoint(this.startPoint, event.point, this.draw.bind(this));
@@ -108,9 +117,12 @@ class LineTool extends paper.Tool {
         this.active = false;
 
         this.updateCursorIfNeeded();
-        this.cursorPreview.position = new paper.Point(~~event.point.x, ~~event.point.y);
+        this.cursorPreview.position = new paper.Point(
+            ~~event.point.x,
+            ~~event.point.y
+        );
     }
-    deactivateTool () {
+    deactivateTool() {
         this.active = false;
         this.tmpCanvas = null;
         if (this.cursorPreview) {

@@ -1,43 +1,50 @@
-import paper from '@scratch/paper';
-import React from 'react';
-import PropTypes from 'prop-types';
-import {connect} from 'react-redux';
-import bindAll from 'lodash.bindall';
+import paper from "@scratch/paper";
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import bindAll from "lodash.bindall";
 
-import CopyPasteHOC from '../hocs/copy-paste-hoc.jsx';
-import ModeToolsComponent from '../components/mode-tools/mode-tools.jsx';
-import {clearSelectedItems, setSelectedItems} from '../reducers/selected-items';
+import CopyPasteHOC from "../hocs/copy-paste-hoc.jsx";
+import ModeToolsComponent from "../components/mode-tools/mode-tools.jsx";
+import {
+    clearSelectedItems,
+    setSelectedItems,
+} from "../reducers/selected-items";
 import {
     deleteSelection,
     getSelectedLeafItems,
     getSelectedRootItems,
     getAllRootItems,
     selectAllItems,
-    selectAllSegments
-} from '../helper/selection';
-import {HANDLE_RATIO, ensureClockwise} from '../helper/math';
-import {getRaster} from '../helper/layer';
-import {flipBitmapHorizontal, flipBitmapVertical, selectAllBitmap} from '../helper/bitmap';
-import Formats, {isBitmap} from '../lib/format';
-import Modes from '../lib/modes';
+    selectAllSegments,
+} from "../helper/selection";
+import { HANDLE_RATIO, ensureClockwise } from "../helper/math";
+import { getRaster } from "../helper/layer";
+import {
+    flipBitmapHorizontal,
+    flipBitmapVertical,
+    selectAllBitmap,
+} from "../helper/bitmap";
+import Formats, { isBitmap } from "../lib/format";
+import Modes from "../lib/modes";
 
 class ModeTools extends React.Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         bindAll(this, [
-            '_getSelectedUncurvedPoints',
-            '_getSelectedUnpointedPoints',
-            'hasSelectedUncurvedPoints',
-            'hasSelectedUnpointedPoints',
-            'handleCurvePoints',
-            'handleFlipHorizontal',
-            'handleFlipVertical',
-            'handleDelete',
-            'handlePasteFromClipboard',
-            'handlePointPoints'
+            "_getSelectedUncurvedPoints",
+            "_getSelectedUnpointedPoints",
+            "hasSelectedUncurvedPoints",
+            "hasSelectedUnpointedPoints",
+            "handleCurvePoints",
+            "handleFlipHorizontal",
+            "handleFlipVertical",
+            "handleDelete",
+            "handlePasteFromClipboard",
+            "handlePointPoints",
         ]);
     }
-    _getSelectedUncurvedPoints () {
+    _getSelectedUncurvedPoints() {
         const items = [];
         const selectedItems = getSelectedLeafItems();
         for (const item of selectedItems) {
@@ -49,14 +56,16 @@ class ModeTools extends React.Component {
                     const isCurved =
                         (!prev || seg.handleIn.length > 0) &&
                         (!next || seg.handleOut.length > 0) &&
-                        (prev && next ? seg.handleOut.isColinear(seg.handleIn) : true);
+                        (prev && next
+                            ? seg.handleOut.isColinear(seg.handleIn)
+                            : true);
                     if (!isCurved) items.push(seg);
                 }
             }
         }
         return items;
     }
-    _getSelectedUnpointedPoints () {
+    _getSelectedUnpointedPoints() {
         const points = [];
         const selectedItems = getSelectedLeafItems();
         for (const item of selectedItems) {
@@ -71,26 +80,28 @@ class ModeTools extends React.Component {
         }
         return points;
     }
-    hasSelectedUncurvedPoints () {
+    hasSelectedUncurvedPoints() {
         const points = this._getSelectedUncurvedPoints();
         return points.length > 0;
     }
-    hasSelectedUnpointedPoints () {
+    hasSelectedUnpointedPoints() {
         const points = this._getSelectedUnpointedPoints();
         return points.length > 0;
     }
-    handleCurvePoints () {
+    handleCurvePoints() {
         let changed;
         const points = this._getSelectedUncurvedPoints();
         for (const point of points) {
             const prev = point.getPrevious();
             const next = point.getNext();
-            const noHandles = point.handleIn.length === 0 && point.handleOut.length === 0;
+            const noHandles =
+                point.handleIn.length === 0 && point.handleOut.length === 0;
             if (!prev && !next) {
                 continue;
             } else if (prev && next && noHandles) {
                 // Handles are parallel to the line from prev to next
-                point.handleIn = prev.point.subtract(next.point)
+                point.handleIn = prev.point
+                    .subtract(next.point)
                     .normalize()
                     .multiply(prev.getCurve().length * HANDLE_RATIO);
             } else if (prev && !next && point.handleIn.length === 0) {
@@ -98,10 +109,13 @@ class ModeTools extends React.Component {
                 // Direction is average of normal at the point and direction to prev point, using the
                 // normal that points out from the convex side
                 // Lenth is curve length * HANDLE_RATIO
-                const convexity = prev.getCurve().getCurvatureAtTime(.5) < 0 ? -1 : 1;
-                point.handleIn = (prev.getCurve().getNormalAtTime(1)
+                const convexity =
+                    prev.getCurve().getCurvatureAtTime(0.5) < 0 ? -1 : 1;
+                point.handleIn = prev
+                    .getCurve()
+                    .getNormalAtTime(1)
                     .multiply(convexity)
-                    .add(prev.point.subtract(point.point).normalize()))
+                    .add(prev.point.subtract(point.point).normalize())
                     .normalize()
                     .multiply(prev.getCurve().length * HANDLE_RATIO);
             } else if (next && !prev && point.handleOut.length === 0) {
@@ -109,10 +123,13 @@ class ModeTools extends React.Component {
                 // Direction is average of normal at the point and direction to prev point, using the
                 // normal that points out from the convex side
                 // Lenth is curve length * HANDLE_RATIO
-                const convexity = point.getCurve().getCurvatureAtTime(.5) < 0 ? -1 : 1;
-                point.handleOut = (point.getCurve().getNormalAtTime(0)
+                const convexity =
+                    point.getCurve().getCurvatureAtTime(0.5) < 0 ? -1 : 1;
+                point.handleOut = point
+                    .getCurve()
+                    .getNormalAtTime(0)
                     .multiply(convexity)
-                    .add(next.point.subtract(point.point).normalize()))
+                    .add(next.point.subtract(point.point).normalize())
                     .normalize()
                     .multiply(point.getCurve().length * HANDLE_RATIO);
             }
@@ -131,11 +148,12 @@ class ModeTools extends React.Component {
             this.props.onUpdateImage();
         }
     }
-    handlePointPoints () {
+    handlePointPoints() {
         let changed;
         const points = this._getSelectedUnpointedPoints();
         for (const point of points) {
-            const noHandles = point.handleIn.length === 0 && point.handleOut.length === 0;
+            const noHandles =
+                point.handleIn.length === 0 && point.handleOut.length === 0;
             if (!noHandles) {
                 point.handleIn = null;
                 point.handleOut = null;
@@ -147,7 +165,7 @@ class ModeTools extends React.Component {
             this.props.onUpdateImage();
         }
     }
-    _handleFlip (horizontalScale, verticalScale, selectedItems) {
+    _handleFlip(horizontalScale, verticalScale, selectedItems) {
         if (selectedItems.length === 0) {
             // If nothing is selected, select everything
             selectedItems = getAllRootItems();
@@ -165,14 +183,17 @@ class ModeTools extends React.Component {
 
         // Remove flipped item from group and insert at old index. Must insert from bottom index up.
         for (let i = 0; i < selectedItems.length; i++) {
-            itemGroup.layer.insertChild(selectedItems[i].data.index, selectedItems[i]);
+            itemGroup.layer.insertChild(
+                selectedItems[i].data.index,
+                selectedItems[i]
+            );
             selectedItems[i].data.index = null;
         }
         itemGroup.remove();
 
         this.props.onUpdateImage();
     }
-    handleFlipHorizontal () {
+    handleFlipHorizontal() {
         const selectedItems = getSelectedRootItems();
         if (isBitmap(this.props.format) && selectedItems.length === 0) {
             getRaster().canvas = flipBitmapHorizontal(getRaster().canvas);
@@ -181,7 +202,7 @@ class ModeTools extends React.Component {
             this._handleFlip(-1, 1, selectedItems);
         }
     }
-    handleFlipVertical () {
+    handleFlipVertical() {
         const selectedItems = getSelectedRootItems();
         if (isBitmap(this.props.format) && selectedItems.length === 0) {
             getRaster().canvas = flipBitmapVertical(getRaster().canvas);
@@ -190,12 +211,12 @@ class ModeTools extends React.Component {
             this._handleFlip(1, -1, selectedItems);
         }
     }
-    handlePasteFromClipboard () {
+    handlePasteFromClipboard() {
         if (this.props.onPasteFromClipboard()) {
             this.props.onUpdateImage();
         }
     }
-    handleDelete () {
+    handleDelete() {
         if (!this.props.selectedItems.length) {
             if (isBitmap(this.props.format)) {
                 selectAllBitmap(this.props.clearSelectedItems);
@@ -209,7 +230,7 @@ class ModeTools extends React.Component {
             this.props.setSelectedItems(this.props.format);
         }
     }
-    render () {
+    render() {
         return (
             <ModeToolsComponent
                 hasSelectedUncurvedPoints={this.hasSelectedUncurvedPoints()}
@@ -235,26 +256,24 @@ ModeTools.propTypes = {
     onPasteFromClipboard: PropTypes.func.isRequired,
     onUpdateImage: PropTypes.func.isRequired,
     // Listen on selected items to update hasSelectedPoints
-    selectedItems:
-        PropTypes.arrayOf(PropTypes.instanceOf(paper.Item)), // eslint-disable-line react/no-unused-prop-types
-    setSelectedItems: PropTypes.func.isRequired
+    selectedItems: PropTypes.arrayOf(PropTypes.instanceOf(paper.Item)), // eslint-disable-line react/no-unused-prop-types
+    setSelectedItems: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     format: state.scratchPaint.format,
     mode: state.scratchPaint.mode,
-    selectedItems: state.scratchPaint.selectedItems
+    selectedItems: state.scratchPaint.selectedItems,
 });
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
     clearSelectedItems: () => {
         dispatch(clearSelectedItems());
     },
-    setSelectedItems: format => {
+    setSelectedItems: (format) => {
         dispatch(setSelectedItems(getSelectedLeafItems(), isBitmap(format)));
-    }
+    },
 });
 
-export default CopyPasteHOC(connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(ModeTools));
+export default CopyPasteHOC(
+    connect(mapStateToProps, mapDispatchToProps)(ModeTools)
+);

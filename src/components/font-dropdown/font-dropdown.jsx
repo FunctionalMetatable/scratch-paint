@@ -1,14 +1,14 @@
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import React from 'react';
+import classNames from "classnames";
+import PropTypes from "prop-types";
+import React from "react";
 
-import Button from '../button/button.jsx';
-import Dropdown from '../dropdown/dropdown.jsx';
-import InputGroup from '../input-group/input-group.jsx';
-import Fonts from '../../lib/fonts';
-import styles from './font-dropdown.css';
+import Button from "../button/button.jsx";
+import Dropdown from "../dropdown/dropdown.jsx";
+import InputGroup from "../input-group/input-group.jsx";
+import Fonts, { extraFonts } from "../../lib/fonts";
+import styles from "./font-dropdown.css";
 
-const ModeToolsComponent = props => (
+const ModeToolsComponent = (props) => (
     <Dropdown
         className={classNames(styles.modUnselect, styles.fontDropdown)}
         enterExitTransitionDurationMs={60}
@@ -95,14 +95,36 @@ const ModeToolsComponent = props => (
                         {props.getFontName(Fonts.KOREAN)}
                     </span>
                 </Button>
+
+                {extraFonts.map((font, index) => (
+                    <Button
+                        className={classNames(styles.modMenuItem)}
+                        onClick={props.onChoose}
+                        onMouseOver={() => props.onHoverExtra(font)}
+                        key={index}
+                    >
+                        <span
+                            style={{
+                                fontFamily: `'${font}'`,
+                            }}
+                        >
+                            {props.getFontName(font)}
+                        </span>
+                    </Button>
+                ))}
             </InputGroup>
         }
         ref={props.componentRef}
-        tipSize={.01}
+        tipSize={0.01}
         onOpen={props.onOpenDropdown}
         onOuterAction={props.onClickOutsideDropdown}
     >
-        <span className={classNames(props.getFontStyle(props.font), styles.displayedFontName)}>
+        <span
+            className={classNames(styles.displayedFontName)}
+            style={{
+                fontFamily: `'${props.font}'`,
+            }}
+        >
             {props.getFontName(props.font)}
         </span>
     </Dropdown>
@@ -124,6 +146,6 @@ ModeToolsComponent.propTypes = {
     onHoverPixel: PropTypes.func,
     onHoverSansSerif: PropTypes.func,
     onHoverSerif: PropTypes.func,
-    onOpenDropdown: PropTypes.func
+    onOpenDropdown: PropTypes.func,
 };
 export default ModeToolsComponent;

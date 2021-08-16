@@ -1,128 +1,133 @@
-import paper from '@scratch/paper';
-import {connect} from 'react-redux';
-import bindAll from 'lodash.bindall';
-import PropTypes from 'prop-types';
-import React from 'react';
+import paper from "@scratch/paper";
+import { connect } from "react-redux";
+import bindAll from "lodash.bindall";
+import PropTypes from "prop-types";
+import React from "react";
 
-import FontDropdownComponent from '../components/font-dropdown/font-dropdown.jsx';
-import Fonts from '../lib/fonts';
-import {changeFont} from '../reducers/font';
-import {getSelectedLeafItems} from '../helper/selection';
-import styles from '../components/font-dropdown/font-dropdown.css';
+import FontDropdownComponent from "../components/font-dropdown/font-dropdown.jsx";
+import Fonts from "../lib/fonts";
+import { changeFont } from "../reducers/font";
+import { getSelectedLeafItems } from "../helper/selection";
+import styles from "../components/font-dropdown/font-dropdown.css";
 
 class FontDropdown extends React.Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
         bindAll(this, [
-            'getFontStyle',
-            'getFontName',
-            'handleChangeFontSerif',
-            'handleChangeFontSansSerif',
-            'handleChangeFontHandwriting',
-            'handleChangeFontMarker',
-            'handleChangeFontCurly',
-            'handleChangeFontPixel',
-            'handleChangeFontChinese',
-            'handleChangeFontJapanese',
-            'handleChangeFontKorean',
-            'handleOpenDropdown',
-            'handleClickOutsideDropdown',
-            'setDropdown',
-            'handleChoose'
+            "getFontStyle",
+            "getFontName",
+            "handleChangeFontSerif",
+            "handleChangeFontSansSerif",
+            "handleChangeFontHandwriting",
+            "handleChangeFontMarker",
+            "handleChangeFontCurly",
+            "handleChangeFontPixel",
+            "handleChangeFontChinese",
+            "handleChangeFontJapanese",
+            "handleChangeFontKorean",
+            "handleOpenDropdown",
+            "handleClickOutsideDropdown",
+            "setDropdown",
+            "handleChoose",
         ]);
     }
-    getFontStyle (font) {
+    getFontStyle(font) {
         switch (font) {
-        case Fonts.SERIF:
-            return styles.serif;
-        case Fonts.SANS_SERIF:
-            return styles.sansSerif;
-        case Fonts.HANDWRITING:
-            return styles.handwriting;
-        case Fonts.MARKER:
-            return styles.marker;
-        case Fonts.CURLY:
-            return styles.curly;
-        case Fonts.PIXEL:
-            return styles.pixel;
-        case Fonts.CHINESE:
-            return styles.chinese;
-        case Fonts.JAPANESE:
-            return styles.japanese;
-        case Fonts.KOREAN:
-            return styles.korean;
-        default:
-            return '';
+            case Fonts.SERIF:
+                return styles.serif;
+            case Fonts.SANS_SERIF:
+                return styles.sansSerif;
+            case Fonts.HANDWRITING:
+                return styles.handwriting;
+            case Fonts.MARKER:
+                return styles.marker;
+            case Fonts.CURLY:
+                return styles.curly;
+            case Fonts.PIXEL:
+                return styles.pixel;
+            case Fonts.CHINESE:
+                return styles.chinese;
+            case Fonts.JAPANESE:
+                return styles.japanese;
+            case Fonts.KOREAN:
+                return styles.korean;
+            default:
+                return "";
         }
     }
-    getFontName (font) {
+    getFontName(font) {
         switch (font) {
-        case Fonts.CHINESE:
-            return '中文';
-        case Fonts.KOREAN:
-            return '한국어';
-        case Fonts.JAPANESE:
-            return '日本語';
-        default:
-            return font;
+            case Fonts.CHINESE:
+                return "中文";
+            case Fonts.KOREAN:
+                return "한국어";
+            case Fonts.JAPANESE:
+                return "日本語";
+            default:
+                return font;
         }
     }
-    handleChangeFontSansSerif () {
+    handleChangeFontSansSerif() {
         if (this.dropDown.isOpen()) {
             this.props.changeFont(Fonts.SANS_SERIF);
         }
     }
-    handleChangeFontSerif () {
+    handleChangeFontSerif() {
         if (this.dropDown.isOpen()) {
             this.props.changeFont(Fonts.SERIF);
         }
     }
-    handleChangeFontHandwriting () {
+    handleChangeFontHandwriting() {
         if (this.dropDown.isOpen()) {
             this.props.changeFont(Fonts.HANDWRITING);
         }
     }
-    handleChangeFontMarker () {
+    handleChangeFontMarker() {
         if (this.dropDown.isOpen()) {
             this.props.changeFont(Fonts.MARKER);
         }
     }
-    handleChangeFontCurly () {
+    handleChangeFontCurly() {
         if (this.dropDown.isOpen()) {
             this.props.changeFont(Fonts.CURLY);
         }
     }
-    handleChangeFontPixel () {
+    handleChangeFontPixel() {
         if (this.dropDown.isOpen()) {
             this.props.changeFont(Fonts.PIXEL);
         }
     }
-    handleChangeFontChinese () {
+    handleChangeFontChinese() {
         if (this.dropDown.isOpen()) {
             this.props.changeFont(Fonts.CHINESE);
         }
     }
-    handleChangeFontJapanese () {
+    handleChangeFontJapanese() {
         if (this.dropDown.isOpen()) {
             this.props.changeFont(Fonts.JAPANESE);
         }
     }
-    handleChangeFontKorean () {
+    handleChangeFontKorean() {
         if (this.dropDown.isOpen()) {
             this.props.changeFont(Fonts.KOREAN);
         }
     }
-    handleChoose () {
+    handleChangeFontExtra(extra) {
+        if (this.dropDown.isOpen()) {
+            this.props.changeFont(extra);
+        }
+    }
+    handleChoose() {
         if (this.dropDown.isOpen()) {
             this.dropDown.handleClosePopover();
             this.props.onUpdateImage();
         }
     }
-    handleOpenDropdown () {
+    handleOpenDropdown() {
         this.savedFont = this.props.font;
         this.savedSelection = getSelectedLeafItems();
     }
-    handleClickOutsideDropdown (e) {
+    handleClickOutsideDropdown(e) {
         e.stopPropagation();
         this.dropDown.handleClosePopover();
 
@@ -137,10 +142,10 @@ class FontDropdown extends React.Component {
         this.savedFont = null;
         this.savedSelection = null;
     }
-    setDropdown (element) {
+    setDropdown(element) {
         this.dropDown = element;
     }
-    render () {
+    render() {
         return (
             <FontDropdownComponent
                 componentRef={this.setDropdown}
@@ -158,6 +163,7 @@ class FontDropdown extends React.Component {
                 onHoverPixel={this.handleChangeFontPixel}
                 onHoverSansSerif={this.handleChangeFontSansSerif}
                 onHoverSerif={this.handleChangeFontSerif}
+                onHoverExtra={this.handleChangeFontExtra.bind(this)}
                 onOpenDropdown={this.handleOpenDropdown}
             />
         );
@@ -167,19 +173,16 @@ class FontDropdown extends React.Component {
 FontDropdown.propTypes = {
     changeFont: PropTypes.func.isRequired,
     font: PropTypes.string,
-    onUpdateImage: PropTypes.func.isRequired
+    onUpdateImage: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({
-    font: state.scratchPaint.font
+const mapStateToProps = (state) => ({
+    font: state.scratchPaint.font,
 });
-const mapDispatchToProps = dispatch => ({
-    changeFont: font => {
+const mapDispatchToProps = (dispatch) => ({
+    changeFont: (font) => {
         dispatch(changeFont(font));
-    }
+    },
 });
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(FontDropdown);
+export default connect(mapStateToProps, mapDispatchToProps)(FontDropdown);

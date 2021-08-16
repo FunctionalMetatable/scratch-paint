@@ -1,5 +1,5 @@
-import paper from '@scratch/paper';
-import {getItems} from './selection';
+import paper from "@scratch/paper";
+import { getItems } from "./selection";
 
 /**
  * @param {paper.Point} point1 point 1
@@ -8,7 +8,10 @@ import {getItems} from './selection';
  * @return {boolean} true if points are within the tolerance distance.
  */
 const touching = function (point1, point2, tolerance) {
-    return point1.getDistance(point2, true) < Math.pow(tolerance / paper.view.zoom, 2);
+    return (
+        point1.getDistance(point2, true) <
+        Math.pow(tolerance / paper.view.zoom, 2)
+    );
 };
 
 /**
@@ -21,7 +24,7 @@ const touching = function (point1, point2, tolerance) {
  */
 const endPointHit = function (point, tolerance, excludePath) {
     const lines = getItems({
-        class: paper.Path
+        class: paper.Path,
     });
     // Prefer more recent lines
     for (let i = lines.length - 1; i >= 0; i--) {
@@ -35,25 +38,28 @@ const endPointHit = function (point, tolerance, excludePath) {
         if (excludePath && lines[i] === excludePath) {
             continue;
         }
-        if (lines[i].firstSegment && touching(lines[i].firstSegment.point, point, tolerance)) {
+        if (
+            lines[i].firstSegment &&
+            touching(lines[i].firstSegment.point, point, tolerance)
+        ) {
             return {
                 path: lines[i],
                 segment: lines[i].firstSegment,
-                isFirst: true
+                isFirst: true,
             };
         }
-        if (lines[i].lastSegment && touching(lines[i].lastSegment.point, point, tolerance)) {
+        if (
+            lines[i].lastSegment &&
+            touching(lines[i].lastSegment.point, point, tolerance)
+        ) {
             return {
                 path: lines[i],
                 segment: lines[i].lastSegment,
-                isFirst: false
+                isFirst: false,
             };
         }
     }
     return null;
 };
 
-export {
-    endPointHit,
-    touching
-};
+export { endPointHit, touching };

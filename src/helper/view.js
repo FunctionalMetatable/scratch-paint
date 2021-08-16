@@ -1,8 +1,13 @@
-import paper from '@scratch/paper';
-import {CROSSHAIR_SIZE, getBackgroundGuideLayer, getDragCrosshairLayer, getRaster} from './layer';
-import {getAllRootItems, getSelectedRootItems} from './selection';
-import {getHitBounds} from './bitmap';
-import log from '../log/log';
+import paper from "@scratch/paper";
+import {
+    CROSSHAIR_SIZE,
+    getBackgroundGuideLayer,
+    getDragCrosshairLayer,
+    getRaster,
+} from "./layer";
+import { getAllRootItems, getSelectedRootItems } from "./selection";
+import { getHitBounds } from "./bitmap";
+import log from "../log/log";
 
 // Vectors are imported and exported at SVG_ART_BOARD size.
 // Once they are imported however, both SVGs and bitmaps are on
@@ -16,32 +21,38 @@ const ART_BOARD_HEIGHT = SVG_ART_BOARD_HEIGHT * 2;
 const CENTER = new paper.Point(ART_BOARD_WIDTH / 2, ART_BOARD_HEIGHT / 2);
 const PADDING_PERCENT = 25; // Padding as a percent of the max of width/height of the sprite
 const BUFFER = 50; // Number of pixels of allowance around objects at the edges of the workspace
-const MIN_RATIO = .125; // Zoom in to at least 1/8 of the screen. This way you don't end up incredibly
+const MIN_RATIO = 0.125; // Zoom in to at least 1/8 of the screen. This way you don't end up incredibly
 //                         zoomed in for tiny costumes.
 const OUTERMOST_ZOOM_LEVEL = 0.333;
-const ART_BOARD_BOUNDS = new paper.Rectangle(0, 0, ART_BOARD_WIDTH, ART_BOARD_HEIGHT);
+const ART_BOARD_BOUNDS = new paper.Rectangle(
+    0,
+    0,
+    ART_BOARD_WIDTH,
+    ART_BOARD_HEIGHT
+);
 const MAX_WORKSPACE_BOUNDS = new paper.Rectangle(
     -ART_BOARD_WIDTH / 4,
     -ART_BOARD_HEIGHT / 4,
     ART_BOARD_WIDTH * 1.5,
-    ART_BOARD_HEIGHT * 1.5);
+    ART_BOARD_HEIGHT * 1.5
+);
 
 let _workspaceBounds = ART_BOARD_BOUNDS;
 
 const getWorkspaceBounds = () => _workspaceBounds;
 
 /**
-* The workspace bounds define the areas that the scroll bars can access.
-* They include at minimum the artboard, and extend to a bit beyond the
-* farthest item off tne edge in any given direction (so items can't be
-* "lost" off the edge)
-*
-* @param {boolean} clipEmpty Clip empty space from bounds, even if it
-* means discontinuously jumping the viewport. This should probably be
-* false unless the viewport is going to move discontinuously anyway
-* (such as in a zoom button click)
-*/
-const setWorkspaceBounds = clipEmpty => {
+ * The workspace bounds define the areas that the scroll bars can access.
+ * They include at minimum the artboard, and extend to a bit beyond the
+ * farthest item off tne edge in any given direction (so items can't be
+ * "lost" off the edge)
+ *
+ * @param {boolean} clipEmpty Clip empty space from bounds, even if it
+ * means discontinuously jumping the viewport. This should probably be
+ * false unless the viewport is going to move discontinuously anyway
+ * (such as in a zoom button click)
+ */
+const setWorkspaceBounds = (clipEmpty) => {
     const items = getAllRootItems();
     // Include the artboard and what's visible in the viewport
     let bounds = ART_BOARD_BOUNDS;
@@ -73,22 +84,35 @@ const setWorkspaceBounds = clipEmpty => {
         bottom += vDiff;
     }
 
-    _workspaceBounds = new paper.Rectangle(left, top, right - left, bottom - top);
+    _workspaceBounds = new paper.Rectangle(
+        left,
+        top,
+        right - left,
+        bottom - top
+    );
 };
 
 const clampViewBounds = () => {
-    const {left, right, top, bottom} = paper.project.view.bounds;
+    const { left, right, top, bottom } = paper.project.view.bounds;
     if (left < _workspaceBounds.left) {
-        paper.project.view.scrollBy(new paper.Point(_workspaceBounds.left - left, 0));
+        paper.project.view.scrollBy(
+            new paper.Point(_workspaceBounds.left - left, 0)
+        );
     }
     if (top < _workspaceBounds.top) {
-        paper.project.view.scrollBy(new paper.Point(0, _workspaceBounds.top - top));
+        paper.project.view.scrollBy(
+            new paper.Point(0, _workspaceBounds.top - top)
+        );
     }
     if (bottom > _workspaceBounds.bottom) {
-        paper.project.view.scrollBy(new paper.Point(0, _workspaceBounds.bottom - bottom));
+        paper.project.view.scrollBy(
+            new paper.Point(0, _workspaceBounds.bottom - bottom)
+        );
     }
     if (right > _workspaceBounds.right) {
-        paper.project.view.scrollBy(new paper.Point(_workspaceBounds.right - right, 0));
+        paper.project.view.scrollBy(
+            new paper.Point(_workspaceBounds.right - right, 0)
+        );
     }
     setWorkspaceBounds();
 };
@@ -96,11 +120,17 @@ const clampViewBounds = () => {
 const resizeCrosshair = () => {
     if (getDragCrosshairLayer() && getDragCrosshairLayer().dragCrosshair) {
         getDragCrosshairLayer().dragCrosshair.scale(
-            CROSSHAIR_SIZE / getDragCrosshairLayer().dragCrosshair.bounds.width / paper.view.zoom);
+            CROSSHAIR_SIZE /
+                getDragCrosshairLayer().dragCrosshair.bounds.width /
+                paper.view.zoom
+        );
     }
     if (getBackgroundGuideLayer() && getBackgroundGuideLayer().dragCrosshair) {
         getBackgroundGuideLayer().dragCrosshair.scale(
-            CROSSHAIR_SIZE / getBackgroundGuideLayer().dragCrosshair.bounds.width / paper.view.zoom);
+            CROSSHAIR_SIZE /
+                getBackgroundGuideLayer().dragCrosshair.bounds.width /
+                paper.view.zoom
+        );
     }
 };
 
@@ -112,7 +142,8 @@ const zoomOnFixedPoint = (deltaZoom, fixedPoint) => {
     const newZoom = Math.max(OUTERMOST_ZOOM_LEVEL, view.zoom + deltaZoom);
     const scaling = view.zoom / newZoom;
     const preZoomOffset = fixedPoint.subtract(preZoomCenter);
-    const postZoomOffset = fixedPoint.subtract(preZoomOffset.multiply(scaling))
+    const postZoomOffset = fixedPoint
+        .subtract(preZoomOffset.multiply(scaling))
         .subtract(preZoomCenter);
     view.zoom = newZoom;
     view.translate(postZoomOffset.multiply(-1));
@@ -123,7 +154,7 @@ const zoomOnFixedPoint = (deltaZoom, fixedPoint) => {
 };
 
 // Zoom keeping the selection center (if any) fixed.
-const zoomOnSelection = deltaZoom => {
+const zoomOnSelection = (deltaZoom) => {
     let fixedPoint;
     const items = getSelectedRootItems();
     if (items.length > 0) {
@@ -143,7 +174,7 @@ const zoomOnSelection = deltaZoom => {
 };
 
 const resetZoom = () => {
-    paper.project.view.zoom = .5;
+    paper.project.view.zoom = 0.5;
     setWorkspaceBounds(true /* clipEmpty */);
     resizeCrosshair();
     clampViewBounds();
@@ -159,14 +190,16 @@ const pan = (dx, dy) => {
  * @param {boolean} isBitmap True if the editor is in bitmap mode, false if it is in vector mode
  * @returns {paper.Rectangle} the bounds within which mouse events should work in the paint editor
  */
-const getActionBounds = isBitmap => {
+const getActionBounds = (isBitmap) => {
     if (isBitmap) {
         return ART_BOARD_BOUNDS;
     }
-    return paper.view.bounds.unite(ART_BOARD_BOUNDS).intersect(MAX_WORKSPACE_BOUNDS);
+    return paper.view.bounds
+        .unite(ART_BOARD_BOUNDS)
+        .intersect(MAX_WORKSPACE_BOUNDS);
 };
 
-const zoomToFit = isBitmap => {
+const zoomToFit = (isBitmap) => {
     resetZoom();
     let bounds;
     if (isBitmap) {
@@ -184,10 +217,14 @@ const zoomToFit = isBitmap => {
     if (bounds && bounds.width && bounds.height) {
         const canvas = paper.view.element;
         // Ratio of (sprite length plus padding on all sides) to viewport length.
-        let ratio = paper.view.zoom *
+        let ratio =
+            paper.view.zoom *
             Math.max(
-                bounds.width * (1 + (2 * PADDING_PERCENT / 100)) / canvas.clientWidth,
-                bounds.height * (1 + (2 * PADDING_PERCENT / 100)) / canvas.clientHeight);
+                (bounds.width * (1 + (2 * PADDING_PERCENT) / 100)) /
+                    canvas.clientWidth,
+                (bounds.height * (1 + (2 * PADDING_PERCENT) / 100)) /
+                    canvas.clientHeight
+            );
         // Clamp ratio
         ratio = Math.max(Math.min(1, ratio), MIN_RATIO);
         if (ratio < 1) {
@@ -197,7 +234,7 @@ const zoomToFit = isBitmap => {
             clampViewBounds();
         }
     } else {
-        log.warn('No bounds!');
+        log.warn("No bounds!");
     }
 };
 
@@ -219,5 +256,5 @@ export {
     resizeCrosshair,
     zoomOnSelection,
     zoomOnFixedPoint,
-    zoomToFit
+    zoomToFit,
 };

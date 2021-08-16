@@ -1,7 +1,8 @@
 $scrollbar-size: 8px;
 $scrollbar-padding: 4px;
 
-.vertical-scrollbar, .horizontal-scrollbar {
+.vertical-scrollbar,
+.horizontal-scrollbar {
     background: rgba(190, 190, 190, 0.8);
     border-radius: calc($scrollbar-size / 2);
     width: 100%;
@@ -23,7 +24,8 @@ $scrollbar-padding: 4px;
     width: calc(100% - $scrollbar-size - 2 * $scrollbar-padding);
 }
 
-.vertical-scrollbar-hitbox, .horizontal-scrollbar-hitbox {
+.vertical-scrollbar-hitbox,
+.horizontal-scrollbar-hitbox {
     position: absolute;
     cursor: pointer;
     box-sizing: border-box;

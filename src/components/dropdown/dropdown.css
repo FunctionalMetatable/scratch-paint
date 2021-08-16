@@ -1,4 +1,4 @@
-@import '../../css/colors.css';
+@import "../../css/colors.css";
 
 $arrow-border-width: 14px;
 
@@ -8,7 +8,7 @@ $arrow-border-width: 14px;
     overflow: visible;
     min-width: 3.5rem;
     color: $motion-primary;
-    padding: .5rem;
+    padding: 0.5rem;
 }
 
 .mod-open {
@@ -16,22 +16,22 @@ $arrow-border-width: 14px;
 }
 
 .dropdown-icon {
-    width: .5rem;
-    height: .5rem;
+    width: 0.5rem;
+    height: 0.5rem;
     vertical-align: middle;
-    padding-bottom: .2rem;
+    padding-bottom: 0.2rem;
 }
 
 [dir="ltr"] .dropdown-icon {
-    margin-left: .5rem;
+    margin-left: 0.5rem;
 }
 
 [dir="rtl"] .dropdown-icon {
-    margin-right: .5rem;
+    margin-right: 0.5rem;
 }
 
 .mod-caret-up {
     transform: rotate(180deg);
     padding-bottom: 0;
-    padding-top: .2rem;
+    padding-top: 0.2rem;
 }

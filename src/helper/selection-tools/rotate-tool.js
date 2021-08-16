@@ -1,4 +1,4 @@
-import paper from '@scratch/paper';
+import paper from "@scratch/paper";
 
 /**
  * Tool to handle rotation when dragging the rotation handle in the bounding box tool.
@@ -7,7 +7,7 @@ class RotateTool {
     /**
      * @param {!function} onUpdateImage A callback to call when the image visibly changes
      */
-    constructor (onUpdateImage) {
+    constructor(onUpdateImage) {
         this.rotItems = [];
         this.rotGroupPivot = null;
         this.prevRot = 90;
@@ -19,7 +19,7 @@ class RotateTool {
      * @param {!object} boundsPath Where the boundaries of the hit item are
      * @param {!Array.<paper.Item>} selectedItems Set of selected paper.Items
      */
-    onMouseDown (hitResult, boundsPath, selectedItems) {
+    onMouseDown(hitResult, boundsPath, selectedItems) {
         this.rotGroupPivot = boundsPath.bounds.center;
         for (const item of selectedItems) {
             // Rotate only root items
@@ -29,8 +29,8 @@ class RotateTool {
         }
         this.prevRot = 90;
     }
-    onMouseDrag (event) {
-        let rotAngle = (event.point.subtract(this.rotGroupPivot)).angle;
+    onMouseDrag(event) {
+        let rotAngle = event.point.subtract(this.rotGroupPivot).angle;
         if (event.modifiers.shift) {
             rotAngle = Math.round(rotAngle / 45) * 45;
         }
@@ -43,7 +43,7 @@ class RotateTool {
 
         this.prevRot = rotAngle;
     }
-    onMouseUp (event) {
+    onMouseUp(event) {
         if (event.event.button > 0) return; // only first mouse button
 
         this.rotItems.length = 0;

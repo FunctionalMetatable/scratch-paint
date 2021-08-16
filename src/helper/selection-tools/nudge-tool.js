@@ -1,7 +1,7 @@
-import paper from '@scratch/paper';
-import {getSelectedRootItems} from '../selection';
-import {getActionBounds} from '../view';
-import {BitmapModes} from '../../lib/modes';
+import paper from "@scratch/paper";
+import { getSelectedRootItems } from "../selection";
+import { getActionBounds } from "../view";
+import { BitmapModes } from "../../lib/modes";
 
 const NUDGE_MORE_MULTIPLIER = 15;
 
@@ -15,12 +15,12 @@ class NudgeTool {
      * @param {function} boundingBoxTool to control the bounding box
      * @param {!function} onUpdateImage A callback to call when the image visibly changes
      */
-    constructor (mode, boundingBoxTool, onUpdateImage) {
+    constructor(mode, boundingBoxTool, onUpdateImage) {
         this.boundingBoxTool = boundingBoxTool;
         this.onUpdateImage = onUpdateImage;
         this.boundingBoxTool.isBitmap = mode in BitmapModes;
     }
-    onKeyDown (event) {
+    onKeyDown(event) {
         if (event.event.target instanceof HTMLInputElement) {
             // Ignore nudge if a text input field is focused
             return;
@@ -31,7 +31,7 @@ class NudgeTool {
 
         const selected = getSelectedRootItems();
         if (selected.length === 0) return;
-        
+
         // Get bounds. Don't let item bounds go out of bounds.
         let rect;
         for (const item of selected) {
@@ -48,14 +48,26 @@ class NudgeTool {
         const right = bounds.right - rect.left - 1;
 
         let translation;
-        if (event.key === 'up') {
-            translation = new paper.Point(0, Math.min(bottom, Math.max(-nudgeAmount, top)));
-        } else if (event.key === 'down') {
-            translation = new paper.Point(0, Math.max(top, Math.min(nudgeAmount, bottom)));
-        } else if (event.key === 'left') {
-            translation = new paper.Point(Math.min(right, Math.max(-nudgeAmount, left)), 0);
-        } else if (event.key === 'right') {
-            translation = new paper.Point(Math.max(left, Math.min(nudgeAmount, right)), 0);
+        if (event.key === "up") {
+            translation = new paper.Point(
+                0,
+                Math.min(bottom, Math.max(-nudgeAmount, top))
+            );
+        } else if (event.key === "down") {
+            translation = new paper.Point(
+                0,
+                Math.max(top, Math.min(nudgeAmount, bottom))
+            );
+        } else if (event.key === "left") {
+            translation = new paper.Point(
+                Math.min(right, Math.max(-nudgeAmount, left)),
+                0
+            );
+        } else if (event.key === "right") {
+            translation = new paper.Point(
+                Math.max(left, Math.min(nudgeAmount, right)),
+                0
+            );
         }
 
         if (translation) {
@@ -66,11 +78,16 @@ class NudgeTool {
             event.preventDefault();
         }
     }
-    onKeyUp (event) {
+    onKeyUp(event) {
         const selected = getSelectedRootItems();
         if (selected.length === 0) return;
 
-        if (event.key === 'up' || event.key === 'down' || event.key === 'left' || event.key === 'right') {
+        if (
+            event.key === "up" ||
+            event.key === "down" ||
+            event.key === "left" ||
+            event.key === "right"
+        ) {
             this.onUpdateImage();
         }
     }

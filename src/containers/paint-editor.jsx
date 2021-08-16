@@ -1,34 +1,44 @@
-import paper from '@scratch/paper';
-import PropTypes from 'prop-types';
-import log from '../log/log';
-import React from 'react';
-import {connect} from 'react-redux';
+import paper from "@scratch/paper";
+import PropTypes from "prop-types";
+import log from "../log/log";
+import React from "react";
+import { connect } from "react-redux";
 
-import PaintEditorComponent from '../components/paint-editor/paint-editor.jsx';
-import KeyboardShortcutsHOC from '../hocs/keyboard-shortcuts-hoc.jsx';
-import SelectionHOC from '../hocs/selection-hoc.jsx';
-import UndoHOC from '../hocs/undo-hoc.jsx';
-import UpdateImageHOC from '../hocs/update-image-hoc.jsx';
+import PaintEditorComponent from "../components/paint-editor/paint-editor.jsx";
+import KeyboardShortcutsHOC from "../hocs/keyboard-shortcuts-hoc.jsx";
+import SelectionHOC from "../hocs/selection-hoc.jsx";
+import UndoHOC from "../hocs/undo-hoc.jsx";
+import UpdateImageHOC from "../hocs/update-image-hoc.jsx";
 
-import {changeFillColor, clearFillGradient} from '../reducers/fill-style';
-import {changeStrokeColor, clearStrokeGradient} from '../reducers/stroke-style';
-import {changeMode} from '../reducers/modes';
-import {changeFormat} from '../reducers/format';
-import {clearSelectedItems, setSelectedItems} from '../reducers/selected-items';
-import {deactivateEyeDropper} from '../reducers/eye-dropper';
-import {setTextEditTarget} from '../reducers/text-edit-target';
-import {updateViewBounds} from '../reducers/view-bounds';
-import {setLayout} from '../reducers/layout';
+import { changeFillColor, clearFillGradient } from "../reducers/fill-style";
+import {
+    changeStrokeColor,
+    clearStrokeGradient,
+} from "../reducers/stroke-style";
+import { changeMode } from "../reducers/modes";
+import { changeFormat } from "../reducers/format";
+import {
+    clearSelectedItems,
+    setSelectedItems,
+} from "../reducers/selected-items";
+import { deactivateEyeDropper } from "../reducers/eye-dropper";
+import { setTextEditTarget } from "../reducers/text-edit-target";
+import { updateViewBounds } from "../reducers/view-bounds";
+import { setLayout } from "../reducers/layout";
 
-import {getSelectedLeafItems} from '../helper/selection';
-import {convertToBitmap, convertToVector} from '../helper/bitmap';
-import {resetZoom, zoomOnSelection, OUTERMOST_ZOOM_LEVEL} from '../helper/view';
-import EyeDropperTool from '../helper/tools/eye-dropper';
-import {applyColorToSelection} from '../helper/style-path';
+import { getSelectedLeafItems } from "../helper/selection";
+import { convertToBitmap, convertToVector } from "../helper/bitmap";
+import {
+    resetZoom,
+    zoomOnSelection,
+    OUTERMOST_ZOOM_LEVEL,
+} from "../helper/view";
+import EyeDropperTool from "../helper/tools/eye-dropper";
+import { applyColorToSelection } from "../helper/style-path";
 
-import Modes, {BitmapModes, VectorModes} from '../lib/modes';
-import Formats, {isBitmap, isVector} from '../lib/format';
-import bindAll from 'lodash.bindall';
+import Modes, { BitmapModes, VectorModes } from "../lib/modes";
+import Formats, { isBitmap, isVector } from "../lib/format";
+import bindAll from "lodash.bindall";
 
 /**
  * The top-level paint editor component. See README for more details on usage.
@@ -72,147 +82,165 @@ import bindAll from 'lodash.bindall';
  * fit the current costume comfortably. Leave undefined to perform no zoom to fit.
  */
 class PaintEditor extends React.Component {
-    static get ZOOM_INCREMENT () {
+    static get ZOOM_INCREMENT() {
         return 0.5;
     }
-    constructor (props) {
+    constructor(props) {
         super(props);
         bindAll(this, [
-            'switchModeForFormat',
-            'onMouseDown',
-            'onMouseUp',
-            'setCanvas',
-            'setTextArea',
-            'startEyeDroppingLoop',
-            'stopEyeDroppingLoop',
-            'handleSetSelectedItems',
-            'handleZoomIn',
-            'handleZoomOut',
-            'handleZoomReset',
-            'handleChangeColor'
+            "switchModeForFormat",
+            "onMouseDown",
+            "onMouseUp",
+            "setCanvas",
+            "setTextArea",
+            "startEyeDroppingLoop",
+            "stopEyeDroppingLoop",
+            "handleSetSelectedItems",
+            "handleZoomIn",
+            "handleZoomOut",
+            "handleZoomReset",
+            "handleChangeColor",
         ]);
         this.state = {
             canvas: null,
-            colorInfo: null
+            colorInfo: null,
         };
-        this.props.setLayout(this.props.rtl ? 'rtl' : 'ltr');
+        this.props.setLayout(this.props.rtl ? "rtl" : "ltr");
     }
-    componentDidMount () {
-        document.addEventListener('keydown', this.props.onKeyPress);
+    componentDidMount() {
+        document.addEventListener("keydown", this.props.onKeyPress);
 
         // document listeners used to detect if a mouse is down outside of the
         // canvas, and should therefore stop the eye dropper
-        document.addEventListener('mousedown', this.onMouseDown);
-        document.addEventListener('touchstart', this.onMouseDown);
-        document.addEventListener('mouseup', this.onMouseUp);
-        document.addEventListener('touchend', this.onMouseUp);
+        document.addEventListener("mousedown", this.onMouseDown);
+        document.addEventListener("touchstart", this.onMouseDown);
+        document.addEventListener("mouseup", this.onMouseUp);
+        document.addEventListener("touchend", this.onMouseUp);
     }
-    componentWillReceiveProps (newProps) {
+    componentWillReceiveProps(newProps) {
         if (!isBitmap(this.props.format) && isBitmap(newProps.format)) {
             this.switchModeForFormat(Formats.BITMAP);
         } else if (!isVector(this.props.format) && isVector(newProps.format)) {
             this.switchModeForFormat(Formats.VECTOR);
         }
         if (newProps.rtl !== this.props.rtl) {
-            this.props.setLayout(newProps.rtl ? 'rtl' : 'ltr');
+            this.props.setLayout(newProps.rtl ? "rtl" : "ltr");
         }
     }
-    componentDidUpdate (prevProps) {
+    componentDidUpdate(prevProps) {
         if (this.props.isEyeDropping && !prevProps.isEyeDropping) {
             this.startEyeDroppingLoop();
         } else if (!this.props.isEyeDropping && prevProps.isEyeDropping) {
             this.stopEyeDroppingLoop();
-        } else if (this.props.isEyeDropping && this.props.viewBounds !== prevProps.viewBounds) {
+        } else if (
+            this.props.isEyeDropping &&
+            this.props.viewBounds !== prevProps.viewBounds
+        ) {
             if (this.props.previousTool) this.props.previousTool.activate();
             this.props.onDeactivateEyeDropper();
             this.stopEyeDroppingLoop();
         }
 
-        if (this.props.format === Formats.VECTOR && isBitmap(prevProps.format)) {
-            convertToVector(this.props.clearSelectedItems, this.props.onUpdateImage);
-        } else if (isVector(prevProps.format) && this.props.format === Formats.BITMAP) {
-            convertToBitmap(this.props.clearSelectedItems, this.props.onUpdateImage, this.props.fontInlineFn);
+        if (
+            this.props.format === Formats.VECTOR &&
+            isBitmap(prevProps.format)
+        ) {
+            convertToVector(
+                this.props.clearSelectedItems,
+                this.props.onUpdateImage
+            );
+        } else if (
+            isVector(prevProps.format) &&
+            this.props.format === Formats.BITMAP
+        ) {
+            convertToBitmap(
+                this.props.clearSelectedItems,
+                this.props.onUpdateImage,
+                this.props.fontInlineFn
+            );
         }
     }
-    componentWillUnmount () {
-        document.removeEventListener('keydown', this.props.onKeyPress);
+    componentWillUnmount() {
+        document.removeEventListener("keydown", this.props.onKeyPress);
         this.stopEyeDroppingLoop();
-        document.removeEventListener('mousedown', this.onMouseDown);
-        document.removeEventListener('touchstart', this.onMouseDown);
-        document.removeEventListener('mouseup', this.onMouseUp);
-        document.removeEventListener('touchend', this.onMouseUp);
+        document.removeEventListener("mousedown", this.onMouseDown);
+        document.removeEventListener("touchstart", this.onMouseDown);
+        document.removeEventListener("mouseup", this.onMouseUp);
+        document.removeEventListener("touchend", this.onMouseUp);
     }
-    switchModeForFormat (newFormat) {
-        if ((isVector(newFormat) && (this.props.mode in VectorModes)) ||
-            (isBitmap(newFormat) && (this.props.mode in BitmapModes))) {
+    switchModeForFormat(newFormat) {
+        if (
+            (isVector(newFormat) && this.props.mode in VectorModes) ||
+            (isBitmap(newFormat) && this.props.mode in BitmapModes)
+        ) {
             // Format didn't change; no mode change needed
             return;
         }
         if (isVector(newFormat)) {
             switch (this.props.mode) {
-            case Modes.BIT_BRUSH:
-                this.props.changeMode(Modes.BRUSH);
-                break;
-            case Modes.BIT_LINE:
-                this.props.changeMode(Modes.LINE);
-                break;
-            case Modes.BIT_OVAL:
-                this.props.changeMode(Modes.OVAL);
-                break;
-            case Modes.BIT_RECT:
-                this.props.changeMode(Modes.RECT);
-                break;
-            case Modes.BIT_TEXT:
-                this.props.changeMode(Modes.TEXT);
-                break;
-            case Modes.BIT_FILL:
-                this.props.changeMode(Modes.FILL);
-                break;
-            case Modes.BIT_ERASER:
-                this.props.changeMode(Modes.ERASER);
-                break;
-            case Modes.BIT_SELECT:
-                this.props.changeMode(Modes.SELECT);
-                break;
-            default:
-                log.error(`Mode not handled: ${this.props.mode}`);
-                this.props.changeMode(Modes.BRUSH);
+                case Modes.BIT_BRUSH:
+                    this.props.changeMode(Modes.BRUSH);
+                    break;
+                case Modes.BIT_LINE:
+                    this.props.changeMode(Modes.LINE);
+                    break;
+                case Modes.BIT_OVAL:
+                    this.props.changeMode(Modes.OVAL);
+                    break;
+                case Modes.BIT_RECT:
+                    this.props.changeMode(Modes.RECT);
+                    break;
+                case Modes.BIT_TEXT:
+                    this.props.changeMode(Modes.TEXT);
+                    break;
+                case Modes.BIT_FILL:
+                    this.props.changeMode(Modes.FILL);
+                    break;
+                case Modes.BIT_ERASER:
+                    this.props.changeMode(Modes.ERASER);
+                    break;
+                case Modes.BIT_SELECT:
+                    this.props.changeMode(Modes.SELECT);
+                    break;
+                default:
+                    log.error(`Mode not handled: ${this.props.mode}`);
+                    this.props.changeMode(Modes.BRUSH);
             }
         } else if (isBitmap(newFormat)) {
             switch (this.props.mode) {
-            case Modes.BRUSH:
-                this.props.changeMode(Modes.BIT_BRUSH);
-                break;
-            case Modes.LINE:
-                this.props.changeMode(Modes.BIT_LINE);
-                break;
-            case Modes.OVAL:
-                this.props.changeMode(Modes.BIT_OVAL);
-                break;
-            case Modes.RECT:
-                this.props.changeMode(Modes.BIT_RECT);
-                break;
-            case Modes.TEXT:
-                this.props.changeMode(Modes.BIT_TEXT);
-                break;
-            case Modes.FILL:
-                this.props.changeMode(Modes.BIT_FILL);
-                break;
-            case Modes.ERASER:
-                this.props.changeMode(Modes.BIT_ERASER);
-                break;
-            case Modes.RESHAPE:
+                case Modes.BRUSH:
+                    this.props.changeMode(Modes.BIT_BRUSH);
+                    break;
+                case Modes.LINE:
+                    this.props.changeMode(Modes.BIT_LINE);
+                    break;
+                case Modes.OVAL:
+                    this.props.changeMode(Modes.BIT_OVAL);
+                    break;
+                case Modes.RECT:
+                    this.props.changeMode(Modes.BIT_RECT);
+                    break;
+                case Modes.TEXT:
+                    this.props.changeMode(Modes.BIT_TEXT);
+                    break;
+                case Modes.FILL:
+                    this.props.changeMode(Modes.BIT_FILL);
+                    break;
+                case Modes.ERASER:
+                    this.props.changeMode(Modes.BIT_ERASER);
+                    break;
+                case Modes.RESHAPE:
                 /* falls through */
-            case Modes.SELECT:
-                this.props.changeMode(Modes.BIT_SELECT);
-                break;
-            default:
-                log.error(`Mode not handled: ${this.props.mode}`);
-                this.props.changeMode(Modes.BIT_BRUSH);
+                case Modes.SELECT:
+                    this.props.changeMode(Modes.BIT_SELECT);
+                    break;
+                default:
+                    log.error(`Mode not handled: ${this.props.mode}`);
+                    this.props.changeMode(Modes.BIT_BRUSH);
             }
         }
     }
-    handleZoomIn () {
+    handleZoomIn() {
         // Make the "next step" after the outermost zoom level be the default
         // zoom level (0.5)
         let zoomIncrement = PaintEditor.ZOOM_INCREMENT;
@@ -223,20 +251,20 @@ class PaintEditor extends React.Component {
         this.props.updateViewBounds(paper.view.matrix);
         this.handleSetSelectedItems();
     }
-    handleZoomOut () {
+    handleZoomOut() {
         zoomOnSelection(-PaintEditor.ZOOM_INCREMENT);
         this.props.updateViewBounds(paper.view.matrix);
         this.handleSetSelectedItems();
     }
-    handleZoomReset () {
+    handleZoomReset() {
         resetZoom();
         this.props.updateViewBounds(paper.view.matrix);
         this.handleSetSelectedItems();
     }
-    handleSetSelectedItems () {
+    handleSetSelectedItems() {
         this.props.setSelectedItems(this.props.format);
     }
-    handleChangeColor (newColor) {
+    handleChangeColor(newColor) {
         const isStroke = this.props.mode === Modes.LINE;
         let hasChanged = false;
         if (isStroke) {
@@ -245,7 +273,8 @@ class PaintEditor extends React.Component {
                 this.props.strokeColorIndex,
                 true /* isSolidGradient */,
                 true /* applyToStroke */,
-                this.props.textEditTarget);
+                this.props.textEditTarget
+            );
             this.props.onChangeStrokeColor(newColor);
         } else {
             hasChanged = applyColorToSelection(
@@ -253,30 +282,36 @@ class PaintEditor extends React.Component {
                 this.props.fillColorIndex,
                 true /* isSolidGradient */,
                 false /* applyToStroke */,
-                this.props.textEditTarget);
+                this.props.textEditTarget
+            );
             this.props.onChangeFillColor(newColor);
         }
         if (hasChanged) this.props.onUpdateImage();
     }
-    setCanvas (canvas) {
-        this.setState({canvas: canvas});
+    setCanvas(canvas) {
+        this.setState({ canvas: canvas });
         this.canvas = canvas;
     }
-    setTextArea (element) {
-        this.setState({textArea: element});
+    setTextArea(element) {
+        this.setState({ textArea: element });
     }
-    onMouseDown (event) {
-        if (event.target === paper.view.element &&
-                document.activeElement instanceof HTMLInputElement) {
+    onMouseDown(event) {
+        if (
+            event.target === paper.view.element &&
+            document.activeElement instanceof HTMLInputElement
+        ) {
             document.activeElement.blur();
         }
 
-        if (event.target !== paper.view.element && event.target !== this.state.textArea) {
+        if (
+            event.target !== paper.view.element &&
+            event.target !== this.state.textArea
+        ) {
             // Exit text edit mode if you click anywhere outside of canvas
             this.props.removeTextEditTarget();
         }
     }
-    onMouseUp () {
+    onMouseUp() {
         if (this.props.isEyeDropping) {
             const color = this.eyeDropper.color;
             const callback = this.props.changeColorToEyeDropper;
@@ -292,7 +327,7 @@ class PaintEditor extends React.Component {
             this.stopEyeDroppingLoop();
         }
     }
-    startEyeDroppingLoop () {
+    startEyeDroppingLoop() {
         this.eyeDropper = new EyeDropperTool(
             this.canvas,
             paper.project.view.bounds.width,
@@ -320,16 +355,16 @@ class PaintEditor extends React.Component {
                 this.state.colorInfo.y !== colorInfo.y
             ) {
                 this.setState({
-                    colorInfo: colorInfo
+                    colorInfo: colorInfo,
                 });
             }
         }, 30);
     }
-    stopEyeDroppingLoop () {
+    stopEyeDroppingLoop() {
         clearInterval(this.intervalId);
-        this.setState({colorInfo: null});
+        this.setState({ colorInfo: null });
     }
-    render () {
+    render() {
         return (
             <PaintEditorComponent
                 canRedo={this.props.shouldShowRedo}
@@ -376,7 +411,7 @@ PaintEditor.propTypes = {
     handleSwitchToVector: PropTypes.func.isRequired,
     image: PropTypes.oneOfType([
         PropTypes.string,
-        PropTypes.instanceOf(HTMLImageElement)
+        PropTypes.instanceOf(HTMLImageElement),
     ]),
     imageFormat: PropTypes.string, // The incoming image's data format, used during import
     imageId: PropTypes.string,
@@ -391,9 +426,10 @@ PaintEditor.propTypes = {
     onUndo: PropTypes.func.isRequired,
     onUpdateImage: PropTypes.func.isRequired,
     onUpdateName: PropTypes.func.isRequired,
-    previousTool: PropTypes.shape({ // paper.Tool
+    previousTool: PropTypes.shape({
+        // paper.Tool
         activate: PropTypes.func.isRequired,
-        remove: PropTypes.func.isRequired
+        remove: PropTypes.func.isRequired,
     }),
     removeTextEditTarget: PropTypes.func.isRequired,
     rotationCenterX: PropTypes.number,
@@ -407,10 +443,10 @@ PaintEditor.propTypes = {
     textEditTarget: PropTypes.number,
     updateViewBounds: PropTypes.func.isRequired,
     viewBounds: PropTypes.instanceOf(paper.Matrix).isRequired,
-    zoomLevelId: PropTypes.string
+    zoomLevelId: PropTypes.string,
 };
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
     changeColorToEyeDropper: state.scratchPaint.color.eyeDropper.callback,
     fillColorIndex: state.scratchPaint.color.fillColor.activeIndex,
     format: state.scratchPaint.format,
@@ -419,10 +455,10 @@ const mapStateToProps = state => ({
     previousTool: state.scratchPaint.color.eyeDropper.previousTool,
     strokeColorIndex: state.scratchPaint.color.strokeColor.activeIndex,
     textEditTarget: state.scratchPaint.textEditTarget,
-    viewBounds: state.scratchPaint.viewBounds
+    viewBounds: state.scratchPaint.viewBounds,
 });
-const mapDispatchToProps = dispatch => ({
-    changeMode: mode => {
+const mapDispatchToProps = (dispatch) => ({
+    changeMode: (mode) => {
         dispatch(changeMode(mode));
     },
     clearSelectedItems: () => {
@@ -437,17 +473,17 @@ const mapDispatchToProps = dispatch => ({
     removeTextEditTarget: () => {
         dispatch(setTextEditTarget());
     },
-    setLayout: layout => {
+    setLayout: (layout) => {
         dispatch(setLayout(layout));
     },
-    setSelectedItems: format => {
+    setSelectedItems: (format) => {
         dispatch(setSelectedItems(getSelectedLeafItems(), isBitmap(format)));
     },
-    onChangeFillColor: fillColor => {
+    onChangeFillColor: (fillColor) => {
         dispatch(clearFillGradient());
         dispatch(changeFillColor(fillColor));
     },
-    onChangeStrokeColor: strokeColor => {
+    onChangeStrokeColor: (strokeColor) => {
         dispatch(clearStrokeGradient());
         dispatch(changeStrokeColor(strokeColor));
     },
@@ -455,12 +491,17 @@ const mapDispatchToProps = dispatch => ({
         // set redux values to default for eye dropper reducer
         dispatch(deactivateEyeDropper());
     },
-    updateViewBounds: matrix => {
+    updateViewBounds: (matrix) => {
         dispatch(updateViewBounds(matrix));
-    }
+    },
 });
 
-export default UpdateImageHOC(SelectionHOC(UndoHOC(KeyboardShortcutsHOC(connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(PaintEditor)))));
+export default UpdateImageHOC(
+    SelectionHOC(
+        UndoHOC(
+            KeyboardShortcutsHOC(
+                connect(mapStateToProps, mapDispatchToProps)(PaintEditor)
+            )
+        )
+    )
+);

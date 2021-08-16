@@ -6,7 +6,7 @@ $border-radius: 0.25rem;
     background: none;
     border: none;
     display: inline-block;
-    padding: .25rem .325rem;
+    padding: 0.25rem 0.325rem;
     outline: none;
     border-radius: $border-radius;
     min-width: 3rem;
@@ -23,6 +23,6 @@ $border-radius: 0.25rem;
 
 .edit-field-title {
     display: block;
-    margin-top: .125rem;
-    font-size: .625rem;
+    margin-top: 0.125rem;
+    font-size: 0.625rem;
 }

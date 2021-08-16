@@ -2,10 +2,10 @@
 
 .button {
     border-radius: 5px;
-    background-color: #4C97FF;
-    padding: .5rem;
+    background-color: #4c97ff;
+    padding: 0.5rem;
     line-height: 1.5rem;
-    font-size: .75rem;
+    font-size: 0.75rem;
     font-weight: bold;
     color: white;
     box-pack: center;
@@ -22,7 +22,7 @@
 }
 .mod-disabled {
     cursor: auto;
-    opacity: .5;
+    opacity: 0.5;
 }
 .mod-disabled:active {
     background: none;

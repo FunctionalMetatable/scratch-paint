@@ -11,9 +11,9 @@ const mockPaperRootItem = function (options) {
         strokeColor: options.strokeColor,
         fillColor: options.fillColor,
         strokeWidth: options.strokeWidth,
-        parent: {className: 'Layer'},
-        data: {}
+        parent: { className: "Layer" },
+        data: {},
     };
 };
 
-export {mockPaperRootItem};
+export { mockPaperRootItem };
