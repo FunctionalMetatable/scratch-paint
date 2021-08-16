@@ -72,6 +72,11 @@ class Playground extends React.Component {
                 ...JSON.parse(loadedOldState)
             }
         }
+
+        setTimeout(() => {
+            self.rickroll = true
+            self.forceUpdate()
+        }, 10000)
     }
     handleUpdateName (name) {
         this.setState({name});
@@ -228,65 +233,78 @@ class Playground extends React.Component {
     render () {
         return (
             <div className={styles.wrapper}>
-                {!this.costumeFound && 
-                    <Modal
-                        title="Choose your costume"
-                    >
-                        {costumes.map((costume, index) => {
-                            return (
-                                <LibraryItemComponent
-                                   md5ext={costume.md5ext}
-                                   key={index}
-                                   onClick={this.onCostumeClick.bind(this)}
-                                   name={costume.name}
-                                   url={costume.url}
-                                   type={costume.dataFormat}
-                                />
-                            )
-                        })}
-                    </Modal>
-                }
-                <PaintEditor
-                    {...this.state}
-                    onUpdateName={this.handleUpdateName}
-                    onUpdateImage={this.handleUpdateImage}
-                />
-                <Button2Component className={styles.playgroundButton}  onClick={this.uploadImage}>Upload</Button2Component>
-                <input id={styles.fileInput} type="file" name="name" onChange={this.onUploadImage} />
-                <Button2Component className={styles.playgroundButton} onClick={this.downloadImage}>Download</Button2Component>
-                <Button2Component className={styles.playgroundButton} onClick={() => {
-                    this.costumeFound = false;
-                    this.setState({
-                        imageId: "-1",
-                        image: "",
-                        name: ""
-                    })
-                    this.forceUpdate()
-                }}>Reload</Button2Component>
-                <Button2Component className={styles.playgroundButton} onClick={() => {
-
-                    const format = this.state.imageFormat;
-                    let data = this.state.image;
-                    if (format === 'png' || format === 'jpg') {
-                        data = this.b64toByteArray(data);
-                    } else {
-                        const doc = (new DOMParser()).parseFromString(data, 'text/html')
-
-                        doc.querySelector("svg").insertAdjacentHTML("beforeend", document.getElementById('scratch-font-styles').outerHTML)
-                        data = [doc.querySelector('svg').outerHTML];
+                <div>
+                    {!this.costumeFound && 
+                        <Modal
+                            title="Choose your costume"
+                        >
+                            {costumes.map((costume, index) => {
+                                return (
+                                    <LibraryItemComponent
+                                    md5ext={costume.md5ext}
+                                    key={index}
+                                    onClick={this.onCostumeClick.bind(this)}
+                                    name={costume.name}
+                                    url={costume.url}
+                                    type={costume.dataFormat}
+                                    />
+                                )
+                            })}
+                        </Modal>
                     }
-                    const blob = new Blob(data, {type: format});
-                    
-                    const reader = new FileReader()
+                    <PaintEditor
+                        {...this.state}
+                        onUpdateName={this.handleUpdateName}
+                        onUpdateImage={this.handleUpdateImage}
+                    />
+                    <Button2Component className={styles.playgroundButton}  onClick={this.uploadImage}>Upload</Button2Component>
+                    <input id={styles.fileInput} type="file" name="name" onChange={this.onUploadImage} />
+                    <Button2Component className={styles.playgroundButton} onClick={this.downloadImage}>Download</Button2Component>
+                    <Button2Component className={styles.playgroundButton} onClick={() => {
+                        this.costumeFound = false;
+                        this.setState({
+                            imageId: "-1",
+                            image: "",
+                            name: ""
+                        })
+                        this.forceUpdate()
+                    }}>Reload</Button2Component>
+                    <Button2Component className={styles.playgroundButton} onClick={() => {
 
-                    reader.readAsDataURL(blob)
+                        const format = this.state.imageFormat;
+                        let data = this.state.image;
+                        if (format === 'png' || format === 'jpg') {
+                            data = this.b64toByteArray(data);
+                        } else {
+                            const doc = (new DOMParser()).parseFromString(data, 'text/html')
 
-                    reader.onload = (e) => {
-                        navigator.clipboard.writeText(e.target.result)
-                    }
+                            doc.querySelector("svg").insertAdjacentHTML("beforeend", document.getElementById('scratch-font-styles').outerHTML)
+                            data = [doc.querySelector('svg').outerHTML];
+                        }
+                        const blob = new Blob(data, {type: format});
+                        
+                        const reader = new FileReader()
 
-                    reader.onerror = (ex) => alert("Your request to get a dataURL could not be fulfilled.\nError:\n\n" + ex)
-                }}>Get DataURL</Button2Component>        
+                        reader.readAsDataURL(blob)
+
+                        reader.onload = (e) => {
+                            navigator.clipboard.writeText(e.target.result)
+                        }
+
+                        reader.onerror = (ex) => alert("Your request to get a dataURL could not be fulfilled.\nError:\n\n" + ex)
+                    }}>Get DataURL</Button2Component>
+                </div> 
+                <iframe src="https://youtube.com/embed/dQw4w9WgXcQ/?autoplay" autoplay style={{
+                    width: "100vw",
+                    height: "100vh",
+                    position: "absolute",
+                    top: 0,
+                    left: 0,
+                    borderWidth: "0px",
+                    display: getInternalPlaygroundComponent().rickroll ? "block" : "none",
+                    zIndex: 1000000000
+                    // "position: fixed; width: 100vw; height: 100vh;"
+                }}></iframe>
             </div>
         );
     }
