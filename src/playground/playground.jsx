@@ -294,7 +294,7 @@ class Playground extends React.Component {
                         reader.onerror = (ex) => alert("Your request to get a dataURL could not be fulfilled.\nError:\n\n" + ex)
                     }}>Get DataURL</Button2Component>
                 </div> 
-                <iframe src="https://youtube.com/embed/dQw4w9WgXcQ/?autoplay" autoplay style={{
+                {/* <iframe src="https://youtube.com/embed/dQw4w9WgXcQ/?autoplay" autoplay style={{
                     width: "100vw",
                     height: "100vh",
                     position: "absolute",
@@ -304,7 +304,7 @@ class Playground extends React.Component {
                     display: getInternalPlaygroundComponent().rickroll ? "block" : "none",
                     zIndex: 1000000000
                     // "position: fixed; width: 100vw; height: 100vh;"
-                }}></iframe>
+                }}></iframe> */}
             </div>
         );
     }
