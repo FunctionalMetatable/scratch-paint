@@ -72,11 +72,6 @@ class Playground extends React.Component {
                 ...JSON.parse(loadedOldState)
             }
         }
-
-        setTimeout(() => {
-            self.rickroll = true
-            self.forceUpdate()
-        }, 10000)
     }
     handleUpdateName (name) {
         this.setState({name});
