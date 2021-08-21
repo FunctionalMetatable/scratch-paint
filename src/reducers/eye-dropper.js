@@ -1,6 +1,6 @@
-const ACTIVATE_EYE_DROPPER = "scratch-paint/eye-dropper/ACTIVATE_COLOR_PICKER";
+const ACTIVATE_EYE_DROPPER = 'scratch-paint/eye-dropper/ACTIVATE_COLOR_PICKER';
 const DEACTIVATE_EYE_DROPPER =
-    "scratch-paint/eye-dropper/DEACTIVATE_COLOR_PICKER";
+    'scratch-paint/eye-dropper/DEACTIVATE_COLOR_PICKER';
 
 const initialState = {
     active: false,
@@ -9,7 +9,7 @@ const initialState = {
 };
 
 const reducer = function (state, action) {
-    if (typeof state === "undefined") state = initialState;
+    if (typeof state === 'undefined') state = initialState;
     switch (action.type) {
         case ACTIVATE_EYE_DROPPER:
             return Object.assign({}, state, {

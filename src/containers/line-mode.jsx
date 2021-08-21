@@ -1,24 +1,24 @@
-import paper from "@scratch/paper";
-import PropTypes from "prop-types";
-import React from "react";
-import { connect } from "react-redux";
-import bindAll from "lodash.bindall";
-import Modes from "../lib/modes";
-import ColorStyleProptype from "../lib/color-style-proptype";
-import { clearSelection } from "../helper/selection";
-import { endPointHit, touching } from "../helper/snapping";
-import { drawHitPoint, removeHitPoint } from "../helper/guides";
-import { styleShape, MIXED } from "../helper/style-path";
+import paper from '@scratch/paper';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { connect } from 'react-redux';
+import bindAll from 'lodash.bindall';
+import Modes from '../lib/modes';
+import ColorStyleProptype from '../lib/color-style-proptype';
+import { clearSelection } from '../helper/selection';
+import { endPointHit, touching } from '../helper/snapping';
+import { drawHitPoint, removeHitPoint } from '../helper/guides';
+import { styleShape, MIXED } from '../helper/style-path';
 import {
     changeStrokeColor,
     clearStrokeGradient,
-} from "../reducers/stroke-style";
-import { changeStrokeWidth } from "../reducers/stroke-width";
-import { changeMode } from "../reducers/modes";
-import { clearSelectedItems } from "../reducers/selected-items";
-import { snapDeltaToAngle } from "../helper/math";
+} from '../reducers/stroke-style';
+import { changeStrokeWidth } from '../reducers/stroke-width';
+import { changeMode } from '../reducers/modes';
+import { clearSelectedItems } from '../reducers/selected-items';
+import { snapDeltaToAngle } from '../helper/math';
 
-import LineModeComponent from "../components/line-mode/line-mode.jsx";
+import LineModeComponent from '../components/line-mode/line-mode.jsx';
 
 class LineMode extends React.Component {
     static get SNAP_TOLERANCE() {
@@ -30,13 +30,13 @@ class LineMode extends React.Component {
     constructor(props) {
         super(props);
         bindAll(this, [
-            "activateTool",
-            "deactivateTool",
-            "drawHitPoint",
-            "onMouseDown",
-            "onMouseMove",
-            "onMouseDrag",
-            "onMouseUp",
+            'activateTool',
+            'deactivateTool',
+            'drawHitPoint',
+            'onMouseDown',
+            'onMouseMove',
+            'onMouseDrag',
+            'onMouseUp',
         ]);
     }
     componentDidMount() {
@@ -127,7 +127,7 @@ class LineMode extends React.Component {
         // If not near other path, start a new path
         if (!this.path) {
             this.path = new paper.Path();
-            this.path.strokeCap = "round";
+            this.path.strokeCap = 'round';
             styleShape(this.path, {
                 fillColor: null,
                 strokeColor: this.props.colorState.strokeColor,

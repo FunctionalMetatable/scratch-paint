@@ -1,10 +1,10 @@
-import log from "../log/log";
+import log from '../log/log';
 
-const CHANGE_BRUSH_SIZE = "scratch-paint/brush-mode/CHANGE_BRUSH_SIZE";
+const CHANGE_BRUSH_SIZE = 'scratch-paint/brush-mode/CHANGE_BRUSH_SIZE';
 const initialState = { brushSize: 10 };
 
 const reducer = function (state, action) {
-    if (typeof state === "undefined") state = initialState;
+    if (typeof state === 'undefined') state = initialState;
     switch (action.type) {
         case CHANGE_BRUSH_SIZE:
             if (isNaN(action.brushSize)) {

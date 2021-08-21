@@ -1,89 +1,89 @@
-import classNames from "classnames";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import React from "react";
-import MediaQuery from "react-responsive";
+import classNames from 'classnames';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import React from 'react';
+import MediaQuery from 'react-responsive';
 
-import { shouldShowGroup, shouldShowUngroup } from "../../helper/group";
+import { shouldShowGroup, shouldShowUngroup } from '../../helper/group';
 import {
     shouldShowBringForward,
     shouldShowSendBackward,
-} from "../../helper/order";
+} from '../../helper/order';
 
-import BufferedInputHOC from "../forms/buffered-input-hoc.jsx";
-import Button from "../button/button.jsx";
-import ButtonGroup from "../button-group/button-group.jsx";
-import Dropdown from "../dropdown/dropdown.jsx";
-import { defineMessages, injectIntl, intlShape } from "react-intl";
-import Formats, { isVector } from "../../lib/format";
-import Input from "../forms/input.jsx";
-import InputGroup from "../input-group/input-group.jsx";
-import Label from "../forms/label.jsx";
-import LabeledIconButton from "../labeled-icon-button/labeled-icon-button.jsx";
-import layout from "../../lib/layout-constants";
-import { hideLabel } from "../../lib/hide-label";
-import styles from "./fixed-tools.css";
+import BufferedInputHOC from '../forms/buffered-input-hoc.jsx';
+import Button from '../button/button.jsx';
+import ButtonGroup from '../button-group/button-group.jsx';
+import Dropdown from '../dropdown/dropdown.jsx';
+import { defineMessages, injectIntl, intlShape } from 'react-intl';
+import Formats, { isVector } from '../../lib/format';
+import Input from '../forms/input.jsx';
+import InputGroup from '../input-group/input-group.jsx';
+import Label from '../forms/label.jsx';
+import LabeledIconButton from '../labeled-icon-button/labeled-icon-button.jsx';
+import layout from '../../lib/layout-constants';
+import { hideLabel } from '../../lib/hide-label';
+import styles from './fixed-tools.css';
 
-import groupIcon from "./icons/group.svg";
-import redoIcon from "./icons/redo.svg";
-import sendBackIcon from "./icons/send-back.svg";
-import sendBackwardIcon from "./icons/send-backward.svg";
-import sendForwardIcon from "./icons/send-forward.svg";
-import sendFrontIcon from "./icons/send-front.svg";
-import undoIcon from "./icons/undo.svg";
-import ungroupIcon from "./icons/ungroup.svg";
+import groupIcon from './icons/group.svg';
+import redoIcon from './icons/redo.svg';
+import sendBackIcon from './icons/send-back.svg';
+import sendBackwardIcon from './icons/send-backward.svg';
+import sendForwardIcon from './icons/send-forward.svg';
+import sendFrontIcon from './icons/send-front.svg';
+import undoIcon from './icons/undo.svg';
+import ungroupIcon from './icons/ungroup.svg';
 
 const BufferedInput = BufferedInputHOC(Input);
 const messages = defineMessages({
     costume: {
-        id: "paint.paintEditor.costume",
-        description: "Label for the name of a costume",
-        defaultMessage: "Costume",
+        id: 'paint.paintEditor.costume',
+        description: 'Label for the name of a costume',
+        defaultMessage: 'Costume',
     },
     group: {
-        defaultMessage: "Group",
-        description: "Label for the button to group shapes",
-        id: "paint.paintEditor.group",
+        defaultMessage: 'Group',
+        description: 'Label for the button to group shapes',
+        id: 'paint.paintEditor.group',
     },
     ungroup: {
-        defaultMessage: "Ungroup",
-        description: "Label for the button to ungroup shapes",
-        id: "paint.paintEditor.ungroup",
+        defaultMessage: 'Ungroup',
+        description: 'Label for the button to ungroup shapes',
+        id: 'paint.paintEditor.ungroup',
     },
     undo: {
-        defaultMessage: "Undo",
-        description: "Alt to image for the button to undo an action",
-        id: "paint.paintEditor.undo",
+        defaultMessage: 'Undo',
+        description: 'Alt to image for the button to undo an action',
+        id: 'paint.paintEditor.undo',
     },
     redo: {
-        defaultMessage: "Redo",
-        description: "Alt to image for the button to redo an action",
-        id: "paint.paintEditor.redo",
+        defaultMessage: 'Redo',
+        description: 'Alt to image for the button to redo an action',
+        id: 'paint.paintEditor.redo',
     },
     forward: {
-        defaultMessage: "Forward",
-        description: "Label for the `Send forward on canvas` button",
-        id: "paint.paintEditor.forward",
+        defaultMessage: 'Forward',
+        description: 'Label for the `Send forward on canvas` button',
+        id: 'paint.paintEditor.forward',
     },
     backward: {
-        defaultMessage: "Backward",
-        description: "Label for the `Send backward on canvas` button",
-        id: "paint.paintEditor.backward",
+        defaultMessage: 'Backward',
+        description: 'Label for the `Send backward on canvas` button',
+        id: 'paint.paintEditor.backward',
     },
     front: {
-        defaultMessage: "Front",
-        description: "Label for the `Send to front of canvas` button",
-        id: "paint.paintEditor.front",
+        defaultMessage: 'Front',
+        description: 'Label for the `Send to front of canvas` button',
+        id: 'paint.paintEditor.front',
     },
     back: {
-        defaultMessage: "Back",
-        description: "Label for the `Send to back of canvas` button",
-        id: "paint.paintEditor.back",
+        defaultMessage: 'Back',
+        description: 'Label for the `Send to back of canvas` button',
+        id: 'paint.paintEditor.back',
     },
     more: {
-        defaultMessage: "More",
-        description: "Label for dropdown to access more action buttons",
-        id: "paint.paintEditor.more",
+        defaultMessage: 'More',
+        description: 'Label for dropdown to access more action buttons',
+        id: 'paint.paintEditor.more',
     },
 });
 

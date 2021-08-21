@@ -1,20 +1,20 @@
-import PropTypes from "prop-types";
-import React from "react";
-import { connect } from "react-redux";
-import bindAll from "lodash.bindall";
-import Modes from "../lib/modes";
+import PropTypes from 'prop-types';
+import React from 'react';
+import { connect } from 'react-redux';
+import bindAll from 'lodash.bindall';
+import Modes from '../lib/modes';
 
-import { changeMode } from "../reducers/modes";
-import { clearSelectedItems } from "../reducers/selected-items";
-import { clearSelection } from "../helper/selection";
+import { changeMode } from '../reducers/modes';
+import { clearSelectedItems } from '../reducers/selected-items';
+import { clearSelection } from '../helper/selection';
 
-import BitEraserModeComponent from "../components/bit-eraser-mode/bit-eraser-mode.jsx";
-import BitBrushTool from "../helper/bit-tools/brush-tool";
+import BitEraserModeComponent from '../components/bit-eraser-mode/bit-eraser-mode.jsx';
+import BitBrushTool from '../helper/bit-tools/brush-tool';
 
 class BitEraserMode extends React.Component {
     constructor(props) {
         super(props);
-        bindAll(this, ["activateTool", "deactivateTool"]);
+        bindAll(this, ['activateTool', 'deactivateTool']);
     }
     componentDidMount() {
         if (this.props.isBitEraserModeActive) {

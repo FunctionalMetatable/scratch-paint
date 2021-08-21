@@ -1,11 +1,11 @@
-import { MIXED } from "../helper/style-path";
-import paper from "@scratch/paper";
+import { MIXED } from '../helper/style-path';
+import paper from '@scratch/paper';
 
 const makeColor = function (h, s, v) {
     const color = new paper.Color({ hue: h, saturation: s, brightness: v });
 
     // Convert color's backing components to HSV a.k.a. HSB
-    color.type = "hsb";
+    color.type = 'hsb';
     return color;
 };
 
@@ -46,7 +46,7 @@ const getRow2Colors = function () {
 };
 
 const getColorName = function (key) {
-    return key.toLowerCase().replace("_", " ");
+    return key.toLowerCase().replace('_', ' ');
 };
 
 /**

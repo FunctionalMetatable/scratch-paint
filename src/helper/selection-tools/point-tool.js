@@ -1,10 +1,10 @@
-import { HANDLE_RATIO, snapDeltaToAngle } from "../math";
-import { getActionBounds } from "../view";
+import { HANDLE_RATIO, snapDeltaToAngle } from '../math';
+import { getActionBounds } from '../view';
 import {
     clearSelection,
     getSelectedLeafItems,
     getSelectedSegments,
-} from "../selection";
+} from '../selection';
 
 /** Subtool of ReshapeTool for moving control points. */
 class PointTool {

@@ -1,44 +1,44 @@
-import paper from "@scratch/paper";
-import PropTypes from "prop-types";
-import log from "../log/log";
-import React from "react";
-import { connect } from "react-redux";
+import paper from '@scratch/paper';
+import PropTypes from 'prop-types';
+import log from '../log/log';
+import React from 'react';
+import { connect } from 'react-redux';
 
-import PaintEditorComponent from "../components/paint-editor/paint-editor.jsx";
-import KeyboardShortcutsHOC from "../hocs/keyboard-shortcuts-hoc.jsx";
-import SelectionHOC from "../hocs/selection-hoc.jsx";
-import UndoHOC from "../hocs/undo-hoc.jsx";
-import UpdateImageHOC from "../hocs/update-image-hoc.jsx";
+import PaintEditorComponent from '../components/paint-editor/paint-editor.jsx';
+import KeyboardShortcutsHOC from '../hocs/keyboard-shortcuts-hoc.jsx';
+import SelectionHOC from '../hocs/selection-hoc.jsx';
+import UndoHOC from '../hocs/undo-hoc.jsx';
+import UpdateImageHOC from '../hocs/update-image-hoc.jsx';
 
-import { changeFillColor, clearFillGradient } from "../reducers/fill-style";
+import { changeFillColor, clearFillGradient } from '../reducers/fill-style';
 import {
     changeStrokeColor,
     clearStrokeGradient,
-} from "../reducers/stroke-style";
-import { changeMode } from "../reducers/modes";
-import { changeFormat } from "../reducers/format";
+} from '../reducers/stroke-style';
+import { changeMode } from '../reducers/modes';
+import { changeFormat } from '../reducers/format';
 import {
     clearSelectedItems,
     setSelectedItems,
-} from "../reducers/selected-items";
-import { deactivateEyeDropper } from "../reducers/eye-dropper";
-import { setTextEditTarget } from "../reducers/text-edit-target";
-import { updateViewBounds } from "../reducers/view-bounds";
-import { setLayout } from "../reducers/layout";
+} from '../reducers/selected-items';
+import { deactivateEyeDropper } from '../reducers/eye-dropper';
+import { setTextEditTarget } from '../reducers/text-edit-target';
+import { updateViewBounds } from '../reducers/view-bounds';
+import { setLayout } from '../reducers/layout';
 
-import { getSelectedLeafItems } from "../helper/selection";
-import { convertToBitmap, convertToVector } from "../helper/bitmap";
+import { getSelectedLeafItems } from '../helper/selection';
+import { convertToBitmap, convertToVector } from '../helper/bitmap';
 import {
     resetZoom,
     zoomOnSelection,
     OUTERMOST_ZOOM_LEVEL,
-} from "../helper/view";
-import EyeDropperTool from "../helper/tools/eye-dropper";
-import { applyColorToSelection } from "../helper/style-path";
+} from '../helper/view';
+import EyeDropperTool from '../helper/tools/eye-dropper';
+import { applyColorToSelection } from '../helper/style-path';
 
-import Modes, { BitmapModes, VectorModes } from "../lib/modes";
-import Formats, { isBitmap, isVector } from "../lib/format";
-import bindAll from "lodash.bindall";
+import Modes, { BitmapModes, VectorModes } from '../lib/modes';
+import Formats, { isBitmap, isVector } from '../lib/format';
+import bindAll from 'lodash.bindall';
 
 /**
  * The top-level paint editor component. See README for more details on usage.
@@ -88,34 +88,34 @@ class PaintEditor extends React.Component {
     constructor(props) {
         super(props);
         bindAll(this, [
-            "switchModeForFormat",
-            "onMouseDown",
-            "onMouseUp",
-            "setCanvas",
-            "setTextArea",
-            "startEyeDroppingLoop",
-            "stopEyeDroppingLoop",
-            "handleSetSelectedItems",
-            "handleZoomIn",
-            "handleZoomOut",
-            "handleZoomReset",
-            "handleChangeColor",
+            'switchModeForFormat',
+            'onMouseDown',
+            'onMouseUp',
+            'setCanvas',
+            'setTextArea',
+            'startEyeDroppingLoop',
+            'stopEyeDroppingLoop',
+            'handleSetSelectedItems',
+            'handleZoomIn',
+            'handleZoomOut',
+            'handleZoomReset',
+            'handleChangeColor',
         ]);
         this.state = {
             canvas: null,
             colorInfo: null,
         };
-        this.props.setLayout(this.props.rtl ? "rtl" : "ltr");
+        this.props.setLayout(this.props.rtl ? 'rtl' : 'ltr');
     }
     componentDidMount() {
-        document.addEventListener("keydown", this.props.onKeyPress);
+        document.addEventListener('keydown', this.props.onKeyPress);
 
         // document listeners used to detect if a mouse is down outside of the
         // canvas, and should therefore stop the eye dropper
-        document.addEventListener("mousedown", this.onMouseDown);
-        document.addEventListener("touchstart", this.onMouseDown);
-        document.addEventListener("mouseup", this.onMouseUp);
-        document.addEventListener("touchend", this.onMouseUp);
+        document.addEventListener('mousedown', this.onMouseDown);
+        document.addEventListener('touchstart', this.onMouseDown);
+        document.addEventListener('mouseup', this.onMouseUp);
+        document.addEventListener('touchend', this.onMouseUp);
     }
     componentWillReceiveProps(newProps) {
         if (!isBitmap(this.props.format) && isBitmap(newProps.format)) {
@@ -124,7 +124,7 @@ class PaintEditor extends React.Component {
             this.switchModeForFormat(Formats.VECTOR);
         }
         if (newProps.rtl !== this.props.rtl) {
-            this.props.setLayout(newProps.rtl ? "rtl" : "ltr");
+            this.props.setLayout(newProps.rtl ? 'rtl' : 'ltr');
         }
     }
     componentDidUpdate(prevProps) {
@@ -161,12 +161,12 @@ class PaintEditor extends React.Component {
         }
     }
     componentWillUnmount() {
-        document.removeEventListener("keydown", this.props.onKeyPress);
+        document.removeEventListener('keydown', this.props.onKeyPress);
         this.stopEyeDroppingLoop();
-        document.removeEventListener("mousedown", this.onMouseDown);
-        document.removeEventListener("touchstart", this.onMouseDown);
-        document.removeEventListener("mouseup", this.onMouseUp);
-        document.removeEventListener("touchend", this.onMouseUp);
+        document.removeEventListener('mousedown', this.onMouseDown);
+        document.removeEventListener('touchstart', this.onMouseDown);
+        document.removeEventListener('mouseup', this.onMouseUp);
+        document.removeEventListener('touchend', this.onMouseUp);
     }
     switchModeForFormat(newFormat) {
         if (

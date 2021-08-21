@@ -1,27 +1,27 @@
-import bindAll from "lodash.bindall";
-import { connect } from "react-redux";
-import paper from "@scratch/paper";
-import PropTypes from "prop-types";
-import React from "react";
+import bindAll from 'lodash.bindall';
+import { connect } from 'react-redux';
+import paper from '@scratch/paper';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import { clearSelectedItems } from "../reducers/selected-items";
-import { activateEyeDropper } from "../reducers/eye-dropper";
+import { clearSelectedItems } from '../reducers/selected-items';
+import { activateEyeDropper } from '../reducers/eye-dropper';
 
-import SwatchesComponent from "../components/swatches/swatches.jsx";
-import { colorsEqual } from "../helper/style-path";
-import { getRow1Colors, getRow2Colors } from "../lib/colors";
-import Modes from "../lib/modes";
-import ColorProptype from "../lib/color-proptype";
+import SwatchesComponent from '../components/swatches/swatches.jsx';
+import { colorsEqual } from '../helper/style-path';
+import { getRow1Colors, getRow2Colors } from '../lib/colors';
+import Modes from '../lib/modes';
+import ColorProptype from '../lib/color-proptype';
 
 class Swatches extends React.Component {
     constructor(props) {
         super(props);
         bindAll(this, [
-            "colorMatchesActiveColor",
-            "handleSwatch",
-            "handleTransparent",
-            "handleActivateEyeDropper",
-            "transparentSwatchEnabled",
+            'colorMatchesActiveColor',
+            'handleSwatch',
+            'handleTransparent',
+            'handleActivateEyeDropper',
+            'transparentSwatchEnabled',
         ]);
     }
     colorMatchesActiveColor(color) {

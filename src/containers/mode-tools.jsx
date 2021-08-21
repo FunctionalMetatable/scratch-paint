@@ -1,15 +1,15 @@
-import paper from "@scratch/paper";
-import React from "react";
-import PropTypes from "prop-types";
-import { connect } from "react-redux";
-import bindAll from "lodash.bindall";
+import paper from '@scratch/paper';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import bindAll from 'lodash.bindall';
 
-import CopyPasteHOC from "../hocs/copy-paste-hoc.jsx";
-import ModeToolsComponent from "../components/mode-tools/mode-tools.jsx";
+import CopyPasteHOC from '../hocs/copy-paste-hoc.jsx';
+import ModeToolsComponent from '../components/mode-tools/mode-tools.jsx';
 import {
     clearSelectedItems,
     setSelectedItems,
-} from "../reducers/selected-items";
+} from '../reducers/selected-items';
 import {
     deleteSelection,
     getSelectedLeafItems,
@@ -17,31 +17,31 @@ import {
     getAllRootItems,
     selectAllItems,
     selectAllSegments,
-} from "../helper/selection";
-import { HANDLE_RATIO, ensureClockwise } from "../helper/math";
-import { getRaster } from "../helper/layer";
+} from '../helper/selection';
+import { HANDLE_RATIO, ensureClockwise } from '../helper/math';
+import { getRaster } from '../helper/layer';
 import {
     flipBitmapHorizontal,
     flipBitmapVertical,
     selectAllBitmap,
-} from "../helper/bitmap";
-import Formats, { isBitmap } from "../lib/format";
-import Modes from "../lib/modes";
+} from '../helper/bitmap';
+import Formats, { isBitmap } from '../lib/format';
+import Modes from '../lib/modes';
 
 class ModeTools extends React.Component {
     constructor(props) {
         super(props);
         bindAll(this, [
-            "_getSelectedUncurvedPoints",
-            "_getSelectedUnpointedPoints",
-            "hasSelectedUncurvedPoints",
-            "hasSelectedUnpointedPoints",
-            "handleCurvePoints",
-            "handleFlipHorizontal",
-            "handleFlipVertical",
-            "handleDelete",
-            "handlePasteFromClipboard",
-            "handlePointPoints",
+            '_getSelectedUncurvedPoints',
+            '_getSelectedUnpointedPoints',
+            'hasSelectedUncurvedPoints',
+            'hasSelectedUnpointedPoints',
+            'handleCurvePoints',
+            'handleFlipHorizontal',
+            'handleFlipVertical',
+            'handleDelete',
+            'handlePasteFromClipboard',
+            'handlePointPoints',
         ]);
     }
     _getSelectedUncurvedPoints() {

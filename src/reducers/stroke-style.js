@@ -1,18 +1,18 @@
-import makeColorStyleReducer from "../lib/make-color-style-reducer";
-import paper from "@scratch/paper";
+import makeColorStyleReducer from '../lib/make-color-style-reducer';
+import paper from '@scratch/paper';
 
-const CHANGE_STROKE_COLOR = "scratch-paint/stroke-style/CHANGE_STROKE_COLOR";
+const CHANGE_STROKE_COLOR = 'scratch-paint/stroke-style/CHANGE_STROKE_COLOR';
 const CHANGE_STROKE_COLOR_2 =
-    "scratch-paint/stroke-style/CHANGE_STROKE_COLOR_2";
+    'scratch-paint/stroke-style/CHANGE_STROKE_COLOR_2';
 const CHANGE_STROKE_GRADIENT_TYPE =
-    "scratch-paint/stroke-style/CHANGE_STROKE_GRADIENT_TYPE";
+    'scratch-paint/stroke-style/CHANGE_STROKE_GRADIENT_TYPE';
 const CLEAR_STROKE_GRADIENT =
-    "scratch-paint/stroke-style/CLEAR_STROKE_GRADIENT";
+    'scratch-paint/stroke-style/CLEAR_STROKE_GRADIENT';
 const CHANGE_STROKE_COLOR_INDEX =
-    "scratch-paint/stroke-style/CHANGE_STROKE_COLOR_INDEX";
+    'scratch-paint/stroke-style/CHANGE_STROKE_COLOR_INDEX';
 const DEFAULT_COLOR = new paper.Color({ hue: 0, saturation: 0, brightness: 0 });
 
-import { CHANGE_STROKE_WIDTH } from "./stroke-width";
+import { CHANGE_STROKE_WIDTH } from './stroke-width';
 
 const reducer = makeColorStyleReducer({
     changePrimaryColorAction: CHANGE_STROKE_COLOR,
@@ -21,9 +21,9 @@ const reducer = makeColorStyleReducer({
     clearGradientAction: CLEAR_STROKE_GRADIENT,
     changeIndexAction: CHANGE_STROKE_COLOR_INDEX,
     defaultColor: DEFAULT_COLOR,
-    selectionPrimaryColorKey: "strokeColor",
-    selectionSecondaryColorKey: "strokeColor2",
-    selectionGradientTypeKey: "strokeGradientType",
+    selectionPrimaryColorKey: 'strokeColor',
+    selectionSecondaryColorKey: 'strokeColor2',
+    selectionGradientTypeKey: 'strokeGradientType',
 });
 
 // This is mostly the same as the generated reducer, but with one piece of extra logic to set the color to null when the

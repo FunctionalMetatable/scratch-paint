@@ -2,9 +2,9 @@
 @todo This file is copied from GUI and should be pulled out into a shared library.
 See https://github.com/LLK/scratch-paint/issues/13 */
 
-import bindAll from "lodash.bindall";
-import PropTypes from "prop-types";
-import React from "react";
+import bindAll from 'lodash.bindall';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 /**
  * Higher Order Component to manage inputs that submit on blur and <enter>
@@ -15,19 +15,19 @@ export default function (Input) {
     class BufferedInput extends React.Component {
         constructor(props) {
             super(props);
-            bindAll(this, ["handleChange", "handleKeyPress", "handleFlush"]);
+            bindAll(this, ['handleChange', 'handleKeyPress', 'handleFlush']);
             this.state = {
                 value: null,
             };
         }
         handleKeyPress(e) {
-            if (e.key === "Enter") {
+            if (e.key === 'Enter') {
                 this.handleFlush();
                 e.target.blur();
             }
         }
         handleFlush() {
-            const isNumeric = typeof this.props.value === "number";
+            const isNumeric = typeof this.props.value === 'number';
             const validatesNumeric = isNumeric
                 ? !isNaN(this.state.value)
                 : true;

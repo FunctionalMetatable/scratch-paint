@@ -1,10 +1,10 @@
-import paper from "@scratch/paper";
-import { getRootItem, isGroupItem } from "./item";
+import paper from '@scratch/paper';
+import { getRootItem, isGroupItem } from './item';
 import {
     clearSelection,
     getSelectedRootItems,
     setItemSelection,
-} from "./selection";
+} from './selection';
 
 const isGroup = function (item) {
     return isGroupItem(item);

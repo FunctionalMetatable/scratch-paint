@@ -2,24 +2,24 @@
 import selectedItemsReducer, {
     setSelectedItems,
     clearSelectedItems,
-} from "../../src/reducers/selected-items";
+} from '../../src/reducers/selected-items';
 
-test("initialState", () => {
+test('initialState', () => {
     let defaultState;
 
     expect(
         selectedItemsReducer(
             defaultState /* state */,
-            { type: "anything" } /* action */
+            { type: 'anything' } /* action */
         )
     ).toBeDefined();
 });
 
-test("setSelectedItems", () => {
+test('setSelectedItems', () => {
     let defaultState;
 
-    const newSelected1 = ["selected1", "selected2"];
-    const newSelected2 = ["selected1", "selected3"];
+    const newSelected1 = ['selected1', 'selected2'];
+    const newSelected2 = ['selected1', 'selected3'];
     const unselected = [];
     expect(
         selectedItemsReducer(
@@ -47,10 +47,10 @@ test("setSelectedItems", () => {
     ).toEqual(unselected);
 });
 
-test("clearSelectedItems", () => {
+test('clearSelectedItems', () => {
     let defaultState;
 
-    const selectedState = ["selected1", "selected2"];
+    const selectedState = ['selected1', 'selected2'];
     const unselectedState = [];
     expect(
         selectedItemsReducer(
@@ -72,8 +72,8 @@ test("clearSelectedItems", () => {
     ).toHaveLength(0);
 });
 
-test("invalidsetSelectedItems", () => {
-    const origState = ["selected1", "selected2"];
+test('invalidsetSelectedItems', () => {
+    const origState = ['selected1', 'selected2'];
 
     expect(
         selectedItemsReducer(
@@ -84,7 +84,7 @@ test("invalidsetSelectedItems", () => {
     expect(
         selectedItemsReducer(
             origState /* state */,
-            setSelectedItems("notAnArray") /* action */
+            setSelectedItems('notAnArray') /* action */
         )
     ).toBe(origState);
 });

@@ -1,7 +1,7 @@
-import paper from "@scratch/paper";
-import { getItems } from "../selection";
-import { getActionBounds } from "../view";
-import { BitmapModes } from "../../lib/modes";
+import paper from '@scratch/paper';
+import { getItems } from '../selection';
+import { getActionBounds } from '../view';
+import { BitmapModes } from '../../lib/modes';
 
 const MIN_SCALE_FACTOR = 0.0001;
 
@@ -187,41 +187,41 @@ class ScaleTool {
     _getRectCornerNameByIndex(index) {
         switch (index) {
             case 0:
-                return "bottomLeft";
+                return 'bottomLeft';
             case 1:
-                return "leftCenter";
+                return 'leftCenter';
             case 2:
-                return "topLeft";
+                return 'topLeft';
             case 3:
-                return "topCenter";
+                return 'topCenter';
             case 4:
-                return "topRight";
+                return 'topRight';
             case 5:
-                return "rightCenter";
+                return 'rightCenter';
             case 6:
-                return "bottomRight";
+                return 'bottomRight';
             case 7:
-                return "bottomCenter";
+                return 'bottomCenter';
         }
     }
     _getOpposingRectCornerNameByIndex(index) {
         switch (index) {
             case 0:
-                return "topRight";
+                return 'topRight';
             case 1:
-                return "rightCenter";
+                return 'rightCenter';
             case 2:
-                return "bottomRight";
+                return 'bottomRight';
             case 3:
-                return "bottomCenter";
+                return 'bottomCenter';
             case 4:
-                return "bottomLeft";
+                return 'bottomLeft';
             case 5:
-                return "leftCenter";
+                return 'leftCenter';
             case 6:
-                return "topLeft";
+                return 'topLeft';
             case 7:
-                return "topCenter";
+                return 'topCenter';
         }
     }
     _isCorner(index) {

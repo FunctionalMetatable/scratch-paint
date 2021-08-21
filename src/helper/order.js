@@ -1,4 +1,4 @@
-import { getSelectedRootItems } from "./selection";
+import { getSelectedRootItems } from './selection';
 
 const bringToFront = function (onUpdateImage) {
     const items = getSelectedRootItems();

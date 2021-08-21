@@ -1,10 +1,10 @@
 // undo functionality
 // modifed from https://github.com/memononen/stylii
-import paper from "@scratch/paper";
-import { hideGuideLayers, showGuideLayers, getRaster } from "../helper/layer";
-import { getSelectedLeafItems } from "../helper/selection";
-import Formats, { isVector, isBitmap } from "../lib/format";
-import log from "../log/log";
+import paper from '@scratch/paper';
+import { hideGuideLayers, showGuideLayers, getRaster } from '../helper/layer';
+import { getSelectedLeafItems } from '../helper/selection';
+import Formats, { isVector, isBitmap } from '../lib/format';
+import log from '../log/log';
 
 /**
  * Take an undo snapshot
@@ -13,7 +13,7 @@ import log from "../log/log";
  */
 const performSnapshot = function (dispatchPerformSnapshot, format) {
     if (!format) {
-        log.error("Format must be specified.");
+        log.error('Format must be specified.');
     }
     const guideLayers = hideGuideLayers();
     dispatchPerformSnapshot({

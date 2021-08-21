@@ -1,11 +1,11 @@
-import paper from "@scratch/paper";
-import log from "../log/log";
+import paper from '@scratch/paper';
+import log from '../log/log';
 
-const UPDATE_VIEW_BOUNDS = "scratch-paint/view/UPDATE_VIEW_BOUNDS";
+const UPDATE_VIEW_BOUNDS = 'scratch-paint/view/UPDATE_VIEW_BOUNDS';
 const initialState = new paper.Matrix(); // Identity
 
 const reducer = function (state, action) {
-    if (typeof state === "undefined") state = initialState;
+    if (typeof state === 'undefined') state = initialState;
     switch (action.type) {
         case UPDATE_VIEW_BOUNDS:
             if (!(action.viewBounds instanceof paper.Matrix)) {

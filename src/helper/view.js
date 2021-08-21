@@ -1,13 +1,13 @@
-import paper from "@scratch/paper";
+import paper from '@scratch/paper';
 import {
     CROSSHAIR_SIZE,
     getBackgroundGuideLayer,
     getDragCrosshairLayer,
     getRaster,
-} from "./layer";
-import { getAllRootItems, getSelectedRootItems } from "./selection";
-import { getHitBounds } from "./bitmap";
-import log from "../log/log";
+} from './layer';
+import { getAllRootItems, getSelectedRootItems } from './selection';
+import { getHitBounds } from './bitmap';
+import log from '../log/log';
 
 // Vectors are imported and exported at SVG_ART_BOARD size.
 // Once they are imported however, both SVGs and bitmaps are on
@@ -234,7 +234,7 @@ const zoomToFit = (isBitmap) => {
             clampViewBounds();
         }
     } else {
-        log.warn("No bounds!");
+        log.warn('No bounds!');
     }
 };
 

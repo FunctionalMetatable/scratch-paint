@@ -1,13 +1,13 @@
-import paper from "@scratch/paper";
-import { getSelectedLeafItems, getItems } from "./selection";
-import { isPointTextItem } from "./item";
-import { isGroup } from "./group";
-import GradientTypes from "../lib/gradient-types";
-import { DEFAULT_COLOR } from "../reducers/fill-style";
-import { isCompoundPathChild } from "../helper/compound-path";
-import log from "../log/log";
+import paper from '@scratch/paper';
+import { getSelectedLeafItems, getItems } from './selection';
+import { isPointTextItem } from './item';
+import { isGroup } from './group';
+import GradientTypes from '../lib/gradient-types';
+import { DEFAULT_COLOR } from '../reducers/fill-style';
+import { isCompoundPathChild } from '../helper/compound-path';
+import log from '../log/log';
 
-const MIXED = "scratch-paint/style-path/mixed";
+const MIXED = 'scratch-paint/style-path/mixed';
 
 const _isBlack = (hsbColor) => hsbColor.brightness === 0;
 
@@ -23,12 +23,12 @@ const colorsEqual = (color1, color2) => {
     }
 
     if (!(color1 instanceof paper.Color && color2 instanceof paper.Color)) {
-        log.warn("colorsEqual passed non-Colors");
+        log.warn('colorsEqual passed non-Colors');
         return false;
     }
 
-    const hsb1 = color1.type === "hsb" ? color1 : color1.convert("hsb");
-    const hsb2 = color2.type === "hsb" ? color2 : color2.convert("hsb");
+    const hsb1 = color1.type === 'hsb' ? color1 : color1.convert('hsb');
+    const hsb2 = color2.type === 'hsb' ? color2 : color2.convert('hsb');
 
     // Collapse equivalent colors in hsb color space
     if (_isBlack(hsb1) && _isBlack(hsb2)) return true;
@@ -68,13 +68,14 @@ const _getColorStateListeners = function (textEditTargetId) {
  * @return {paper.Color} Color for matching color of transparent
  */
 const getColorForTransparent = function (colorToMatch) {
-    if (colorToMatch === null)
+    if (colorToMatch === null) {
         return new paper.Color({
             hue: 0,
             saturation: 0,
             brightness: 0,
             alpha: 0,
         });
+    }
     const color = colorToMatch.clone();
     color.alpha = 0;
     return color;
@@ -90,7 +91,7 @@ const generateSecondaryColor = function (firstColor) {
     const color = new paper.Color(firstColor);
     if (!firstColor || color.alpha === 0) return DEFAULT_COLOR;
 
-    color.type = "hsb";
+    color.type = 'hsb';
     const desaturated = color.saturation <= 0.15;
     // If the color is desaturated or dark enough that a hue shift would be hard to see, do a brightness shift.
     if (desaturated || color.brightness <= 0.4) {
@@ -216,7 +217,7 @@ const applyColorToSelection = function (
             item = item.parent;
         }
 
-        const itemColorProp = applyToStroke ? "strokeColor" : "fillColor";
+        const itemColorProp = applyToStroke ? 'strokeColor' : 'fillColor';
         const itemColor = item[itemColorProp];
 
         if (
@@ -230,7 +231,7 @@ const applyColorToSelection = function (
                 changed = true;
                 if (isPointTextItem(item) && !color) {
                     // Allows transparent text to be hit
-                    item[itemColorProp] = "rgba(0,0,0,0)";
+                    item[itemColorProp] = 'rgba(0,0,0,0)';
                 } else {
                     item[itemColorProp] = color;
                 }
@@ -327,7 +328,7 @@ const applyGradientTypeToSelection = function (
             item = item.parent;
         }
 
-        const itemColorProp = applyToStroke ? "strokeColor" : "fillColor";
+        const itemColorProp = applyToStroke ? 'strokeColor' : 'fillColor';
         const itemColor = item[itemColorProp];
 
         const hasGradient = itemColor && itemColor.gradient;
@@ -373,8 +374,9 @@ const applyGradientTypeToSelection = function (
         // If this is a stroke, we don't display it as having a gradient in the color picker
         // if there's no stroke width. Then treat it as if it doesn't have a gradient.
         let hasDisplayGradient = hasGradient;
-        if (applyToStroke)
+        if (applyToStroke) {
             hasDisplayGradient = hasGradient && item.strokeWidth > 0;
+        }
         if (!hasDisplayGradient) {
             const noColorOriginally =
                 !itemColor ||
@@ -389,8 +391,8 @@ const applyGradientTypeToSelection = function (
                     item.strokeWidth = 1;
                 }
                 // Make the gradient black to white
-                itemColor1 = "black";
-                itemColor2 = "white";
+                itemColor1 = 'black';
+                itemColor2 = 'white';
             }
         }
 
@@ -488,8 +490,9 @@ const _colorStateFromGradient = (gradient) => {
                 ? null
                 : gradient.stops[1].color;
     } else {
-        if (gradient.stops.length < 2)
+        if (gradient.stops.length < 2) {
             log.warn(`Gradient has ${gradient.stops.length} stop(s)`);
+        }
 
         colorState.primary = MIXED;
         colorState.secondary = MIXED;
@@ -537,7 +540,7 @@ const getColorsFromSelection = function (selectedItems, bitmapMode) {
                 // hack bc text items with null fill can't be detected by fill-hitTest anymore
                 if (isPointTextItem(item) && item.fillColor.alpha === 0) {
                     itemFillColor = null;
-                } else if (item.fillColor.type === "gradient") {
+                } else if (item.fillColor.type === 'gradient') {
                     const { primary, secondary, gradientType } =
                         _colorStateFromGradient(item.fillColor.gradient);
                     itemFillColor = primary;
@@ -550,7 +553,7 @@ const getColorsFromSelection = function (selectedItems, bitmapMode) {
                 }
             }
             if (item.strokeColor) {
-                if (item.strokeColor.type === "gradient") {
+                if (item.strokeColor.type === 'gradient') {
                     const { primary, secondary, gradientType } =
                         _colorStateFromGradient(item.strokeColor.gradient);
 
@@ -644,8 +647,9 @@ const getColorsFromSelection = function (selectedItems, bitmapMode) {
     // whereas we want them to show as horizontal (or vertical if the first item is vertical)
     if (selectedItems && selectedItems.length) {
         let firstItem = selectedItems[0];
-        if (firstItem.parent instanceof paper.CompoundPath)
+        if (firstItem.parent instanceof paper.CompoundPath) {
             firstItem = firstItem.parent;
+        }
 
         if (selectionFillGradientType !== GradientTypes.SOLID) {
             // Stroke color is fill color in bitmap if fill color is missing
@@ -695,30 +699,30 @@ const getColorsFromSelection = function (selectedItems, bitmapMode) {
 
 const styleBlob = function (path, options) {
     if (options.isEraser) {
-        path.fillColor = "white";
+        path.fillColor = 'white';
     } else if (options.fillColor) {
         path.fillColor = options.fillColor;
     } else {
         // Make sure something visible is drawn
-        path.fillColor = "black";
+        path.fillColor = 'black';
     }
 };
 
 const styleCursorPreview = function (path, options) {
     if (options.isEraser) {
-        path.fillColor = "white";
-        path.strokeColor = "cornflowerblue";
+        path.fillColor = 'white';
+        path.strokeColor = 'cornflowerblue';
         path.strokeWidth = 1;
     } else if (options.fillColor) {
         path.fillColor = options.fillColor;
     } else {
         // Make sure something visible is drawn
-        path.fillColor = "black";
+        path.fillColor = 'black';
     }
 };
 
 const styleShape = function (path, options) {
-    for (const colorKey of ["fillColor", "strokeColor"]) {
+    for (const colorKey of ['fillColor', 'strokeColor']) {
         if (options[colorKey] === null) {
             path[colorKey] = null;
         } else if (options[colorKey].gradientType === GradientTypes.SOLID) {
@@ -736,8 +740,9 @@ const styleShape = function (path, options) {
         }
     }
 
-    if (options.hasOwnProperty("strokeWidth"))
+    if (options.hasOwnProperty('strokeWidth')) {
         path.strokeWidth = options.strokeWidth;
+    }
 };
 
 export {

@@ -1,34 +1,34 @@
-import paper from "@scratch/paper";
-import { connect } from "react-redux";
-import bindAll from "lodash.bindall";
-import PropTypes from "prop-types";
-import React from "react";
+import paper from '@scratch/paper';
+import { connect } from 'react-redux';
+import bindAll from 'lodash.bindall';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import FontDropdownComponent from "../components/font-dropdown/font-dropdown.jsx";
-import Fonts from "../lib/fonts";
-import { changeFont } from "../reducers/font";
-import { getSelectedLeafItems } from "../helper/selection";
-import styles from "../components/font-dropdown/font-dropdown.css";
+import FontDropdownComponent from '../components/font-dropdown/font-dropdown.jsx';
+import Fonts from '../lib/fonts';
+import { changeFont } from '../reducers/font';
+import { getSelectedLeafItems } from '../helper/selection';
+import styles from '../components/font-dropdown/font-dropdown.css';
 
 class FontDropdown extends React.Component {
     constructor(props) {
         super(props);
         bindAll(this, [
-            "getFontStyle",
-            "getFontName",
-            "handleChangeFontSerif",
-            "handleChangeFontSansSerif",
-            "handleChangeFontHandwriting",
-            "handleChangeFontMarker",
-            "handleChangeFontCurly",
-            "handleChangeFontPixel",
-            "handleChangeFontChinese",
-            "handleChangeFontJapanese",
-            "handleChangeFontKorean",
-            "handleOpenDropdown",
-            "handleClickOutsideDropdown",
-            "setDropdown",
-            "handleChoose",
+            'getFontStyle',
+            'getFontName',
+            'handleChangeFontSerif',
+            'handleChangeFontSansSerif',
+            'handleChangeFontHandwriting',
+            'handleChangeFontMarker',
+            'handleChangeFontCurly',
+            'handleChangeFontPixel',
+            'handleChangeFontChinese',
+            'handleChangeFontJapanese',
+            'handleChangeFontKorean',
+            'handleOpenDropdown',
+            'handleClickOutsideDropdown',
+            'setDropdown',
+            'handleChoose',
         ]);
     }
     getFontStyle(font) {
@@ -52,17 +52,17 @@ class FontDropdown extends React.Component {
             case Fonts.KOREAN:
                 return styles.korean;
             default:
-                return "";
+                return '';
         }
     }
     getFontName(font) {
         switch (font) {
             case Fonts.CHINESE:
-                return "中文";
+                return '中文';
             case Fonts.KOREAN:
-                return "한국어";
+                return '한국어';
             case Fonts.JAPANESE:
-                return "日本語";
+                return '日本語';
             default:
                 return font;
         }

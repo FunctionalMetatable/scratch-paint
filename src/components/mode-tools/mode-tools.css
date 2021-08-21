@@ -1,5 +1,5 @@
-@import "../../css/colors.css";
-@import "../../css/units.css";
+@import '../../css/colors.css';
+@import '../../css/units.css';
 
 .mode-tools {
     display: flex;
@@ -13,12 +13,12 @@
     height: 2rem;
 }
 
-[dir="ltr"] .mod-dashed-border {
+[dir='ltr'] .mod-dashed-border {
     border-right: 1px dashed $ui-pane-border;
     padding-right: calc(3 * $grid-unit);
 }
 
-[dir="rtl"] .mod-dashed-border {
+[dir='rtl'] .mod-dashed-border {
     border-left: 1px dashed $ui-pane-border;
     padding-left: calc(3 * $grid-unit);
 }

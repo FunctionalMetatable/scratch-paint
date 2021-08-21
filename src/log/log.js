@@ -1,4 +1,4 @@
-import minilog from "minilog";
+import minilog from 'minilog';
 minilog.enable();
 
-export default minilog("scratch-paint");
+export default minilog('scratch-paint');

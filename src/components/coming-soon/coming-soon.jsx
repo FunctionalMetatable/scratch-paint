@@ -2,48 +2,48 @@
 @todo This file is copied from GUI and should be pulled out into a shared library.
 See #13 */
 
-import bindAll from "lodash.bindall";
-import classNames from "classnames";
+import bindAll from 'lodash.bindall';
+import classNames from 'classnames';
 import {
     defineMessages,
     injectIntl,
     intlShape,
     FormattedMessage,
-} from "react-intl";
-import PropTypes from "prop-types";
-import React from "react";
-import ReactTooltip from "react-tooltip";
+} from 'react-intl';
+import PropTypes from 'prop-types';
+import React from 'react';
+import ReactTooltip from 'react-tooltip';
 
-import styles from "./coming-soon.css";
+import styles from './coming-soon.css';
 
-import awwCatIcon from "./aww-cat.png";
-import coolCatIcon from "./cool-cat.png";
+import awwCatIcon from './aww-cat.png';
+import coolCatIcon from './cool-cat.png';
 
 const messages = defineMessages({
     message1: {
         defaultMessage: "Don't worry, we're on it {emoji}",
         description:
             'One of the "coming soon" random messages for yet-to-be-done features',
-        id: "gui.comingSoon.message1",
+        id: 'gui.comingSoon.message1',
     },
     message2: {
-        defaultMessage: "Coming Soon...",
+        defaultMessage: 'Coming Soon...',
         description:
             'One of the "coming soon" random messages for yet-to-be-done features',
-        id: "gui.comingSoon.message2",
+        id: 'gui.comingSoon.message2',
     },
     message3: {
         defaultMessage: "We're working on it {emoji}",
         description:
             'One of the "coming soon" random messages for yet-to-be-done features',
-        id: "gui.comingSoon.message3",
+        id: 'gui.comingSoon.message3',
     },
 });
 
 class ComingSoonContent extends React.Component {
     constructor(props) {
         super(props);
-        bindAll(this, ["setHide", "setShow", "getRandomMessage"]);
+        bindAll(this, ['setHide', 'setShow', 'getRandomMessage']);
         this.state = {
             isShowing: false,
         };
@@ -84,10 +84,10 @@ class ComingSoonContent extends React.Component {
                 afterShow={this.setShow}
                 className={classNames(styles.comingSoon, this.props.className, {
                     [styles.show]: this.state.isShowing,
-                    [styles.left]: this.props.place === "left",
-                    [styles.right]: this.props.place === "right",
-                    [styles.top]: this.props.place === "top",
-                    [styles.bottom]: this.props.place === "bottom",
+                    [styles.left]: this.props.place === 'left',
+                    [styles.right]: this.props.place === 'right',
+                    [styles.top]: this.props.place === 'top',
+                    [styles.bottom]: this.props.place === 'bottom',
                 })}
                 getContent={this.getRandomMessage}
                 id={this.props.tooltipId}
@@ -99,12 +99,12 @@ class ComingSoonContent extends React.Component {
 ComingSoonContent.propTypes = {
     className: PropTypes.string,
     intl: intlShape,
-    place: PropTypes.oneOf(["top", "right", "bottom", "left"]),
+    place: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
     tooltipId: PropTypes.string.isRequired,
 };
 
 ComingSoonContent.defaultProps = {
-    place: "bottom",
+    place: 'bottom',
 };
 
 const ComingSoon = injectIntl(ComingSoonContent);
@@ -134,7 +134,7 @@ ComingSoonTooltip.propTypes = {
     className: PropTypes.string,
     delayHide: PropTypes.number,
     delayShow: PropTypes.number,
-    place: PropTypes.oneOf(["top", "right", "bottom", "left"]),
+    place: PropTypes.oneOf(['top', 'right', 'bottom', 'left']),
     tooltipClassName: PropTypes.string,
     tooltipId: PropTypes.string.isRequired,
 };

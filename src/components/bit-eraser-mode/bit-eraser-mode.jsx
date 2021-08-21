@@ -1,9 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
-import messages from "../../lib/messages.js";
-import ToolSelectComponent from "../tool-select-base/tool-select-base.jsx";
+import React from 'react';
+import PropTypes from 'prop-types';
+import messages from '../../lib/messages.js';
+import ToolSelectComponent from '../tool-select-base/tool-select-base.jsx';
 
-import eraserIcon from "./eraser.svg";
+import eraserIcon from './eraser.svg';
 
 const BitEraserComponent = (props) => (
     <ToolSelectComponent

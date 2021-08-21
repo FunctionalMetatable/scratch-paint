@@ -1,18 +1,18 @@
-import log from "../log/log";
-const SET_LAYOUT = "scratch-paint/layout/SET_LAYOUT";
+import log from '../log/log';
+const SET_LAYOUT = 'scratch-paint/layout/SET_LAYOUT';
 const initialState = { rtl: false };
 
-const layouts = ["ltr", "rtl"];
+const layouts = ['ltr', 'rtl'];
 
 const reducer = function (state, action) {
-    if (typeof state === "undefined") state = initialState;
+    if (typeof state === 'undefined') state = initialState;
     switch (action.type) {
         case SET_LAYOUT:
             if (layouts.indexOf(action.layout) === -1) {
                 log.warn(`Unrecognized layout provided: ${action.layout}`);
                 return state;
             }
-            return { rtl: action.layout === "rtl" };
+            return { rtl: action.layout === 'rtl' };
         default:
             return state;
     }

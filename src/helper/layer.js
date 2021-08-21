@@ -1,14 +1,14 @@
-import paper from "@scratch/paper";
-import log from "../log/log";
+import paper from '@scratch/paper';
+import log from '../log/log';
 import {
     ART_BOARD_BOUNDS,
     ART_BOARD_WIDTH,
     ART_BOARD_HEIGHT,
     CENTER,
     MAX_WORKSPACE_BOUNDS,
-} from "./view";
-import { isGroupItem } from "./item";
-import { isBitmap, isVector } from "../lib/format";
+} from './view';
+import { isGroupItem } from './item';
+import { isBitmap, isVector } from '../lib/format';
 
 const CHECKERBOARD_SIZE = 8;
 const CROSSHAIR_SIZE = 16;
@@ -23,7 +23,7 @@ const _getLayer = function (layerString) {
 };
 
 const _getPaintingLayer = function () {
-    return _getLayer("isPaintingLayer");
+    return _getLayer('isPaintingLayer');
 };
 
 /**
@@ -33,20 +33,20 @@ const _getPaintingLayer = function () {
  * @return {HTMLCanvasElement} the canvas
  */
 const createCanvas = function (width, height) {
-    const canvas = document.createElement("canvas");
+    const canvas = document.createElement('canvas');
     canvas.width = width ? width : ART_BOARD_WIDTH;
     canvas.height = height ? height : ART_BOARD_HEIGHT;
-    canvas.getContext("2d").imageSmoothingEnabled = false;
+    canvas.getContext('2d').imageSmoothingEnabled = false;
     return canvas;
 };
 
 const clearRaster = function () {
-    const layer = _getLayer("isRasterLayer");
+    const layer = _getLayer('isRasterLayer');
     layer.removeChildren();
 
     // Generate blank raster
     const raster = new paper.Raster(createCanvas());
-    raster.canvas.getContext("2d").imageSmoothingEnabled = false;
+    raster.canvas.getContext('2d').imageSmoothingEnabled = false;
     raster.parent = layer;
     raster.guide = true;
     raster.locked = true;
@@ -54,20 +54,20 @@ const clearRaster = function () {
 };
 
 const getRaster = function () {
-    const layer = _getLayer("isRasterLayer");
+    const layer = _getLayer('isRasterLayer');
     // Generate blank raster
     if (layer.children.length === 0) {
         clearRaster();
     }
-    return _getLayer("isRasterLayer").children[0];
+    return _getLayer('isRasterLayer').children[0];
 };
 
 const getDragCrosshairLayer = function () {
-    return _getLayer("isDragCrosshairLayer");
+    return _getLayer('isDragCrosshairLayer');
 };
 
 const getBackgroundGuideLayer = function () {
-    return _getLayer("isBackgroundGuideLayer");
+    return _getLayer('isBackgroundGuideLayer');
 };
 
 const _convertLayer = function (layer, format) {
@@ -86,7 +86,7 @@ const _makeGuideLayer = function () {
 };
 
 const getGuideLayer = function () {
-    let layer = _getLayer("isGuideLayer");
+    let layer = _getLayer('isGuideLayer');
     if (!layer) {
         layer = _makeGuideLayer();
         _getPaintingLayer().activate();
@@ -112,7 +112,7 @@ const setGuideItem = function (item) {
 const hideGuideLayers = function (includeRaster) {
     const backgroundGuideLayer = getBackgroundGuideLayer();
     const dragCrosshairLayer = getDragCrosshairLayer();
-    const outlineLayer = _getLayer("isOutlineLayer");
+    const outlineLayer = _getLayer('isOutlineLayer');
     const guideLayer = getGuideLayer();
     dragCrosshairLayer.remove();
     outlineLayer.remove();
@@ -120,7 +120,7 @@ const hideGuideLayers = function (includeRaster) {
     backgroundGuideLayer.remove();
     let rasterLayer;
     if (includeRaster) {
-        rasterLayer = _getLayer("isRasterLayer");
+        rasterLayer = _getLayer('isRasterLayer');
         rasterLayer.remove();
     }
     return {
@@ -208,12 +208,12 @@ const _makeBackgroundPaper = function (width, height, color, opacity) {
             ART_BOARD_HEIGHT / CHECKERBOARD_SIZE
         )
     );
-    vRect.fillColor = "#fff";
+    vRect.fillColor = '#fff';
     vRect.guide = true;
     vRect.locked = true;
     vRect.position = CENTER;
     const vPath = new paper.Path(pathPoints);
-    vPath.fillRule = "evenodd";
+    vPath.fillRule = 'evenodd';
     vPath.fillColor = color;
     vPath.opacity = opacity;
     vPath.guide = true;
@@ -239,20 +239,20 @@ const _makeCrosshair = function (opacity, parent) {
         new paper.Point(0, 7)
     );
     vLine2.strokeWidth = 6;
-    vLine2.strokeColor = "white";
-    vLine2.strokeCap = "round";
+    vLine2.strokeColor = 'white';
+    vLine2.strokeCap = 'round';
     crosshair.addChild(vLine2);
     const hLine2 = new paper.Path.Line(
         new paper.Point(-7, 0),
         new paper.Point(7, 0)
     );
     hLine2.strokeWidth = 6;
-    hLine2.strokeColor = "white";
-    hLine2.strokeCap = "round";
+    hLine2.strokeColor = 'white';
+    hLine2.strokeCap = 'round';
     crosshair.addChild(hLine2);
     const circle2 = new paper.Shape.Circle(new paper.Point(0, 0), 5.5);
     circle2.strokeWidth = 6;
-    circle2.strokeColor = "white";
+    circle2.strokeColor = 'white';
     crosshair.addChild(circle2);
 
     const vLine = new paper.Path.Line(
@@ -260,20 +260,20 @@ const _makeCrosshair = function (opacity, parent) {
         new paper.Point(0, 7)
     );
     vLine.strokeWidth = 2;
-    vLine.strokeColor = "black";
-    vLine.strokeCap = "round";
+    vLine.strokeColor = 'black';
+    vLine.strokeCap = 'round';
     crosshair.addChild(vLine);
     const hLine = new paper.Path.Line(
         new paper.Point(-7, 0),
         new paper.Point(7, 0)
     );
     hLine.strokeWidth = 2;
-    hLine.strokeColor = "black";
-    hLine.strokeCap = "round";
+    hLine.strokeColor = 'black';
+    hLine.strokeCap = 'round';
     crosshair.addChild(hLine);
     const circle = new paper.Shape.Circle(new paper.Point(0, 0), 5.5);
     circle.strokeWidth = 2;
-    circle.strokeColor = "black";
+    circle.strokeColor = 'black';
     crosshair.addChild(circle);
 
     setGuideItem(crosshair);
@@ -297,11 +297,11 @@ const _makeOutlineLayer = function () {
     const outlineLayer = new paper.Layer();
     const whiteRect = new paper.Shape.Rectangle(ART_BOARD_BOUNDS.expand(1));
     whiteRect.strokeWidth = 2;
-    whiteRect.strokeColor = "white";
+    whiteRect.strokeColor = 'white';
     setGuideItem(whiteRect);
     const blueRect = new paper.Shape.Rectangle(ART_BOARD_BOUNDS.expand(5));
     blueRect.strokeWidth = 2;
-    blueRect.strokeColor = "#4280D7";
+    blueRect.strokeColor = '#4280D7';
     blueRect.opacity = 0.25;
     setGuideItem(blueRect);
     outlineLayer.data.isOutlineLayer = true;
@@ -313,7 +313,7 @@ const _makeBackgroundGuideLayer = function (format) {
     guideLayer.locked = true;
 
     const vWorkspaceBounds = new paper.Shape.Rectangle(MAX_WORKSPACE_BOUNDS);
-    vWorkspaceBounds.fillColor = "#ECF1F9";
+    vWorkspaceBounds.fillColor = '#ECF1F9';
     vWorkspaceBounds.position = CENTER;
 
     // Add 1 to the height because it's an odd number otherwise, and we want it to be even
@@ -321,7 +321,7 @@ const _makeBackgroundGuideLayer = function (format) {
     const vBackground = _makeBackgroundPaper(
         MAX_WORKSPACE_BOUNDS.width / CHECKERBOARD_SIZE,
         MAX_WORKSPACE_BOUNDS.height / CHECKERBOARD_SIZE + 1,
-        "#D9E3F2",
+        '#D9E3F2',
         0.55
     );
     vBackground.position = CENTER;
@@ -336,7 +336,7 @@ const _makeBackgroundGuideLayer = function (format) {
     const bitmapBackground = _makeBackgroundPaper(
         ART_BOARD_WIDTH / CHECKERBOARD_SIZE,
         ART_BOARD_HEIGHT / CHECKERBOARD_SIZE,
-        "#D9E3F2",
+        '#D9E3F2',
         0.55
     );
     bitmapBackground.position = CENTER;

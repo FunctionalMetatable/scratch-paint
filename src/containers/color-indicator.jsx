@@ -1,31 +1,31 @@
-import PropTypes from "prop-types";
-import React from "react";
-import bindAll from "lodash.bindall";
-import { injectIntl, intlShape } from "react-intl";
+import PropTypes from 'prop-types';
+import React from 'react';
+import bindAll from 'lodash.bindall';
+import { injectIntl, intlShape } from 'react-intl';
 
-import { getSelectedLeafItems } from "../helper/selection";
-import Formats, { isBitmap } from "../lib/format";
-import GradientTypes from "../lib/gradient-types";
-import ColorProptype from "../lib/color-proptype";
+import { getSelectedLeafItems } from '../helper/selection';
+import Formats, { isBitmap } from '../lib/format';
+import GradientTypes from '../lib/gradient-types';
+import ColorProptype from '../lib/color-proptype';
 
-import ColorIndicatorComponent from "../components/color-indicator.jsx";
+import ColorIndicatorComponent from '../components/color-indicator.jsx';
 import {
     applyColorToSelection,
     applyGradientTypeToSelection,
     applyStrokeWidthToSelection,
     generateSecondaryColor,
     swapColorsInSelection,
-} from "../helper/style-path";
+} from '../helper/style-path';
 
 const makeColorIndicator = (label, isStroke) => {
     class ColorIndicator extends React.Component {
         constructor(props) {
             super(props);
             bindAll(this, [
-                "handleChangeColor",
-                "handleChangeGradientType",
-                "handleCloseColor",
-                "handleSwap",
+                'handleChangeColor',
+                'handleChangeGradientType',
+                'handleCloseColor',
+                'handleSwap',
             ]);
 
             // Flag to track whether an svg-update-worthy change has been made

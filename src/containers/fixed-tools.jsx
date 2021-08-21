@@ -1,42 +1,42 @@
-import PropTypes from "prop-types";
-import React from "react";
-import { connect } from "react-redux";
+import PropTypes from 'prop-types';
+import React from 'react';
+import { connect } from 'react-redux';
 
-import FixedToolsComponent from "../components/fixed-tools/fixed-tools.jsx";
+import FixedToolsComponent from '../components/fixed-tools/fixed-tools.jsx';
 
-import { changeMode } from "../reducers/modes";
-import { changeFormat } from "../reducers/format";
+import { changeMode } from '../reducers/modes';
+import { changeFormat } from '../reducers/format';
 import {
     clearSelectedItems,
     setSelectedItems,
-} from "../reducers/selected-items";
-import { deactivateEyeDropper } from "../reducers/eye-dropper";
-import { setTextEditTarget } from "../reducers/text-edit-target";
-import { setLayout } from "../reducers/layout";
+} from '../reducers/selected-items';
+import { deactivateEyeDropper } from '../reducers/eye-dropper';
+import { setTextEditTarget } from '../reducers/text-edit-target';
+import { setLayout } from '../reducers/layout';
 
-import { getSelectedLeafItems } from "../helper/selection";
+import { getSelectedLeafItems } from '../helper/selection';
 import {
     bringToFront,
     sendBackward,
     sendToBack,
     bringForward,
-} from "../helper/order";
-import { groupSelection, ungroupSelection } from "../helper/group";
+} from '../helper/order';
+import { groupSelection, ungroupSelection } from '../helper/group';
 
-import Formats, { isBitmap } from "../lib/format";
-import bindAll from "lodash.bindall";
+import Formats, { isBitmap } from '../lib/format';
+import bindAll from 'lodash.bindall';
 
 class FixedTools extends React.Component {
     constructor(props) {
         super(props);
         bindAll(this, [
-            "handleSendBackward",
-            "handleSendForward",
-            "handleSendToBack",
-            "handleSendToFront",
-            "handleSetSelectedItems",
-            "handleGroup",
-            "handleUngroup",
+            'handleSendBackward',
+            'handleSendForward',
+            'handleSendToBack',
+            'handleSendToFront',
+            'handleSetSelectedItems',
+            'handleGroup',
+            'handleUngroup',
         ]);
     }
     handleGroup() {

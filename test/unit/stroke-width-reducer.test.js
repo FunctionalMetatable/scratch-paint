@@ -2,28 +2,28 @@
 import strokeWidthReducer, {
     MAX_STROKE_WIDTH,
     changeStrokeWidth,
-} from "../../src/reducers/stroke-width";
-import { setSelectedItems } from "../../src/reducers/selected-items";
-import { mockPaperRootItem } from "../__mocks__/paperMocks";
+} from '../../src/reducers/stroke-width';
+import { setSelectedItems } from '../../src/reducers/selected-items';
+import { mockPaperRootItem } from '../__mocks__/paperMocks';
 
-test("initialState", () => {
+test('initialState', () => {
     let defaultState;
 
     expect(
         strokeWidthReducer(
             defaultState /* state */,
-            { type: "anything" } /* action */
+            { type: 'anything' } /* action */
         )
     ).toBeDefined();
     expect(
         strokeWidthReducer(
             defaultState /* state */,
-            { type: "anything" } /* action */
+            { type: 'anything' } /* action */
         )
     ).toBeGreaterThanOrEqual(0);
 });
 
-test("changestrokeWidth", () => {
+test('changestrokeWidth', () => {
     let defaultState;
     const newstrokeWidth = 23;
 
@@ -50,13 +50,13 @@ test("changestrokeWidth", () => {
     ).toEqual(MAX_STROKE_WIDTH);
 });
 
-test("changeStrokeWidthViaSelectedItems", () => {
+test('changeStrokeWidthViaSelectedItems', () => {
     let defaultState;
 
     const strokeWidth1 = 6;
     let strokeWidth2; // no outline
     let selectedItems = [
-        mockPaperRootItem({ strokeColor: "#000", strokeWidth: strokeWidth1 }),
+        mockPaperRootItem({ strokeColor: '#000', strokeWidth: strokeWidth1 }),
     ];
     expect(
         strokeWidthReducer(
@@ -65,7 +65,7 @@ test("changeStrokeWidthViaSelectedItems", () => {
         )
     ).toEqual(strokeWidth1);
     selectedItems = [
-        mockPaperRootItem({ strokeColor: "#000", strokeWidth: strokeWidth2 }),
+        mockPaperRootItem({ strokeColor: '#000', strokeWidth: strokeWidth2 }),
     ];
     expect(
         strokeWidthReducer(
@@ -74,8 +74,8 @@ test("changeStrokeWidthViaSelectedItems", () => {
         )
     ).toEqual(0); // Convert no outline to stroke width 0
     selectedItems = [
-        mockPaperRootItem({ strokeColor: "#000", strokeWidth: strokeWidth1 }),
-        mockPaperRootItem({ strokeColor: "#000", strokeWidth: strokeWidth2 }),
+        mockPaperRootItem({ strokeColor: '#000', strokeWidth: strokeWidth1 }),
+        mockPaperRootItem({ strokeColor: '#000', strokeWidth: strokeWidth2 }),
     ];
     expect(
         strokeWidthReducer(
@@ -85,7 +85,7 @@ test("changeStrokeWidthViaSelectedItems", () => {
     ).toEqual(null); // null indicates mixed for stroke width
 });
 
-test("showNoStrokeWidthIfNoStrokeColor", () => {
+test('showNoStrokeWidthIfNoStrokeColor', () => {
     let defaultState;
 
     const selectedItems = [
@@ -99,13 +99,13 @@ test("showNoStrokeWidthIfNoStrokeColor", () => {
     ).toEqual(0);
 });
 
-test("invalidChangestrokeWidth", () => {
+test('invalidChangestrokeWidth', () => {
     const origState = { strokeWidth: 1 };
 
     expect(
         strokeWidthReducer(
             origState /* state */,
-            changeStrokeWidth("invalid argument") /* action */
+            changeStrokeWidth('invalid argument') /* action */
         )
     ).toBe(origState);
     expect(

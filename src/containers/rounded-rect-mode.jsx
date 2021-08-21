@@ -1,24 +1,24 @@
-import PropTypes from "prop-types";
-import React from "react";
-import { connect } from "react-redux";
-import bindAll from "lodash.bindall";
-import Modes from "../lib/modes";
+import PropTypes from 'prop-types';
+import React from 'react';
+import { connect } from 'react-redux';
+import bindAll from 'lodash.bindall';
+import Modes from '../lib/modes';
 
-import { changeMode } from "../reducers/modes";
-import { clearHoveredItem, setHoveredItem } from "../reducers/hover";
+import { changeMode } from '../reducers/modes';
+import { clearHoveredItem, setHoveredItem } from '../reducers/hover';
 import {
     clearSelectedItems,
     setSelectedItems,
-} from "../reducers/selected-items";
+} from '../reducers/selected-items';
 
-import { getSelectedLeafItems } from "../helper/selection";
-import RoundedRectTool from "../helper/tools/rounded-rect-tool";
-import RoundedRectModeComponent from "../components/rounded-rect-mode/rounded-rect-mode.jsx";
+import { getSelectedLeafItems } from '../helper/selection';
+import RoundedRectTool from '../helper/tools/rounded-rect-tool';
+import RoundedRectModeComponent from '../components/rounded-rect-mode/rounded-rect-mode.jsx';
 
 class RoundedRectMode extends React.Component {
     constructor(props) {
         super(props);
-        bindAll(this, ["activateTool", "deactivateTool"]);
+        bindAll(this, ['activateTool', 'deactivateTool']);
     }
     componentDidMount() {
         if (this.props.isRoundedRectModeActive) {

@@ -1,33 +1,33 @@
 /* eslint-env jest */
-import paper from "@scratch/paper";
+import paper from '@scratch/paper';
 import fillColorReducer, {
     changeFillColor,
-} from "../../src/reducers/fill-style";
+} from '../../src/reducers/fill-style';
 import strokeColorReducer, {
     changeStrokeColor,
-} from "../../src/reducers/stroke-style";
-import { setSelectedItems } from "../../src/reducers/selected-items";
-import { MIXED } from "../../src/helper/style-path";
-import GradientTypes from "../../src/lib/gradient-types";
-import { mockPaperRootItem } from "../__mocks__/paperMocks";
+} from '../../src/reducers/stroke-style';
+import { setSelectedItems } from '../../src/reducers/selected-items';
+import { MIXED } from '../../src/helper/style-path';
+import GradientTypes from '../../src/lib/gradient-types';
+import { mockPaperRootItem } from '../__mocks__/paperMocks';
 
 let defaultState;
 for (const [colorReducer, changeColor, colorProp] of [
-    [fillColorReducer, changeFillColor, "fillColor"],
-    [strokeColorReducer, changeStrokeColor, "strokeColor"],
+    [fillColorReducer, changeFillColor, 'fillColor'],
+    [strokeColorReducer, changeStrokeColor, 'strokeColor'],
 ]) {
-    test("initialState", () => {
+    test('initialState', () => {
         expect(
             colorReducer(
                 defaultState /* state */,
-                { type: "anything" } /* action */
+                { type: 'anything' } /* action */
             )
         ).toBeDefined();
     });
 
-    test("changeColor", () => {
-        const oldColor = new paper.Color("#010");
-        const newColor = new paper.Color("#fff");
+    test('changeColor', () => {
+        const oldColor = new paper.Color('#010');
+        const newColor = new paper.Color('#fff');
         expect(
             colorReducer(
                 defaultState /* state */,
@@ -46,8 +46,8 @@ for (const [colorReducer, changeColor, colorProp] of [
         ).toEqual(newColor);
     });
 
-    test("changeColorToTransparent", () => {
-        const oldColor = new paper.Color("#010");
+    test('changeColorToTransparent', () => {
+        const oldColor = new paper.Color('#010');
         const newColor = null;
         expect(
             colorReducer(
@@ -67,8 +67,8 @@ for (const [colorReducer, changeColor, colorProp] of [
         ).toEqual(newColor);
     });
 
-    test("changeColorToMixed", () => {
-        const oldColor = new paper.Color("#010");
+    test('changeColorToMixed', () => {
+        const oldColor = new paper.Color('#010');
         const newColor = MIXED;
         expect(
             colorReducer(
@@ -88,8 +88,8 @@ for (const [colorReducer, changeColor, colorProp] of [
         ).toEqual(newColor);
     });
 
-    test("changeColorViaSelectedItems", () => {
-        const color1 = new paper.Color("rgba(6, 0, 0, 0.5)");
+    test('changeColorViaSelectedItems', () => {
+        const color1 = new paper.Color('rgba(6, 0, 0, 0.5)');
         const color2 = null; // transparent
         let selectedItems = [
             mockPaperRootItem({ [colorProp]: color1, strokeWidth: 1 }),
@@ -121,7 +121,7 @@ for (const [colorReducer, changeColor, colorProp] of [
         ).toEqual(MIXED);
     });
 
-    test("invalidChangeColor", () => {
+    test('invalidChangeColor', () => {
         const origState = {
             primary: paper.Color.WHITE,
             secondary: null,
@@ -132,12 +132,12 @@ for (const [colorReducer, changeColor, colorProp] of [
             colorReducer(origState /* state */, changeColor() /* action */)
         ).toBe(origState);
         expect(
-            colorReducer(origState /* state */, changeColor("#") /* action */)
+            colorReducer(origState /* state */, changeColor('#') /* action */)
         ).toBe(origState);
         expect(
             colorReducer(
                 origState /* state */,
-                changeColor("invalid argument") /* action */
+                changeColor('invalid argument') /* action */
             )
         ).toBe(origState);
     });

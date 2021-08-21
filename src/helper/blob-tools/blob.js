@@ -1,11 +1,11 @@
-import paper from "@scratch/paper";
-import log from "../../log/log";
-import BroadBrushHelper from "./broad-brush-helper";
-import SegmentBrushHelper from "./segment-brush-helper";
-import { MIXED, styleCursorPreview } from "../../helper/style-path";
-import { clearSelection, getItems } from "../../helper/selection";
-import { getGuideLayer, setGuideItem } from "../../helper/layer";
-import { isCompoundPathChild } from "../compound-path";
+import paper from '@scratch/paper';
+import log from '../../log/log';
+import BroadBrushHelper from './broad-brush-helper';
+import SegmentBrushHelper from './segment-brush-helper';
+import { MIXED, styleCursorPreview } from '../../helper/style-path';
+import { clearSelection, getItems } from '../../helper/selection';
+import { getGuideLayer, setGuideItem } from '../../helper/layer';
+import { isCompoundPathChild } from '../compound-path';
 
 /**
  * Shared code for the brush and eraser mode. Adds functions on the paper tool object
@@ -14,10 +14,10 @@ import { isCompoundPathChild } from "../compound-path";
  */
 class Blobbiness {
     static get BROAD() {
-        return "broadbrush";
+        return 'broadbrush';
     }
     static get SEGMENT() {
-        return "segmentbrush";
+        return 'segmentbrush';
     }
 
     // If brush size >= threshold use segment brush, else use broadbrush
@@ -54,7 +54,7 @@ class Blobbiness {
      * @param {?number} options.strokeWidth Width of the brush outline.
      */
     setOptions(options) {
-        const oldFillColor = this.options ? this.options.fillColor : "black";
+        const oldFillColor = this.options ? this.options.fillColor : 'black';
         const oldStrokeColor = this.options ? this.options.strokeColor : null;
         const oldStrokeWidth = this.options ? this.options.strokeWidth : null;
         // If values are mixed, it means the color was set by a selection contained multiple values.
@@ -204,7 +204,7 @@ class Blobbiness {
         ) {
             return;
         }
-        if (typeof point !== "undefined") {
+        if (typeof point !== 'undefined') {
             this.cursorPreviewLastPoint = point;
         }
 

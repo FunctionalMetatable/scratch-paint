@@ -1,21 +1,21 @@
-import paper from "@scratch/paper";
+import paper from '@scratch/paper';
 import {
     createCanvas,
     clearRaster,
     getRaster,
     hideGuideLayers,
     showGuideLayers,
-} from "./layer";
-import { getGuideColor } from "./guides";
-import { clearSelection } from "./selection";
+} from './layer';
+import { getGuideColor } from './guides';
+import { clearSelection } from './selection';
 import {
     ART_BOARD_WIDTH,
     ART_BOARD_HEIGHT,
     CENTER,
     MAX_WORKSPACE_BOUNDS,
-} from "./view";
-import Formats from "../lib/format";
-import log from "../log/log";
+} from './view';
+import Formats from '../lib/format';
+import log from '../log/log';
 
 const forEachLinePoint = function (point1, point2, callback) {
     // Bresenham line algorithm
@@ -226,13 +226,13 @@ const drawShearedEllipse_ = function (options, context) {
  */
 const getBrushMark = function (size, color, isEraser) {
     size = ~~size;
-    const canvas = document.createElement("canvas");
+    const canvas = document.createElement('canvas');
     const roundedUpRadius = Math.ceil(size / 2);
     canvas.width = roundedUpRadius * 2;
     canvas.height = roundedUpRadius * 2;
-    const context = canvas.getContext("2d");
+    const context = canvas.getContext('2d');
     context.imageSmoothingEnabled = false;
-    context.fillStyle = isEraser ? "white" : color;
+    context.fillStyle = isEraser ? 'white' : color;
     // Small squares for pixel artists
     if (size <= 5) {
         let offset = 0;
@@ -240,7 +240,7 @@ const getBrushMark = function (size, color, isEraser) {
         if (isEraser) {
             context.fillStyle = getGuideColor();
             context.fillRect(offset, offset, size, size);
-            context.fillStyle = "white";
+            context.fillStyle = 'white';
             context.fillRect(offset + 1, offset + 1, size - 2, size - 2);
         } else {
             context.fillRect(offset, offset, size, size);
@@ -318,13 +318,13 @@ const drawEllipse = function (options, context) {
     if (isGradient) {
         tmpCanvas = createCanvas(canvasWidth, canvasHeight);
         origContext = context;
-        context = tmpCanvas.getContext("2d");
+        context = tmpCanvas.getContext('2d');
     }
 
     if (!isFilled) {
         const brushMark = getBrushMark(
             thickness,
-            isGradient ? "black" : context.fillStyle
+            isGradient ? 'black' : context.fillStyle
         );
         const roundedUpRadius = Math.ceil(thickness / 2);
         drawFn = (x, y) => {
@@ -370,7 +370,7 @@ const drawEllipse = function (options, context) {
     // Mask in the gradient only where the shape was drawn, and draw it. Then draw the gradientified shape onto the
     // original canvas normally.
     if (isGradient && wasDrawn) {
-        context.globalCompositeOperation = "source-in";
+        context.globalCompositeOperation = 'source-in';
         context.fillStyle = origContext.fillStyle;
         context.fillRect(0, 0, canvasWidth, canvasHeight);
         origContext.drawImage(tmpCanvas, 0, 0);
@@ -381,16 +381,18 @@ const drawEllipse = function (options, context) {
 
 const rowBlank_ = function (imageData, width, y) {
     for (let x = 0; x < width; ++x) {
-        if (imageData.data[((y * width) << 2) + (x << 2) + 3] !== 0)
+        if (imageData.data[((y * width) << 2) + (x << 2) + 3] !== 0) {
             return false;
+        }
     }
     return true;
 };
 
 const columnBlank_ = function (imageData, width, x, top, bottom) {
     for (let y = top; y < bottom; ++y) {
-        if (imageData.data[((y * width) << 2) + (x << 2) + 3] !== 0)
+        if (imageData.data[((y * width) << 2) + (x << 2) + 3] !== 0) {
             return false;
+        }
     }
     return true;
 };
@@ -413,15 +415,18 @@ const getHitBounds = function (raster, rect) {
     let right = imageData.width;
 
     while (top < bottom && rowBlank_(imageData, width, top)) ++top;
-    while (bottom - 1 > top && rowBlank_(imageData, width, bottom - 1))
+    while (bottom - 1 > top && rowBlank_(imageData, width, bottom - 1)) {
         --bottom;
-    while (left < right && columnBlank_(imageData, width, left, top, bottom))
+    }
+    while (left < right && columnBlank_(imageData, width, left, top, bottom)) {
         ++left;
+    }
     while (
         right - 1 > left &&
         columnBlank_(imageData, width, right - 1, top, bottom)
-    )
+    ) {
         --right;
+    }
 
     // Center an empty bitmap
     if (top === bottom) {
@@ -477,21 +482,21 @@ const convertToBitmap = function (
     const guideLayers = hideGuideLayers(true /* includeRaster */);
     const bounds = paper.project.activeLayer.drawnBounds;
     const svg = paper.project.exportSVG({
-        bounds: "content",
+        bounds: 'content',
         matrix: new paper.Matrix().translate(-bounds.x, -bounds.y),
     });
     showGuideLayers(guideLayers);
 
     // Get rid of anti-aliasing
     // @todo get crisp text https://github.com/LLK/scratch-paint/issues/508
-    svg.setAttribute("shape-rendering", "crispEdges");
+    svg.setAttribute('shape-rendering', 'crispEdges');
 
     let svgString = new XMLSerializer().serializeToString(svg);
     if (optFontInlineFn) {
         svgString = optFontInlineFn(svgString);
     } else {
         log.error(
-            "Fonts may be converted to bitmap incorrectly if fontInlineFn prop is not set on PaintEditor."
+            'Fonts may be converted to bitmap incorrectly if fontInlineFn prop is not set on PaintEditor.'
         );
     }
 
@@ -651,10 +656,10 @@ const floodFillInternal_ = function (
  * @return {Array<int>} Color, a length 4 array
  */
 const fillStyleToColor_ = function (fillStyleString) {
-    const tmpCanvas = document.createElement("canvas");
+    const tmpCanvas = document.createElement('canvas');
     tmpCanvas.width = 1;
     tmpCanvas.height = 1;
-    const context = tmpCanvas.getContext("2d");
+    const context = tmpCanvas.getContext('2d');
     context.fillStyle = fillStyleString;
     context.fillRect(0, 0, 1, 1);
     return context.getImageData(0, 0, 1, 1).data;
@@ -796,10 +801,11 @@ const fillRect = function (rect, context) {
     );
 
     const solveY = (point1, point2, x) => {
-        if (point2.x === point1.x)
+        if (point2.x === point1.x) {
             return center.x > point1.x
                 ? Number.NEGATIVE_INFINITY
                 : Number.POSITIVE_INFINITY;
+        }
         return (
             ((point2.y - point1.y) / (point2.x - point1.x)) * (x - point1.x) +
             point1.y
@@ -848,7 +854,7 @@ const outlineRect = function (rect, thickness, context) {
     if (isGradient) {
         tmpCanvas = createCanvas(canvasWidth, canvasHeight);
         origContext = context;
-        context = tmpCanvas.getContext("2d");
+        context = tmpCanvas.getContext('2d');
     }
 
     const startPoint = rect.matrix.transform(
@@ -872,7 +878,7 @@ const outlineRect = function (rect, thickness, context) {
     // Mask in the gradient only where the shape was drawn, and draw it. Then draw the gradientified shape onto the
     // original canvas normally.
     if (isGradient) {
-        context.globalCompositeOperation = "source-in";
+        context.globalCompositeOperation = 'source-in';
         context.fillStyle = origContext.fillStyle;
         context.fillRect(0, 0, canvasWidth, canvasHeight);
         origContext.drawImage(tmpCanvas, 0, 0);
@@ -881,7 +887,7 @@ const outlineRect = function (rect, thickness, context) {
 
 const flipBitmapHorizontal = function (canvas) {
     const tmpCanvas = createCanvas(canvas.width, canvas.height);
-    const context = tmpCanvas.getContext("2d");
+    const context = tmpCanvas.getContext('2d');
     context.save();
     context.scale(-1, 1);
     context.drawImage(canvas, 0, 0, -tmpCanvas.width, tmpCanvas.height);
@@ -891,7 +897,7 @@ const flipBitmapHorizontal = function (canvas) {
 
 const flipBitmapVertical = function (canvas) {
     const tmpCanvas = createCanvas(canvas.width, canvas.height);
-    const context = tmpCanvas.getContext("2d");
+    const context = tmpCanvas.getContext('2d');
     context.save();
     context.scale(1, -1);
     context.drawImage(canvas, 0, 0, tmpCanvas.width, -tmpCanvas.height);
@@ -908,7 +914,7 @@ const scaleBitmap = function (canvas, scale) {
         canvas = flipBitmapHorizontal(canvas);
     }
     tmpCanvas
-        .getContext("2d")
+        .getContext('2d')
         .drawImage(canvas, 0, 0, tmpCanvas.width, tmpCanvas.height);
     canvas = tmpCanvas;
     tmpCanvas = createCanvas(
@@ -919,7 +925,7 @@ const scaleBitmap = function (canvas, scale) {
         canvas = flipBitmapVertical(canvas);
     }
     tmpCanvas
-        .getContext("2d")
+        .getContext('2d')
         .drawImage(canvas, 0, 0, tmpCanvas.width, tmpCanvas.height);
     return tmpCanvas;
 };
@@ -969,13 +975,13 @@ const maybeApplyScaleToCanvas_ = function (item) {
 const commitArbitraryTransformation_ = function (item, destination) {
     // Create a canvas to perform masking
     const tmpCanvas = createCanvas();
-    const context = tmpCanvas.getContext("2d");
+    const context = tmpCanvas.getContext('2d');
     // Draw mask
     const rect = new paper.Shape.Rectangle(new paper.Point(), item.size);
     rect.matrix = item.matrix;
     fillRect(rect, context);
     rect.remove();
-    context.globalCompositeOperation = "source-in";
+    context.globalCompositeOperation = 'source-in';
 
     // Draw image onto mask
     const m = item.matrix;
@@ -1017,7 +1023,7 @@ const commitSelectionToBitmap = function (selection, bitmap) {
  */
 const _paperColorToCanvasStyle = function (color, context) {
     if (!color) return null;
-    if (color.type === "gradient") {
+    if (color.type === 'gradient') {
         let canvasGradient;
         const { origin, destination } = color;
         if (color.gradient.radial) {
@@ -1074,7 +1080,7 @@ const _paperColorToCanvasStyle = function (color, context) {
 const commitOvalToBitmap = function (oval, bitmap) {
     const radiusX = Math.abs(oval.size.width / 2);
     const radiusY = Math.abs(oval.size.height / 2);
-    const context = bitmap.getContext("2d");
+    const context = bitmap.getContext('2d');
     const filled = oval.strokeWidth === 0;
 
     const canvasColor = _paperColorToCanvasStyle(
@@ -1107,7 +1113,7 @@ const commitOvalToBitmap = function (oval, bitmap) {
  */
 const commitRectToBitmap = function (rect, bitmap) {
     const tmpCanvas = createCanvas();
-    const context = tmpCanvas.getContext("2d");
+    const context = tmpCanvas.getContext('2d');
     const filled = rect.strokeWidth === 0;
 
     const canvasColor = _paperColorToCanvasStyle(

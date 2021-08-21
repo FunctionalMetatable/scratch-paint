@@ -2,9 +2,9 @@
 @todo This file is copied from GUI and should be pulled out into a shared library.
 See https://github.com/LLK/scratch-paint/issues/13 */
 
-import PropTypes from "prop-types";
-import React from "react";
-import stylePropType from "react-style-proptype";
+import PropTypes from 'prop-types';
+import React from 'react';
+import stylePropType from 'react-style-proptype';
 
 const getRandomColor = (function () {
     // In "DEBUG" mode this is used to output a random background color for each
@@ -86,32 +86,32 @@ const Box = (props) => {
 Box.propTypes = {
     /** Defines how the browser distributes space between and around content items vertically within this box. */
     alignContent: PropTypes.oneOf([
-        "flex-start",
-        "flex-end",
-        "center",
-        "space-between",
-        "space-around",
-        "stretch",
+        'flex-start',
+        'flex-end',
+        'center',
+        'space-between',
+        'space-around',
+        'stretch',
     ]),
     /** Defines how the browser distributes space between and around flex items horizontally within this box. */
     alignItems: PropTypes.oneOf([
-        "flex-start",
-        "flex-end",
-        "center",
-        "baseline",
-        "stretch",
+        'flex-start',
+        'flex-end',
+        'center',
+        'baseline',
+        'stretch',
     ]),
     /** Specifies how this box should be aligned inside of its container (requires the container to be flexable). */
     alignSelf: PropTypes.oneOf([
-        "auto",
-        "flex-start",
-        "flex-end",
-        "center",
-        "baseline",
-        "stretch",
+        'auto',
+        'flex-start',
+        'flex-end',
+        'center',
+        'baseline',
+        'stretch',
     ]),
     /** Specifies the initial length of this box */
-    basis: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(["auto"])]),
+    basis: PropTypes.oneOfType([PropTypes.number, PropTypes.oneOf(['auto'])]),
     /** Specifies the the HTML nodes which will be child elements of this box. */
     children: PropTypes.node,
     /** Specifies the class name that will be set on this box */
@@ -123,10 +123,10 @@ Box.propTypes = {
     componentRef: PropTypes.func,
     /** https://developer.mozilla.org/en-US/docs/Web/CSS/flex-direction */
     direction: PropTypes.oneOf([
-        "row",
-        "row-reverse",
-        "column",
-        "column-reverse",
+        'row',
+        'row-reverse',
+        'column',
+        'column-reverse',
     ]),
     /** Specifies the type of HTML element of this box. Defaults to div. */
     element: PropTypes.string,
@@ -136,11 +136,11 @@ Box.propTypes = {
     height: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     /** https://developer.mozilla.org/en-US/docs/Web/CSS/justify-content */
     justifyContent: PropTypes.oneOf([
-        "flex-start",
-        "flex-end",
-        "center",
-        "space-between",
-        "space-around",
+        'flex-start',
+        'flex-end',
+        'center',
+        'space-between',
+        'space-around',
     ]),
     /** Specifies the flex shrink factor of a flex item. */
     shrink: PropTypes.number,
@@ -149,10 +149,10 @@ Box.propTypes = {
     /** The width in pixels (if specified as a number) or a string if different units are required. */
     width: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
     /** How whitespace should wrap within this block. */
-    wrap: PropTypes.oneOf(["nowrap", "wrap", "wrap-reverse"]),
+    wrap: PropTypes.oneOf(['nowrap', 'wrap', 'wrap-reverse']),
 };
 Box.defaultProps = {
-    element: "div",
+    element: 'div',
     style: {},
 };
 export default Box;

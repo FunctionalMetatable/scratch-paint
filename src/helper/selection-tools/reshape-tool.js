@@ -1,16 +1,16 @@
-import paper from "@scratch/paper";
-import log from "../../log/log";
-import keyMirror from "keymirror";
+import paper from '@scratch/paper';
+import log from '../../log/log';
+import keyMirror from 'keymirror';
 
-import Modes from "../../lib/modes";
-import { isBoundsItem } from "../item";
-import { hoverBounds, hoverItem } from "../guides";
-import { sortItemsByZIndex } from "../math";
-import { getSelectedLeafItems, getSelectedSegments } from "../selection";
-import MoveTool from "./move-tool";
-import PointTool from "./point-tool";
-import HandleTool from "./handle-tool";
-import SelectionBoxTool from "./selection-box-tool";
+import Modes from '../../lib/modes';
+import { isBoundsItem } from '../item';
+import { hoverBounds, hoverItem } from '../guides';
+import { sortItemsByZIndex } from '../math';
+import { getSelectedLeafItems, getSelectedSegments } from '../selection';
+import MoveTool from './move-tool';
+import PointTool from './point-tool';
+import HandleTool from './handle-tool';
+import SelectionBoxTool from './selection-box-tool';
 
 /** Modes of the reshape tool, which can do many things depending on how it's used. */
 const ReshapeModes = keyMirror({
@@ -124,9 +124,10 @@ class ReshapeTool extends paper.Tool {
             segments: true,
             tolerance: ReshapeTool.TOLERANCE / paper.view.zoom,
             match: (hitResult) => {
-                if (hitResult.type !== "segment") return false;
-                if (hitResult.item.data && hitResult.item.data.noHover)
+                if (hitResult.type !== 'segment') return false;
+                if (hitResult.item.data && hitResult.item.data.noHover) {
                     return false;
+                }
                 if (!hitResult.item.selected) return false;
                 return true;
             },
@@ -144,12 +145,14 @@ class ReshapeTool extends paper.Tool {
             handles: true,
             tolerance: ReshapeTool.TOLERANCE / paper.view.zoom,
             match: (hitResult) => {
-                if (hitResult.item.data && hitResult.item.data.noHover)
+                if (hitResult.item.data && hitResult.item.data.noHover) {
                     return false;
+                }
                 // Only hit test against handles that are visible, that is,
                 // their segment is selected
-                if (!hitResult.segment || !hitResult.segment.selected)
+                if (!hitResult.segment || !hitResult.segment.selected) {
                     return false;
+                }
                 // If the entire shape is selected, handles are hidden
                 if (hitResult.item.fullySelected) return false;
                 return true;
@@ -172,10 +175,11 @@ class ReshapeTool extends paper.Tool {
             guide: false,
             tolerance: ReshapeTool.TOLERANCE / paper.view.zoom,
             match: (hitResult) => {
-                if (hitResult.type !== "curve") return false;
+                if (hitResult.type !== 'curve') return false;
                 if (!hitResult.item.selected) return false;
-                if (hitResult.item.data && hitResult.item.data.noHover)
+                if (hitResult.item.data && hitResult.item.data.noHover) {
                     return false;
+                }
                 return true;
             },
         };
@@ -194,8 +198,9 @@ class ReshapeTool extends paper.Tool {
             curves: true,
             tolerance: ReshapeTool.TOLERANCE / paper.view.zoom,
             match: (hitResult) => {
-                if (hitResult.item.data && hitResult.item.data.noHover)
+                if (hitResult.item.data && hitResult.item.data.noHover) {
                     return false;
+                }
                 return true;
             },
         };
@@ -295,23 +300,23 @@ class ReshapeTool extends paper.Tool {
         // (since those were invisible), just select the whole thing as if they clicked the fill.
         if (
             !hitResult.item.selected ||
-            hitResult.type === "fill" ||
-            hitResult.type === "stroke" ||
-            (hitResult.type !== "segment" && doubleClicked)
+            hitResult.type === 'fill' ||
+            hitResult.type === 'stroke' ||
+            (hitResult.type !== 'segment' && doubleClicked)
         ) {
             this.mode = ReshapeModes.FILL;
             this._modeMap[this.mode].onMouseDown(hitProperties);
-        } else if (hitResult.type === "segment") {
+        } else if (hitResult.type === 'segment') {
             this.mode = ReshapeModes.POINT;
             this._modeMap[this.mode].onMouseDown(hitProperties);
-        } else if (hitResult.type === "curve") {
+        } else if (hitResult.type === 'curve') {
             this.mode = ReshapeModes.POINT;
             this._modeMap[this.mode].addPoint(hitProperties);
             this.onUpdateImage();
             this._modeMap[this.mode].onMouseDown(hitProperties);
         } else if (
-            hitResult.type === "handle-in" ||
-            hitResult.type === "handle-out"
+            hitResult.type === 'handle-in' ||
+            hitResult.type === 'handle-out'
         ) {
             this.mode = ReshapeModes.HANDLE;
             this._modeMap[this.mode].onMouseDown(hitProperties);
@@ -372,13 +377,13 @@ class ReshapeTool extends paper.Tool {
         if (selected.length === 0) return;
 
         let translation;
-        if (event.key === "up") {
+        if (event.key === 'up') {
             translation = new paper.Point(0, -nudgeAmount);
-        } else if (event.key === "down") {
+        } else if (event.key === 'down') {
             translation = new paper.Point(0, nudgeAmount);
-        } else if (event.key === "left") {
+        } else if (event.key === 'left') {
             translation = new paper.Point(-nudgeAmount, 0);
-        } else if (event.key === "right") {
+        } else if (event.key === 'right') {
             translation = new paper.Point(nudgeAmount, 0);
         }
 
@@ -402,10 +407,10 @@ class ReshapeTool extends paper.Tool {
         if (selected.length === 0) return;
 
         if (
-            event.key === "up" ||
-            event.key === "down" ||
-            event.key === "left" ||
-            event.key === "right"
+            event.key === 'up' ||
+            event.key === 'down' ||
+            event.key === 'left' ||
+            event.key === 'right'
         ) {
             this.onUpdateImage();
         }

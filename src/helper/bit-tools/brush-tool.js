@@ -1,6 +1,6 @@
-import paper from "@scratch/paper";
-import { getRaster, getGuideLayer } from "../layer";
-import { forEachLinePoint, getBrushMark } from "../bitmap";
+import paper from '@scratch/paper';
+import { getRaster, getGuideLayer } from '../layer';
+import { forEachLinePoint, getBrushMark } from '../bitmap';
 
 /**
  * Tool for drawing with the bitmap brush and eraser
@@ -47,16 +47,16 @@ class BrushTool extends paper.Tool {
     // Draw a brush mark at the given point
     draw(x, y) {
         const roundedUpRadius = Math.ceil(this.size / 2);
-        const context = getRaster().getContext("2d");
+        const context = getRaster().getContext('2d');
         if (this.isEraser || !this.color) {
-            context.globalCompositeOperation = "destination-out";
+            context.globalCompositeOperation = 'destination-out';
         }
         getRaster().drawImage(
             this.tmpCanvas,
             new paper.Point(~~x - roundedUpRadius, ~~y - roundedUpRadius)
         );
         if (this.isEraser || !this.color) {
-            context.globalCompositeOperation = "source-over";
+            context.globalCompositeOperation = 'source-over';
         }
     }
     updateCursorIfNeeded() {

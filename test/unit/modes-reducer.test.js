@@ -1,16 +1,16 @@
 /* eslint-env jest */
-import Modes from "../../src/lib/modes";
-import reducer, { changeMode } from "../../src/reducers/modes";
+import Modes from '../../src/lib/modes';
+import reducer, { changeMode } from '../../src/reducers/modes';
 
-test("initialState", () => {
+test('initialState', () => {
     let defaultState;
     expect(
-        reducer(defaultState /* state */, { type: "anything" } /* action */) in
+        reducer(defaultState /* state */, { type: 'anything' } /* action */) in
             Modes
     ).toBeTruthy();
 });
 
-test("changeMode", () => {
+test('changeMode', () => {
     let defaultState;
     expect(
         reducer(defaultState /* state */, changeMode(Modes.ERASER) /* action */)
@@ -23,11 +23,11 @@ test("changeMode", () => {
     ).toBe(Modes.ERASER);
 });
 
-test("invalidChangeMode", () => {
+test('invalidChangeMode', () => {
     expect(
         reducer(
             Modes.BRUSH /* state */,
-            changeMode("non-existant mode") /* action */
+            changeMode('non-existant mode') /* action */
         )
     ).toBe(Modes.BRUSH);
     expect(reducer(Modes.BRUSH /* state */, changeMode() /* action */)).toBe(

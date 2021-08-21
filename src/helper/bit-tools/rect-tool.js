@@ -1,12 +1,12 @@
-import paper from "@scratch/paper";
-import Modes from "../../lib/modes";
-import { styleShape } from "../../helper/style-path";
-import { commitRectToBitmap } from "../bitmap";
-import { getRaster } from "../layer";
-import { clearSelection } from "../selection";
-import { getSquareDimensions } from "../math";
-import BoundingBoxTool from "../selection-tools/bounding-box-tool";
-import NudgeTool from "../selection-tools/nudge-tool";
+import paper from '@scratch/paper';
+import Modes from '../../lib/modes';
+import { styleShape } from '../../helper/style-path';
+import { commitRectToBitmap } from '../bitmap';
+import { getRaster } from '../layer';
+import { clearSelection } from '../selection';
+import { getSquareDimensions } from '../math';
+import BoundingBoxTool from '../selection-tools/bounding-box-tool';
+import NudgeTool from '../selection-tools/nudge-tool';
 
 /**
  * Tool for drawing rects.
@@ -82,7 +82,7 @@ class RectTool extends paper.Tool {
             (!this.rect || !this.rect.isInserted()) &&
             selectedItems &&
             selectedItems.length === 1 &&
-            selectedItems[0].shape === "rectangle"
+            selectedItems[0].shape === 'rectangle'
         ) {
             // Infer that an undo occurred and get back the active rect
             this.rect = selectedItems[0];
@@ -169,7 +169,7 @@ class RectTool extends paper.Tool {
 
         if (this.rect) this.rect.remove();
         this.rect = new paper.Shape.Rectangle(baseRect);
-        this.rect.strokeJoin = "round";
+        this.rect.strokeJoin = 'round';
         this.rect.strokeScaling = false;
         this.rect.data = { zoomLevel: paper.view.zoom };
         this.styleRect();

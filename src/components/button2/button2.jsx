@@ -5,11 +5,11 @@ See #13 */
 /* ACTUALLY, THIS IS EDITED ;)
 THIS WAS CHANGED ON 10/25/2017 BY @mewtaylor TO ADD HANDLING FOR DISABLED STATES.*/
 
-import classNames from "classnames";
-import PropTypes from "prop-types";
-import React from "react";
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import styles from "./button2.css";
+import styles from './button2.css';
 
 const Button2Component = ({
     className,

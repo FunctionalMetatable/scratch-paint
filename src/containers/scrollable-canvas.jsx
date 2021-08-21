@@ -1,21 +1,21 @@
-import paper from "@scratch/paper";
-import PropTypes from "prop-types";
+import paper from '@scratch/paper';
+import PropTypes from 'prop-types';
 
-import React from "react";
-import { connect } from "react-redux";
-import ScrollableCanvasComponent from "../components/scrollable-canvas/scrollable-canvas.jsx";
+import React from 'react';
+import { connect } from 'react-redux';
+import ScrollableCanvasComponent from '../components/scrollable-canvas/scrollable-canvas.jsx';
 
 import {
     clampViewBounds,
     pan,
     zoomOnFixedPoint,
     getWorkspaceBounds,
-} from "../helper/view";
-import { updateViewBounds } from "../reducers/view-bounds";
-import { redrawSelectionBox } from "../reducers/selected-items";
+} from '../helper/view';
+import { updateViewBounds } from '../reducers/view-bounds';
+import { redrawSelectionBox } from '../reducers/selected-items';
 
-import { getEventXY } from "../lib/touch-utils";
-import bindAll from "lodash.bindall";
+import { getEventXY } from '../lib/touch-utils';
+import bindAll from 'lodash.bindall';
 
 class ScrollableCanvas extends React.Component {
     static get ZOOM_INCREMENT() {
@@ -24,49 +24,49 @@ class ScrollableCanvas extends React.Component {
     constructor(props) {
         super(props);
         bindAll(this, [
-            "handleHorizontalScrollbarMouseDown",
-            "handleHorizontalScrollbarMouseMove",
-            "handleHorizontalScrollbarMouseUp",
-            "handleVerticalScrollbarMouseDown",
-            "handleVerticalScrollbarMouseMove",
-            "handleVerticalScrollbarMouseUp",
-            "handleWheel",
+            'handleHorizontalScrollbarMouseDown',
+            'handleHorizontalScrollbarMouseMove',
+            'handleHorizontalScrollbarMouseUp',
+            'handleVerticalScrollbarMouseDown',
+            'handleVerticalScrollbarMouseMove',
+            'handleVerticalScrollbarMouseUp',
+            'handleWheel',
         ]);
     }
     componentDidMount() {
         if (this.props.canvas) {
-            this.props.canvas.addEventListener("wheel", this.handleWheel);
+            this.props.canvas.addEventListener('wheel', this.handleWheel);
         }
     }
     componentWillReceiveProps(nextProps) {
         if (nextProps.canvas) {
             if (this.props.canvas) {
                 this.props.canvas.removeEventListener(
-                    "wheel",
+                    'wheel',
                     this.handleWheel
                 );
             }
-            nextProps.canvas.addEventListener("wheel", this.handleWheel);
+            nextProps.canvas.addEventListener('wheel', this.handleWheel);
         }
     }
     handleHorizontalScrollbarMouseDown(event) {
         this.initialMouseX = getEventXY(event).x;
         this.initialScreenX = paper.view.matrix.tx;
         window.addEventListener(
-            "mousemove",
+            'mousemove',
             this.handleHorizontalScrollbarMouseMove
         );
         window.addEventListener(
-            "touchmove",
+            'touchmove',
             this.handleHorizontalScrollbarMouseMove,
             { passive: false }
         );
         window.addEventListener(
-            "mouseup",
+            'mouseup',
             this.handleHorizontalScrollbarMouseUp
         );
         window.addEventListener(
-            "touchend",
+            'touchend',
             this.handleHorizontalScrollbarMouseUp
         );
         event.preventDefault();
@@ -80,20 +80,20 @@ class ScrollableCanvas extends React.Component {
     }
     handleHorizontalScrollbarMouseUp() {
         window.removeEventListener(
-            "mousemove",
+            'mousemove',
             this.handleHorizontalScrollbarMouseMove
         );
         window.removeEventListener(
-            "touchmove",
+            'touchmove',
             this.handleHorizontalScrollbarMouseMove,
             { passive: false }
         );
         window.removeEventListener(
-            "mouseup",
+            'mouseup',
             this.handleHorizontalScrollbarMouseUp
         );
         window.removeEventListener(
-            "touchend",
+            'touchend',
             this.handleHorizontalScrollbarMouseUp
         );
         this.initialMouseX = null;
@@ -104,17 +104,17 @@ class ScrollableCanvas extends React.Component {
         this.initialMouseY = getEventXY(event).y;
         this.initialScreenY = paper.view.matrix.ty;
         window.addEventListener(
-            "mousemove",
+            'mousemove',
             this.handleVerticalScrollbarMouseMove
         );
         window.addEventListener(
-            "touchmove",
+            'touchmove',
             this.handleVerticalScrollbarMouseMove,
             { passive: false }
         );
-        window.addEventListener("mouseup", this.handleVerticalScrollbarMouseUp);
+        window.addEventListener('mouseup', this.handleVerticalScrollbarMouseUp);
         window.addEventListener(
-            "touchend",
+            'touchend',
             this.handleVerticalScrollbarMouseUp
         );
         event.preventDefault();
@@ -128,20 +128,20 @@ class ScrollableCanvas extends React.Component {
     }
     handleVerticalScrollbarMouseUp(event) {
         window.removeEventListener(
-            "mousemove",
+            'mousemove',
             this.handleVerticalScrollbarMouseMove
         );
         window.removeEventListener(
-            "touchmove",
+            'touchmove',
             this.handleVerticalScrollbarMouseMove,
             { passive: false }
         );
         window.removeEventListener(
-            "mouseup",
+            'mouseup',
             this.handleVerticalScrollbarMouseUp
         );
         window.removeEventListener(
-            "touchend",
+            'touchend',
             this.handleVerticalScrollbarMouseUp
         );
         this.initialMouseY = null;
@@ -179,7 +179,7 @@ class ScrollableCanvas extends React.Component {
             this.props.updateViewBounds(paper.view.matrix);
             if (paper.tool) {
                 paper.tool.view._handleMouseEvent(
-                    "mousemove",
+                    'mousemove',
                     event,
                     fixedPoint
                 );

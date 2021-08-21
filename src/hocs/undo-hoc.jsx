@@ -1,31 +1,31 @@
-import bindAll from "lodash.bindall";
-import PropTypes from "prop-types";
-import React from "react";
-import omit from "lodash.omit";
-import { connect } from "react-redux";
+import bindAll from 'lodash.bindall';
+import PropTypes from 'prop-types';
+import React from 'react';
+import omit from 'lodash.omit';
+import { connect } from 'react-redux';
 
-import { getSelectedLeafItems } from "../helper/selection";
-import { setSelectedItems } from "../reducers/selected-items";
+import { getSelectedLeafItems } from '../helper/selection';
+import { setSelectedItems } from '../reducers/selected-items';
 import {
     performUndo,
     performRedo,
     shouldShowUndo,
     shouldShowRedo,
-} from "../helper/undo";
-import { undo, redo } from "../reducers/undo";
+} from '../helper/undo';
+import { undo, redo } from '../reducers/undo';
 
-import Formats, { isBitmap } from "../lib/format";
+import Formats, { isBitmap } from '../lib/format';
 
 const UndoHOC = function (WrappedComponent) {
     class UndoWrapper extends React.Component {
         constructor(props) {
             super(props);
             bindAll(this, [
-                "handleUndo",
-                "handleRedo",
-                "handleSetSelectedItems",
-                "shouldShowUndo",
-                "shouldShowRedo",
+                'handleUndo',
+                'handleRedo',
+                'handleSetSelectedItems',
+                'shouldShowUndo',
+                'shouldShowRedo',
             ]);
         }
         handleUndo() {
@@ -55,11 +55,11 @@ const UndoHOC = function (WrappedComponent) {
         }
         render() {
             const componentProps = omit(this.props, [
-                "format",
-                "onUndo",
-                "onRedo",
-                "setSelectedItems",
-                "undoState",
+                'format',
+                'onUndo',
+                'onRedo',
+                'setSelectedItems',
+                'undoState',
             ]);
             return (
                 <WrappedComponent

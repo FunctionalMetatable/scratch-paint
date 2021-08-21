@@ -1,10 +1,10 @@
-import log from "../log/log";
-const CHANGE_SELECTED_ITEMS = "scratch-paint/select/CHANGE_SELECTED_ITEMS";
-const REDRAW_SELECTION_BOX = "scratch-paint/select/REDRAW_SELECTION_BOX";
+import log from '../log/log';
+const CHANGE_SELECTED_ITEMS = 'scratch-paint/select/CHANGE_SELECTED_ITEMS';
+const REDRAW_SELECTION_BOX = 'scratch-paint/select/REDRAW_SELECTION_BOX';
 const initialState = [];
 
 const reducer = function (state, action) {
-    if (typeof state === "undefined") state = initialState;
+    if (typeof state === 'undefined') state = initialState;
     switch (action.type) {
         case REDRAW_SELECTION_BOX:
             if (state.length > 0) return state.slice(0); // Sends an update even though the items haven't changed

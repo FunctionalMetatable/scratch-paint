@@ -1,12 +1,12 @@
-import classNames from "classnames";
-import PropTypes from "prop-types";
-import React from "react";
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import Button from "../button/button.jsx";
-import Dropdown from "../dropdown/dropdown.jsx";
-import InputGroup from "../input-group/input-group.jsx";
-import Fonts, { extraFonts } from "../../lib/fonts";
-import styles from "./font-dropdown.css";
+import Button from '../button/button.jsx';
+import Dropdown from '../dropdown/dropdown.jsx';
+import InputGroup from '../input-group/input-group.jsx';
+import Fonts, { extraFonts } from '../../lib/fonts';
+import styles from './font-dropdown.css';
 
 const ModeToolsComponent = (props) => (
     <Dropdown

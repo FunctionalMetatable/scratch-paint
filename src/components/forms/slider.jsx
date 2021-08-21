@@ -1,10 +1,10 @@
-import React from "react";
-import PropTypes from "prop-types";
-import bindAll from "lodash.bindall";
-import classNames from "classnames";
-import { getEventXY } from "../../lib/touch-utils";
+import React from 'react';
+import PropTypes from 'prop-types';
+import bindAll from 'lodash.bindall';
+import classNames from 'classnames';
+import { getEventXY } from '../../lib/touch-utils';
 
-import styles from "./slider.css";
+import styles from './slider.css';
 
 const CONTAINER_WIDTH = 212;
 const HANDLE_WIDTH = 26;
@@ -13,12 +13,12 @@ class SliderComponent extends React.Component {
     constructor(props) {
         super(props);
         bindAll(this, [
-            "handleMouseDown",
-            "handleMouseUp",
-            "handleMouseMove",
-            "handleClickBackground",
-            "setBackground",
-            "setHandle",
+            'handleMouseDown',
+            'handleMouseUp',
+            'handleMouseMove',
+            'handleClickBackground',
+            'setBackground',
+            'setHandle',
         ]);
 
         // Distance from the left edge of the slider handle to the mouse down/click event
@@ -26,24 +26,24 @@ class SliderComponent extends React.Component {
     }
 
     handleMouseDown(event) {
-        document.addEventListener("mousemove", this.handleMouseMove);
-        document.addEventListener("mouseup", this.handleMouseUp);
-        document.addEventListener("touchmove", this.handleMouseMove, {
+        document.addEventListener('mousemove', this.handleMouseMove);
+        document.addEventListener('mouseup', this.handleMouseUp);
+        document.addEventListener('touchmove', this.handleMouseMove, {
             passive: false,
         });
-        document.addEventListener("touchend", this.handleMouseUp);
+        document.addEventListener('touchend', this.handleMouseUp);
 
         this.handleClickOffset =
             getEventXY(event).x - this.handle.getBoundingClientRect().left;
     }
 
     handleMouseUp() {
-        document.removeEventListener("mousemove", this.handleMouseMove);
-        document.removeEventListener("mouseup", this.handleMouseUp);
-        document.removeEventListener("touchmove", this.handleMouseMove, {
+        document.removeEventListener('mousemove', this.handleMouseMove);
+        document.removeEventListener('mouseup', this.handleMouseUp);
+        document.removeEventListener('touchmove', this.handleMouseMove, {
             passive: false,
         });
-        document.removeEventListener("touchend", this.handleMouseUp);
+        document.removeEventListener('touchend', this.handleMouseUp);
     }
 
     handleMouseMove(event) {
@@ -121,7 +121,7 @@ SliderComponent.propTypes = {
 };
 
 SliderComponent.defaultProps = {
-    background: "yellow",
+    background: 'yellow',
 };
 
 export default SliderComponent;

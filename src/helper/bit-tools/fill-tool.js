@@ -1,10 +1,10 @@
-import paper from "@scratch/paper";
-import { floodFill, floodFillAll, getHitBounds } from "../bitmap";
-import { createGradientObject } from "../style-path";
-import { createCanvas, getRaster } from "../layer";
-import GradientTypes from "../../lib/gradient-types";
+import paper from '@scratch/paper';
+import { floodFill, floodFillAll, getHitBounds } from '../bitmap';
+import { createGradientObject } from '../style-path';
+import { createCanvas, getRaster } from '../layer';
+import GradientTypes from '../../lib/gradient-types';
 
-const TRANSPARENT = "rgba(0,0,0,0)";
+const TRANSPARENT = 'rgba(0,0,0,0)';
 /**
  * Tool for drawing fills.
  */
@@ -42,14 +42,14 @@ class FillTool extends paper.Tool {
         this.paint(event);
     }
     paint(event) {
-        const sourceContext = getRaster().getContext("2d");
+        const sourceContext = getRaster().getContext('2d');
         let destContext = sourceContext;
         let color = this.color;
         // Paint to a mask instead of the original canvas when drawing
         if (this.gradientType !== GradientTypes.SOLID) {
             const tmpCanvas = createCanvas();
-            destContext = tmpCanvas.getContext("2d");
-            color = "black";
+            destContext = tmpCanvas.getContext('2d');
+            color = 'black';
         } else if (!color) {
             // Null color means transparent because that is the standard in vector
             color = TRANSPARENT;
@@ -79,10 +79,10 @@ class FillTool extends paper.Tool {
                 raster.position = getRaster().position;
                 // Erase what's already there
                 getRaster().getContext().globalCompositeOperation =
-                    "destination-out";
+                    'destination-out';
                 getRaster().drawImage(raster.canvas, new paper.Point());
                 getRaster().getContext().globalCompositeOperation =
-                    "source-over";
+                    'source-over';
 
                 // Create the gradient to be masked
                 const hitBounds = getHitBounds(raster);
@@ -107,7 +107,7 @@ class FillTool extends paper.Tool {
                 );
 
                 // Mask gradient
-                raster.getContext().globalCompositeOperation = "source-in";
+                raster.getContext().globalCompositeOperation = 'source-in';
                 raster.drawImage(
                     rasterGradient.canvas,
                     rasterGradient.bounds.topLeft

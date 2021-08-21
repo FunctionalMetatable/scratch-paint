@@ -1,10 +1,10 @@
 const isCompoundPath = function (item) {
-    return item && item.className === "CompoundPath";
+    return item && item.className === 'CompoundPath';
 };
 
 const isCompoundPathChild = function (item) {
     if (item.parent) {
-        return item.parent.className === "CompoundPath";
+        return item.parent.className === 'CompoundPath';
     }
     return false;
 };

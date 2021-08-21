@@ -1,11 +1,11 @@
-import Modes from "../../lib/modes";
+import Modes from '../../lib/modes';
 
-import { getHoveredItem } from "../hover";
-import { selectRootItem } from "../selection";
-import BoundingBoxTool from "./bounding-box-tool";
-import NudgeTool from "./nudge-tool";
-import SelectionBoxTool from "./selection-box-tool";
-import paper from "@scratch/paper";
+import { getHoveredItem } from '../hover';
+import { selectRootItem } from '../selection';
+import BoundingBoxTool from './bounding-box-tool';
+import NudgeTool from './nudge-tool';
+import SelectionBoxTool from './selection-box-tool';
+import paper from '@scratch/paper';
 
 /**
  * paper.Tool that handles select mode. This is made up of 2 subtools.
@@ -115,8 +115,9 @@ class SelectTool extends paper.Tool {
             tolerance: SelectTool.TOLERANCE / paper.view.zoom,
             match: (hitResult) => {
                 // Don't match helper items, unless they are handles.
-                if (!hitResult.item.data || !hitResult.item.data.isHelperItem)
+                if (!hitResult.item.data || !hitResult.item.data.isHelperItem) {
                     return true;
+                }
                 return (
                     hitResult.item.data.isScaleHandle ||
                     hitResult.item.data.isRotHandle

@@ -1,8 +1,8 @@
-import paper from "@scratch/paper";
-import { isBoundsItem, getRootItem } from "./item";
-import { hoverBounds, hoverItem } from "./guides";
-import { isGroupChild } from "./group";
-import { sortItemsByZIndex } from "./math";
+import paper from '@scratch/paper';
+import { isBoundsItem, getRootItem } from './item';
+import { hoverBounds, hoverItem } from './guides';
+import { isGroupChild } from './group';
+import { sortItemsByZIndex } from './math';
 
 /**
  * @param {!MouseEvent} event mouse event

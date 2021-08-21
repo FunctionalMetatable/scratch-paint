@@ -1,14 +1,14 @@
-import React from "react";
-import PropTypes from "prop-types";
-import Popover from "react-popover";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Popover from 'react-popover';
 
-import ColorButton from "./color-button/color-button.jsx";
-import ColorPicker from "../containers/color-picker.jsx";
-import InputGroup from "./input-group/input-group.jsx";
-import Label from "./forms/label.jsx";
+import ColorButton from './color-button/color-button.jsx';
+import ColorPicker from '../containers/color-picker.jsx';
+import InputGroup from './input-group/input-group.jsx';
+import Label from './forms/label.jsx';
 
-import GradientTypes from "../lib/gradient-types";
-import ColorProptype from "../lib/color-proptype";
+import GradientTypes from '../lib/gradient-types';
+import ColorProptype from '../lib/color-proptype';
 
 /*
  * The indicator of the currently selected color, including the preview of the color and

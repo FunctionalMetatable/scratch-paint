@@ -1,7 +1,7 @@
-import paper from "@scratch/paper";
-import { getRaster, createCanvas, getGuideLayer } from "../layer";
-import { forEachLinePoint, getBrushMark } from "../bitmap";
-import { ART_BOARD_WIDTH, ART_BOARD_HEIGHT } from "../view";
+import paper from '@scratch/paper';
+import { getRaster, createCanvas, getGuideLayer } from '../layer';
+import { forEachLinePoint, getBrushMark } from '../bitmap';
+import { ART_BOARD_WIDTH, ART_BOARD_HEIGHT } from '../view';
 
 /**
  * Tool for drawing lines with the bitmap brush.
@@ -99,7 +99,7 @@ class LineTool extends paper.Tool {
         if (event.event.button > 0 || !this.active) return; // only first mouse button
 
         // Clear
-        const context = this.drawTarget.canvas.getContext("2d");
+        const context = this.drawTarget.canvas.getContext('2d');
         context.clearRect(0, 0, ART_BOARD_WIDTH, ART_BOARD_HEIGHT);
 
         forEachLinePoint(this.startPoint, event.point, this.draw.bind(this));

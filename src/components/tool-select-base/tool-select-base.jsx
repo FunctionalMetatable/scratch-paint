@@ -1,11 +1,11 @@
-import classNames from "classnames";
-import React from "react";
-import PropTypes from "prop-types";
-import { injectIntl, intlShape } from "react-intl";
+import classNames from 'classnames';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { injectIntl, intlShape } from 'react-intl';
 
-import Button from "../button/button.jsx";
+import Button from '../button/button.jsx';
 
-import styles from "./tool-select-base.css";
+import styles from './tool-select-base.css';
 
 const ToolSelectComponent = (props) => (
     <Button

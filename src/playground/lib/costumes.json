@@ -1,1035 +1,773 @@
 [
-    {
-        "name": "Abby-a",
-        "tags": [
-            "people",
-            "person",
-            "drawing"
-        ],
-        "assetId": "809d9b47347a6af2860e7a3a35bce057",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "809d9b47347a6af2860e7a3a35bce057.svg",
-        "rotationCenterX": 31,
-        "rotationCenterY": 100
-    },
-    {
-        "name": "Abby-b",
-        "tags": [
-            "people",
-            "person",
-            "drawing"
-        ],
-        "assetId": "920f14335615fff9b8c55fccb8971984",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "920f14335615fff9b8c55fccb8971984.svg",
-        "rotationCenterX": 31,
-        "rotationCenterY": 100
-    },
-    {
-        "name": "Abby-c",
-        "tags": [
-            "people",
-            "person",
-            "drawing"
-        ],
-        "assetId": "34a175600dc009a521eb46fdbbbeeb67",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "34a175600dc009a521eb46fdbbbeeb67.svg",
-        "rotationCenterX": 32,
-        "rotationCenterY": 100
-    },
-    {
-        "name": "Abby-d",
-        "tags": [
-            "people",
-            "person",
-            "drawing"
-        ],
-        "assetId": "45de34b47a2ce22f6f5d28bb35a44ff5",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "45de34b47a2ce22f6f5d28bb35a44ff5.svg",
-        "rotationCenterX": 32,
-        "rotationCenterY": 101
-    },
-    {
-        "name": "Amon",
-        "tags": [
-            "people",
-            "dance"
-        ],
-        "assetId": "60f720956ab1840431dcf0616ce98f14",
-        "bitmapResolution": 2,
-        "dataFormat": "png",
-        "md5ext": "60f720956ab1840431dcf0616ce98f14.png",
-        "rotationCenterX": 174,
-        "rotationCenterY": 162
-    },
-    {
-        "name": "Andie-a",
-        "tags": [
-            "sports",
-            "basketball",
-            "people",
-            "wheelchair",
-            "handicap",
-            "handicapable",
-            "alex eben meyer"
-        ],
-        "assetId": "b36584db82bdd45014430aa918461ca0",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "b36584db82bdd45014430aa918461ca0.svg",
-        "rotationCenterX": 80,
-        "rotationCenterY": 65
-    },
-    {
-        "name": "Andie-b",
-        "tags": [
-            "sports",
-            "basketball",
-            "people",
-            "wheelchair",
-            "handicap",
-            "handicapable",
-            "alex eben meyer"
-        ],
-        "assetId": "b3fc774e753fef520fb544127a48554b",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "b3fc774e753fef520fb544127a48554b.svg",
-        "rotationCenterX": 40,
-        "rotationCenterY": 91
-    },
-    {
-        "name": "Andie-c",
-        "tags": [
-            "sports",
-            "basketball",
-            "people",
-            "wheelchair",
-            "handicap",
-            "handicapable",
-            "alex eben meyer"
-        ],
-        "assetId": "ded71c8a0f39852178f1695b622c2d89",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "ded71c8a0f39852178f1695b622c2d89.svg",
-        "rotationCenterX": 46,
-        "rotationCenterY": 49
-    },
-    {
-        "name": "Andie-d",
-        "tags": [
-            "sports",
-            "basketball",
-            "people",
-            "wheelchair",
-            "handicap",
-            "handicapable",
-            "alex eben meyer"
-        ],
-        "assetId": "d92aaf6cf44921905d51ca4a10a4f3d6",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "d92aaf6cf44921905d51ca4a10a4f3d6.svg",
-        "rotationCenterX": 71,
-        "rotationCenterY": 57
-    },
-    {
-        "name": "Anina Pop Down",
-        "tags": [
-            "people",
-            "dance"
-        ],
-        "assetId": "e3698b76cb0864df2fbaba80e6bd8067",
-        "bitmapResolution": 2,
-        "dataFormat": "png",
-        "md5ext": "e3698b76cb0864df2fbaba80e6bd8067.png",
-        "rotationCenterX": 74,
-        "rotationCenterY": 156
-    },
-    {
-        "name": "Anina Pop Front",
-        "tags": [
-            "people",
-            "dance"
-        ],
-        "assetId": "4931a363e3e4efa20230f6ff2991c6b4",
-        "bitmapResolution": 2,
-        "dataFormat": "png",
-        "md5ext": "4931a363e3e4efa20230f6ff2991c6b4.png",
-        "rotationCenterX": 68,
-        "rotationCenterY": 270
-    },
-    {
-        "name": "Anina Pop L Arm",
-        "tags": [
-            "people",
-            "dance"
-        ],
-        "assetId": "62c50c90535b64f2ae130a5c680ddcb4",
-        "bitmapResolution": 2,
-        "dataFormat": "png",
-        "md5ext": "62c50c90535b64f2ae130a5c680ddcb4.png",
-        "rotationCenterX": 68,
-        "rotationCenterY": 274
-    },
-    {
-        "name": "Anina Pop Left",
-        "tags": [
-            "people",
-            "dance"
-        ],
-        "assetId": "d86bb27b4f8d7b70c39c96f29c6943b4",
-        "bitmapResolution": 2,
-        "dataFormat": "png",
-        "md5ext": "d86bb27b4f8d7b70c39c96f29c6943b4.png",
-        "rotationCenterX": 238,
-        "rotationCenterY": 266
-    },
-    {
-        "name": "Anina Pop R Arm",
-        "tags": [
-            "people",
-            "dance"
-        ],
-        "assetId": "ca27e001a263ee6b5852508f39d021db",
-        "bitmapResolution": 2,
-        "dataFormat": "png",
-        "md5ext": "ca27e001a263ee6b5852508f39d021db.png",
-        "rotationCenterX": 88,
-        "rotationCenterY": 272
-    },
-    {
-        "name": "Anina Pop Right",
-        "tags": [
-            "people",
-            "dance"
-        ],
-        "assetId": "7bb9c790b02231e1272701167c26b17a",
-        "bitmapResolution": 2,
-        "dataFormat": "png",
-        "md5ext": "7bb9c790b02231e1272701167c26b17a.png",
-        "rotationCenterX": 66,
-        "rotationCenterY": 268
-    },
-    {
-        "name": "Anina Pop Stand",
-        "tags": [
-            "people",
-            "dance"
-        ],
-        "assetId": "105f4f3d260dcb8bea02ea9ee5d18cf4",
-        "bitmapResolution": 2,
-        "dataFormat": "png",
-        "md5ext": "105f4f3d260dcb8bea02ea9ee5d18cf4.png",
-        "rotationCenterX": 76,
-        "rotationCenterY": 276
-    },
-    {
-        "name": "Anina R Cross",
-        "tags": [
-            "people",
-            "dance"
-        ],
-        "assetId": "3948aad16f8169c013c956dd152a09a6",
-        "bitmapResolution": 2,
-        "dataFormat": "png",
-        "md5ext": "3948aad16f8169c013c956dd152a09a6.png",
-        "rotationCenterX": 126,
-        "rotationCenterY": 268
-    },
-    {
-        "name": "Anina Stance",
-        "tags": [
-            "people",
-            "dance"
-        ],
-        "assetId": "84c5e22b4303c7c1fb707125706c9aaa",
-        "bitmapResolution": 2,
-        "dataFormat": "png",
-        "md5ext": "84c5e22b4303c7c1fb707125706c9aaa.png",
-        "rotationCenterX": 76,
-        "rotationCenterY": 252
-    },
-    {
-        "name": "Anina Top Freeze",
-        "tags": [
-            "people",
-            "dance"
-        ],
-        "assetId": "b7693bd6250d4411ee622b67f8025924",
-        "bitmapResolution": 2,
-        "dataFormat": "png",
-        "md5ext": "b7693bd6250d4411ee622b67f8025924.png",
-        "rotationCenterX": 110,
-        "rotationCenterY": 268
-    },
-    {
-        "name": "Anina Top L Step",
-        "tags": [
-            "people",
-            "dance"
-        ],
-        "assetId": "ed90e8b7a05c1552194af597ac0637cd",
-        "bitmapResolution": 2,
-        "dataFormat": "png",
-        "md5ext": "ed90e8b7a05c1552194af597ac0637cd.png",
-        "rotationCenterX": 228,
-        "rotationCenterY": 274
-    },
-    {
-        "name": "Anina Top R Step",
-        "tags": [
-            "people",
-            "dance"
-        ],
-        "assetId": "2d208a34e74fdce9dab9d4c585dcfa2b",
-        "bitmapResolution": 2,
-        "dataFormat": "png",
-        "md5ext": "2d208a34e74fdce9dab9d4c585dcfa2b.png",
-        "rotationCenterX": 248,
-        "rotationCenterY": 272
-    },
-    {
-        "name": "Anina Top Stand",
-        "tags": [
-            "people",
-            "dance"
-        ],
-        "assetId": "db6c03113f71b91f22a9f3351f90e5bf",
-        "bitmapResolution": 2,
-        "dataFormat": "png",
-        "md5ext": "db6c03113f71b91f22a9f3351f90e5bf.png",
-        "rotationCenterX": 74,
-        "rotationCenterY": 280
-    },
-    {
-        "name": "Apple",
-        "tags": [
-            "food",
-            "red",
-            "crunchy",
-            "fruit"
-        ],
-        "assetId": "3826a4091a33e4d26f87a2fac7cf796b",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "3826a4091a33e4d26f87a2fac7cf796b.svg",
-        "rotationCenterX": 31,
-        "rotationCenterY": 31
-    },
-    {
-        "name": "Arrow1-a",
-        "tags": [
-            "icons",
-            "symbols",
-            "right"
-        ],
-        "assetId": "be8fcd10da0b082f8d4775088ef7bd52",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "be8fcd10da0b082f8d4775088ef7bd52.svg",
-        "rotationCenterX": 28,
-        "rotationCenterY": 23
-    },
-    {
-        "name": "Blank",
-        "dataFormat": "svg",
-        "url": "data:image/svg+xml;base64,"
-    },
-    {
-        "name": "Dango",
-        "dataFormat": "svg",
-        "url": "data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSI4Ny45OTk0NSIgaGVpZ2h0PSI4OC4wMDE0MiIgdmlld0JveD0iMCwwLDg3Ljk5OTQ1LDg4LjAwMTQyIj48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTk2LjAwMDI4LC0xMzUuOTk5MjkpIj48ZyBkYXRhLXBhcGVyLWRhdGE9InsmcXVvdDtpc1BhaW50aW5nTGF5ZXImcXVvdDs6dHJ1ZX0iIGZpbGwtcnVsZT0ibm9uemVybyIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IiIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjAiIHN0eWxlPSJtaXgtYmxlbmQtbW9kZTogbm9ybWFsIj48cGF0aCBkPSJNMjgwLjc2MTY0LDIyNC4wMDA3MWMtMC44Mjg0OSwwIC0xLjY1Njk4LC0wLjMxNjYxIC0yLjI5MDIxLC0wLjk0NzIxbC04MC44NDU4NCwtODAuODQ4NDhjLTEuMjYzODQsLTEuMjYzODQgLTEuMjYzODQsLTMuMzE2NTcgMCwtNC41ODA0MWMxLjI2Mzg0LC0xLjI2Mzg0IDMuMzE2NTcsLTEuMjYzODQgNC41ODA0MSwwbDgwLjg0NTg0LDgwLjg0NTg0YzEuMjYzODQsMS4yNjM4NCAxLjI2Mzg0LDMuMzE2NTcgMCw0LjU4MDQxYy0wLjYzMzI0LDAuNjMwNiAtMS40NjE3MywwLjk0OTg1IC0yLjI5MDIxLDAuOTQ5ODV6IiBmaWxsPSIjZDk5ZTgyIi8+PHBhdGggZD0iTTIzMS42MzA0LDE1My44MTQzNWMwLDkuODM4OTIgLTcuOTc2MTQsMTcuODE1MDYgLTE3LjgxNTA2LDE3LjgxNTA2Yy05LjgzODkyLDAgLTE3LjgxNTA2LC03Ljk3NjE0IC0xNy44MTUwNiwtMTcuODE1MDZjMCwtOS44Mzg5MiA3Ljk3NjE0LC0xNy44MTUwNiAxNy44MTUwNiwtMTcuODE1MDZjOS44Mzg5MiwwIDE3LjgxNTA2LDcuOTc2MTQgMTcuODE1MDYsMTcuODE1MDZ6IiBmaWxsPSIjZmNiMWUzIi8+PHBhdGggZD0iTTIyOS4xNjA5OCwxOTAuNTkyODhjLTkuNTc1NjUsLTIuMjYxMTEgLTE1LjUwNTI0LC0xMS44NTY3MSAtMTMuMjQ0MTIsLTIxLjQzMjM1YzIuMjYxMTEsLTkuNTc1NjUgMTEuODU2NzEsLTE1LjUwNTI0IDIxLjQzMjM1LC0xMy4yNDQxMmM5LjU3NTY1LDIuMjYxMTEgMTUuNTA1MjQsMTEuODU2NzEgMTMuMjQ0MTIsMjEuNDMyMzVjLTIuMjYxMTEsOS41NzU2NSAtMTEuODU2NzEsMTUuNTA1MjQgLTIxLjQzMjM1LDEzLjI0NDEyeiIgZmlsbD0iI2ZmZDk4MyIvPjxwYXRoIGQ9Ik0yNzAuNTAzMjEsMTkyLjY4NDUzYzAsOS44Mzg5MiAtNy45Nzg3OCwxNy44MTc2OSAtMTcuODE3NjksMTcuODE3NjljLTkuODM4OTIsMCAtMTcuODE1MDYsLTcuOTc4NzggLTE3LjgxNTA2LC0xNy44MTc2OWMwLC05LjgzODkyIDcuOTc2MTQsLTE3LjgxNTA2IDE3LjgxNTA2LC0xNy44MTUwNmM5LjgzODkyLDAgMTcuODE3NjksNy45Nzg3OCAxNy44MTc2OSwxNy44MTUwNnoiIGZpbGw9IiNhNmQzODgiLz48cGF0aCBkPSJNMjgwLjc2MTY0LDIyNC4wMDA3MWMtMC44Mjg0OSwwIC0xLjY1Njk4LC0wLjMxNjYxIC0yLjI5MDIxLC0wLjk0NzIxbC0xOS44NDE0MSwtMTkuODQxNDFjLTEuMjY2NDgsLTEuMjYzODQgLTEuMjY2NDgsLTMuMzE2NTcgMCwtNC41ODA0MWMxLjI2NjQ4LC0xLjI2Mzg0IDMuMzEzOTMsLTEuMjYzODQgNC41ODA0MSwwbDE5Ljg0MTQxLDE5Ljg0MTQxYzEuMjYzODQsMS4yNjM4NCAxLjI2Mzg0LDMuMzE2NTcgMCw0LjU4MDQxYy0wLjYzMzI0LDAuNjI3OTYgLTEuNDYxNzMsMC45NDcyMSAtMi4yOTAyMSwwLjk0NzIxeiIgZmlsbD0iI2Q5OWU4MiIvPjwvZz48L2c+PC9zdmc+Cg=="
-    },
-    {
-        "name": "Dm Pop L Arm",
-        "tags": [
-            "people",
-            "dance"
-        ],
-        "assetId": "3cdebabdb41f6c3e84561cf3ea87bac3",
-        "bitmapResolution": 2,
-        "dataFormat": "png",
-        "md5ext": "3cdebabdb41f6c3e84561cf3ea87bac3.png",
-        "rotationCenterX": 90,
-        "rotationCenterY": 238
-    },
-    {
-        "name": "Dm Pop Left",
-        "tags": [
-            "people",
-            "dance"
-        ],
-        "assetId": "32ec7b5332cfebd1cfed7f6b79c76e67",
-        "bitmapResolution": 2,
-        "dataFormat": "png",
-        "md5ext": "32ec7b5332cfebd1cfed7f6b79c76e67.png",
-        "rotationCenterX": 204,
-        "rotationCenterY": 250
-    },
-    {
-        "name": "Dm Pop R Arm",
-        "tags": [
-            "people",
-            "dance"
-        ],
-        "assetId": "50faf1630ea383c0b8c77f70a9329797",
-        "bitmapResolution": 2,
-        "dataFormat": "png",
-        "md5ext": "50faf1630ea383c0b8c77f70a9329797.png",
-        "rotationCenterX": 80,
-        "rotationCenterY": 240
-    },
-    {
-        "name": "Dm Pop Right",
-        "tags": [
-            "people",
-            "dance"
-        ],
-        "assetId": "19bd7995d37e3baade673b2fe7cb982b",
-        "bitmapResolution": 2,
-        "dataFormat": "png",
-        "md5ext": "19bd7995d37e3baade673b2fe7cb982b.png",
-        "rotationCenterX": 78,
-        "rotationCenterY": 238
-    },
-    {
-        "name": "Dm Pop Stand",
-        "tags": [
-            "people",
-            "dance"
-        ],
-        "assetId": "05529eb3c09294bd15f57c6f10d5894e",
-        "bitmapResolution": 2,
-        "dataFormat": "png",
-        "md5ext": "05529eb3c09294bd15f57c6f10d5894e.png",
-        "rotationCenterX": 100,
-        "rotationCenterY": 244
-    },
-    {
-        "name": "Dm Stance",
-        "tags": [
-            "people",
-            "dance"
-        ],
-        "assetId": "dafbdfe454c5ec7029b5c1e07fcabc90",
-        "bitmapResolution": 2,
-        "dataFormat": "png",
-        "md5ext": "dafbdfe454c5ec7029b5c1e07fcabc90.png",
-        "rotationCenterX": 106,
-        "rotationCenterY": 238
-    },
-    {
-        "name": "Dm Top L Leg",
-        "tags": [
-            "people",
-            "dance"
-        ],
-        "assetId": "344384a6a3f1bdf494cc7af31e928d36",
-        "bitmapResolution": 2,
-        "dataFormat": "png",
-        "md5ext": "344384a6a3f1bdf494cc7af31e928d36.png",
-        "rotationCenterX": 230,
-        "rotationCenterY": 240
-    },
-    {
-        "name": "Dm Top R Leg",
-        "tags": [
-            "people",
-            "dance"
-        ],
-        "assetId": "12db59633a1709a2c39534d35263791f",
-        "bitmapResolution": 2,
-        "dataFormat": "png",
-        "md5ext": "12db59633a1709a2c39534d35263791f.png",
-        "rotationCenterX": 218,
-        "rotationCenterY": 232
-    },
-    {
-        "name": "Dm Top Stand",
-        "tags": [
-            "people",
-            "dance"
-        ],
-        "assetId": "a22da98e5e63de7b2883355afd0184f0",
-        "bitmapResolution": 2,
-        "dataFormat": "png",
-        "md5ext": "a22da98e5e63de7b2883355afd0184f0.png",
-        "rotationCenterX": 82,
-        "rotationCenterY": 244
-    },
-    {
-        "name": "Dog1-a",
-        "tags": [
-            "animals",
-            "puppy",
-            "puppies",
-            "mammals"
-        ],
-        "assetId": "35cd78a8a71546a16c530d0b2d7d5a7f",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "35cd78a8a71546a16c530d0b2d7d5a7f.svg",
-        "rotationCenterX": 83,
-        "rotationCenterY": 80
-    },
-    {
-        "name": "Dog1-b",
-        "tags": [
-            "animals",
-            "puppy",
-            "puppies",
-            "mammals"
-        ],
-        "assetId": "d5a72e1eb23a91df4b53c0b16493d1e6",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "d5a72e1eb23a91df4b53c0b16493d1e6.svg",
-        "rotationCenterX": 83,
-        "rotationCenterY": 80
-    },
-    {
-        "name": "Dog2-a",
-        "tags": [
-            "animals",
-            "puppy",
-            "puppies",
-            "mammals"
-        ],
-        "assetId": "66b435d333f34d02d5ae49a598bcc5b3",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "66b435d333f34d02d5ae49a598bcc5b3.svg",
-        "rotationCenterX": 75,
-        "rotationCenterY": 75
-    },
-    {
-        "name": "Dog2-b",
-        "tags": [
-            "animals",
-            "puppy",
-            "puppies",
-            "mammals"
-        ],
-        "assetId": "6afc06388d69f99e28d883126f9b2734",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "6afc06388d69f99e28d883126f9b2734.svg",
-        "rotationCenterX": 75,
-        "rotationCenterY": 75
-    },
-    {
-        "name": "Dog2-c",
-        "tags": [
-            "animals",
-            "puppy",
-            "puppies",
-            "mammals"
-        ],
-        "assetId": "4708bff29b3a295a03ac1d5e2d16ec75",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "4708bff29b3a295a03ac1d5e2d16ec75.svg",
-        "rotationCenterX": 75,
-        "rotationCenterY": 75
-    },
-    {
-        "name": "Donut",
-        "tags": [
-            "food",
-            "sweets",
-            "bakery",
-            "baking",
-            "homer",
-            "frosting",
-            "sprinkles",
-            "sprankles"
-        ],
-        "assetId": "316a67c9e966fd015b4538f54be456db",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "316a67c9e966fd015b4538f54be456db.svg",
-        "rotationCenterX": 72.11747235252724,
-        "rotationCenterY": 14.658782444689848
-    },
-    {
-        "name": "Dorian-a",
-        "tags": [
-            "sports",
-            "basketball",
-            "people",
-            "alex eben meyer"
-        ],
-        "assetId": "a9a064a1f28c9e22b594dcea1d46025b",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "a9a064a1f28c9e22b594dcea1d46025b.svg",
-        "rotationCenterX": 60,
-        "rotationCenterY": 65
-    },
-    {
-        "name": "Dorian-b",
-        "tags": [
-            "sports",
-            "basketball",
-            "people",
-            "alex eben meyer"
-        ],
-        "assetId": "7d20ec98603857c031c1f4ad2bd8ea51",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "7d20ec98603857c031c1f4ad2bd8ea51.svg",
-        "rotationCenterX": 60,
-        "rotationCenterY": 65
-    },
-    {
-        "name": "Dorian-c",
-        "tags": [
-            "sports",
-            "basketball",
-            "people",
-            "alex eben meyer"
-        ],
-        "assetId": "8f2be2387efcbb5d4878886adaa2a88e",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "8f2be2387efcbb5d4878886adaa2a88e.svg",
-        "rotationCenterX": 77,
-        "rotationCenterY": 67
-    },
-    {
-        "name": "Dorian-d",
-        "tags": [
-            "sports",
-            "basketball",
-            "people",
-            "alex eben meyer"
-        ],
-        "assetId": "603d3dd151984c0eaa2822f70a234c28",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "603d3dd151984c0eaa2822f70a234c28.svg",
-        "rotationCenterX": 77,
-        "rotationCenterY": 53
-    },
-    {
-        "name": "Dot-a",
-        "tags": [
-            "animals",
-            "space",
-            "dog",
-            "wren mcdonald"
-        ],
-        "assetId": "106461f60e34ce231b323e2dd2d9f05b",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "106461f60e34ce231b323e2dd2d9f05b.svg",
-        "rotationCenterX": 52,
-        "rotationCenterY": 67
-    },
-    {
-        "name": "Dot-b",
-        "tags": [
-            "animals",
-            "space",
-            "dog",
-            "wren mcdonald"
-        ],
-        "assetId": "21482022f9930400302bc8ec70643717",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "21482022f9930400302bc8ec70643717.svg",
-        "rotationCenterX": 65,
-        "rotationCenterY": 67
-    },
-    {
-        "name": "Jamal-b",
-        "tags": [
-            "sports",
-            "basketball",
-            "people",
-            "alex eben meyer"
-        ],
-        "assetId": "2408318e743873c7254db1623441b9c5",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "2408318e743873c7254db1623441b9c5.svg",
-        "rotationCenterX": 75,
-        "rotationCenterY": 53
-    },
-    {
-        "name": "Jamal-c",
-        "tags": [
-            "sports",
-            "basketball",
-            "people",
-            "alex eben meyer"
-        ],
-        "assetId": "693748d763c8da4b119a5e4bee6a1768",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "693748d763c8da4b119a5e4bee6a1768.svg",
-        "rotationCenterX": 54,
-        "rotationCenterY": 102
-    },
-    {
-        "name": "Jamal-d",
-        "tags": [
-            "sports",
-            "basketball",
-            "people",
-            "alex eben meyer"
-        ],
-        "assetId": "92692e0c0f376797274392484ba74133",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "92692e0c0f376797274392484ba74133.svg",
-        "rotationCenterX": 54,
-        "rotationCenterY": 95
-    },
-    {
-        "name": "Jar-a",
-        "tags": [
-            "food",
-            "ipzy",
-            "things",
-            "fruit"
-        ],
-        "assetId": "33b537168f3c2eb3dafeb739c22f38a6",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "33b537168f3c2eb3dafeb739c22f38a6.svg",
-        "rotationCenterX": 20,
-        "rotationCenterY": 25
-    },
-    {
-        "name": "Jar-b",
-        "tags": [
-            "food",
-            "ipzy",
-            "things"
-        ],
-        "assetId": "e0f5ac773987470ff2467e3e01b9ab23",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "e0f5ac773987470ff2467e3e01b9ab23.svg",
-        "rotationCenterX": 20,
-        "rotationCenterY": 25
-    },
-    {
-        "name": "Jellyfish-a",
-        "tags": [
-            "animals",
-            "ocean",
-            "underwater",
-            "daria skrybchencko"
-        ],
-        "assetId": "4e259b7c08f05145fc7800b33e4f356e",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "4e259b7c08f05145fc7800b33e4f356e.svg",
-        "rotationCenterX": 99,
-        "rotationCenterY": 86
-    },
-    {
-        "name": "Jellyfish-b",
-        "tags": [
-            "animals",
-            "ocean",
-            "underwater",
-            "daria skrybchencko"
-        ],
-        "assetId": "5944a1e687fa31589517825b2144a17b",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "5944a1e687fa31589517825b2144a17b.svg",
-        "rotationCenterX": 99,
-        "rotationCenterY": 86
-    },
-    {
-        "name": "Jellyfish-c",
-        "tags": [
-            "animals",
-            "ocean",
-            "underwater",
-            "daria skrybchencko"
-        ],
-        "assetId": "00c99df84f8385038461d6c42a5465ab",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "00c99df84f8385038461d6c42a5465ab.svg",
-        "rotationCenterX": 99,
-        "rotationCenterY": 86
-    },
-    {
-        "name": "Jellyfish-d",
-        "tags": [
-            "animals",
-            "ocean",
-            "underwater",
-            "daria skrybchencko"
-        ],
-        "assetId": "3158299771b3d34ed2c50a00fbab715e",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "3158299771b3d34ed2c50a00fbab715e.svg",
-        "rotationCenterX": 99,
-        "rotationCenterY": 86
-    },
-    {
-        "name": "Jo Pop Down",
-        "tags": [
-            "people",
-            "dance"
-        ],
-        "assetId": "a55fbb529c10f70bcb374aef8a63571b",
-        "bitmapResolution": 2,
-        "dataFormat": "png",
-        "md5ext": "a55fbb529c10f70bcb374aef8a63571b.png",
-        "rotationCenterX": 68,
-        "rotationCenterY": 74
-    },
-    {
-        "name": "Jo Pop Front",
-        "tags": [
-            "people",
-            "dance"
-        ],
-        "assetId": "3d3ea804243800981acabc7caba10939",
-        "bitmapResolution": 2,
-        "dataFormat": "png",
-        "md5ext": "3d3ea804243800981acabc7caba10939.png",
-        "rotationCenterX": 70,
-        "rotationCenterY": 228
-    },
-    {
-        "name": "Jo Pop L Arm",
-        "tags": [
-            "people",
-            "dance"
-        ],
-        "assetId": "a9fbc01a4124d555da12630312e46197",
-        "bitmapResolution": 2,
-        "dataFormat": "png",
-        "md5ext": "a9fbc01a4124d555da12630312e46197.png",
-        "rotationCenterX": 108,
-        "rotationCenterY": 258
-    },
-    {
-        "name": "Jo Pop Left",
-        "tags": [
-            "people",
-            "dance"
-        ],
-        "assetId": "ea812b4c2b2405aa2b73158023298f71",
-        "bitmapResolution": 2,
-        "dataFormat": "png",
-        "md5ext": "ea812b4c2b2405aa2b73158023298f71.png",
-        "rotationCenterX": 196,
-        "rotationCenterY": 226
-    },
-    {
-        "name": "Jo Pop R Arm",
-        "tags": [
-            "people",
-            "dance"
-        ],
-        "assetId": "aabfedff0d11243386b6b0941e0f72e9",
-        "bitmapResolution": 2,
-        "dataFormat": "png",
-        "md5ext": "aabfedff0d11243386b6b0941e0f72e9.png",
-        "rotationCenterX": 108,
-        "rotationCenterY": 260
-    },
-    {
-        "name": "Jo Pop Right",
-        "tags": [
-            "people",
-            "dance"
-        ],
-        "assetId": "01dd2f553c7262329ebaba2516e3a2b1",
-        "bitmapResolution": 2,
-        "dataFormat": "png",
-        "md5ext": "01dd2f553c7262329ebaba2516e3a2b1.png",
-        "rotationCenterX": 66,
-        "rotationCenterY": 242
-    },
-    {
-        "name": "Jo Pop Stand",
-        "tags": [
-            "people",
-            "dance"
-        ],
-        "assetId": "75ee2383fd83992b401c8a0730521d94",
-        "bitmapResolution": 2,
-        "dataFormat": "png",
-        "md5ext": "75ee2383fd83992b401c8a0730521d94.png",
-        "rotationCenterX": 78,
-        "rotationCenterY": 262
-    },
-    {
-        "name": "Jo Stance",
-        "tags": [
-            "people",
-            "dance"
-        ],
-        "assetId": "6f68790ee3eb9bdccf8749305186b0dd",
-        "bitmapResolution": 2,
-        "dataFormat": "png",
-        "md5ext": "6f68790ee3eb9bdccf8749305186b0dd.png",
-        "rotationCenterX": 94,
-        "rotationCenterY": 240
-    },
-    {
-        "name": "Jo Top L Cross",
-        "tags": [
-            "people",
-            "dance"
-        ],
-        "assetId": "2e2a6534d33883fdd2f8471a1adbebb7",
-        "bitmapResolution": 2,
-        "dataFormat": "png",
-        "md5ext": "2e2a6534d33883fdd2f8471a1adbebb7.png",
-        "rotationCenterX": 84,
-        "rotationCenterY": 268
-    },
-    {
-        "name": "Jo Top L Leg",
-        "tags": [
-            "people",
-            "dance"
-        ],
-        "assetId": "a12f40b18067bb31746f9cf461de88aa",
-        "bitmapResolution": 2,
-        "dataFormat": "png",
-        "md5ext": "a12f40b18067bb31746f9cf461de88aa.png",
-        "rotationCenterX": 208,
-        "rotationCenterY": 268
-    },
-    {
-        "name": "Nano-d",
-        "tags": [
-            "fantasy",
-            "drawing",
-            "angry"
-        ],
-        "assetId": "a4e2034751fa650fd5fd69432c110104",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "a4e2034751fa650fd5fd69432c110104.svg",
-        "rotationCenterX": 61,
-        "rotationCenterY": 60
-    },
-    {
-        "name": "Referee-d",
-        "tags": [
-            "sports",
-            "soccer",
-            "football",
-            "alex eben meyer"
-        ],
-        "assetId": "1cd641a48499db84636d983916b62a83",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "1cd641a48499db84636d983916b62a83.svg",
-        "rotationCenterX": 50,
-        "rotationCenterY": 63
-    },
-    {
-        "name": "Reindeer",
-        "tags": [
-            "animals",
-            "mammals",
-            "holiday"
-        ],
-        "assetId": "60993a025167e7886736109dca5d55e2",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "60993a025167e7886736109dca5d55e2.svg",
-        "rotationCenterX": 39,
-        "rotationCenterY": 70
-    },
-    {
-        "name": "Retro Robot A",
-        "tags": [
-            "robot"
-        ],
-        "assetId": "35070c1078c4eec153ea2769516c922c",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "35070c1078c4eec153ea2769516c922c.svg",
-        "rotationCenterX": 55.04000000000008,
-        "rotationCenterY": 85.55
-    },
-    {
-        "name": "Watermelon-c",
-        "tags": [
-            "food",
-            "fruit",
-            "summer",
-            "seeds",
-            "plants"
-        ],
-        "assetId": "677738282686d2dcce35d731c3ddc043",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "677738282686d2dcce35d731c3ddc043.svg",
-        "rotationCenterX": 21.5,
-        "rotationCenterY": 16
-    },
-    {
-        "name": "Winter Hat",
-        "tags": [
-            "fashion",
-            "winter",
-            "hat"
-        ],
-        "assetId": "2672323e34d6dc82fda8fc3b057fa5aa",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "2672323e34d6dc82fda8fc3b057fa5aa.svg",
-        "rotationCenterX": 35,
-        "rotationCenterY": 39
-    },
-    {
-        "name": "Witch",
-        "tags": [
-            "fantasy",
-            "broom",
-            "wart",
-            "flying",
-            "hat",
-            "magic"
-        ],
-        "assetId": "cb88688822815fb14d59a45fcc239da8",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "cb88688822815fb14d59a45fcc239da8.svg",
-        "rotationCenterX": 74,
-        "rotationCenterY": 59
-    },
-    {
-        "name": "Witch-a",
-        "tags": [
-            "fantasy",
-            "people",
-            "ipzy",
-            "castle",
-            "emotions",
-            "magic"
-        ],
-        "assetId": "44cbaf358d2d8e66815e447c25a4b72e",
-        "bitmapResolution": 1,
-        "dataFormat": "svg",
-        "md5ext": "44cbaf358d2d8e66815e447c25a4b72e.svg",
-        "rotationCenterX": 65,
-        "rotationCenterY": 140
-    }
+  {
+    "name": "Abby-a",
+    "tags": ["people", "person", "drawing"],
+    "assetId": "809d9b47347a6af2860e7a3a35bce057",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "809d9b47347a6af2860e7a3a35bce057.svg",
+    "rotationCenterX": 31,
+    "rotationCenterY": 100
+  },
+  {
+    "name": "Abby-b",
+    "tags": ["people", "person", "drawing"],
+    "assetId": "920f14335615fff9b8c55fccb8971984",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "920f14335615fff9b8c55fccb8971984.svg",
+    "rotationCenterX": 31,
+    "rotationCenterY": 100
+  },
+  {
+    "name": "Abby-c",
+    "tags": ["people", "person", "drawing"],
+    "assetId": "34a175600dc009a521eb46fdbbbeeb67",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "34a175600dc009a521eb46fdbbbeeb67.svg",
+    "rotationCenterX": 32,
+    "rotationCenterY": 100
+  },
+  {
+    "name": "Abby-d",
+    "tags": ["people", "person", "drawing"],
+    "assetId": "45de34b47a2ce22f6f5d28bb35a44ff5",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "45de34b47a2ce22f6f5d28bb35a44ff5.svg",
+    "rotationCenterX": 32,
+    "rotationCenterY": 101
+  },
+  {
+    "name": "Amon",
+    "tags": ["people", "dance"],
+    "assetId": "60f720956ab1840431dcf0616ce98f14",
+    "bitmapResolution": 2,
+    "dataFormat": "png",
+    "md5ext": "60f720956ab1840431dcf0616ce98f14.png",
+    "rotationCenterX": 174,
+    "rotationCenterY": 162
+  },
+  {
+    "name": "Andie-a",
+    "tags": [
+      "sports",
+      "basketball",
+      "people",
+      "wheelchair",
+      "handicap",
+      "handicapable",
+      "alex eben meyer"
+    ],
+    "assetId": "b36584db82bdd45014430aa918461ca0",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "b36584db82bdd45014430aa918461ca0.svg",
+    "rotationCenterX": 80,
+    "rotationCenterY": 65
+  },
+  {
+    "name": "Andie-b",
+    "tags": [
+      "sports",
+      "basketball",
+      "people",
+      "wheelchair",
+      "handicap",
+      "handicapable",
+      "alex eben meyer"
+    ],
+    "assetId": "b3fc774e753fef520fb544127a48554b",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "b3fc774e753fef520fb544127a48554b.svg",
+    "rotationCenterX": 40,
+    "rotationCenterY": 91
+  },
+  {
+    "name": "Andie-c",
+    "tags": [
+      "sports",
+      "basketball",
+      "people",
+      "wheelchair",
+      "handicap",
+      "handicapable",
+      "alex eben meyer"
+    ],
+    "assetId": "ded71c8a0f39852178f1695b622c2d89",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "ded71c8a0f39852178f1695b622c2d89.svg",
+    "rotationCenterX": 46,
+    "rotationCenterY": 49
+  },
+  {
+    "name": "Andie-d",
+    "tags": [
+      "sports",
+      "basketball",
+      "people",
+      "wheelchair",
+      "handicap",
+      "handicapable",
+      "alex eben meyer"
+    ],
+    "assetId": "d92aaf6cf44921905d51ca4a10a4f3d6",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "d92aaf6cf44921905d51ca4a10a4f3d6.svg",
+    "rotationCenterX": 71,
+    "rotationCenterY": 57
+  },
+  {
+    "name": "Anina Pop Down",
+    "tags": ["people", "dance"],
+    "assetId": "e3698b76cb0864df2fbaba80e6bd8067",
+    "bitmapResolution": 2,
+    "dataFormat": "png",
+    "md5ext": "e3698b76cb0864df2fbaba80e6bd8067.png",
+    "rotationCenterX": 74,
+    "rotationCenterY": 156
+  },
+  {
+    "name": "Anina Pop Front",
+    "tags": ["people", "dance"],
+    "assetId": "4931a363e3e4efa20230f6ff2991c6b4",
+    "bitmapResolution": 2,
+    "dataFormat": "png",
+    "md5ext": "4931a363e3e4efa20230f6ff2991c6b4.png",
+    "rotationCenterX": 68,
+    "rotationCenterY": 270
+  },
+  {
+    "name": "Anina Pop L Arm",
+    "tags": ["people", "dance"],
+    "assetId": "62c50c90535b64f2ae130a5c680ddcb4",
+    "bitmapResolution": 2,
+    "dataFormat": "png",
+    "md5ext": "62c50c90535b64f2ae130a5c680ddcb4.png",
+    "rotationCenterX": 68,
+    "rotationCenterY": 274
+  },
+  {
+    "name": "Anina Pop Left",
+    "tags": ["people", "dance"],
+    "assetId": "d86bb27b4f8d7b70c39c96f29c6943b4",
+    "bitmapResolution": 2,
+    "dataFormat": "png",
+    "md5ext": "d86bb27b4f8d7b70c39c96f29c6943b4.png",
+    "rotationCenterX": 238,
+    "rotationCenterY": 266
+  },
+  {
+    "name": "Anina Pop R Arm",
+    "tags": ["people", "dance"],
+    "assetId": "ca27e001a263ee6b5852508f39d021db",
+    "bitmapResolution": 2,
+    "dataFormat": "png",
+    "md5ext": "ca27e001a263ee6b5852508f39d021db.png",
+    "rotationCenterX": 88,
+    "rotationCenterY": 272
+  },
+  {
+    "name": "Anina Pop Right",
+    "tags": ["people", "dance"],
+    "assetId": "7bb9c790b02231e1272701167c26b17a",
+    "bitmapResolution": 2,
+    "dataFormat": "png",
+    "md5ext": "7bb9c790b02231e1272701167c26b17a.png",
+    "rotationCenterX": 66,
+    "rotationCenterY": 268
+  },
+  {
+    "name": "Anina Pop Stand",
+    "tags": ["people", "dance"],
+    "assetId": "105f4f3d260dcb8bea02ea9ee5d18cf4",
+    "bitmapResolution": 2,
+    "dataFormat": "png",
+    "md5ext": "105f4f3d260dcb8bea02ea9ee5d18cf4.png",
+    "rotationCenterX": 76,
+    "rotationCenterY": 276
+  },
+  {
+    "name": "Anina R Cross",
+    "tags": ["people", "dance"],
+    "assetId": "3948aad16f8169c013c956dd152a09a6",
+    "bitmapResolution": 2,
+    "dataFormat": "png",
+    "md5ext": "3948aad16f8169c013c956dd152a09a6.png",
+    "rotationCenterX": 126,
+    "rotationCenterY": 268
+  },
+  {
+    "name": "Anina Stance",
+    "tags": ["people", "dance"],
+    "assetId": "84c5e22b4303c7c1fb707125706c9aaa",
+    "bitmapResolution": 2,
+    "dataFormat": "png",
+    "md5ext": "84c5e22b4303c7c1fb707125706c9aaa.png",
+    "rotationCenterX": 76,
+    "rotationCenterY": 252
+  },
+  {
+    "name": "Anina Top Freeze",
+    "tags": ["people", "dance"],
+    "assetId": "b7693bd6250d4411ee622b67f8025924",
+    "bitmapResolution": 2,
+    "dataFormat": "png",
+    "md5ext": "b7693bd6250d4411ee622b67f8025924.png",
+    "rotationCenterX": 110,
+    "rotationCenterY": 268
+  },
+  {
+    "name": "Anina Top L Step",
+    "tags": ["people", "dance"],
+    "assetId": "ed90e8b7a05c1552194af597ac0637cd",
+    "bitmapResolution": 2,
+    "dataFormat": "png",
+    "md5ext": "ed90e8b7a05c1552194af597ac0637cd.png",
+    "rotationCenterX": 228,
+    "rotationCenterY": 274
+  },
+  {
+    "name": "Anina Top R Step",
+    "tags": ["people", "dance"],
+    "assetId": "2d208a34e74fdce9dab9d4c585dcfa2b",
+    "bitmapResolution": 2,
+    "dataFormat": "png",
+    "md5ext": "2d208a34e74fdce9dab9d4c585dcfa2b.png",
+    "rotationCenterX": 248,
+    "rotationCenterY": 272
+  },
+  {
+    "name": "Anina Top Stand",
+    "tags": ["people", "dance"],
+    "assetId": "db6c03113f71b91f22a9f3351f90e5bf",
+    "bitmapResolution": 2,
+    "dataFormat": "png",
+    "md5ext": "db6c03113f71b91f22a9f3351f90e5bf.png",
+    "rotationCenterX": 74,
+    "rotationCenterY": 280
+  },
+  {
+    "name": "Apple",
+    "tags": ["food", "red", "crunchy", "fruit"],
+    "assetId": "3826a4091a33e4d26f87a2fac7cf796b",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "3826a4091a33e4d26f87a2fac7cf796b.svg",
+    "rotationCenterX": 31,
+    "rotationCenterY": 31
+  },
+  {
+    "name": "Arrow1-a",
+    "tags": ["icons", "symbols", "right"],
+    "assetId": "be8fcd10da0b082f8d4775088ef7bd52",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "be8fcd10da0b082f8d4775088ef7bd52.svg",
+    "rotationCenterX": 28,
+    "rotationCenterY": 23
+  },
+  {
+    "name": "Blank",
+    "dataFormat": "svg",
+    "url": "data:image/svg+xml;base64,"
+  },
+  {
+    "name": "Dango",
+    "dataFormat": "svg",
+    "url": "data:image/svg+xml;base64,PHN2ZyB2ZXJzaW9uPSIxLjEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHdpZHRoPSI4Ny45OTk0NSIgaGVpZ2h0PSI4OC4wMDE0MiIgdmlld0JveD0iMCwwLDg3Ljk5OTQ1LDg4LjAwMTQyIj48ZyB0cmFuc2Zvcm09InRyYW5zbGF0ZSgtMTk2LjAwMDI4LC0xMzUuOTk5MjkpIj48ZyBkYXRhLXBhcGVyLWRhdGE9InsmcXVvdDtpc1BhaW50aW5nTGF5ZXImcXVvdDs6dHJ1ZX0iIGZpbGwtcnVsZT0ibm9uemVybyIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIHN0cm9rZS1saW5lY2FwPSJidXR0IiBzdHJva2UtbGluZWpvaW49Im1pdGVyIiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIHN0cm9rZS1kYXNoYXJyYXk9IiIgc3Ryb2tlLWRhc2hvZmZzZXQ9IjAiIHN0eWxlPSJtaXgtYmxlbmQtbW9kZTogbm9ybWFsIj48cGF0aCBkPSJNMjgwLjc2MTY0LDIyNC4wMDA3MWMtMC44Mjg0OSwwIC0xLjY1Njk4LC0wLjMxNjYxIC0yLjI5MDIxLC0wLjk0NzIxbC04MC44NDU4NCwtODAuODQ4NDhjLTEuMjYzODQsLTEuMjYzODQgLTEuMjYzODQsLTMuMzE2NTcgMCwtNC41ODA0MWMxLjI2Mzg0LC0xLjI2Mzg0IDMuMzE2NTcsLTEuMjYzODQgNC41ODA0MSwwbDgwLjg0NTg0LDgwLjg0NTg0YzEuMjYzODQsMS4yNjM4NCAxLjI2Mzg0LDMuMzE2NTcgMCw0LjU4MDQxYy0wLjYzMzI0LDAuNjMwNiAtMS40NjE3MywwLjk0OTg1IC0yLjI5MDIxLDAuOTQ5ODV6IiBmaWxsPSIjZDk5ZTgyIi8+PHBhdGggZD0iTTIzMS42MzA0LDE1My44MTQzNWMwLDkuODM4OTIgLTcuOTc2MTQsMTcuODE1MDYgLTE3LjgxNTA2LDE3LjgxNTA2Yy05LjgzODkyLDAgLTE3LjgxNTA2LC03Ljk3NjE0IC0xNy44MTUwNiwtMTcuODE1MDZjMCwtOS44Mzg5MiA3Ljk3NjE0LC0xNy44MTUwNiAxNy44MTUwNiwtMTcuODE1MDZjOS44Mzg5MiwwIDE3LjgxNTA2LDcuOTc2MTQgMTcuODE1MDYsMTcuODE1MDZ6IiBmaWxsPSIjZmNiMWUzIi8+PHBhdGggZD0iTTIyOS4xNjA5OCwxOTAuNTkyODhjLTkuNTc1NjUsLTIuMjYxMTEgLTE1LjUwNTI0LC0xMS44NTY3MSAtMTMuMjQ0MTIsLTIxLjQzMjM1YzIuMjYxMTEsLTkuNTc1NjUgMTEuODU2NzEsLTE1LjUwNTI0IDIxLjQzMjM1LC0xMy4yNDQxMmM5LjU3NTY1LDIuMjYxMTEgMTUuNTA1MjQsMTEuODU2NzEgMTMuMjQ0MTIsMjEuNDMyMzVjLTIuMjYxMTEsOS41NzU2NSAtMTEuODU2NzEsMTUuNTA1MjQgLTIxLjQzMjM1LDEzLjI0NDEyeiIgZmlsbD0iI2ZmZDk4MyIvPjxwYXRoIGQ9Ik0yNzAuNTAzMjEsMTkyLjY4NDUzYzAsOS44Mzg5MiAtNy45Nzg3OCwxNy44MTc2OSAtMTcuODE3NjksMTcuODE3NjljLTkuODM4OTIsMCAtMTcuODE1MDYsLTcuOTc4NzggLTE3LjgxNTA2LC0xNy44MTc2OWMwLC05LjgzODkyIDcuOTc2MTQsLTE3LjgxNTA2IDE3LjgxNTA2LC0xNy44MTUwNmM5LjgzODkyLDAgMTcuODE3NjksNy45Nzg3OCAxNy44MTc2OSwxNy44MTUwNnoiIGZpbGw9IiNhNmQzODgiLz48cGF0aCBkPSJNMjgwLjc2MTY0LDIyNC4wMDA3MWMtMC44Mjg0OSwwIC0xLjY1Njk4LC0wLjMxNjYxIC0yLjI5MDIxLC0wLjk0NzIxbC0xOS44NDE0MSwtMTkuODQxNDFjLTEuMjY2NDgsLTEuMjYzODQgLTEuMjY2NDgsLTMuMzE2NTcgMCwtNC41ODA0MWMxLjI2NjQ4LC0xLjI2Mzg0IDMuMzEzOTMsLTEuMjYzODQgNC41ODA0MSwwbDE5Ljg0MTQxLDE5Ljg0MTQxYzEuMjYzODQsMS4yNjM4NCAxLjI2Mzg0LDMuMzE2NTcgMCw0LjU4MDQxYy0wLjYzMzI0LDAuNjI3OTYgLTEuNDYxNzMsMC45NDcyMSAtMi4yOTAyMSwwLjk0NzIxeiIgZmlsbD0iI2Q5OWU4MiIvPjwvZz48L2c+PC9zdmc+Cg=="
+  },
+  {
+    "name": "Dm Pop L Arm",
+    "tags": ["people", "dance"],
+    "assetId": "3cdebabdb41f6c3e84561cf3ea87bac3",
+    "bitmapResolution": 2,
+    "dataFormat": "png",
+    "md5ext": "3cdebabdb41f6c3e84561cf3ea87bac3.png",
+    "rotationCenterX": 90,
+    "rotationCenterY": 238
+  },
+  {
+    "name": "Dm Pop Left",
+    "tags": ["people", "dance"],
+    "assetId": "32ec7b5332cfebd1cfed7f6b79c76e67",
+    "bitmapResolution": 2,
+    "dataFormat": "png",
+    "md5ext": "32ec7b5332cfebd1cfed7f6b79c76e67.png",
+    "rotationCenterX": 204,
+    "rotationCenterY": 250
+  },
+  {
+    "name": "Dm Pop R Arm",
+    "tags": ["people", "dance"],
+    "assetId": "50faf1630ea383c0b8c77f70a9329797",
+    "bitmapResolution": 2,
+    "dataFormat": "png",
+    "md5ext": "50faf1630ea383c0b8c77f70a9329797.png",
+    "rotationCenterX": 80,
+    "rotationCenterY": 240
+  },
+  {
+    "name": "Dm Pop Right",
+    "tags": ["people", "dance"],
+    "assetId": "19bd7995d37e3baade673b2fe7cb982b",
+    "bitmapResolution": 2,
+    "dataFormat": "png",
+    "md5ext": "19bd7995d37e3baade673b2fe7cb982b.png",
+    "rotationCenterX": 78,
+    "rotationCenterY": 238
+  },
+  {
+    "name": "Dm Pop Stand",
+    "tags": ["people", "dance"],
+    "assetId": "05529eb3c09294bd15f57c6f10d5894e",
+    "bitmapResolution": 2,
+    "dataFormat": "png",
+    "md5ext": "05529eb3c09294bd15f57c6f10d5894e.png",
+    "rotationCenterX": 100,
+    "rotationCenterY": 244
+  },
+  {
+    "name": "Dm Stance",
+    "tags": ["people", "dance"],
+    "assetId": "dafbdfe454c5ec7029b5c1e07fcabc90",
+    "bitmapResolution": 2,
+    "dataFormat": "png",
+    "md5ext": "dafbdfe454c5ec7029b5c1e07fcabc90.png",
+    "rotationCenterX": 106,
+    "rotationCenterY": 238
+  },
+  {
+    "name": "Dm Top L Leg",
+    "tags": ["people", "dance"],
+    "assetId": "344384a6a3f1bdf494cc7af31e928d36",
+    "bitmapResolution": 2,
+    "dataFormat": "png",
+    "md5ext": "344384a6a3f1bdf494cc7af31e928d36.png",
+    "rotationCenterX": 230,
+    "rotationCenterY": 240
+  },
+  {
+    "name": "Dm Top R Leg",
+    "tags": ["people", "dance"],
+    "assetId": "12db59633a1709a2c39534d35263791f",
+    "bitmapResolution": 2,
+    "dataFormat": "png",
+    "md5ext": "12db59633a1709a2c39534d35263791f.png",
+    "rotationCenterX": 218,
+    "rotationCenterY": 232
+  },
+  {
+    "name": "Dm Top Stand",
+    "tags": ["people", "dance"],
+    "assetId": "a22da98e5e63de7b2883355afd0184f0",
+    "bitmapResolution": 2,
+    "dataFormat": "png",
+    "md5ext": "a22da98e5e63de7b2883355afd0184f0.png",
+    "rotationCenterX": 82,
+    "rotationCenterY": 244
+  },
+  {
+    "name": "Dog1-a",
+    "tags": ["animals", "puppy", "puppies", "mammals"],
+    "assetId": "35cd78a8a71546a16c530d0b2d7d5a7f",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "35cd78a8a71546a16c530d0b2d7d5a7f.svg",
+    "rotationCenterX": 83,
+    "rotationCenterY": 80
+  },
+  {
+    "name": "Dog1-b",
+    "tags": ["animals", "puppy", "puppies", "mammals"],
+    "assetId": "d5a72e1eb23a91df4b53c0b16493d1e6",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "d5a72e1eb23a91df4b53c0b16493d1e6.svg",
+    "rotationCenterX": 83,
+    "rotationCenterY": 80
+  },
+  {
+    "name": "Dog2-a",
+    "tags": ["animals", "puppy", "puppies", "mammals"],
+    "assetId": "66b435d333f34d02d5ae49a598bcc5b3",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "66b435d333f34d02d5ae49a598bcc5b3.svg",
+    "rotationCenterX": 75,
+    "rotationCenterY": 75
+  },
+  {
+    "name": "Dog2-b",
+    "tags": ["animals", "puppy", "puppies", "mammals"],
+    "assetId": "6afc06388d69f99e28d883126f9b2734",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "6afc06388d69f99e28d883126f9b2734.svg",
+    "rotationCenterX": 75,
+    "rotationCenterY": 75
+  },
+  {
+    "name": "Dog2-c",
+    "tags": ["animals", "puppy", "puppies", "mammals"],
+    "assetId": "4708bff29b3a295a03ac1d5e2d16ec75",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "4708bff29b3a295a03ac1d5e2d16ec75.svg",
+    "rotationCenterX": 75,
+    "rotationCenterY": 75
+  },
+  {
+    "name": "Donut",
+    "tags": [
+      "food",
+      "sweets",
+      "bakery",
+      "baking",
+      "homer",
+      "frosting",
+      "sprinkles",
+      "sprankles"
+    ],
+    "assetId": "316a67c9e966fd015b4538f54be456db",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "316a67c9e966fd015b4538f54be456db.svg",
+    "rotationCenterX": 72.11747235252724,
+    "rotationCenterY": 14.658782444689848
+  },
+  {
+    "name": "Dorian-a",
+    "tags": ["sports", "basketball", "people", "alex eben meyer"],
+    "assetId": "a9a064a1f28c9e22b594dcea1d46025b",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "a9a064a1f28c9e22b594dcea1d46025b.svg",
+    "rotationCenterX": 60,
+    "rotationCenterY": 65
+  },
+  {
+    "name": "Dorian-b",
+    "tags": ["sports", "basketball", "people", "alex eben meyer"],
+    "assetId": "7d20ec98603857c031c1f4ad2bd8ea51",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "7d20ec98603857c031c1f4ad2bd8ea51.svg",
+    "rotationCenterX": 60,
+    "rotationCenterY": 65
+  },
+  {
+    "name": "Dorian-c",
+    "tags": ["sports", "basketball", "people", "alex eben meyer"],
+    "assetId": "8f2be2387efcbb5d4878886adaa2a88e",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "8f2be2387efcbb5d4878886adaa2a88e.svg",
+    "rotationCenterX": 77,
+    "rotationCenterY": 67
+  },
+  {
+    "name": "Dorian-d",
+    "tags": ["sports", "basketball", "people", "alex eben meyer"],
+    "assetId": "603d3dd151984c0eaa2822f70a234c28",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "603d3dd151984c0eaa2822f70a234c28.svg",
+    "rotationCenterX": 77,
+    "rotationCenterY": 53
+  },
+  {
+    "name": "Dot-a",
+    "tags": ["animals", "space", "dog", "wren mcdonald"],
+    "assetId": "106461f60e34ce231b323e2dd2d9f05b",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "106461f60e34ce231b323e2dd2d9f05b.svg",
+    "rotationCenterX": 52,
+    "rotationCenterY": 67
+  },
+  {
+    "name": "Dot-b",
+    "tags": ["animals", "space", "dog", "wren mcdonald"],
+    "assetId": "21482022f9930400302bc8ec70643717",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "21482022f9930400302bc8ec70643717.svg",
+    "rotationCenterX": 65,
+    "rotationCenterY": 67
+  },
+  {
+    "name": "Jamal-b",
+    "tags": ["sports", "basketball", "people", "alex eben meyer"],
+    "assetId": "2408318e743873c7254db1623441b9c5",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "2408318e743873c7254db1623441b9c5.svg",
+    "rotationCenterX": 75,
+    "rotationCenterY": 53
+  },
+  {
+    "name": "Jamal-c",
+    "tags": ["sports", "basketball", "people", "alex eben meyer"],
+    "assetId": "693748d763c8da4b119a5e4bee6a1768",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "693748d763c8da4b119a5e4bee6a1768.svg",
+    "rotationCenterX": 54,
+    "rotationCenterY": 102
+  },
+  {
+    "name": "Jamal-d",
+    "tags": ["sports", "basketball", "people", "alex eben meyer"],
+    "assetId": "92692e0c0f376797274392484ba74133",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "92692e0c0f376797274392484ba74133.svg",
+    "rotationCenterX": 54,
+    "rotationCenterY": 95
+  },
+  {
+    "name": "Jar-a",
+    "tags": ["food", "ipzy", "things", "fruit"],
+    "assetId": "33b537168f3c2eb3dafeb739c22f38a6",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "33b537168f3c2eb3dafeb739c22f38a6.svg",
+    "rotationCenterX": 20,
+    "rotationCenterY": 25
+  },
+  {
+    "name": "Jar-b",
+    "tags": ["food", "ipzy", "things"],
+    "assetId": "e0f5ac773987470ff2467e3e01b9ab23",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "e0f5ac773987470ff2467e3e01b9ab23.svg",
+    "rotationCenterX": 20,
+    "rotationCenterY": 25
+  },
+  {
+    "name": "Jellyfish-a",
+    "tags": ["animals", "ocean", "underwater", "daria skrybchencko"],
+    "assetId": "4e259b7c08f05145fc7800b33e4f356e",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "4e259b7c08f05145fc7800b33e4f356e.svg",
+    "rotationCenterX": 99,
+    "rotationCenterY": 86
+  },
+  {
+    "name": "Jellyfish-b",
+    "tags": ["animals", "ocean", "underwater", "daria skrybchencko"],
+    "assetId": "5944a1e687fa31589517825b2144a17b",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "5944a1e687fa31589517825b2144a17b.svg",
+    "rotationCenterX": 99,
+    "rotationCenterY": 86
+  },
+  {
+    "name": "Jellyfish-c",
+    "tags": ["animals", "ocean", "underwater", "daria skrybchencko"],
+    "assetId": "00c99df84f8385038461d6c42a5465ab",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "00c99df84f8385038461d6c42a5465ab.svg",
+    "rotationCenterX": 99,
+    "rotationCenterY": 86
+  },
+  {
+    "name": "Jellyfish-d",
+    "tags": ["animals", "ocean", "underwater", "daria skrybchencko"],
+    "assetId": "3158299771b3d34ed2c50a00fbab715e",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "3158299771b3d34ed2c50a00fbab715e.svg",
+    "rotationCenterX": 99,
+    "rotationCenterY": 86
+  },
+  {
+    "name": "Jo Pop Down",
+    "tags": ["people", "dance"],
+    "assetId": "a55fbb529c10f70bcb374aef8a63571b",
+    "bitmapResolution": 2,
+    "dataFormat": "png",
+    "md5ext": "a55fbb529c10f70bcb374aef8a63571b.png",
+    "rotationCenterX": 68,
+    "rotationCenterY": 74
+  },
+  {
+    "name": "Jo Pop Front",
+    "tags": ["people", "dance"],
+    "assetId": "3d3ea804243800981acabc7caba10939",
+    "bitmapResolution": 2,
+    "dataFormat": "png",
+    "md5ext": "3d3ea804243800981acabc7caba10939.png",
+    "rotationCenterX": 70,
+    "rotationCenterY": 228
+  },
+  {
+    "name": "Jo Pop L Arm",
+    "tags": ["people", "dance"],
+    "assetId": "a9fbc01a4124d555da12630312e46197",
+    "bitmapResolution": 2,
+    "dataFormat": "png",
+    "md5ext": "a9fbc01a4124d555da12630312e46197.png",
+    "rotationCenterX": 108,
+    "rotationCenterY": 258
+  },
+  {
+    "name": "Jo Pop Left",
+    "tags": ["people", "dance"],
+    "assetId": "ea812b4c2b2405aa2b73158023298f71",
+    "bitmapResolution": 2,
+    "dataFormat": "png",
+    "md5ext": "ea812b4c2b2405aa2b73158023298f71.png",
+    "rotationCenterX": 196,
+    "rotationCenterY": 226
+  },
+  {
+    "name": "Jo Pop R Arm",
+    "tags": ["people", "dance"],
+    "assetId": "aabfedff0d11243386b6b0941e0f72e9",
+    "bitmapResolution": 2,
+    "dataFormat": "png",
+    "md5ext": "aabfedff0d11243386b6b0941e0f72e9.png",
+    "rotationCenterX": 108,
+    "rotationCenterY": 260
+  },
+  {
+    "name": "Jo Pop Right",
+    "tags": ["people", "dance"],
+    "assetId": "01dd2f553c7262329ebaba2516e3a2b1",
+    "bitmapResolution": 2,
+    "dataFormat": "png",
+    "md5ext": "01dd2f553c7262329ebaba2516e3a2b1.png",
+    "rotationCenterX": 66,
+    "rotationCenterY": 242
+  },
+  {
+    "name": "Jo Pop Stand",
+    "tags": ["people", "dance"],
+    "assetId": "75ee2383fd83992b401c8a0730521d94",
+    "bitmapResolution": 2,
+    "dataFormat": "png",
+    "md5ext": "75ee2383fd83992b401c8a0730521d94.png",
+    "rotationCenterX": 78,
+    "rotationCenterY": 262
+  },
+  {
+    "name": "Jo Stance",
+    "tags": ["people", "dance"],
+    "assetId": "6f68790ee3eb9bdccf8749305186b0dd",
+    "bitmapResolution": 2,
+    "dataFormat": "png",
+    "md5ext": "6f68790ee3eb9bdccf8749305186b0dd.png",
+    "rotationCenterX": 94,
+    "rotationCenterY": 240
+  },
+  {
+    "name": "Jo Top L Cross",
+    "tags": ["people", "dance"],
+    "assetId": "2e2a6534d33883fdd2f8471a1adbebb7",
+    "bitmapResolution": 2,
+    "dataFormat": "png",
+    "md5ext": "2e2a6534d33883fdd2f8471a1adbebb7.png",
+    "rotationCenterX": 84,
+    "rotationCenterY": 268
+  },
+  {
+    "name": "Jo Top L Leg",
+    "tags": ["people", "dance"],
+    "assetId": "a12f40b18067bb31746f9cf461de88aa",
+    "bitmapResolution": 2,
+    "dataFormat": "png",
+    "md5ext": "a12f40b18067bb31746f9cf461de88aa.png",
+    "rotationCenterX": 208,
+    "rotationCenterY": 268
+  },
+  {
+    "name": "Nano-d",
+    "tags": ["fantasy", "drawing", "angry"],
+    "assetId": "a4e2034751fa650fd5fd69432c110104",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "a4e2034751fa650fd5fd69432c110104.svg",
+    "rotationCenterX": 61,
+    "rotationCenterY": 60
+  },
+  {
+    "name": "Referee-d",
+    "tags": ["sports", "soccer", "football", "alex eben meyer"],
+    "assetId": "1cd641a48499db84636d983916b62a83",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "1cd641a48499db84636d983916b62a83.svg",
+    "rotationCenterX": 50,
+    "rotationCenterY": 63
+  },
+  {
+    "name": "Reindeer",
+    "tags": ["animals", "mammals", "holiday"],
+    "assetId": "60993a025167e7886736109dca5d55e2",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "60993a025167e7886736109dca5d55e2.svg",
+    "rotationCenterX": 39,
+    "rotationCenterY": 70
+  },
+  {
+    "name": "Retro Robot A",
+    "tags": ["robot"],
+    "assetId": "35070c1078c4eec153ea2769516c922c",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "35070c1078c4eec153ea2769516c922c.svg",
+    "rotationCenterX": 55.04000000000008,
+    "rotationCenterY": 85.55
+  },
+  {
+    "name": "Watermelon-c",
+    "tags": ["food", "fruit", "summer", "seeds", "plants"],
+    "assetId": "677738282686d2dcce35d731c3ddc043",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "677738282686d2dcce35d731c3ddc043.svg",
+    "rotationCenterX": 21.5,
+    "rotationCenterY": 16
+  },
+  {
+    "name": "Winter Hat",
+    "tags": ["fashion", "winter", "hat"],
+    "assetId": "2672323e34d6dc82fda8fc3b057fa5aa",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "2672323e34d6dc82fda8fc3b057fa5aa.svg",
+    "rotationCenterX": 35,
+    "rotationCenterY": 39
+  },
+  {
+    "name": "Witch",
+    "tags": ["fantasy", "broom", "wart", "flying", "hat", "magic"],
+    "assetId": "cb88688822815fb14d59a45fcc239da8",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "cb88688822815fb14d59a45fcc239da8.svg",
+    "rotationCenterX": 74,
+    "rotationCenterY": 59
+  },
+  {
+    "name": "Witch-a",
+    "tags": ["fantasy", "people", "ipzy", "castle", "emotions", "magic"],
+    "assetId": "44cbaf358d2d8e66815e447c25a4b72e",
+    "bitmapResolution": 1,
+    "dataFormat": "svg",
+    "md5ext": "44cbaf358d2d8e66815e447c25a4b72e.svg",
+    "rotationCenterX": 65,
+    "rotationCenterY": 140
+  }
 ]

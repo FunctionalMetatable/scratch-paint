@@ -1,28 +1,28 @@
-import paper from "@scratch/paper";
-import PropTypes from "prop-types";
-import React from "react";
-import { connect } from "react-redux";
-import bindAll from "lodash.bindall";
-import Modes from "../lib/modes";
-import ColorStyleProptype from "../lib/color-style-proptype";
-import { MIXED } from "../helper/style-path";
+import paper from '@scratch/paper';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { connect } from 'react-redux';
+import bindAll from 'lodash.bindall';
+import Modes from '../lib/modes';
+import ColorStyleProptype from '../lib/color-style-proptype';
+import { MIXED } from '../helper/style-path';
 
-import { changeFillColor, DEFAULT_COLOR } from "../reducers/fill-style";
-import { changeMode } from "../reducers/modes";
+import { changeFillColor, DEFAULT_COLOR } from '../reducers/fill-style';
+import { changeMode } from '../reducers/modes';
 import {
     clearSelectedItems,
     setSelectedItems,
-} from "../reducers/selected-items";
-import { setCursor } from "../reducers/cursor";
+} from '../reducers/selected-items';
+import { setCursor } from '../reducers/cursor';
 
-import { clearSelection, getSelectedLeafItems } from "../helper/selection";
-import RectTool from "../helper/bit-tools/rect-tool";
-import RectModeComponent from "../components/bit-rect-mode/bit-rect-mode.jsx";
+import { clearSelection, getSelectedLeafItems } from '../helper/selection';
+import RectTool from '../helper/bit-tools/rect-tool';
+import RectModeComponent from '../components/bit-rect-mode/bit-rect-mode.jsx';
 
 class BitRectMode extends React.Component {
     constructor(props) {
         super(props);
-        bindAll(this, ["activateTool", "deactivateTool"]);
+        bindAll(this, ['activateTool', 'deactivateTool']);
     }
     componentDidMount() {
         if (this.props.isRectModeActive) {

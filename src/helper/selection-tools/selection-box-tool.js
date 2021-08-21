@@ -1,9 +1,9 @@
-import paper from "@scratch/paper";
-import { rectSelect } from "../guides";
-import { clearSelection, processRectangularSelection } from "../selection";
-import { getRaster } from "../layer";
-import { ART_BOARD_WIDTH, ART_BOARD_HEIGHT } from "../view";
-import { getHitBounds } from "../../helper/bitmap";
+import paper from '@scratch/paper';
+import { rectSelect } from '../guides';
+import { clearSelection, processRectangularSelection } from '../selection';
+import { getRaster } from '../layer';
+import { ART_BOARD_WIDTH, ART_BOARD_HEIGHT } from '../view';
+import { getHitBounds } from '../../helper/bitmap';
 
 /** Tool to handle drag selection. A dotted line box appears and everything enclosed is selected. */
 class SelectionBoxTool {
@@ -73,7 +73,7 @@ class SelectionBoxTool {
                 // Pull selected raster to active layer
                 const raster = getRaster().getSubRaster(rect);
                 raster.parent = paper.project.activeLayer;
-                raster.canvas.getContext("2d").imageSmoothingEnabled = false;
+                raster.canvas.getContext('2d').imageSmoothingEnabled = false;
                 raster.selected = true;
                 // Gather a bit of extra data so that we can avoid aliasing at edges
                 const expanded = getRaster().getSubRaster(rect.expand(4));

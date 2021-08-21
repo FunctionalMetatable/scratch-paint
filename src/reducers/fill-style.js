@@ -1,13 +1,13 @@
-import makeColorStyleReducer from "../lib/make-color-style-reducer";
-import paper from "@scratch/paper";
+import makeColorStyleReducer from '../lib/make-color-style-reducer';
+import paper from '@scratch/paper';
 
-const CHANGE_FILL_COLOR = "scratch-paint/fill-style/CHANGE_FILL_COLOR";
-const CHANGE_FILL_COLOR_2 = "scratch-paint/fill-style/CHANGE_FILL_COLOR_2";
+const CHANGE_FILL_COLOR = 'scratch-paint/fill-style/CHANGE_FILL_COLOR';
+const CHANGE_FILL_COLOR_2 = 'scratch-paint/fill-style/CHANGE_FILL_COLOR_2';
 const CHANGE_FILL_GRADIENT_TYPE =
-    "scratch-paint/fill-style/CHANGE_FILL_GRADIENT_TYPE";
-const CLEAR_FILL_GRADIENT = "scratch-paint/fill-style/CLEAR_FILL_GRADIENT";
+    'scratch-paint/fill-style/CHANGE_FILL_GRADIENT_TYPE';
+const CLEAR_FILL_GRADIENT = 'scratch-paint/fill-style/CLEAR_FILL_GRADIENT';
 const CHANGE_FILL_COLOR_INDEX =
-    "scratch-paint/fill-style/CHANGE_FILL_COLOR_INDEX";
+    'scratch-paint/fill-style/CHANGE_FILL_COLOR_INDEX';
 const DEFAULT_COLOR = new paper.Color({
     hue: 259,
     saturation: 0.6,
@@ -21,9 +21,9 @@ const reducer = makeColorStyleReducer({
     clearGradientAction: CLEAR_FILL_GRADIENT,
     changeIndexAction: CHANGE_FILL_COLOR_INDEX,
     defaultColor: DEFAULT_COLOR,
-    selectionPrimaryColorKey: "fillColor",
-    selectionSecondaryColorKey: "fillColor2",
-    selectionGradientTypeKey: "fillGradientType",
+    selectionPrimaryColorKey: 'fillColor',
+    selectionSecondaryColorKey: 'fillColor2',
+    selectionGradientTypeKey: 'fillGradientType',
 });
 
 // Action creators ==================================

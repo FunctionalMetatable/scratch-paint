@@ -1,13 +1,13 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
+import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
-import styles from "./swatches.css";
+import styles from './swatches.css';
 
-import eyeDropperIcon from "../color-picker/icons/eye-dropper.svg";
-import noFillIcon from "../color-button/no-fill.svg";
-import { getColorName, getColorObj } from "../../lib/colors";
-import ColorProptype from "../../lib/color-proptype";
+import eyeDropperIcon from '../color-picker/icons/eye-dropper.svg';
+import noFillIcon from '../color-button/no-fill.svg';
+import { getColorName, getColorObj } from '../../lib/colors';
+import ColorProptype from '../../lib/color-proptype';
 
 /*
  * The transparent icon, eyedropper icon, and the preset colors which can be clicked to set
@@ -44,7 +44,7 @@ const SwatchesComponent = (props) => {
         (props.colorIndex === 1 && props.color2 === null);
 
     return (
-        <div className={props.containerStyle || ""}>
+        <div className={props.containerStyle || ''}>
             <div className={styles.swatchRow}>
                 <div
                     className={classNames({

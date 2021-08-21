@@ -1,5 +1,5 @@
-import paper from "@scratch/paper";
-import { getItems } from "./selection";
+import paper from '@scratch/paper';
+import { getItems } from './selection';
 
 /**
  * @param {paper.Point} point1 point 1

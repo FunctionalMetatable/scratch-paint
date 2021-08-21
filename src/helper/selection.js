@@ -1,20 +1,20 @@
-import paper from "@scratch/paper";
-import Modes from "../lib/modes";
+import paper from '@scratch/paper';
+import Modes from '../lib/modes';
 
-import { getItemsGroup, isGroup } from "./group";
+import { getItemsGroup, isGroup } from './group';
 import {
     getRootItem,
     isCompoundPathItem,
     isBoundsItem,
     isPathItem,
     isPGTextItem,
-} from "./item";
+} from './item';
 import {
     getItemsCompoundPath,
     isCompoundPath,
     isCompoundPathChild,
-} from "./compound-path";
-import { sortItemsByZIndex } from "./math";
+} from './compound-path';
+import { sortItemsByZIndex } from './math';
 
 /**
  * Wrapper for paper.project.getItems that excludes our helper items

@@ -5,25 +5,25 @@ import undoReducer, {
     redo,
     clearUndoState,
     MAX_STACK_SIZE,
-} from "../../src/reducers/undo";
+} from '../../src/reducers/undo';
 
-test("initialState", () => {
+test('initialState', () => {
     let defaultState;
 
     expect(
-        undoReducer(defaultState /* state */, { type: "anything" } /* action */)
+        undoReducer(defaultState /* state */, { type: 'anything' } /* action */)
     ).toBeDefined();
     expect(
-        undoReducer(defaultState /* state */, { type: "anything" } /* action */)
+        undoReducer(defaultState /* state */, { type: 'anything' } /* action */)
             .pointer
     ).toEqual(-1);
     expect(
-        undoReducer(defaultState /* state */, { type: "anything" } /* action */)
+        undoReducer(defaultState /* state */, { type: 'anything' } /* action */)
             .stack
     ).toHaveLength(0);
 });
 
-test("snapshot", () => {
+test('snapshot', () => {
     let defaultState;
     const state1 = { state: 1 };
     const state2 = { state: 2 };
@@ -46,7 +46,7 @@ test("snapshot", () => {
     expect(reduxState.stack[1]).toEqual(state2);
 });
 
-test("invalidSnapshot", () => {
+test('invalidSnapshot', () => {
     let defaultState;
     const state1 = { state: 1 };
 
@@ -61,7 +61,7 @@ test("invalidSnapshot", () => {
     expect(reduxState).toEqual(newReduxState);
 });
 
-test("clearUndoState", () => {
+test('clearUndoState', () => {
     let defaultState;
     const state1 = { state: 1 };
     const state2 = { state: 2 };
@@ -81,7 +81,7 @@ test("clearUndoState", () => {
     expect(newReduxState.stack).toHaveLength(0);
 });
 
-test("cantUndo", () => {
+test('cantUndo', () => {
     let defaultState;
     const state1 = { state: 1 };
 
@@ -102,7 +102,7 @@ test("cantUndo", () => {
     expect(reduxState.stack).toHaveLength(1);
 });
 
-test("cantRedo", () => {
+test('cantRedo', () => {
     let defaultState;
     const state1 = { state: 1 };
 
@@ -118,7 +118,7 @@ test("cantRedo", () => {
     expect(reduxState.stack).toHaveLength(1);
 });
 
-test("undo", () => {
+test('undo', () => {
     let defaultState;
     const state1 = { state: 1 };
     const state2 = { state: 2 };
@@ -140,7 +140,7 @@ test("undo", () => {
     expect(reduxState.stack[1]).toEqual(state2);
 });
 
-test("redo", () => {
+test('redo', () => {
     let defaultState;
     const state1 = { state: 1 };
     const state2 = { state: 2 };
@@ -167,7 +167,7 @@ test("redo", () => {
     expect(reduxState.stack[1]).toEqual(reduxState.stack[1]);
 });
 
-test("undoSnapshotCantRedo", () => {
+test('undoSnapshotCantRedo', () => {
     let defaultState;
     const state1 = { state: 1 };
     const state2 = { state: 2 };
@@ -204,7 +204,7 @@ test("undoSnapshotCantRedo", () => {
     expect(newReduxState.stack[1]).toEqual(state3);
 });
 
-test("snapshotAtMaxStackSize", () => {
+test('snapshotAtMaxStackSize', () => {
     let defaultState;
     const getState = function (num) {
         return { state: num };
@@ -241,7 +241,7 @@ test("snapshotAtMaxStackSize", () => {
     ); // Newest added state is at end
 });
 
-test("undoRedoAtMaxStackSize", () => {
+test('undoRedoAtMaxStackSize', () => {
     let defaultState;
     const getState = function (num) {
         return { state: num };
@@ -269,7 +269,7 @@ test("undoRedoAtMaxStackSize", () => {
     expect(reduxState.stack[0].state).toEqual(1);
 });
 
-test("undoSnapshotAtMaxStackSize", () => {
+test('undoSnapshotAtMaxStackSize', () => {
     let defaultState;
     const getState = function (num) {
         return { state: num };

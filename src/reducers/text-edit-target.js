@@ -1,20 +1,20 @@
-import log from "../log/log";
+import log from '../log/log';
 
 const CHANGE_TEXT_EDIT_TARGET =
-    "scratch-paint/text-tool/CHANGE_TEXT_EDIT_TARGET";
+    'scratch-paint/text-tool/CHANGE_TEXT_EDIT_TARGET';
 const initialState = null;
 
 const reducer = function (state, action) {
-    if (typeof state === "undefined") state = initialState;
+    if (typeof state === 'undefined') state = initialState;
     switch (action.type) {
         case CHANGE_TEXT_EDIT_TARGET:
-            if (typeof action.textEditTargetId === "undefined") {
+            if (typeof action.textEditTargetId === 'undefined') {
                 log.warn(
                     `Text edit target should not be set to undefined. Use null.`
                 );
                 return state;
             } else if (
-                typeof action.textEditTargetId === "undefined" ||
+                typeof action.textEditTargetId === 'undefined' ||
                 isNaN(action.textEditTargetId)
             ) {
                 log.warn(

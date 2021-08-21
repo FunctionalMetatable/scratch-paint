@@ -1,10 +1,10 @@
-import paper from "@scratch/paper";
-import Modes from "../../lib/modes";
-import { clearSelection, getSelectedLeafItems } from "../selection";
-import BoundingBoxTool from "../selection-tools/bounding-box-tool";
-import NudgeTool from "../selection-tools/nudge-tool";
-import { hoverBounds } from "../guides";
-import { getRaster } from "../layer";
+import paper from '@scratch/paper';
+import Modes from '../../lib/modes';
+import { clearSelection, getSelectedLeafItems } from '../selection';
+import BoundingBoxTool from '../selection-tools/bounding-box-tool';
+import NudgeTool from '../selection-tools/nudge-tool';
+import { hoverBounds } from '../guides';
+import { getRaster } from '../layer';
 
 /**
  * Tool for adding text. Text elements have limited editability; they can't be reshaped,
@@ -15,10 +15,10 @@ class TextTool extends paper.Tool {
         return 2;
     }
     static get TEXT_EDIT_MODE() {
-        return "TEXT_EDIT_MODE";
+        return 'TEXT_EDIT_MODE';
     }
     static get SELECT_MODE() {
-        return "SELECT_MODE";
+        return 'SELECT_MODE';
     }
     /** Clicks registered within this amount of time are registered as double clicks */
     static get DOUBLE_CLICK_MILLIS() {
@@ -208,9 +208,9 @@ class TextTool extends paper.Tool {
             this.getTextEditHitOptions()
         );
         if (hitResults.length) {
-            document.body.style.cursor = "text";
+            document.body.style.cursor = 'text';
         } else {
-            document.body.style.cursor = "auto";
+            document.body.style.cursor = 'auto';
         }
         this.boundingBoxTool.onMouseMove(
             event,
@@ -277,7 +277,7 @@ class TextTool extends paper.Tool {
             // In no mode or select mode clicking away to begin text edit mode
             this.textBox = new paper.PointText({
                 point: event.point,
-                content: "",
+                content: '',
                 font: this.font,
                 fontSize: 40,
                 // TODO: style using gradient
@@ -325,7 +325,7 @@ class TextTool extends paper.Tool {
             // Ignore nudge if a text input field is focused
             return;
         }
-        if (this.mode === TextTool.TEXT_EDIT_MODE && event.key === "escape") {
+        if (this.mode === TextTool.TEXT_EDIT_MODE && event.key === 'escape') {
             this.endTextEdit();
         }
         if (this.mode === TextTool.SELECT_MODE) {
@@ -389,20 +389,20 @@ class TextTool extends paper.Tool {
         this.element.style.lineHeight =
             this.textBox.leading / this.textBox.fontSize;
 
-        this.element.style.display = "initial";
-        this.element.value = textBox.content ? textBox.content : "";
+        this.element.style.display = 'initial';
+        this.element.value = textBox.content ? textBox.content : '';
         this.calculateMatrix(paper.view.matrix);
 
         if (this.rtl) {
             // make both the textbox and the textarea element grow to the left
-            this.textBox.justification = "right";
+            this.textBox.justification = 'right';
         } else {
-            this.textBox.justification = "left";
+            this.textBox.justification = 'left';
         }
 
         this.element.focus({ preventScroll: true });
         this.eventListener = this.handleTextInput.bind(this);
-        this.element.addEventListener("input", this.eventListener);
+        this.element.addEventListener('input', this.eventListener);
         this.resizeGuide();
     }
     endTextEdit() {
@@ -412,7 +412,7 @@ class TextTool extends paper.Tool {
         this.mode = null;
 
         // Remove invisible textboxes
-        if (this.textBox && this.textBox.content.trim() === "") {
+        if (this.textBox && this.textBox.content.trim() === '') {
             this.textBox.remove();
             this.textBox = null;
         }
@@ -423,9 +423,9 @@ class TextTool extends paper.Tool {
             this.guide = null;
             this.setTextEditTarget();
         }
-        this.element.style.display = "none";
+        this.element.style.display = 'none';
         if (this.eventListener) {
-            this.element.removeEventListener("input", this.eventListener);
+            this.element.removeEventListener('input', this.eventListener);
             this.eventListener = null;
         }
         if (this.textBox && this.lastTypeEvent) {
@@ -458,7 +458,7 @@ class TextTool extends paper.Tool {
         this.onUpdateImage();
     }
     deactivateTool() {
-        if (this.textBox && this.textBox.content.trim() === "") {
+        if (this.textBox && this.textBox.content.trim() === '') {
             this.textBox.remove();
             this.textBox = null;
         }

@@ -1,31 +1,31 @@
-import bindAll from "lodash.bindall";
-import { connect } from "react-redux";
-import paper from "@scratch/paper";
-import ColorProptype from "../lib/color-proptype";
-import PropTypes from "prop-types";
-import React from "react";
+import bindAll from 'lodash.bindall';
+import { connect } from 'react-redux';
+import paper from '@scratch/paper';
+import ColorProptype from '../lib/color-proptype';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import { changeStrokeColorIndex } from "../reducers/stroke-style";
-import { changeFillColorIndex } from "../reducers/fill-style";
-import { clearSelectedItems } from "../reducers/selected-items";
-import GradientTypes from "../lib/gradient-types";
+import { changeStrokeColorIndex } from '../reducers/stroke-style';
+import { changeFillColorIndex } from '../reducers/fill-style';
+import { clearSelectedItems } from '../reducers/selected-items';
+import GradientTypes from '../lib/gradient-types';
 
-import ColorPickerComponent from "../components/color-picker/color-picker.jsx";
-import { colorsEqual } from "../helper/style-path";
-import Modes from "../lib/modes";
-import { getHsv } from "../lib/colors";
+import ColorPickerComponent from '../components/color-picker/color-picker.jsx';
+import { colorsEqual } from '../helper/style-path';
+import Modes from '../lib/modes';
+import { getHsv } from '../lib/colors';
 
 class ColorPicker extends React.Component {
     constructor(props) {
         super(props);
         bindAll(this, [
-            "handleChangeGradientTypeHorizontal",
-            "handleChangeGradientTypeRadial",
-            "handleChangeGradientTypeSolid",
-            "handleChangeGradientTypeVertical",
-            "handleHueChange",
-            "handleSaturationChange",
-            "handleBrightnessChange",
+            'handleChangeGradientTypeHorizontal',
+            'handleChangeGradientTypeRadial',
+            'handleChangeGradientTypeSolid',
+            'handleChangeGradientTypeVertical',
+            'handleHueChange',
+            'handleSaturationChange',
+            'handleBrightnessChange',
         ]);
 
         const color = props.colorIndex === 0 ? props.color : props.color2;

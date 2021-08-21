@@ -1,12 +1,12 @@
-import paper from "@scratch/paper";
-import Modes from "../../lib/modes";
+import paper from '@scratch/paper';
+import Modes from '../../lib/modes';
 
-import { getRaster } from "../layer";
-import { commitSelectionToBitmap } from "../bitmap";
+import { getRaster } from '../layer';
+import { commitSelectionToBitmap } from '../bitmap';
 
-import BoundingBoxTool from "../selection-tools/bounding-box-tool";
-import NudgeTool from "../selection-tools/nudge-tool";
-import SelectionBoxTool from "../selection-tools/selection-box-tool";
+import BoundingBoxTool from '../selection-tools/bounding-box-tool';
+import NudgeTool from '../selection-tools/nudge-tool';
+import SelectionBoxTool from '../selection-tools/selection-box-tool';
 
 /**
  * paper.Tool that handles select mode in bitmap. This is made up of 2 subtools.
@@ -106,8 +106,9 @@ class SelectTool extends paper.Tool {
             tolerance: SelectTool.TOLERANCE / paper.view.zoom,
             match: (hitResult) => {
                 // Don't match helper items, unless they are handles.
-                if (!hitResult.item.data || !hitResult.item.data.isHelperItem)
+                if (!hitResult.item.data || !hitResult.item.data.isHelperItem) {
                     return true;
+                }
                 return (
                     hitResult.item.data.isScaleHandle ||
                     hitResult.item.data.isRotHandle

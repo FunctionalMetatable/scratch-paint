@@ -1,31 +1,31 @@
-import paper from "@scratch/paper";
-import bindAll from "lodash.bindall";
-import PropTypes from "prop-types";
-import React from "react";
-import omit from "lodash.omit";
-import { connect } from "react-redux";
+import paper from '@scratch/paper';
+import bindAll from 'lodash.bindall';
+import PropTypes from 'prop-types';
+import React from 'react';
+import omit from 'lodash.omit';
+import { connect } from 'react-redux';
 
 import {
     clearSelection,
     getAllRootItems,
     getSelectedLeafItems,
     getSelectedRootItems,
-} from "../helper/selection";
-import { getTrimmedRaster } from "../helper/bitmap";
-import Formats, { isBitmap } from "../lib/format";
-import Modes from "../lib/modes";
+} from '../helper/selection';
+import { getTrimmedRaster } from '../helper/bitmap';
+import Formats, { isBitmap } from '../lib/format';
+import Modes from '../lib/modes';
 
 import {
     clearSelectedItems,
     setSelectedItems,
-} from "../reducers/selected-items";
-import { incrementPasteOffset, setClipboardItems } from "../reducers/clipboard";
+} from '../reducers/selected-items';
+import { incrementPasteOffset, setClipboardItems } from '../reducers/clipboard';
 
 const CopyPasteHOC = function (WrappedComponent) {
     class CopyPasteWrapper extends React.Component {
         constructor(props) {
             super(props);
-            bindAll(this, ["handleCopy", "handlePaste"]);
+            bindAll(this, ['handleCopy', 'handlePaste']);
         }
         handleCopy() {
             let selectedItems = [];
@@ -101,14 +101,14 @@ const CopyPasteHOC = function (WrappedComponent) {
         }
         render() {
             const componentProps = omit(this.props, [
-                "clearSelectedItems",
-                "clipboardItems",
-                "format",
-                "incrementPasteOffset",
-                "mode",
-                "pasteOffset",
-                "setClipboardItems",
-                "setSelectedItems",
+                'clearSelectedItems',
+                'clipboardItems',
+                'format',
+                'incrementPasteOffset',
+                'mode',
+                'pasteOffset',
+                'setClipboardItems',
+                'setSelectedItems',
             ]);
             return (
                 <WrappedComponent

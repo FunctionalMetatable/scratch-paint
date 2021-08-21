@@ -1,19 +1,19 @@
-import log from "../log/log";
+import log from '../log/log';
 
-const CHANGE_HOVERED = "scratch-paint/hover/CHANGE_HOVERED";
+const CHANGE_HOVERED = 'scratch-paint/hover/CHANGE_HOVERED';
 const initialState = null;
 
 const reducer = function (state, action) {
-    if (typeof state === "undefined") state = initialState;
+    if (typeof state === 'undefined') state = initialState;
     switch (action.type) {
         case CHANGE_HOVERED:
-            if (typeof action.hoveredItemId === "undefined") {
+            if (typeof action.hoveredItemId === 'undefined') {
                 log.warn(
                     `Hovered item should not be set to undefined. Use null.`
                 );
                 return state;
             } else if (
-                typeof action.hoveredItemId === "undefined" ||
+                typeof action.hoveredItemId === 'undefined' ||
                 isNaN(action.hoveredItemId)
             ) {
                 log.warn(

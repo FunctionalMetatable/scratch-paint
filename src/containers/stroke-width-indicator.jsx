@@ -1,30 +1,30 @@
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import React from "react";
-import bindAll from "lodash.bindall";
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import React from 'react';
+import bindAll from 'lodash.bindall';
 import {
     changeStrokeColor,
     changeStrokeColor2,
     changeStrokeGradientType,
     DEFAULT_COLOR,
-} from "../reducers/stroke-style";
-import { changeStrokeWidth } from "../reducers/stroke-width";
-import StrokeWidthIndicatorComponent from "../components/stroke-width-indicator.jsx";
-import { getSelectedLeafItems } from "../helper/selection";
+} from '../reducers/stroke-style';
+import { changeStrokeWidth } from '../reducers/stroke-width';
+import StrokeWidthIndicatorComponent from '../components/stroke-width-indicator.jsx';
+import { getSelectedLeafItems } from '../helper/selection';
 import {
     applyColorToSelection,
     applyStrokeWidthToSelection,
     getColorsFromSelection,
     MIXED,
-} from "../helper/style-path";
-import GradientTypes from "../lib/gradient-types";
-import Modes from "../lib/modes";
-import Formats, { isBitmap } from "../lib/format";
+} from '../helper/style-path';
+import GradientTypes from '../lib/gradient-types';
+import Modes from '../lib/modes';
+import Formats, { isBitmap } from '../lib/format';
 
 class StrokeWidthIndicator extends React.Component {
     constructor(props) {
         super(props);
-        bindAll(this, ["handleChangeStrokeWidth"]);
+        bindAll(this, ['handleChangeStrokeWidth']);
     }
     handleChangeStrokeWidth(newWidth) {
         let changed = applyStrokeWidthToSelection(

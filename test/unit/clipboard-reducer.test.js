@@ -3,30 +3,30 @@ import clipboardReducer, {
     clearPasteOffset,
     incrementPasteOffset,
     setClipboardItems,
-} from "../../src/reducers/clipboard";
+} from '../../src/reducers/clipboard';
 
-test("initialState", () => {
+test('initialState', () => {
     let defaultState;
 
     expect(
         clipboardReducer(
             defaultState /* state */,
-            { type: "anything" } /* action */
+            { type: 'anything' } /* action */
         ).items
     ).toBeDefined();
     expect(
         clipboardReducer(
             defaultState /* state */,
-            { type: "anything" } /* action */
+            { type: 'anything' } /* action */
         ).pasteOffset
     ).toBeDefined();
 });
 
-test("setClipboardItems", () => {
+test('setClipboardItems', () => {
     let defaultState;
 
-    const newSelected1 = ["selected1", "selected2"];
-    const newSelected2 = ["selected1", "selected3"];
+    const newSelected1 = ['selected1', 'selected2'];
+    const newSelected2 = ['selected1', 'selected3'];
     expect(
         clipboardReducer(
             defaultState /* state */,
@@ -53,9 +53,9 @@ test("setClipboardItems", () => {
     ).toEqual(1);
 });
 
-test("incrementPasteOffset", () => {
+test('incrementPasteOffset', () => {
     const origState = {
-        items: ["selected1", "selected2"],
+        items: ['selected1', 'selected2'],
         pasteOffset: 1,
     };
 
@@ -70,9 +70,9 @@ test("incrementPasteOffset", () => {
     ).toEqual(origState.items);
 });
 
-test("clearPasteOffset", () => {
+test('clearPasteOffset', () => {
     const origState = {
-        items: ["selected1", "selected2"],
+        items: ['selected1', 'selected2'],
         pasteOffset: 1,
     };
 
@@ -85,9 +85,9 @@ test("clearPasteOffset", () => {
     ).toEqual(origState.items);
 });
 
-test("invalidSetClipboardItems", () => {
+test('invalidSetClipboardItems', () => {
     const origState = {
-        items: ["selected1", "selected2"],
+        items: ['selected1', 'selected2'],
         pasteOffset: 1,
     };
     const nothingSelected = [];
@@ -101,7 +101,7 @@ test("invalidSetClipboardItems", () => {
     expect(
         clipboardReducer(
             origState /* state */,
-            setClipboardItems("notAnArray") /* action */
+            setClipboardItems('notAnArray') /* action */
         )
     ).toBe(origState);
     expect(

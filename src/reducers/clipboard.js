@@ -1,15 +1,15 @@
-import log from "../log/log";
+import log from '../log/log';
 
-const SET = "scratch-paint/clipboard/SET";
-const INCREMENT_PASTE_OFFSET = "scratch-paint/clipboard/INCREMENT_PASTE_OFFSET";
-const CLEAR_PASTE_OFFSET = "scratch-paint/clipboard/CLEAR_PASTE_OFFSET";
+const SET = 'scratch-paint/clipboard/SET';
+const INCREMENT_PASTE_OFFSET = 'scratch-paint/clipboard/INCREMENT_PASTE_OFFSET';
+const CLEAR_PASTE_OFFSET = 'scratch-paint/clipboard/CLEAR_PASTE_OFFSET';
 const initialState = {
     items: [],
     pasteOffset: 0,
 };
 
 const reducer = function (state, action) {
-    if (typeof state === "undefined") state = initialState;
+    if (typeof state === 'undefined') state = initialState;
     switch (action.type) {
         case SET:
             if (

@@ -1,25 +1,25 @@
-import paper from "@scratch/paper";
-import PropTypes from "prop-types";
-import log from "../log/log";
-import bindAll from "lodash.bindall";
-import React from "react";
-import omit from "lodash.omit";
-import { connect } from "react-redux";
+import paper from '@scratch/paper';
+import PropTypes from 'prop-types';
+import log from '../log/log';
+import bindAll from 'lodash.bindall';
+import React from 'react';
+import omit from 'lodash.omit';
+import { connect } from 'react-redux';
 
-import { undoSnapshot } from "../reducers/undo";
-import { setSelectedItems } from "../reducers/selected-items";
-import { updateViewBounds } from "../reducers/view-bounds";
+import { undoSnapshot } from '../reducers/undo';
+import { setSelectedItems } from '../reducers/selected-items';
+import { updateViewBounds } from '../reducers/view-bounds';
 
-import { getSelectedLeafItems } from "../helper/selection";
-import { getRaster, hideGuideLayers, showGuideLayers } from "../helper/layer";
+import { getSelectedLeafItems } from '../helper/selection';
+import { getRaster, hideGuideLayers, showGuideLayers } from '../helper/layer';
 import {
     commitRectToBitmap,
     commitOvalToBitmap,
     commitSelectionToBitmap,
     getHitBounds,
-} from "../helper/bitmap";
-import { performSnapshot } from "../helper/undo";
-import { scaleWithStrokes } from "../helper/math";
+} from '../helper/bitmap';
+import { performSnapshot } from '../helper/undo';
+import { scaleWithStrokes } from '../helper/math';
 
 import {
     ART_BOARD_WIDTH,
@@ -27,19 +27,19 @@ import {
     SVG_ART_BOARD_WIDTH,
     SVG_ART_BOARD_HEIGHT,
     setWorkspaceBounds,
-} from "../helper/view";
+} from '../helper/view';
 
-import Modes, { BitmapModes } from "../lib/modes";
-import Formats, { isBitmap, isVector } from "../lib/format";
+import Modes, { BitmapModes } from '../lib/modes';
+import Formats, { isBitmap, isVector } from '../lib/format';
 
 const UpdateImageHOC = function (WrappedComponent) {
     class UpdateImageWrapper extends React.Component {
         constructor(props) {
             super(props);
             bindAll(this, [
-                "handleUpdateImage",
-                "handleUpdateBitmap",
-                "handleUpdateVector",
+                'handleUpdateImage',
+                'handleUpdateBitmap',
+                'handleUpdateVector',
             ]);
         }
         /**
@@ -72,7 +72,7 @@ const UpdateImageHOC = function (WrappedComponent) {
                 // However, this may happen if the user is rapidly undoing/redoing. In this case it's safe
                 // to skip the update.
                 log.warn(
-                    "Bitmap layer should be loaded before calling updateImage."
+                    'Bitmap layer should be loaded before calling updateImage.'
                 );
                 return;
             }
@@ -95,19 +95,19 @@ const UpdateImageHOC = function (WrappedComponent) {
                         // This may get logged when rapidly undoing/redoing or changing costumes,
                         // in which case the warning is not relevant.
                         log.warn(
-                            "Bitmap layer should be loaded before calling updateImage."
+                            'Bitmap layer should be loaded before calling updateImage.'
                         );
                         return;
                     }
                     commitSelectionToBitmap(item, plasteredRaster);
                 } else if (
                     item instanceof paper.Shape &&
-                    item.type === "rectangle"
+                    item.type === 'rectangle'
                 ) {
                     commitRectToBitmap(item, plasteredRaster);
                 } else if (
                     item instanceof paper.Shape &&
-                    item.type === "ellipse"
+                    item.type === 'ellipse'
                 ) {
                     commitOvalToBitmap(item, plasteredRaster);
                 } else if (item instanceof paper.PointText) {
@@ -181,7 +181,7 @@ const UpdateImageHOC = function (WrappedComponent) {
                 true /* isVector */,
                 paper.project.exportSVG({
                     asString: true,
-                    bounds: "content",
+                    bounds: 'content',
                     matrix: new paper.Matrix().translate(-bounds.x, -bounds.y),
                 }),
                 centerX,
@@ -204,9 +204,9 @@ const UpdateImageHOC = function (WrappedComponent) {
         }
         render() {
             const componentProps = omit(this.props, [
-                "format",
-                "onUpdateImage",
-                "undoSnapshot",
+                'format',
+                'onUpdateImage',
+                'undoSnapshot',
             ]);
             return (
                 <WrappedComponent

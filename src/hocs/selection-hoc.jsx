@@ -1,15 +1,15 @@
-import paper from "@scratch/paper";
+import paper from '@scratch/paper';
 
-import PropTypes from "prop-types";
-import React from "react";
-import { connect } from "react-redux";
-import bindAll from "lodash.bindall";
+import PropTypes from 'prop-types';
+import React from 'react';
+import { connect } from 'react-redux';
+import bindAll from 'lodash.bindall';
 
 const SelectionHOC = function (WrappedComponent) {
     class SelectionComponent extends React.Component {
         constructor(props) {
             super(props);
-            bindAll(this, ["removeItemById"]);
+            bindAll(this, ['removeItemById']);
         }
         componentDidUpdate(prevProps) {
             // Hovered item has changed

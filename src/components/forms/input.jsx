@@ -6,11 +6,11 @@ See https://github.com/LLK/scratch-paint/issues/13 */
 Edited to add range prop
 */
 
-import PropTypes from "prop-types";
-import React from "react";
-import classNames from "classnames";
+import PropTypes from 'prop-types';
+import React from 'react';
+import classNames from 'classnames';
 
-import styles from "./input.css";
+import styles from './input.css';
 
 const Input = (props) => {
     const { small, range, ...componentProps } = props;

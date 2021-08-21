@@ -1,113 +1,113 @@
-import classNames from "classnames";
-import { connect } from "react-redux";
-import PropTypes from "prop-types";
-import React from "react";
+import classNames from 'classnames';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import { changeBrushSize } from "../../reducers/brush-mode";
-import { changeBrushSize as changeEraserSize } from "../../reducers/eraser-mode";
-import { changeBitBrushSize } from "../../reducers/bit-brush-size";
-import { changeBitEraserSize } from "../../reducers/bit-eraser-size";
-import { setShapesFilled } from "../../reducers/fill-bitmap-shapes";
+import { changeBrushSize } from '../../reducers/brush-mode';
+import { changeBrushSize as changeEraserSize } from '../../reducers/eraser-mode';
+import { changeBitBrushSize } from '../../reducers/bit-brush-size';
+import { changeBitEraserSize } from '../../reducers/bit-eraser-size';
+import { setShapesFilled } from '../../reducers/fill-bitmap-shapes';
 
-import FontDropdown from "../../containers/font-dropdown.jsx";
-import LiveInputHOC from "../forms/live-input-hoc.jsx";
-import Label from "../forms/label.jsx";
-import { defineMessages, injectIntl, intlShape } from "react-intl";
-import Input from "../forms/input.jsx";
-import InputGroup from "../input-group/input-group.jsx";
-import LabeledIconButton from "../labeled-icon-button/labeled-icon-button.jsx";
-import Modes from "../../lib/modes";
-import Formats, { isBitmap, isVector } from "../../lib/format";
-import { hideLabel } from "../../lib/hide-label";
-import styles from "./mode-tools.css";
+import FontDropdown from '../../containers/font-dropdown.jsx';
+import LiveInputHOC from '../forms/live-input-hoc.jsx';
+import Label from '../forms/label.jsx';
+import { defineMessages, injectIntl, intlShape } from 'react-intl';
+import Input from '../forms/input.jsx';
+import InputGroup from '../input-group/input-group.jsx';
+import LabeledIconButton from '../labeled-icon-button/labeled-icon-button.jsx';
+import Modes from '../../lib/modes';
+import Formats, { isBitmap, isVector } from '../../lib/format';
+import { hideLabel } from '../../lib/hide-label';
+import styles from './mode-tools.css';
 
-import copyIcon from "./icons/copy.svg";
-import pasteIcon from "./icons/paste.svg";
-import deleteIcon from "./icons/delete.svg";
+import copyIcon from './icons/copy.svg';
+import pasteIcon from './icons/paste.svg';
+import deleteIcon from './icons/delete.svg';
 
-import bitBrushIcon from "../bit-brush-mode/brush.svg";
-import bitEraserIcon from "../bit-eraser-mode/eraser.svg";
-import bitLineIcon from "../bit-line-mode/line.svg";
-import brushIcon from "../brush-mode/brush.svg";
-import curvedPointIcon from "./icons/curved-point.svg";
-import eraserIcon from "../eraser-mode/eraser.svg";
-import flipHorizontalIcon from "./icons/flip-horizontal.svg";
-import flipVerticalIcon from "./icons/flip-vertical.svg";
-import straightPointIcon from "./icons/straight-point.svg";
-import bitOvalIcon from "../bit-oval-mode/oval.svg";
-import bitRectIcon from "../bit-rect-mode/rectangle.svg";
-import bitOvalOutlinedIcon from "../bit-oval-mode/oval-outlined.svg";
-import bitRectOutlinedIcon from "../bit-rect-mode/rectangle-outlined.svg";
+import bitBrushIcon from '../bit-brush-mode/brush.svg';
+import bitEraserIcon from '../bit-eraser-mode/eraser.svg';
+import bitLineIcon from '../bit-line-mode/line.svg';
+import brushIcon from '../brush-mode/brush.svg';
+import curvedPointIcon from './icons/curved-point.svg';
+import eraserIcon from '../eraser-mode/eraser.svg';
+import flipHorizontalIcon from './icons/flip-horizontal.svg';
+import flipVerticalIcon from './icons/flip-vertical.svg';
+import straightPointIcon from './icons/straight-point.svg';
+import bitOvalIcon from '../bit-oval-mode/oval.svg';
+import bitRectIcon from '../bit-rect-mode/rectangle.svg';
+import bitOvalOutlinedIcon from '../bit-oval-mode/oval-outlined.svg';
+import bitRectOutlinedIcon from '../bit-rect-mode/rectangle-outlined.svg';
 
-import { MAX_STROKE_WIDTH } from "../../reducers/stroke-width";
+import { MAX_STROKE_WIDTH } from '../../reducers/stroke-width';
 
 const LiveInput = LiveInputHOC(Input);
 const ModeToolsComponent = (props) => {
     const messages = defineMessages({
         brushSize: {
-            defaultMessage: "Size",
-            description: "Label for the brush size input",
-            id: "paint.modeTools.brushSize",
+            defaultMessage: 'Size',
+            description: 'Label for the brush size input',
+            id: 'paint.modeTools.brushSize',
         },
         eraserSize: {
-            defaultMessage: "Eraser size",
-            description: "Label for the eraser size input",
-            id: "paint.modeTools.eraserSize",
+            defaultMessage: 'Eraser size',
+            description: 'Label for the eraser size input',
+            id: 'paint.modeTools.eraserSize',
         },
         copy: {
-            defaultMessage: "Copy",
-            description: "Label for the copy button",
-            id: "paint.modeTools.copy",
+            defaultMessage: 'Copy',
+            description: 'Label for the copy button',
+            id: 'paint.modeTools.copy',
         },
         paste: {
-            defaultMessage: "Paste",
-            description: "Label for the paste button",
-            id: "paint.modeTools.paste",
+            defaultMessage: 'Paste',
+            description: 'Label for the paste button',
+            id: 'paint.modeTools.paste',
         },
         delete: {
-            defaultMessage: "Delete",
-            description: "Label for the delete button",
-            id: "paint.modeTools.delete",
+            defaultMessage: 'Delete',
+            description: 'Label for the delete button',
+            id: 'paint.modeTools.delete',
         },
         curved: {
-            defaultMessage: "Curved",
+            defaultMessage: 'Curved',
             description:
-                "Label for the button that converts selected points to curves",
-            id: "paint.modeTools.curved",
+                'Label for the button that converts selected points to curves',
+            id: 'paint.modeTools.curved',
         },
         pointed: {
-            defaultMessage: "Pointed",
+            defaultMessage: 'Pointed',
             description:
-                "Label for the button that converts selected points to sharp points",
-            id: "paint.modeTools.pointed",
+                'Label for the button that converts selected points to sharp points',
+            id: 'paint.modeTools.pointed',
         },
         thickness: {
-            defaultMessage: "Thickness",
+            defaultMessage: 'Thickness',
             description:
-                "Label for the number input to choose the line thickness",
-            id: "paint.modeTools.thickness",
+                'Label for the number input to choose the line thickness',
+            id: 'paint.modeTools.thickness',
         },
         flipHorizontal: {
-            defaultMessage: "Flip Horizontal",
-            description: "Label for the button to flip the image horizontally",
-            id: "paint.modeTools.flipHorizontal",
+            defaultMessage: 'Flip Horizontal',
+            description: 'Label for the button to flip the image horizontally',
+            id: 'paint.modeTools.flipHorizontal',
         },
         flipVertical: {
-            defaultMessage: "Flip Vertical",
-            description: "Label for the button to flip the image vertically",
-            id: "paint.modeTools.flipVertical",
+            defaultMessage: 'Flip Vertical',
+            description: 'Label for the button to flip the image vertically',
+            id: 'paint.modeTools.flipVertical',
         },
         filled: {
-            defaultMessage: "Filled",
+            defaultMessage: 'Filled',
             description:
-                "Label for the button that sets the bitmap rectangle/oval mode to draw outlines",
-            id: "paint.modeTools.filled",
+                'Label for the button that sets the bitmap rectangle/oval mode to draw outlines',
+            id: 'paint.modeTools.filled',
         },
         outlined: {
-            defaultMessage: "Outlined",
+            defaultMessage: 'Outlined',
             description:
-                "Label for the button that sets the bitmap rectangle/oval mode to draw filled-in shapes",
-            id: "paint.modeTools.outlined",
+                'Label for the button that sets the bitmap rectangle/oval mode to draw filled-in shapes',
+            id: 'paint.modeTools.outlined',
         },
     });
 
@@ -266,7 +266,7 @@ const ModeToolsComponent = (props) => {
                         className={classNames(styles.modLabeledIconHeight)}
                     >
                         <LabeledIconButton
-                            hideLabel={props.intl.locale !== "en"}
+                            hideLabel={props.intl.locale !== 'en'}
                             imgSrc={flipHorizontalIcon}
                             title={props.intl.formatMessage(
                                 messages.flipHorizontal
@@ -274,7 +274,7 @@ const ModeToolsComponent = (props) => {
                             onClick={props.onFlipHorizontal}
                         />
                         <LabeledIconButton
-                            hideLabel={props.intl.locale !== "en"}
+                            hideLabel={props.intl.locale !== 'en'}
                             imgSrc={flipVerticalIcon}
                             title={props.intl.formatMessage(
                                 messages.flipVertical

@@ -1,17 +1,17 @@
-import paper from "@scratch/paper";
-import Modes, { BitmapModes } from "../../lib/modes";
-import { isGroup } from "../group";
-import { isCompoundPathItem, getRootItem } from "../item";
-import { checkPointsClose, snapDeltaToAngle } from "../math";
-import { getActionBounds, CENTER } from "../view";
+import paper from '@scratch/paper';
+import Modes, { BitmapModes } from '../../lib/modes';
+import { isGroup } from '../group';
+import { isCompoundPathItem, getRootItem } from '../item';
+import { checkPointsClose, snapDeltaToAngle } from '../math';
+import { getActionBounds, CENTER } from '../view';
 import {
     clearSelection,
     cloneSelection,
     getSelectedLeafItems,
     getSelectedRootItems,
     setItemSelection,
-} from "../selection";
-import { getDragCrosshairLayer, CROSSHAIR_FULL_OPACITY } from "../layer";
+} from '../selection';
+import { getDragCrosshairLayer, CROSSHAIR_FULL_OPACITY } from '../layer';
 
 /** Snap to align selection center to rotation center within this distance */
 const SNAPPING_THRESHOLD = 4;
@@ -94,8 +94,9 @@ class MoveTool {
             }
             this._select(item, true, hitProperties.subselect);
         }
-        if (hitProperties.clone)
+        if (hitProperties.clone) {
             cloneSelection(hitProperties.subselect, this.onUpdateImage);
+        }
 
         this.selectedItems =
             this.mode === Modes.RESHAPE

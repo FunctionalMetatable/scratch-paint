@@ -1,30 +1,30 @@
-import React from "react";
-import PropTypes from "prop-types";
+import React from 'react';
+import PropTypes from 'prop-types';
 import {
     defineMessages,
     FormattedMessage,
     injectIntl,
     intlShape,
-} from "react-intl";
+} from 'react-intl';
 
-import classNames from "classnames";
+import classNames from 'classnames';
 
-import Slider, { CONTAINER_WIDTH, HANDLE_WIDTH } from "../forms/slider.jsx";
-import LabeledIconButton from "../labeled-icon-button/labeled-icon-button.jsx";
-import styles from "./color-picker.css";
-import swatchStyles from "../swatches/swatches.css";
-import GradientTypes from "../../lib/gradient-types";
-import Swatches from "../../containers/swatches.jsx";
-import { MIXED } from "../../helper/style-path";
+import Slider, { CONTAINER_WIDTH, HANDLE_WIDTH } from '../forms/slider.jsx';
+import LabeledIconButton from '../labeled-icon-button/labeled-icon-button.jsx';
+import styles from './color-picker.css';
+import swatchStyles from '../swatches/swatches.css';
+import GradientTypes from '../../lib/gradient-types';
+import Swatches from '../../containers/swatches.jsx';
+import { MIXED } from '../../helper/style-path';
 
-import noFillIcon from "../color-button/no-fill.svg";
-import mixedFillIcon from "../color-button/mixed-fill.svg";
-import fillHorzGradientIcon from "./icons/fill-horz-gradient-enabled.svg";
-import fillRadialIcon from "./icons/fill-radial-enabled.svg";
-import fillSolidIcon from "./icons/fill-solid-enabled.svg";
-import fillVertGradientIcon from "./icons/fill-vert-gradient-enabled.svg";
-import swapIcon from "./icons/swap.svg";
-import ColorProptype from "../../lib/color-proptype";
+import noFillIcon from '../color-button/no-fill.svg';
+import mixedFillIcon from '../color-button/mixed-fill.svg';
+import fillHorzGradientIcon from './icons/fill-horz-gradient-enabled.svg';
+import fillRadialIcon from './icons/fill-radial-enabled.svg';
+import fillSolidIcon from './icons/fill-solid-enabled.svg';
+import fillVertGradientIcon from './icons/fill-vert-gradient-enabled.svg';
+import swapIcon from './icons/swap.svg';
+import ColorProptype from '../../lib/color-proptype';
 
 /**
  * Converts the color picker's internal color representation (HSV 0-100) into a CSS color string.
@@ -44,9 +44,9 @@ const hsvToCssString = (h, s, v) => {
 
 const messages = defineMessages({
     swap: {
-        defaultMessage: "Swap",
-        description: "Label for button that swaps the two colors in a gradient",
-        id: "paint.colorPicker.swap",
+        defaultMessage: 'Swap',
+        description: 'Label for button that swaps the two colors in a gradient',
+        id: 'paint.colorPicker.swap',
     },
 });
 
@@ -57,7 +57,7 @@ class ColorPickerComponent extends React.Component {
         // color stops depending on the slider.
         for (let n = 100; n >= 0; n -= 10) {
             switch (channel) {
-                case "hue":
+                case 'hue':
                     stops.push(
                         hsvToCssString(
                             n,
@@ -66,12 +66,12 @@ class ColorPickerComponent extends React.Component {
                         )
                     );
                     break;
-                case "saturation":
+                case 'saturation':
                     stops.push(
                         hsvToCssString(this.props.hue, n, this.props.brightness)
                     );
                     break;
-                case "brightness":
+                case 'brightness':
                     stops.push(
                         hsvToCssString(this.props.hue, this.props.saturation, n)
                     );
@@ -94,13 +94,13 @@ class ColorPickerComponent extends React.Component {
             CONTAINER_WIDTH - halfHandleWidth
         }px 100%`;
 
-        return `linear-gradient(to left, ${stops.join(",")})`;
+        return `linear-gradient(to left, ${stops.join(',')})`;
     }
     render() {
         return (
             <div
                 className={styles.colorPickerContainer}
-                dir={this.props.rtl ? "rtl" : "ltr"}
+                dir={this.props.rtl ? 'rtl' : 'ltr'}
             >
                 {this.props.shouldShowGradientTools ? (
                     <div>
@@ -182,7 +182,7 @@ class ColorPickerComponent extends React.Component {
                                             backgroundColor:
                                                 this.props.color === null ||
                                                 this.props.color === MIXED
-                                                    ? "white"
+                                                    ? 'white'
                                                     : this.props.color.toCSS(),
                                         }}
                                         onClick={this.props.onSelectColor}
@@ -224,7 +224,7 @@ class ColorPickerComponent extends React.Component {
                                             backgroundColor:
                                                 this.props.color2 === null ||
                                                 this.props.color2 === MIXED
-                                                    ? "white"
+                                                    ? 'white'
                                                     : this.props.color2.toCSS(),
                                         }}
                                         onClick={this.props.onSelectColor2}
@@ -272,7 +272,7 @@ class ColorPickerComponent extends React.Component {
                     </div>
                     <div className={styles.rowSlider}>
                         <Slider
-                            background={this._makeBackground("hue")}
+                            background={this._makeBackground('hue')}
                             value={this.props.hue}
                             onChange={this.props.onHueChange}
                         />
@@ -293,7 +293,7 @@ class ColorPickerComponent extends React.Component {
                     </div>
                     <div className={styles.rowSlider}>
                         <Slider
-                            background={this._makeBackground("saturation")}
+                            background={this._makeBackground('saturation')}
                             value={this.props.saturation}
                             onChange={this.props.onSaturationChange}
                         />
@@ -314,7 +314,7 @@ class ColorPickerComponent extends React.Component {
                     </div>
                     <div className={styles.rowSlider}>
                         <Slider
-                            background={this._makeBackground("brightness")}
+                            background={this._makeBackground('brightness')}
                             value={this.props.brightness}
                             onChange={this.props.onBrightnessChange}
                         />

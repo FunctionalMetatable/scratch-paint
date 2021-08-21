@@ -1,15 +1,15 @@
-import paper from "@scratch/paper";
-import log from "../log/log";
+import paper from '@scratch/paper';
+import log from '../log/log';
 
-const SAVE_ZOOM_LEVEL = "scratch-paint/zoom-levels/SAVE_ZOOM_LEVEL";
-const SET_ZOOM_LEVEL_ID = "scratch-paint/zoom-levels/SET_ZOOM_LEVEL_ID";
+const SAVE_ZOOM_LEVEL = 'scratch-paint/zoom-levels/SAVE_ZOOM_LEVEL';
+const SET_ZOOM_LEVEL_ID = 'scratch-paint/zoom-levels/SET_ZOOM_LEVEL_ID';
 const initialState = {};
 
 const reducer = function (state, action) {
-    if (typeof state === "undefined") state = initialState;
+    if (typeof state === 'undefined') state = initialState;
     switch (action.type) {
         case SET_ZOOM_LEVEL_ID:
-            if (action.zoomLevelId === "currentZoomLevelId") {
+            if (action.zoomLevelId === 'currentZoomLevelId') {
                 log.warn(
                     `currentZoomLevelId is an invalid string for zoomLevel`
                 );

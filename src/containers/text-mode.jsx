@@ -1,37 +1,37 @@
-import paper from "@scratch/paper";
-import PropTypes from "prop-types";
-import React from "react";
-import { connect } from "react-redux";
-import bindAll from "lodash.bindall";
-import Fonts from "../lib/fonts";
-import Modes from "../lib/modes";
-import ColorStyleProptype from "../lib/color-style-proptype";
-import { MIXED } from "../helper/style-path";
+import paper from '@scratch/paper';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { connect } from 'react-redux';
+import bindAll from 'lodash.bindall';
+import Fonts from '../lib/fonts';
+import Modes from '../lib/modes';
+import ColorStyleProptype from '../lib/color-style-proptype';
+import { MIXED } from '../helper/style-path';
 
-import { changeFont } from "../reducers/font";
+import { changeFont } from '../reducers/font';
 import {
     changeFillColor,
     clearFillGradient,
     DEFAULT_COLOR,
-} from "../reducers/fill-style";
-import { changeStrokeColor } from "../reducers/stroke-style";
-import { changeMode } from "../reducers/modes";
-import { setTextEditTarget } from "../reducers/text-edit-target";
+} from '../reducers/fill-style';
+import { changeStrokeColor } from '../reducers/stroke-style';
+import { changeMode } from '../reducers/modes';
+import { setTextEditTarget } from '../reducers/text-edit-target';
 import {
     clearSelectedItems,
     setSelectedItems,
-} from "../reducers/selected-items";
-import { setCursor } from "../reducers/cursor";
+} from '../reducers/selected-items';
+import { setCursor } from '../reducers/cursor';
 
-import { clearSelection, getSelectedLeafItems } from "../helper/selection";
-import TextTool from "../helper/tools/text-tool";
-import TextModeComponent from "../components/text-mode/text-mode.jsx";
-import BitTextModeComponent from "../components/bit-text-mode/bit-text-mode.jsx";
+import { clearSelection, getSelectedLeafItems } from '../helper/selection';
+import TextTool from '../helper/tools/text-tool';
+import TextModeComponent from '../components/text-mode/text-mode.jsx';
+import BitTextModeComponent from '../components/bit-text-mode/bit-text-mode.jsx';
 
 class TextMode extends React.Component {
     constructor(props) {
         super(props);
-        bindAll(this, ["activateTool", "deactivateTool"]);
+        bindAll(this, ['activateTool', 'deactivateTool']);
     }
     componentDidMount() {
         if (this.props.isTextModeActive) {

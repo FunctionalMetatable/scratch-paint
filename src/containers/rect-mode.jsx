@@ -1,37 +1,37 @@
-import paper from "@scratch/paper";
-import PropTypes from "prop-types";
-import React from "react";
-import { connect } from "react-redux";
-import bindAll from "lodash.bindall";
-import Modes from "../lib/modes";
-import { MIXED } from "../helper/style-path";
-import ColorStyleProptype from "../lib/color-style-proptype";
-import GradientTypes from "../lib/gradient-types";
+import paper from '@scratch/paper';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { connect } from 'react-redux';
+import bindAll from 'lodash.bindall';
+import Modes from '../lib/modes';
+import { MIXED } from '../helper/style-path';
+import ColorStyleProptype from '../lib/color-style-proptype';
+import GradientTypes from '../lib/gradient-types';
 
 import {
     changeFillColor,
     clearFillGradient,
     DEFAULT_COLOR,
-} from "../reducers/fill-style";
+} from '../reducers/fill-style';
 import {
     changeStrokeColor,
     clearStrokeGradient,
-} from "../reducers/stroke-style";
-import { changeMode } from "../reducers/modes";
+} from '../reducers/stroke-style';
+import { changeMode } from '../reducers/modes';
 import {
     clearSelectedItems,
     setSelectedItems,
-} from "../reducers/selected-items";
-import { setCursor } from "../reducers/cursor";
+} from '../reducers/selected-items';
+import { setCursor } from '../reducers/cursor';
 
-import { clearSelection, getSelectedLeafItems } from "../helper/selection";
-import RectTool from "../helper/tools/rect-tool";
-import RectModeComponent from "../components/rect-mode/rect-mode.jsx";
+import { clearSelection, getSelectedLeafItems } from '../helper/selection';
+import RectTool from '../helper/tools/rect-tool';
+import RectModeComponent from '../components/rect-mode/rect-mode.jsx';
 
 class RectMode extends React.Component {
     constructor(props) {
         super(props);
-        bindAll(this, ["activateTool", "deactivateTool", "validateColorState"]);
+        bindAll(this, ['activateTool', 'deactivateTool', 'validateColorState']);
     }
     componentDidMount() {
         if (this.props.isRectModeActive) {

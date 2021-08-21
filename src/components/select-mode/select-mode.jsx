@@ -1,9 +1,9 @@
-import React from "react";
-import PropTypes from "prop-types";
-import messages from "../../lib/messages.js";
-import ToolSelectComponent from "../tool-select-base/tool-select-base.jsx";
+import React from 'react';
+import PropTypes from 'prop-types';
+import messages from '../../lib/messages.js';
+import ToolSelectComponent from '../tool-select-base/tool-select-base.jsx';
 
-import selectIcon from "./select.svg";
+import selectIcon from './select.svg';
 
 const SelectModeComponent = (props) => (
     <ToolSelectComponent

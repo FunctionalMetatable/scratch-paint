@@ -1,4 +1,4 @@
-import { clearSelection, getSelectedLeafItems } from "../selection";
+import { clearSelection, getSelectedLeafItems } from '../selection';
 
 /** Sub tool of the Reshape tool for moving handles, which adjust bezier curves. */
 class HandleTool {
@@ -39,7 +39,7 @@ class HandleTool {
                     seg.origPoint = seg.point.clone();
                 }
 
-                if (seg.handleOut.selected && this.hitType === "handle-out") {
+                if (seg.handleOut.selected && this.hitType === 'handle-out') {
                     // if option is pressed or handles have been split,
                     // they're no longer parallel and move independently
                     if (
@@ -55,7 +55,7 @@ class HandleTool {
                     }
                 } else if (
                     seg.handleIn.selected &&
-                    this.hitType === "handle-in"
+                    this.hitType === 'handle-in'
                 ) {
                     // if option is pressed or handles have been split,
                     // they're no longer parallel and move independently

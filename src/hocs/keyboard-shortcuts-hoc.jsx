@@ -1,12 +1,12 @@
-import bindAll from "lodash.bindall";
-import PropTypes from "prop-types";
-import React from "react";
-import omit from "lodash.omit";
-import { connect } from "react-redux";
+import bindAll from 'lodash.bindall';
+import PropTypes from 'prop-types';
+import React from 'react';
+import omit from 'lodash.omit';
+import { connect } from 'react-redux';
 
-import CopyPasteHOC from "./copy-paste-hoc.jsx";
+import CopyPasteHOC from './copy-paste-hoc.jsx';
 
-import { selectAllBitmap } from "../helper/bitmap";
+import { selectAllBitmap } from '../helper/bitmap';
 import {
     clearSelection,
     deleteSelection,
@@ -14,30 +14,30 @@ import {
     selectAllItems,
     selectAllSegments,
     getSelectedRootItems,
-} from "../helper/selection";
+} from '../helper/selection';
 import {
     groupSelection,
     shouldShowGroup,
     ungroupSelection,
     shouldShowUngroup,
-} from "../helper/group";
+} from '../helper/group';
 import {
     clearSelectedItems,
     setSelectedItems,
-} from "../reducers/selected-items";
-import { changeMode } from "../reducers/modes";
+} from '../reducers/selected-items';
+import { changeMode } from '../reducers/modes';
 
-import Formats, { isBitmap } from "../lib/format";
-import Modes from "../lib/modes";
+import Formats, { isBitmap } from '../lib/format';
+import Modes from '../lib/modes';
 
 const KeyboardShortcutsHOC = function (WrappedComponent) {
     class KeyboardShortcutsWrapper extends React.Component {
         constructor(props) {
             super(props);
             bindAll(this, [
-                "handleKeyPress",
-                "changeToASelectMode",
-                "selectAll",
+                'handleKeyPress',
+                'changeToASelectMode',
+                'selectAll',
             ]);
         }
         handleKeyPress(event) {
@@ -48,10 +48,10 @@ const KeyboardShortcutsHOC = function (WrappedComponent) {
             // Don't activate keyboard shortcuts during text editing
             if (this.props.textEditing) return;
 
-            if (event.key === "Escape") {
+            if (event.key === 'Escape') {
                 event.preventDefault();
                 clearSelection(this.props.clearSelectedItems);
-            } else if (event.key === "Delete" || event.key === "Backspace") {
+            } else if (event.key === 'Delete' || event.key === 'Backspace') {
                 event.preventDefault();
                 if (
                     deleteSelection(this.props.mode, this.props.onUpdateImage)
@@ -59,11 +59,11 @@ const KeyboardShortcutsHOC = function (WrappedComponent) {
                     this.props.setSelectedItems(this.props.format);
                 }
             } else if (event.metaKey || event.ctrlKey) {
-                if (event.shiftKey && event.key.toLowerCase() === "z") {
+                if (event.shiftKey && event.key.toLowerCase() === 'z') {
                     this.props.onRedo();
-                } else if (event.key === "z") {
+                } else if (event.key === 'z') {
                     this.props.onUndo();
-                } else if (event.shiftKey && event.key.toLowerCase() === "g") {
+                } else if (event.shiftKey && event.key.toLowerCase() === 'g') {
                     if (shouldShowUngroup()) {
                         ungroupSelection(
                             clearSelectedItems,
@@ -72,7 +72,7 @@ const KeyboardShortcutsHOC = function (WrappedComponent) {
                         );
                     }
                     event.preventDefault();
-                } else if (event.key === "g") {
+                } else if (event.key === 'g') {
                     if (shouldShowGroup()) {
                         groupSelection(
                             clearSelectedItems,
@@ -81,12 +81,12 @@ const KeyboardShortcutsHOC = function (WrappedComponent) {
                         );
                     }
                     event.preventDefault();
-                } else if (event.key === "c") {
+                } else if (event.key === 'c') {
                     this.props.onCopyToClipboard();
-                } else if (event.key === "v") {
+                } else if (event.key === 'v') {
                     this.changeToASelectMode();
                     this.props.onPasteFromClipboard();
-                } else if (event.key === "x") {
+                } else if (event.key === 'x') {
                     const selectedItems = getSelectedRootItems();
                     if (selectedItems.length > 0) {
                         this.props.onCopyToClipboard();
@@ -100,7 +100,7 @@ const KeyboardShortcutsHOC = function (WrappedComponent) {
                         }
                     }
                     event.preventDefault();
-                } else if (event.key === "a") {
+                } else if (event.key === 'a') {
                     this.changeToASelectMode();
                     event.preventDefault();
                     this.selectAll();
@@ -132,14 +132,14 @@ const KeyboardShortcutsHOC = function (WrappedComponent) {
         }
         render() {
             const componentProps = omit(this.props, [
-                "changeMode",
-                "clearSelectedItems",
-                "format",
-                "mode",
-                "onCopyToClipboard",
-                "onPasteFromClipboard",
-                "setSelectedItems",
-                "textEditing",
+                'changeMode',
+                'clearSelectedItems',
+                'format',
+                'mode',
+                'onCopyToClipboard',
+                'onPasteFromClipboard',
+                'setSelectedItems',
+                'textEditing',
             ]);
             return (
                 <WrappedComponent

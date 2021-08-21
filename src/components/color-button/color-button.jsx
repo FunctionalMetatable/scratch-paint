@@ -1,25 +1,25 @@
-import React from "react";
-import PropTypes from "prop-types";
-import classNames from "classnames";
+import React from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
-import { MIXED } from "../../helper/style-path";
+import { MIXED } from '../../helper/style-path';
 
-import noFillIcon from "./no-fill.svg";
-import mixedFillIcon from "./mixed-fill.svg";
-import styles from "./color-button.css";
-import GradientTypes from "../../lib/gradient-types";
-import log from "../../log/log";
-import ColorProptype from "../../lib/color-proptype";
+import noFillIcon from './no-fill.svg';
+import mixedFillIcon from './mixed-fill.svg';
+import styles from './color-button.css';
+import GradientTypes from '../../lib/gradient-types';
+import log from '../../log/log';
+import ColorProptype from '../../lib/color-proptype';
 
 const colorToBackground = (color, color2, gradientType) => {
     if (
         color === MIXED ||
         (gradientType !== GradientTypes.SOLID && color2 === MIXED)
     )
-        return "white";
+        return 'white';
 
-    color = color === null ? "white" : color.toCSS();
-    color2 = color2 === null || color2 === MIXED ? "white" : color2.toCSS();
+    color = color === null ? 'white' : color.toCSS();
+    color2 = color2 === null || color2 === MIXED ? 'white' : color2.toCSS();
 
     switch (gradientType) {
         case GradientTypes.SOLID:

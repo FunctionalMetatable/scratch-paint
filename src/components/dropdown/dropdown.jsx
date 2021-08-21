@@ -1,20 +1,20 @@
-import bindAll from "lodash.bindall";
-import classNames from "classnames";
-import Popover from "react-popover";
-import PropTypes from "prop-types";
-import React from "react";
+import bindAll from 'lodash.bindall';
+import classNames from 'classnames';
+import Popover from 'react-popover';
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import styles from "./dropdown.css";
+import styles from './dropdown.css';
 
-import dropdownIcon from "./dropdown-caret.svg";
+import dropdownIcon from './dropdown-caret.svg';
 
 class Dropdown extends React.Component {
     constructor(props) {
         super(props);
         bindAll(this, [
-            "handleClosePopover",
-            "handleToggleOpenState",
-            "isOpen",
+            'handleClosePopover',
+            'handleToggleOpenState',
+            'isOpen',
         ]);
         this.state = {
             isOpen: false,

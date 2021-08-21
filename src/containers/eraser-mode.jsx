@@ -1,18 +1,18 @@
-import PropTypes from "prop-types";
-import React from "react";
-import { connect } from "react-redux";
-import bindAll from "lodash.bindall";
-import Modes from "../lib/modes";
-import Blobbiness from "../helper/blob-tools/blob";
-import { changeBrushSize } from "../reducers/eraser-mode";
-import { clearSelectedItems } from "../reducers/selected-items";
-import EraserModeComponent from "../components/eraser-mode/eraser-mode.jsx";
-import { changeMode } from "../reducers/modes";
+import PropTypes from 'prop-types';
+import React from 'react';
+import { connect } from 'react-redux';
+import bindAll from 'lodash.bindall';
+import Modes from '../lib/modes';
+import Blobbiness from '../helper/blob-tools/blob';
+import { changeBrushSize } from '../reducers/eraser-mode';
+import { clearSelectedItems } from '../reducers/selected-items';
+import EraserModeComponent from '../components/eraser-mode/eraser-mode.jsx';
+import { changeMode } from '../reducers/modes';
 
 class EraserMode extends React.Component {
     constructor(props) {
         super(props);
-        bindAll(this, ["activateTool", "deactivateTool"]);
+        bindAll(this, ['activateTool', 'deactivateTool']);
         this.blob = new Blobbiness(
             this.props.onUpdateImage,
             this.props.clearSelectedItems

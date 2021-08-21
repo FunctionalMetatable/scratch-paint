@@ -1,5 +1,5 @@
-@import "../../css/colors.css";
-@import "../../css/units.css";
+@import '../../css/colors.css';
+@import '../../css/units.css';
 
 .editor-container {
     width: 100%;
@@ -32,12 +32,12 @@
     margin-top: calc(2 * $grid-unit);
 }
 
-[dir="ltr"] .mod-dashed-border {
+[dir='ltr'] .mod-dashed-border {
     border-right: 1px dashed $ui-pane-border;
     padding-right: calc(2 * $grid-unit);
 }
 
-[dir="rtl"] .mod-dashed-border {
+[dir='rtl'] .mod-dashed-border {
     border-left: 1px dashed $ui-pane-border;
     padding-left: calc(2 * $grid-unit);
 }
@@ -54,49 +54,49 @@ $border-radius: 0.25rem;
     padding: 0.35rem;
 }
 
-[dir="ltr"] .button-group-button {
+[dir='ltr'] .button-group-button {
     border-left: none;
 }
 
-[dir="rtl"] .button-group-button {
+[dir='rtl'] .button-group-button {
     border-right: none;
 }
 
-[dir="ltr"] .button-group-button:last-of-type {
+[dir='ltr'] .button-group-button:last-of-type {
     border-top-right-radius: $border-radius;
     border-bottom-right-radius: $border-radius;
 }
 
-[dir="ltr"] .button-group-button:first-of-type {
+[dir='ltr'] .button-group-button:first-of-type {
     border-left: 1px solid $ui-pane-border;
     border-top-left-radius: $border-radius;
     border-bottom-left-radius: $border-radius;
 }
 
-[dir="rtl"] .button-group-button:last-of-type {
+[dir='rtl'] .button-group-button:last-of-type {
     border-top-left-radius: $border-radius;
     border-bottom-left-radius: $border-radius;
 }
 
-[dir="rtl"] .button-group-button:first-of-type {
+[dir='rtl'] .button-group-button:first-of-type {
     border-right: 1px solid $ui-pane-border;
     border-top-right-radius: $border-radius;
     border-bottom-right-radius: $border-radius;
 }
 
-[dir="ltr"] .button-group-button.mod-start-border {
+[dir='ltr'] .button-group-button.mod-start-border {
     border-left: 1px solid $ui-pane-border;
 }
 
-[dir="rtl"] .button-group-button.mod-start-border {
+[dir='rtl'] .button-group-button.mod-start-border {
     border-right: 1px solid $ui-pane-border;
 }
 
-[dir="ltr"].button-group-button.mod-no-end-border {
+[dir='ltr'].button-group-button.mod-no-end-border {
     border-right: none;
 }
 
-[dir="rtl"].button-group-button.mod-no-end-border {
+[dir='rtl'].button-group-button.mod-no-end-border {
     border-left: none;
 }
 
@@ -110,11 +110,11 @@ $border-radius: 0.25rem;
     margin-left: calc(2 * $grid-unit);
 }
 
-[dir="ltr"] .mod-margin-after {
+[dir='ltr'] .mod-margin-after {
     margin-right: calc(2 * $grid-unit);
 }
 
-[dir="rtl"] .mod-margin-after {
+[dir='rtl'] .mod-margin-after {
     margin-left: calc(2 * $grid-unit);
 }
 
@@ -187,11 +187,11 @@ $border-radius: 0.25rem;
     justify-content: center;
 }
 
-[dir="ltr"] .bitmap-button-icon {
+[dir='ltr'] .bitmap-button-icon {
     margin-right: calc(2 * $grid-unit);
 }
 
-[dir="rtl"] .bitmap-button-icon {
+[dir='rtl'] .bitmap-button-icon {
     margin-left: calc(2 * $grid-unit);
 }
 

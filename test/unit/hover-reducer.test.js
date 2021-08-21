@@ -2,16 +2,16 @@
 import reducer, {
     clearHoveredItem,
     setHoveredItem,
-} from "../../src/reducers/hover";
+} from '../../src/reducers/hover';
 
-test("initialState", () => {
+test('initialState', () => {
     let defaultState;
     expect(
-        reducer(defaultState /* state */, { type: "anything" } /* action */)
+        reducer(defaultState /* state */, { type: 'anything' } /* action */)
     ).toBeNull();
 });
 
-test("setHoveredItem", () => {
+test('setHoveredItem', () => {
     let defaultState;
     const item1 = 1;
     const item2 = 2;
@@ -23,7 +23,7 @@ test("setHoveredItem", () => {
     );
 });
 
-test("clearHoveredItem", () => {
+test('clearHoveredItem', () => {
     let defaultState;
     const item = 1;
     expect(
@@ -34,10 +34,10 @@ test("clearHoveredItem", () => {
     ).toBeNull();
 });
 
-test("invalidSetHoveredItem", () => {
+test('invalidSetHoveredItem', () => {
     let defaultState;
     const item = 1;
-    const nonItem = { random: "object" };
+    const nonItem = { random: 'object' };
     let undef;
     expect(
         reducer(defaultState /* state */, setHoveredItem(nonItem) /* action */)

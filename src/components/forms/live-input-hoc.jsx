@@ -1,6 +1,6 @@
-import bindAll from "lodash.bindall";
-import PropTypes from "prop-types";
-import React from "react";
+import bindAll from 'lodash.bindall';
+import PropTypes from 'prop-types';
+import React from 'react';
 
 /**
  * Higher Order Component to manage inputs that submit on change and <enter>
@@ -11,13 +11,13 @@ export default function (Input) {
     class LiveInput extends React.Component {
         constructor(props) {
             super(props);
-            bindAll(this, ["handleChange", "handleKeyPress", "handleFlush"]);
+            bindAll(this, ['handleChange', 'handleKeyPress', 'handleFlush']);
             this.state = {
                 value: null,
             };
         }
         handleKeyPress(e) {
-            if (e.key === "Enter") {
+            if (e.key === 'Enter') {
                 this.handleChange(e);
                 e.target.blur();
             }
@@ -26,18 +26,18 @@ export default function (Input) {
             this.setState({ value: null });
         }
         handleChange(e) {
-            const isNumeric = typeof this.props.value === "number";
+            const isNumeric = typeof this.props.value === 'number';
             const validatesNumeric = isNumeric ? !isNaN(e.target.value) : true;
             if (e.target.value !== null && validatesNumeric) {
                 let val = Number(e.target.value);
                 if (
-                    typeof this.props.max !== "undefined" &&
+                    typeof this.props.max !== 'undefined' &&
                     val > Number(this.props.max)
                 ) {
                     val = this.props.max;
                 }
                 if (
-                    typeof this.props.min !== "undefined" &&
+                    typeof this.props.min !== 'undefined' &&
                     val < Number(this.props.min)
                 ) {
                     val = this.props.min;

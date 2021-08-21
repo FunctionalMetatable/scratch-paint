@@ -1,5 +1,5 @@
-import paper from "@scratch/paper";
-import { createCanvas, getRaster, getBackgroundGuideLayer } from "../layer";
+import paper from '@scratch/paper';
+import { createCanvas, getRaster, getBackgroundGuideLayer } from '../layer';
 
 const LOUPE_RADIUS = 20;
 const ZOOM_SCALE = 3;
@@ -34,13 +34,13 @@ class EyeDropperTool extends paper.Tool {
             canvas.width * ZOOM_SCALE,
             canvas.height * ZOOM_SCALE
         );
-        const bufferCanvasContext = this.bufferCanvas.getContext("2d");
+        const bufferCanvasContext = this.bufferCanvas.getContext('2d');
         // Canvas to sample colors from; just the art
         this.colorCanvas = createCanvas(
             canvas.width * ZOOM_SCALE,
             canvas.height * ZOOM_SCALE
         );
-        const colorCanvasContext = this.colorCanvas.getContext("2d");
+        const colorCanvasContext = this.colorCanvas.getContext('2d');
 
         backgroundRaster3x.onLoad = () => {
             bufferCanvasContext.drawImage(backgroundRaster3x.canvas, 0, 0);
@@ -110,7 +110,7 @@ class EyeDropperTool extends paper.Tool {
             );
 
             // Convert color's backing components to HSV a.k.a. HSB
-            color.type = "hsb";
+            color.type = 'hsb';
 
             this.color = color;
         }
@@ -119,8 +119,8 @@ class EyeDropperTool extends paper.Tool {
         const artX = x / this.pixelRatio;
         const artY = y / this.pixelRatio;
         if (!this.bufferLoaded) return null;
-        const colorContext = this.colorCanvas.getContext("2d");
-        const bufferContext = this.bufferCanvas.getContext("2d");
+        const colorContext = this.colorCanvas.getContext('2d');
+        const bufferContext = this.bufferCanvas.getContext('2d');
         const colors = colorContext.getImageData(
             artX * ZOOM_SCALE,
             artY * ZOOM_SCALE,

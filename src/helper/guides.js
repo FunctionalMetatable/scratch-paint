@@ -1,14 +1,14 @@
-import paper from "@scratch/paper";
-import { getGuideLayer } from "./layer";
-import { getAllRootItems } from "./selection";
+import paper from '@scratch/paper';
+import { getGuideLayer } from './layer';
+import { getAllRootItems } from './selection';
 
-const GUIDE_BLUE = "#009dec";
-const GUIDE_GREY = "#aaaaaa";
+const GUIDE_BLUE = '#009dec';
+const GUIDE_GREY = '#aaaaaa';
 
 const setDefaultGuideStyle = function (item) {
     item.strokeWidth = 1 / paper.view.zoom;
     item.opacity = 1;
-    item.blendMode = "normal";
+    item.blendMode = 'normal';
     item.guide = true;
 };
 
@@ -92,22 +92,22 @@ const _removePaperItemsByTags = function (tags) {
 
 const removeBoundsPath = function () {
     _removePaperItemsByDataTags([
-        "isSelectionBound",
-        "isRotHandle",
-        "isScaleHandle",
+        'isSelectionBound',
+        'isRotHandle',
+        'isScaleHandle',
     ]);
 };
 
 const removeBoundsHandles = function () {
-    _removePaperItemsByDataTags(["isRotHandle", "isScaleHandle"]);
+    _removePaperItemsByDataTags(['isRotHandle', 'isScaleHandle']);
 };
 
 const removeAllGuides = function () {
-    _removePaperItemsByTags(["guide"]);
+    _removePaperItemsByTags(['guide']);
 };
 
 const removeHitPoint = function () {
-    _removePaperItemsByDataTags(["isHitPoint"]);
+    _removePaperItemsByDataTags(['isHitPoint']);
 };
 
 const drawHitPoint = function (point) {

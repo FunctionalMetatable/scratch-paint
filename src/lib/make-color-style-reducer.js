@@ -1,8 +1,8 @@
-import log from "../log/log";
-import { CHANGE_SELECTED_ITEMS } from "../reducers/selected-items";
-import { getColorsFromSelection, MIXED } from "../helper/style-path";
-import GradientTypes from "./gradient-types";
-import paper from "@scratch/paper";
+import log from '../log/log';
+import { CHANGE_SELECTED_ITEMS } from '../reducers/selected-items';
+import { getColorsFromSelection, MIXED } from '../helper/style-path';
+import GradientTypes from './gradient-types';
+import paper from '@scratch/paper';
 
 const isValidColor = (color) => {
     if (!(color instanceof paper.Color) && color !== null && color !== MIXED) {
@@ -36,7 +36,7 @@ const makeColorStyleReducer = ({
     selectionGradientTypeKey,
 }) =>
     function colorReducer(state, action) {
-        if (typeof state === "undefined") {
+        if (typeof state === 'undefined') {
             state = {
                 primary: defaultColor,
                 secondary: null,
@@ -96,8 +96,9 @@ const makeColorStyleReducer = ({
                         ...state,
                         gradientType: action.gradientType,
                     };
-                    if (action.gradientType === GradientTypes.SOLID)
+                    if (action.gradientType === GradientTypes.SOLID) {
                         newState.activeIndex = 0;
+                    }
                     return newState;
                 }
                 log.warn(

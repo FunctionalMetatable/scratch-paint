@@ -11,7 +11,7 @@ const mockPaperRootItem = function (options) {
         strokeColor: options.strokeColor,
         fillColor: options.fillColor,
         strokeWidth: options.strokeWidth,
-        parent: { className: "Layer" },
+        parent: { className: 'Layer' },
         data: {},
     };
 };

@@ -1,4 +1,4 @@
-import paper from "@scratch/paper";
+import paper from '@scratch/paper';
 
 /** The ratio of the curve length to use for the handle length to convert squares into approximately circles. */
 const HANDLE_RATIO = 0.3902628565;
@@ -90,8 +90,9 @@ const expandBy = function (path, amount) {
         const delta = seg.point.subtract(center).normalize().multiply(amount);
         seg.point = seg.point.add(delta);
         // If that made the path area smaller, go the other way.
-        if (path.area < pathArea)
+        if (path.area < pathArea) {
             seg.point = seg.point.subtract(delta.multiply(2));
+        }
         pathArea = path.area;
     }
 };

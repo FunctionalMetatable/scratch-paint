@@ -1,40 +1,40 @@
 /* eslint-env jest */
-import brushReducer, { changeBrushSize } from "../../src/reducers/brush-mode";
+import brushReducer, { changeBrushSize } from '../../src/reducers/brush-mode';
 import eraserReducer, {
     changeBrushSize as changeEraserSize,
-} from "../../src/reducers/eraser-mode";
+} from '../../src/reducers/eraser-mode';
 
-test("initialState", () => {
+test('initialState', () => {
     let defaultState;
 
     expect(
         brushReducer(
             defaultState /* state */,
-            { type: "anything" } /* action */
+            { type: 'anything' } /* action */
         )
     ).toBeDefined();
     expect(
         brushReducer(
             defaultState /* state */,
-            { type: "anything" } /* action */
+            { type: 'anything' } /* action */
         ).brushSize
     ).toBeGreaterThan(0);
 
     expect(
         eraserReducer(
             defaultState /* state */,
-            { type: "anything" } /* action */
+            { type: 'anything' } /* action */
         )
     ).toBeTruthy();
     expect(
         eraserReducer(
             defaultState /* state */,
-            { type: "anything" } /* action */
+            { type: 'anything' } /* action */
         ).brushSize
     ).toBeGreaterThan(0);
 });
 
-test("changeBrushSize", () => {
+test('changeBrushSize', () => {
     let defaultState;
     const newBrushSize = 8078;
 
@@ -62,13 +62,13 @@ test("changeBrushSize", () => {
     ).toEqual({ brushSize: newBrushSize });
 });
 
-test("invalidChangeBrushSize", () => {
+test('invalidChangeBrushSize', () => {
     const origState = { brushSize: 1 };
 
     expect(
         brushReducer(
             origState /* state */,
-            changeBrushSize("invalid argument") /* action */
+            changeBrushSize('invalid argument') /* action */
         )
     ).toBe(origState);
     expect(
@@ -78,7 +78,7 @@ test("invalidChangeBrushSize", () => {
     expect(
         eraserReducer(
             origState /* state */,
-            changeEraserSize("invalid argument") /* action */
+            changeEraserSize('invalid argument') /* action */
         )
     ).toBe(origState);
     expect(

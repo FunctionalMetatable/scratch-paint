@@ -1,26 +1,26 @@
-import paper from "@scratch/paper";
-import PropTypes from "prop-types";
-import React from "react";
-import { connect } from "react-redux";
-import bindAll from "lodash.bindall";
-import Modes from "../lib/modes";
+import paper from '@scratch/paper';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { connect } from 'react-redux';
+import bindAll from 'lodash.bindall';
+import Modes from '../lib/modes';
 
-import { clearFillGradient } from "../reducers/fill-style";
-import { changeMode } from "../reducers/modes";
+import { clearFillGradient } from '../reducers/fill-style';
+import { changeMode } from '../reducers/modes';
 import {
     clearSelectedItems,
     setSelectedItems,
-} from "../reducers/selected-items";
-import { setCursor } from "../reducers/cursor";
+} from '../reducers/selected-items';
+import { setCursor } from '../reducers/cursor';
 
-import { getSelectedLeafItems } from "../helper/selection";
-import BitSelectTool from "../helper/bit-tools/select-tool";
-import SelectModeComponent from "../components/bit-select-mode/bit-select-mode.jsx";
+import { getSelectedLeafItems } from '../helper/selection';
+import BitSelectTool from '../helper/bit-tools/select-tool';
+import SelectModeComponent from '../components/bit-select-mode/bit-select-mode.jsx';
 
 class BitSelectMode extends React.Component {
     constructor(props) {
         super(props);
-        bindAll(this, ["activateTool", "deactivateTool"]);
+        bindAll(this, ['activateTool', 'deactivateTool']);
     }
     componentDidMount() {
         if (this.props.isSelectModeActive) {

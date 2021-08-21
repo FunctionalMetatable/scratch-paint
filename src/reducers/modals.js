@@ -1,8 +1,8 @@
-const OPEN_MODAL = "scratch-paint/modals/OPEN_MODAL";
-const CLOSE_MODAL = "scratch-paint/modals/CLOSE_MODAL";
+const OPEN_MODAL = 'scratch-paint/modals/OPEN_MODAL';
+const CLOSE_MODAL = 'scratch-paint/modals/CLOSE_MODAL';
 
-const MODAL_FILL_COLOR = "fillColor";
-const MODAL_STROKE_COLOR = "strokeColor";
+const MODAL_FILL_COLOR = 'fillColor';
+const MODAL_STROKE_COLOR = 'strokeColor';
 
 const initialState = {
     [MODAL_FILL_COLOR]: false,
@@ -10,7 +10,7 @@ const initialState = {
 };
 
 const reducer = function (state, action) {
-    if (typeof state === "undefined") state = initialState;
+    if (typeof state === 'undefined') state = initialState;
     switch (action.type) {
         case OPEN_MODAL:
             return Object.assign({}, initialState, {

@@ -1,17 +1,17 @@
-import PropTypes from "prop-types";
-import React from "react";
-import bindAll from "lodash.bindall";
+import PropTypes from 'prop-types';
+import React from 'react';
+import bindAll from 'lodash.bindall';
 
-import Box from "../box/box.jsx";
+import Box from '../box/box.jsx';
 
-import { LOUPE_RADIUS, ZOOM_SCALE } from "../../helper/tools/eye-dropper";
+import { LOUPE_RADIUS, ZOOM_SCALE } from '../../helper/tools/eye-dropper';
 
-import styles from "./loupe.css";
+import styles from './loupe.css';
 
 class LoupeComponent extends React.Component {
     constructor(props) {
         super(props);
-        bindAll(this, ["setCanvas"]);
+        bindAll(this, ['setCanvas']);
     }
     componentDidUpdate() {
         this.draw();
@@ -25,17 +25,17 @@ class LoupeComponent extends React.Component {
 
         const color = this.props.colorInfo.color;
 
-        const ctx = this.canvas.getContext("2d");
+        const ctx = this.canvas.getContext('2d');
         this.canvas.width = loupeDiameter;
         this.canvas.height = loupeDiameter;
-        ctx.fillStyle = "white";
+        ctx.fillStyle = 'white';
         ctx.fillRect(0, 0, loupeDiameter, loupeDiameter);
 
         // In order to scale the image data, must draw to a tmp canvas first
-        const tmpCanvas = document.createElement("canvas");
+        const tmpCanvas = document.createElement('canvas');
         tmpCanvas.width = loupeDiameter;
         tmpCanvas.height = loupeDiameter;
-        const tmpCtx = tmpCanvas.getContext("2d");
+        const tmpCtx = tmpCanvas.getContext('2d');
         const imageData = tmpCtx.createImageData(loupeDiameter, loupeDiameter);
 
         // Since the color info comes from elsewhere there is no guarantee
@@ -44,7 +44,7 @@ class LoupeComponent extends React.Component {
         if (this.props.colorInfo.data.length === imageData.data.length) {
             imageData.data.set(this.props.colorInfo.data);
         } else {
-            console.warn("Image data size mismatch drawing loupe"); // eslint-disable-line no-console
+            console.warn('Image data size mismatch drawing loupe'); // eslint-disable-line no-console
         }
 
         tmpCtx.putImageData(imageData, 0, 0);
@@ -54,7 +54,7 @@ class LoupeComponent extends React.Component {
 
         // Draw an outlined square at the cursor position (cursor is hidden)
         ctx.lineWidth = boxLineWidth;
-        ctx.strokeStyle = "black";
+        ctx.strokeStyle = 'black';
         ctx.fillStyle = `rgba(${color[0]}, ${color[1]}, ${color[2]}, ${color[3]})`;
         ctx.beginPath();
         ctx.rect(

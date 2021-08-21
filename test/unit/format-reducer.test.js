@@ -1,16 +1,16 @@
 /* eslint-env jest */
-import Formats from "../../src/lib/format";
-import reducer, { changeFormat } from "../../src/reducers/format";
-import { undo, redo } from "../../src/reducers/undo";
+import Formats from '../../src/lib/format';
+import reducer, { changeFormat } from '../../src/reducers/format';
+import { undo, redo } from '../../src/reducers/undo';
 
-test("initialState", () => {
+test('initialState', () => {
     let defaultState;
     expect(
-        reducer(defaultState /* state */, { type: "anything" } /* action */)
+        reducer(defaultState /* state */, { type: 'anything' } /* action */)
     ).toBeNull();
 });
 
-test("changeFormat", () => {
+test('changeFormat', () => {
     let defaultState;
     expect(
         reducer(
@@ -32,7 +32,7 @@ test("changeFormat", () => {
     ).toBe(Formats.VECTOR);
 });
 
-test("undoRedoChangeFormat", () => {
+test('undoRedoChangeFormat', () => {
     let defaultState;
     let reduxState = reducer(
         defaultState /* state */,
@@ -51,11 +51,11 @@ test("undoRedoChangeFormat", () => {
     expect(reduxState).toBe(Formats.VECTOR_SKIP_CONVERT);
 });
 
-test("invalidChangeMode", () => {
+test('invalidChangeMode', () => {
     expect(
         reducer(
             Formats.BITMAP /* state */,
-            changeFormat("non-existant mode") /* action */
+            changeFormat('non-existant mode') /* action */
         )
     ).toBe(Formats.BITMAP);
     expect(

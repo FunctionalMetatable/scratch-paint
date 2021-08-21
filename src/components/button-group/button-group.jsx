@@ -1,8 +1,8 @@
-import classNames from "classnames";
-import React from "react";
-import PropTypes from "prop-types";
+import classNames from 'classnames';
+import React from 'react';
+import PropTypes from 'prop-types';
 
-import styles from "./button-group.css";
+import styles from './button-group.css';
 
 const ButtonGroup = (props) => (
     <div className={classNames(props.className, styles.buttonGroup)}>

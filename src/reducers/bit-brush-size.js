@@ -1,14 +1,14 @@
-import log from "../log/log";
-import { CHANGE_SELECTED_ITEMS } from "./selected-items";
-import { getColorsFromSelection } from "../helper/style-path";
+import log from '../log/log';
+import { CHANGE_SELECTED_ITEMS } from './selected-items';
+import { getColorsFromSelection } from '../helper/style-path';
 
 // Bit brush size affects bit brush width, circle/rectangle outline drawing width, and line width
 // in the bitmap paint editor.
-const CHANGE_BIT_BRUSH_SIZE = "scratch-paint/brush-mode/CHANGE_BIT_BRUSH_SIZE";
+const CHANGE_BIT_BRUSH_SIZE = 'scratch-paint/brush-mode/CHANGE_BIT_BRUSH_SIZE';
 const initialState = 10;
 
 const reducer = function (state, action) {
-    if (typeof state === "undefined") state = initialState;
+    if (typeof state === 'undefined') state = initialState;
     switch (action.type) {
         case CHANGE_BIT_BRUSH_SIZE:
             if (isNaN(action.brushSize)) {

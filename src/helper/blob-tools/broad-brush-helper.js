@@ -1,7 +1,7 @@
 // Broadbrush based on http://paperjs.org/tutorials/interaction/working-with-mouse-vectors/
-import paper from "@scratch/paper";
-import { styleBlob } from "../../helper/style-path";
-import log from "../../log/log";
+import paper from '@scratch/paper';
+import { styleBlob } from '../../helper/style-path';
+import log from '../../log/log';
 
 /**
  * Broad brush functions to add as listeners on the mouse. Call them when the corresponding mouse event happens
@@ -304,7 +304,7 @@ class BroadBrushHelper {
                 // all of the failures.)
                 this.finalPath.insertAbove(temp);
                 temp.remove();
-                log.warn("Skipping a merge.");
+                log.warn('Skipping a merge.');
             }
         }
         this.endCaps.length = 0;

@@ -1,25 +1,25 @@
-import { connect } from "react-redux";
-import { defineMessages } from "react-intl";
+import { connect } from 'react-redux';
+import { defineMessages } from 'react-intl';
 
 import {
     changeFillColor,
     changeFillColor2,
     changeFillColorIndex,
     changeFillGradientType,
-} from "../reducers/fill-style";
-import { openFillColor, closeFillColor } from "../reducers/modals";
-import { getSelectedLeafItems } from "../helper/selection";
-import { setSelectedItems } from "../reducers/selected-items";
-import Modes, { GradientToolsModes } from "../lib/modes";
-import { isBitmap } from "../lib/format";
+} from '../reducers/fill-style';
+import { openFillColor, closeFillColor } from '../reducers/modals';
+import { getSelectedLeafItems } from '../helper/selection';
+import { setSelectedItems } from '../reducers/selected-items';
+import Modes, { GradientToolsModes } from '../lib/modes';
+import { isBitmap } from '../lib/format';
 
-import makeColorIndicator from "./color-indicator.jsx";
+import makeColorIndicator from './color-indicator.jsx';
 
 const messages = defineMessages({
     label: {
-        id: "paint.paintEditor.fill",
-        description: "Label for the color picker for the fill color",
-        defaultMessage: "Fill",
+        id: 'paint.paintEditor.fill',
+        description: 'Label for the color picker for the fill color',
+        defaultMessage: 'Fill',
     },
 });
 

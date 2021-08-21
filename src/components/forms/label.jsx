@@ -2,10 +2,10 @@
 @todo This file is copied from GUI and should be pulled out into a shared library.
 See https://github.com/LLK/scratch-paint/issues/13 */
 
-import PropTypes from "prop-types";
-import React from "react";
+import PropTypes from 'prop-types';
+import React from 'react';
 
-import styles from "./label.css";
+import styles from './label.css';
 
 const Label = (props) => (
     <label className={styles.inputGroup}>

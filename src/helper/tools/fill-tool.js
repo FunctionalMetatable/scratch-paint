@@ -1,8 +1,8 @@
-import paper from "@scratch/paper";
-import { getHoveredItem } from "../hover";
-import { expandBy } from "../math";
-import { createGradientObject } from "../style-path";
-import GradientTypes from "../../lib/gradient-types";
+import paper from '@scratch/paper';
+import { getHoveredItem } from '../hover';
+import { expandBy } from '../math';
+import { createGradientObject } from '../style-path';
+import GradientTypes from '../../lib/gradient-types';
 
 class FillTool extends paper.Tool {
     static get TOLERANCE() {
@@ -63,7 +63,7 @@ class FillTool extends paper.Tool {
                 if (
                     hitResult.item instanceof paper.Path &&
                     // Disallow hits that don't qualify for the fill criteria, but only if they're fills
-                    (hitFill || hitResult.type !== "fill")
+                    (hitFill || hitResult.type !== 'fill')
                 ) {
                     return true;
                 }
@@ -152,12 +152,12 @@ class FillTool extends paper.Tool {
         if (hitItem) {
             this.fillItem = hitItem;
             this.fillProperty = hitType;
-            const colorProp = hitType === "fill" ? "fillColor" : "strokeColor";
+            const colorProp = hitType === 'fill' ? 'fillColor' : 'strokeColor';
             this.fillItemOrigColor = hitItem[colorProp];
             if (
                 hitItem.parent instanceof paper.CompoundPath &&
                 hitItem.area < 0 &&
-                hitType === "fill"
+                hitType === 'fill'
             ) {
                 // hole
                 if (!this.fillColor) {
@@ -203,7 +203,7 @@ class FillTool extends paper.Tool {
             if (
                 this.addedFillItem &&
                 this._noStroke(this.fillItem.parent) &&
-                this.addedFillItem.fillColor.type !== "gradient" &&
+                this.addedFillItem.fillColor.type !== 'gradient' &&
                 this.fillItem.parent.fillColor.toCSS() ===
                     this.addedFillItem.fillColor.toCSS()
             ) {
@@ -254,7 +254,7 @@ class FillTool extends paper.Tool {
         const item = this._getFillItem();
         if (!item) return;
         const colorProp =
-            this.fillProperty === "fill" ? "fillColor" : "strokeColor";
+            this.fillProperty === 'fill' ? 'fillColor' : 'strokeColor';
         // Only create a gradient if specifically requested, else use color1 directly
         // This ensures we do not set a gradient by accident (see scratch-paint#830).
         if (gradientType && gradientType !== GradientTypes.SOLID) {

@@ -1,12 +1,12 @@
-import paper from "@scratch/paper";
-import Modes from "../../lib/modes";
-import { styleShape } from "../style-path";
-import { commitOvalToBitmap } from "../bitmap";
-import { getRaster } from "../layer";
-import { clearSelection } from "../selection";
-import { getSquareDimensions } from "../math";
-import BoundingBoxTool from "../selection-tools/bounding-box-tool";
-import NudgeTool from "../selection-tools/nudge-tool";
+import paper from '@scratch/paper';
+import Modes from '../../lib/modes';
+import { styleShape } from '../style-path';
+import { commitOvalToBitmap } from '../bitmap';
+import { getRaster } from '../layer';
+import { clearSelection } from '../selection';
+import { getSquareDimensions } from '../math';
+import BoundingBoxTool from '../selection-tools/bounding-box-tool';
+import NudgeTool from '../selection-tools/nudge-tool';
 
 /**
  * Tool for drawing ovals.
@@ -82,7 +82,7 @@ class OvalTool extends paper.Tool {
             (!this.oval || !this.oval.isInserted()) &&
             selectedItems &&
             selectedItems.length === 1 &&
-            selectedItems[0].shape === "ellipse"
+            selectedItems[0].shape === 'ellipse'
         ) {
             // Infer that an undo occurred and get back the active oval
             this.oval = selectedItems[0];

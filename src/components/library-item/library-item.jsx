@@ -1,8 +1,8 @@
-import React from "react";
-import classNames from "classnames";
-import PropTypes from "prop-types";
-import styles from "./library-item.css";
-import Box from "../box/box.jsx";
+import React from 'react';
+import classNames from 'classnames';
+import PropTypes from 'prop-types';
+import styles from './library-item.css';
+import Box from '../box/box.jsx';
 
 const libraryItemComponent = (
     props /*
