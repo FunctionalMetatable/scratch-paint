@@ -1,26 +1,26 @@
 /* eslint-env jest */
 import paper from '@scratch/paper';
 import fillColorReducer, {
-    changeFillColor,
+    changeFillColor
 } from '../../src/reducers/fill-style';
 import strokeColorReducer, {
-    changeStrokeColor,
+    changeStrokeColor
 } from '../../src/reducers/stroke-style';
-import { setSelectedItems } from '../../src/reducers/selected-items';
-import { MIXED } from '../../src/helper/style-path';
+import {setSelectedItems} from '../../src/reducers/selected-items';
+import {MIXED} from '../../src/helper/style-path';
 import GradientTypes from '../../src/lib/gradient-types';
-import { mockPaperRootItem } from '../__mocks__/paperMocks';
+import {mockPaperRootItem} from '../__mocks__/paperMocks';
 
 let defaultState;
 for (const [colorReducer, changeColor, colorProp] of [
     [fillColorReducer, changeFillColor, 'fillColor'],
-    [strokeColorReducer, changeStrokeColor, 'strokeColor'],
+    [strokeColorReducer, changeStrokeColor, 'strokeColor']
 ]) {
     test('initialState', () => {
         expect(
             colorReducer(
                 defaultState /* state */,
-                { type: 'anything' } /* action */
+                {type: 'anything'} /* action */
             )
         ).toBeDefined();
     });
@@ -39,7 +39,7 @@ for (const [colorReducer, changeColor, colorProp] of [
                 {
                     primary: oldColor,
                     secondary: null,
-                    gradientType: GradientTypes.SOLID,
+                    gradientType: GradientTypes.SOLID
                 } /* state */,
                 changeColor(newColor) /* action */
             ).primary
@@ -60,7 +60,7 @@ for (const [colorReducer, changeColor, colorProp] of [
                 {
                     primary: oldColor,
                     secondary: null,
-                    gradientType: GradientTypes.SOLID,
+                    gradientType: GradientTypes.SOLID
                 } /* state */,
                 changeColor(newColor) /* action */
             ).primary
@@ -81,7 +81,7 @@ for (const [colorReducer, changeColor, colorProp] of [
                 {
                     primary: oldColor,
                     secondary: null,
-                    gradientType: GradientTypes.SOLID,
+                    gradientType: GradientTypes.SOLID
                 } /* state */,
                 changeColor(newColor) /* action */
             ).primary
@@ -92,7 +92,7 @@ for (const [colorReducer, changeColor, colorProp] of [
         const color1 = new paper.Color('rgba(6, 0, 0, 0.5)');
         const color2 = null; // transparent
         let selectedItems = [
-            mockPaperRootItem({ [colorProp]: color1, strokeWidth: 1 }),
+            mockPaperRootItem({[colorProp]: color1, strokeWidth: 1})
         ];
         expect(
             colorReducer(
@@ -101,7 +101,7 @@ for (const [colorReducer, changeColor, colorProp] of [
             ).primary
         ).toEqual(color1);
         selectedItems = [
-            mockPaperRootItem({ [colorProp]: color2, strokeWidth: 1 }),
+            mockPaperRootItem({[colorProp]: color2, strokeWidth: 1})
         ];
         expect(
             colorReducer(
@@ -110,8 +110,8 @@ for (const [colorReducer, changeColor, colorProp] of [
             ).primary
         ).toEqual(color2);
         selectedItems = [
-            mockPaperRootItem({ [colorProp]: color1, strokeWidth: 1 }),
-            mockPaperRootItem({ [colorProp]: color2, strokeWidth: 1 }),
+            mockPaperRootItem({[colorProp]: color1, strokeWidth: 1}),
+            mockPaperRootItem({[colorProp]: color2, strokeWidth: 1})
         ];
         expect(
             colorReducer(
@@ -125,7 +125,7 @@ for (const [colorReducer, changeColor, colorProp] of [
         const origState = {
             primary: paper.Color.WHITE,
             secondary: null,
-            gradientType: GradientTypes.SOLID,
+            gradientType: GradientTypes.SOLID
         };
 
         expect(

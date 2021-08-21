@@ -1,11 +1,11 @@
 import paper from '@scratch/paper';
-import { getHoveredItem } from '../hover';
-import { expandBy } from '../math';
-import { createGradientObject } from '../style-path';
+import {getHoveredItem} from '../hover';
+import {expandBy} from '../math';
+import {createGradientObject} from '../style-path';
 import GradientTypes from '../../lib/gradient-types';
 
 class FillTool extends paper.Tool {
-    static get TOLERANCE() {
+    static get TOLERANCE () {
         return 2;
     }
     /**
@@ -13,7 +13,7 @@ class FillTool extends paper.Tool {
      * @param {function} clearHoveredItem Callback to clear the hovered item
      * @param {!function} onUpdateImage A callback to call when the image visibly changes
      */
-    constructor(setHoveredItem, clearHoveredItem, onUpdateImage) {
+    constructor (setHoveredItem, clearHoveredItem, onUpdateImage) {
         super();
         this.setHoveredItem = setHoveredItem;
         this.clearHoveredItem = clearHoveredItem;
@@ -40,7 +40,7 @@ class FillTool extends paper.Tool {
         this.fillItemOrigColor = null;
         this.prevHoveredItemId = null;
     }
-    getHitOptions() {
+    getHitOptions () {
         const isAlmostClosedPath = function (item) {
             return (
                 item instanceof paper.Path &&
@@ -80,16 +80,16 @@ class FillTool extends paper.Tool {
             hitUnstrokedPaths:
                 this.gradientType === GradientTypes.SOLID &&
                 this.fillColor === null,
-            tolerance: FillTool.TOLERANCE / paper.view.zoom,
+            tolerance: FillTool.TOLERANCE / paper.view.zoom
         };
     }
-    setFillColor(fillColor) {
+    setFillColor (fillColor) {
         this.fillColor = fillColor;
     }
-    setFillColor2(fillColor2) {
+    setFillColor2 (fillColor2) {
         this.fillColor2 = fillColor2;
     }
-    setGradientType(gradientType) {
+    setGradientType (gradientType) {
         this.gradientType = gradientType;
     }
     /**
@@ -99,10 +99,10 @@ class FillTool extends paper.Tool {
      * @param {paper.Item} prevHoveredItemId ID of the highlight item that indicates the mouse is
      *     over a given item currently
      */
-    setPrevHoveredItemId(prevHoveredItemId) {
+    setPrevHoveredItemId (prevHoveredItemId) {
         this.prevHoveredItemId = prevHoveredItemId;
     }
-    updateFillPreview(event) {
+    updateFillPreview (event) {
         const hoveredItem = getHoveredItem(
             event,
             this.getHitOptions(),
@@ -187,16 +187,16 @@ class FillTool extends paper.Tool {
             );
         }
     }
-    handleMouseDown(event) {
+    handleMouseDown (event) {
         // on touch, the user might touch-and-hold to preview what the fill tool would do
         // if they don't move their finger at all after the "mouse down" event
         // then this might be our only chance to give them a good preview
         this.updateFillPreview(event);
     }
-    handleMouseMove(event) {
+    handleMouseMove (event) {
         this.updateFillPreview(event);
     }
-    handleMouseUp(event) {
+    handleMouseUp (event) {
         if (event.event.button > 0) return; // only first mouse button
         if (this.fillItem) {
             // If the hole we're filling in is the same color as the parent, and parent has no outline, remove the hole
@@ -241,7 +241,7 @@ class FillTool extends paper.Tool {
             this.onUpdateImage();
         }
     }
-    _noStroke(item) {
+    _noStroke (item) {
         return (
             !item.strokeColor ||
             item.strokeColor.alpha === 0 ||
@@ -250,7 +250,7 @@ class FillTool extends paper.Tool {
     }
     // Either pass in a fully defined paper.Color as color1,
     // or pass in 2 color strings, a gradient type, and a pointer location
-    _setFillItemColor(color1, color2, gradientType, pointerLocation) {
+    _setFillItemColor (color1, color2, gradientType, pointerLocation) {
         const item = this._getFillItem();
         if (!item) return;
         const colorProp =
@@ -270,7 +270,7 @@ class FillTool extends paper.Tool {
             item[colorProp] = color1;
         }
     }
-    _getFillItem() {
+    _getFillItem () {
         if (this.addedFillItem) {
             return this.addedFillItem;
         } else if (
@@ -281,7 +281,7 @@ class FillTool extends paper.Tool {
         }
         return this.fillItem;
     }
-    deactivateTool() {
+    deactivateTool () {
         if (this.fillItem) {
             this._setFillItemColor(this.fillItemOrigColor);
             this.fillItemOrigColor = null;

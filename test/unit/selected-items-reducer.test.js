@@ -1,7 +1,7 @@
 /* eslint-env jest */
 import selectedItemsReducer, {
     setSelectedItems,
-    clearSelectedItems,
+    clearSelectedItems
 } from '../../src/reducers/selected-items';
 
 test('initialState', () => {
@@ -10,7 +10,7 @@ test('initialState', () => {
     expect(
         selectedItemsReducer(
             defaultState /* state */,
-            { type: 'anything' } /* action */
+            {type: 'anything'} /* action */
         )
     ).toBeDefined();
 });

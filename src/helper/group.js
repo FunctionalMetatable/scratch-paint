@@ -1,9 +1,9 @@
 import paper from '@scratch/paper';
-import { getRootItem, isGroupItem } from './item';
+import {getRootItem, isGroupItem} from './item';
 import {
     clearSelection,
     getSelectedRootItems,
-    setItemSelection,
+    setItemSelection
 } from './selection';
 
 const isGroup = function (item) {
@@ -188,5 +188,5 @@ export {
     isGroup,
     isGroupChild,
     shouldShowGroup,
-    shouldShowUngroup,
+    shouldShowUngroup
 };

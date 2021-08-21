@@ -3,10 +3,10 @@ import log from '../../log/log';
 import keyMirror from 'keymirror';
 
 import Modes from '../../lib/modes';
-import { isBoundsItem } from '../item';
-import { hoverBounds, hoverItem } from '../guides';
-import { sortItemsByZIndex } from '../math';
-import { getSelectedLeafItems, getSelectedSegments } from '../selection';
+import {isBoundsItem} from '../item';
+import {hoverBounds, hoverItem} from '../guides';
+import {sortItemsByZIndex} from '../math';
+import {getSelectedLeafItems, getSelectedSegments} from '../selection';
 import MoveTool from './move-tool';
 import PointTool from './point-tool';
 import HandleTool from './handle-tool';
@@ -17,7 +17,7 @@ const ReshapeModes = keyMirror({
     FILL: null,
     POINT: null,
     HANDLE: null,
-    SELECTION_BOX: null,
+    SELECTION_BOX: null
 });
 
 /**
@@ -32,23 +32,23 @@ const ReshapeModes = keyMirror({
  */
 class ReshapeTool extends paper.Tool {
     /** Distance within which mouse is considered to be hitting an item */
-    static get TOLERANCE() {
+    static get TOLERANCE () {
         return ReshapeTool.HANDLE_RADIUS + ReshapeTool.HANDLE_PADDING;
     }
     /**
      * Units of padding around the visible handle area that will still register clicks as "touching the handle"
      */
-    static get HANDLE_PADDING() {
+    static get HANDLE_PADDING () {
         return 1;
     }
     /**
      * Handles' radius, including the stroke
      */
-    static get HANDLE_RADIUS() {
+    static get HANDLE_RADIUS () {
         return 5.25;
     }
     /** Clicks registered within this amount of time are registered as double clicks */
-    static get DOUBLE_CLICK_MILLIS() {
+    static get DOUBLE_CLICK_MILLIS () {
         return 250;
     }
     /**
@@ -59,7 +59,7 @@ class ReshapeTool extends paper.Tool {
      * @param {!function} onUpdateImage A callback to call when the image visibly changes
      * @param {!function} switchToTextTool A callback to call to switch to the text tool
      */
-    constructor(
+    constructor (
         setHoveredItem,
         clearHoveredItem,
         setSelectedItems,
@@ -119,18 +119,18 @@ class ReshapeTool extends paper.Tool {
      * to be grabbable. (Segments are the little circles)
      * @return {object} See paper.Item.hitTest for definition of options
      */
-    getSelectedSegmentHitOptions() {
+    getSelectedSegmentHitOptions () {
         const hitOptions = {
             segments: true,
             tolerance: ReshapeTool.TOLERANCE / paper.view.zoom,
-            match: (hitResult) => {
+            match: hitResult => {
                 if (hitResult.type !== 'segment') return false;
                 if (hitResult.item.data && hitResult.item.data.noHover) {
                     return false;
                 }
                 if (!hitResult.item.selected) return false;
                 return true;
-            },
+            }
         };
         return hitOptions;
     }
@@ -140,11 +140,11 @@ class ReshapeTool extends paper.Tool {
      * legitimate hits on other things (like if the handle is over part of the fill). (Handles are the diamonds)
      * @return {object} See paper.Item.hitTest for definition of options
      */
-    getHandleHitOptions() {
+    getHandleHitOptions () {
         const hitOptions = {
             handles: true,
             tolerance: ReshapeTool.TOLERANCE / paper.view.zoom,
-            match: (hitResult) => {
+            match: hitResult => {
                 if (hitResult.item.data && hitResult.item.data.noHover) {
                     return false;
                 }
@@ -156,7 +156,7 @@ class ReshapeTool extends paper.Tool {
                 // If the entire shape is selected, handles are hidden
                 if (hitResult.item.fullySelected) return false;
                 return true;
-            },
+            }
         };
         return hitOptions;
     }
@@ -165,7 +165,7 @@ class ReshapeTool extends paper.Tool {
      * unselected things and fills.
      * @return {object} See paper.Item.hitTest for definition of options
      */
-    getSelectedStrokeHitOptions() {
+    getSelectedStrokeHitOptions () {
         const hitOptions = {
             segments: false,
             stroke: false,
@@ -174,14 +174,14 @@ class ReshapeTool extends paper.Tool {
             fill: false,
             guide: false,
             tolerance: ReshapeTool.TOLERANCE / paper.view.zoom,
-            match: (hitResult) => {
+            match: hitResult => {
                 if (hitResult.type !== 'curve') return false;
                 if (!hitResult.item.selected) return false;
                 if (hitResult.item.data && hitResult.item.data.noHover) {
                     return false;
                 }
                 return true;
-            },
+            }
         };
         return hitOptions;
     }
@@ -191,18 +191,18 @@ class ReshapeTool extends paper.Tool {
      *     selected.
      * @return {object} See paper.Item.hitTest for definition of options
      */
-    getUnselectedAndFillHitOptions() {
+    getUnselectedAndFillHitOptions () {
         const hitOptions = {
             fill: true,
             stroke: true,
             curves: true,
             tolerance: ReshapeTool.TOLERANCE / paper.view.zoom,
-            match: (hitResult) => {
+            match: hitResult => {
                 if (hitResult.item.data && hitResult.item.data.noHover) {
                     return false;
                 }
                 return true;
-            },
+            }
         };
         return hitOptions;
     }
@@ -213,7 +213,7 @@ class ReshapeTool extends paper.Tool {
      * @param {paper.Item} prevHoveredItemId ID of the highlight item that indicates the mouse is
      *     over a given item currently
      */
-    setPrevHoveredItemId(prevHoveredItemId) {
+    setPrevHoveredItemId (prevHoveredItemId) {
         this.prevHoveredItemId = prevHoveredItemId;
     }
     /**
@@ -221,7 +221,7 @@ class ReshapeTool extends paper.Tool {
      * @param {paper.Point} point Point to hit test on canvas
      * @return {?paper.HitResult} hitResult
      */
-    getHitResult(point) {
+    getHitResult (point) {
         // Prefer hits on segments to other types of hits, since segments always overlap curves.
         let hitResults = paper.project.hitTestAll(
             point,
@@ -261,7 +261,7 @@ class ReshapeTool extends paper.Tool {
         }
         return hitResult;
     }
-    handleMouseDown(event) {
+    handleMouseDown (event) {
         if (event.event.button > 0) return; // only first mouse button
         this.active = true;
         this.clearHoveredItem();
@@ -293,7 +293,7 @@ class ReshapeTool extends paper.Tool {
             clone: event.modifiers.alt,
             multiselect: event.modifiers.shift,
             doubleClicked: doubleClicked,
-            subselect: true,
+            subselect: true
         };
 
         // If item is not yet selected, don't behave differently depending on if they clicked a segment
@@ -326,7 +326,7 @@ class ReshapeTool extends paper.Tool {
             this._modeMap[this.mode].onMouseDown(hitProperties);
         }
     }
-    handleMouseMove(event) {
+    handleMouseMove (event) {
         const hitResult = this.getHitResult(event.point);
         let hoveredItem;
 
@@ -352,11 +352,11 @@ class ReshapeTool extends paper.Tool {
             this.setHoveredItem(hoveredItem ? hoveredItem.id : null);
         }
     }
-    handleMouseDrag(event) {
+    handleMouseDrag (event) {
         if (event.event.button > 0 || !this.active) return; // only first mouse button
         this._modeMap[this.mode].onMouseDrag(event);
     }
-    handleMouseUp(event) {
+    handleMouseUp (event) {
         if (event.event.button > 0 || !this.active) return; // only first mouse button
         if (this.mode === ReshapeModes.SELECTION_BOX) {
             this._modeMap[this.mode].onMouseUpVector(event);
@@ -366,7 +366,7 @@ class ReshapeTool extends paper.Tool {
         this.mode = ReshapeModes.SELECTION_BOX;
         this.active = false;
     }
-    handleKeyDown(event) {
+    handleKeyDown (event) {
         if (event.event.target instanceof HTMLInputElement) {
             // Ignore nudge if a text input field is focused
             return;
@@ -402,7 +402,7 @@ class ReshapeTool extends paper.Tool {
             }
         }
     }
-    handleKeyUp(event) {
+    handleKeyUp (event) {
         const selected = getSelectedLeafItems();
         if (selected.length === 0) return;
 
@@ -415,7 +415,7 @@ class ReshapeTool extends paper.Tool {
             this.onUpdateImage();
         }
     }
-    deactivateTool() {
+    deactivateTool () {
         paper.settings.handleSize = 0;
         this.clearHoveredItem();
         this.setHoveredItem = null;

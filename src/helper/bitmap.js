@@ -4,15 +4,15 @@ import {
     clearRaster,
     getRaster,
     hideGuideLayers,
-    showGuideLayers,
+    showGuideLayers
 } from './layer';
-import { getGuideColor } from './guides';
-import { clearSelection } from './selection';
+import {getGuideColor} from './guides';
+import {clearSelection} from './selection';
 import {
     ART_BOARD_WIDTH,
     ART_BOARD_HEIGHT,
     CENTER,
-    MAX_WORKSPACE_BOUNDS,
+    MAX_WORKSPACE_BOUNDS
 } from './view';
 import Formats from '../lib/format';
 import log from '../log/log';
@@ -130,7 +130,7 @@ const drawShearedEllipse_ = function (options, context) {
             y--;
             x = solveQuadratic_(A, B * y, C * y * y - 1);
         }
-        return pX1 || pY ? { x: pX1, y: pY } : null;
+        return pX1 || pY ? {x: pX1, y: pY} : null;
     };
 
     /**
@@ -171,7 +171,7 @@ const drawShearedEllipse_ = function (options, context) {
             x++;
             y = solveQuadratic_(C, B * x, A * x * x - 1);
         }
-        return pX || pY1 ? { x: pX, y: pY1 } : null;
+        return pX || pY1 ? {x: pX, y: pY1} : null;
     };
 
     // Last point drawn
@@ -193,7 +193,7 @@ const drawShearedEllipse_ = function (options, context) {
         lastPoint = drawEllipseStepHorizontal_(
             lastPoint ? -lastPoint.x + 0.5 : 0.5,
             (x, y) => y / x > slope2
-        ) || { x: -lastPoint.x - 0.5, y: -lastPoint.y - 0.5 };
+        ) || {x: -lastPoint.x - 0.5, y: -lastPoint.y - 0.5};
         // step vertically until back to start
         drawEllipseStepVertical_(lastPoint.y - 0.5, (x, y) => {
             if (forwardLeaning) return y > -radiusY;
@@ -213,7 +213,7 @@ const drawShearedEllipse_ = function (options, context) {
                 }
             ) || lastPoint;
         // step horizontally until back to start
-        drawEllipseStepHorizontal_(-lastPoint.x + 0.5, (x) => x < 0);
+        drawEllipseStepHorizontal_(-lastPoint.x + 0.5, x => x < 0);
     }
     return true;
 };
@@ -253,7 +253,7 @@ const getBrushMark = function (size, color, isEraser) {
                 radiusX: size / 2,
                 radiusY: size / 2,
                 shearSlope: 0,
-                isFilled: true,
+                isFilled: true
             },
             context
         );
@@ -268,7 +268,7 @@ const getBrushMark = function (size, color, isEraser) {
                     radiusY: size / 2,
                     shearSlope: 0,
                     isFilled: false,
-                    drawFn: (x, y) => context.fillRect(x, y, 1, 1),
+                    drawFn: (x, y) => context.fillRect(x, y, 1, 1)
                 },
                 context
             );
@@ -314,7 +314,7 @@ const drawEllipse = function (options, context) {
     // Outlines are drawn as a series of brush mark images and as such can't be drawn as gradients in the first place.
     let origContext;
     let tmpCanvas;
-    const { width: canvasWidth, height: canvasHeight } = context.canvas;
+    const {width: canvasWidth, height: canvasHeight} = context.canvas;
     if (isGradient) {
         tmpCanvas = createCanvas(canvasWidth, canvasHeight);
         origContext = context;
@@ -362,7 +362,7 @@ const drawEllipse = function (options, context) {
             radiusY: radiusB,
             shearSlope: slope,
             isFilled: isFilled,
-            drawFn: drawFn,
+            drawFn: drawFn
         },
         context
     );
@@ -483,7 +483,7 @@ const convertToBitmap = function (
     const bounds = paper.project.activeLayer.drawnBounds;
     const svg = paper.project.exportSVG({
         bounds: 'content',
-        matrix: new paper.Matrix().translate(-bounds.x, -bounds.y),
+        matrix: new paper.Matrix().translate(-bounds.x, -bounds.y)
     });
     showGuideLayers(guideLayers);
 
@@ -802,9 +802,9 @@ const fillRect = function (rect, context) {
 
     const solveY = (point1, point2, x) => {
         if (point2.x === point1.x) {
-            return center.x > point1.x
-                ? Number.NEGATIVE_INFINITY
-                : Number.POSITIVE_INFINITY;
+            return center.x > point1.x ?
+                Number.NEGATIVE_INFINITY :
+                Number.POSITIVE_INFINITY;
         }
         return (
             ((point2.y - point1.y) / (point2.x - point1.x)) * (x - point1.x) +
@@ -816,7 +816,7 @@ const fillRect = function (rect, context) {
             solveY(startPoint, widthPoint, x + 0.5),
             solveY(startPoint, heightPoint, x + 0.5),
             solveY(endPoint, widthPoint, x + 0.5),
-            solveY(endPoint, heightPoint, x + 0.5),
+            solveY(endPoint, heightPoint, x + 0.5)
         ].sort((a, b) => a - b);
         context.fillRect(
             x,
@@ -850,7 +850,7 @@ const outlineRect = function (rect, thickness, context) {
     // gradients.
     let origContext;
     let tmpCanvas;
-    const { width: canvasWidth, height: canvasHeight } = context.canvas;
+    const {width: canvasWidth, height: canvasHeight} = context.canvas;
     if (isGradient) {
         tmpCanvas = createCanvas(canvasWidth, canvasHeight);
         origContext = context;
@@ -1025,11 +1025,11 @@ const _paperColorToCanvasStyle = function (color, context) {
     if (!color) return null;
     if (color.type === 'gradient') {
         let canvasGradient;
-        const { origin, destination } = color;
+        const {origin, destination} = color;
         if (color.gradient.radial) {
             // Adapted from:
             // https://github.com/paperjs/paper.js/blob/b081fd72c72cd61331313c3961edb48f3dfaffbd/src/style/Color.js#L926-L935
-            let { highlight } = color;
+            let {highlight} = color;
             const start = highlight || origin;
             const radius = destination.getDistance(origin);
             if (highlight) {
@@ -1056,7 +1056,7 @@ const _paperColorToCanvasStyle = function (color, context) {
             );
         }
 
-        const { stops } = color.gradient;
+        const {stops} = color.gradient;
         // Adapted from:
         // https://github.com/paperjs/paper.js/blob/b081fd72c72cd61331313c3961edb48f3dfaffbd/src/style/Color.js#L940-L950
         for (let i = 0, len = stops.length; i < len; i++) {
@@ -1099,7 +1099,7 @@ const commitOvalToBitmap = function (oval, bitmap) {
             radiusY,
             matrix: oval.matrix,
             isFilled: filled,
-            thickness: oval.strokeWidth / paper.view.zoom,
+            thickness: oval.strokeWidth / paper.view.zoom
         },
         context
     );
@@ -1164,5 +1164,5 @@ export {
     flipBitmapHorizontal,
     flipBitmapVertical,
     scaleBitmap,
-    selectAllBitmap,
+    selectAllBitmap
 };

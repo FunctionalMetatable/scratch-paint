@@ -1,7 +1,7 @@
 import paper from '@scratch/paper';
-import { getItems } from '../selection';
-import { getActionBounds } from '../view';
-import { BitmapModes } from '../../lib/modes';
+import {getItems} from '../selection';
+import {getActionBounds} from '../view';
+import {BitmapModes} from '../../lib/modes';
 
 const MIN_SCALE_FACTOR = 0.0001;
 
@@ -14,7 +14,7 @@ class ScaleTool {
      * @param {Mode} mode Paint editor mode
      * @param {!function} onUpdateImage A callback to call when the image visibly changes
      */
-    constructor(mode, onUpdateImage) {
+    constructor (mode, onUpdateImage) {
         this.isBitmap = mode in BitmapModes;
         this.active = false;
         this.boundsPath = null;
@@ -35,7 +35,7 @@ class ScaleTool {
      * @param {!object} boundsPath Where the boundaries of the hit item are
      * @param {!Array.<paper.Item>} selectedItems Set of selected paper.Items
      */
-    onMouseDown(hitResult, boundsPath, selectedItems) {
+    onMouseDown (hitResult, boundsPath, selectedItems) {
         if (this.active) return;
         this.active = true;
 
@@ -69,7 +69,7 @@ class ScaleTool {
                     }
                 }
                 return true;
-            },
+            }
         });
         if (items.length > 0) {
             this.itemToInsertBelow = items[0];
@@ -80,7 +80,7 @@ class ScaleTool {
         this.itemGroup.insertBelow(this.itemToInsertBelow);
         this.itemGroup.data.isHelperItem = true;
     }
-    onMouseDrag(event) {
+    onMouseDrag (event) {
         if (!this.active) return;
         const point = event.point;
         const bounds = getActionBounds(this.isBitmap);
@@ -143,7 +143,7 @@ class ScaleTool {
         this.lastSx = sx;
         this.lastSy = sy;
     }
-    onMouseUp() {
+    onMouseUp () {
         if (!this.active) return;
         this.lastPoint = null;
 
@@ -172,7 +172,7 @@ class ScaleTool {
 
         if (this.itemToInsertBelow) {
             // No increment step because itemGroup.children is getting depleted
-            for (const i = 0; i < this.itemGroup.children.length; ) {
+            for (const i = 0; i < this.itemGroup.children.length;) {
                 this.itemGroup.children[i].insertBelow(this.itemToInsertBelow);
             }
             this.itemToInsertBelow = null;
@@ -184,55 +184,55 @@ class ScaleTool {
         this.onUpdateImage();
         this.active = false;
     }
-    _getRectCornerNameByIndex(index) {
+    _getRectCornerNameByIndex (index) {
         switch (index) {
-            case 0:
-                return 'bottomLeft';
-            case 1:
-                return 'leftCenter';
-            case 2:
-                return 'topLeft';
-            case 3:
-                return 'topCenter';
-            case 4:
-                return 'topRight';
-            case 5:
-                return 'rightCenter';
-            case 6:
-                return 'bottomRight';
-            case 7:
-                return 'bottomCenter';
+        case 0:
+            return 'bottomLeft';
+        case 1:
+            return 'leftCenter';
+        case 2:
+            return 'topLeft';
+        case 3:
+            return 'topCenter';
+        case 4:
+            return 'topRight';
+        case 5:
+            return 'rightCenter';
+        case 6:
+            return 'bottomRight';
+        case 7:
+            return 'bottomCenter';
         }
     }
-    _getOpposingRectCornerNameByIndex(index) {
+    _getOpposingRectCornerNameByIndex (index) {
         switch (index) {
-            case 0:
-                return 'topRight';
-            case 1:
-                return 'rightCenter';
-            case 2:
-                return 'bottomRight';
-            case 3:
-                return 'bottomCenter';
-            case 4:
-                return 'bottomLeft';
-            case 5:
-                return 'leftCenter';
-            case 6:
-                return 'topLeft';
-            case 7:
-                return 'topCenter';
+        case 0:
+            return 'topRight';
+        case 1:
+            return 'rightCenter';
+        case 2:
+            return 'bottomRight';
+        case 3:
+            return 'bottomCenter';
+        case 4:
+            return 'bottomLeft';
+        case 5:
+            return 'leftCenter';
+        case 6:
+            return 'topLeft';
+        case 7:
+            return 'topCenter';
         }
     }
-    _isCorner(index) {
+    _isCorner (index) {
         switch (index) {
-            case 0:
-            case 2:
-            case 4:
-            case 6:
-                return true;
-            default:
-                return false;
+        case 0:
+        case 2:
+        case 4:
+        case 6:
+            return true;
+        default:
+            return false;
         }
     }
 }

@@ -1,8 +1,8 @@
 import paper from '@scratch/paper';
 import Modes from '../../lib/modes';
-import { styleShape } from '../style-path';
-import { clearSelection } from '../selection';
-import { getSquareDimensions } from '../math';
+import {styleShape} from '../style-path';
+import {clearSelection} from '../selection';
+import {getSquareDimensions} from '../math';
 import BoundingBoxTool from '../selection-tools/bounding-box-tool';
 import NudgeTool from '../selection-tools/nudge-tool';
 
@@ -10,7 +10,7 @@ import NudgeTool from '../selection-tools/nudge-tool';
  * Tool for drawing rectangles.
  */
 class RectTool extends paper.Tool {
-    static get TOLERANCE() {
+    static get TOLERANCE () {
         return 2;
     }
     /**
@@ -19,7 +19,7 @@ class RectTool extends paper.Tool {
      * @param {function} setCursor Callback to set the visible mouse cursor
      * @param {!function} onUpdateImage A callback to call when the image visibly changes
      */
-    constructor(
+    constructor (
         setSelectedItems,
         clearSelectedItems,
         setCursor,
@@ -56,32 +56,32 @@ class RectTool extends paper.Tool {
         this.isBoundingBoxMode = null;
         this.active = false;
     }
-    getHitOptions() {
+    getHitOptions () {
         return {
             segments: true,
             stroke: true,
             curves: true,
             fill: true,
             guide: false,
-            match: (hitResult) =>
+            match: hitResult =>
                 (hitResult.item.data &&
                     (hitResult.item.data.isScaleHandle ||
                         hitResult.item.data.isRotHandle)) ||
                 hitResult.item.selected, // Allow hits on bounding box and selected only
-            tolerance: RectTool.TOLERANCE / paper.view.zoom,
+            tolerance: RectTool.TOLERANCE / paper.view.zoom
         };
     }
     /**
      * Should be called if the selection changes to update the bounds of the bounding box.
      * @param {Array<paper.Item>} selectedItems Array of selected items.
      */
-    onSelectionChanged(selectedItems) {
+    onSelectionChanged (selectedItems) {
         this.boundingBoxTool.onSelectionChanged(selectedItems);
     }
-    setColorState(colorState) {
+    setColorState (colorState) {
         this.colorState = colorState;
     }
-    handleMouseDown(event) {
+    handleMouseDown (event) {
         if (event.event.button > 0) return; // only first mouse button
         this.active = true;
 
@@ -100,7 +100,7 @@ class RectTool extends paper.Tool {
             clearSelection(this.clearSelectedItems);
         }
     }
-    handleMouseDrag(event) {
+    handleMouseDrag (event) {
         if (event.event.button > 0 || !this.active) return; // only first mouse button
 
         if (this.isBoundingBoxMode) {
@@ -133,7 +133,7 @@ class RectTool extends paper.Tool {
 
         styleShape(this.rect, this.colorState);
     }
-    handleMouseUp(event) {
+    handleMouseUp (event) {
         if (event.event.button > 0 || !this.active) return; // only first mouse button
 
         if (this.isBoundingBoxMode) {
@@ -156,10 +156,10 @@ class RectTool extends paper.Tool {
         }
         this.active = false;
     }
-    handleMouseMove(event) {
+    handleMouseMove (event) {
         this.boundingBoxTool.onMouseMove(event, this.getHitOptions());
     }
-    deactivateTool() {
+    deactivateTool () {
         this.boundingBoxTool.deactivateTool();
     }
 }

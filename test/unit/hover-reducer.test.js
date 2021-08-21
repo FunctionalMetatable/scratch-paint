@@ -1,13 +1,13 @@
 /* eslint-env jest */
 import reducer, {
     clearHoveredItem,
-    setHoveredItem,
+    setHoveredItem
 } from '../../src/reducers/hover';
 
 test('initialState', () => {
     let defaultState;
     expect(
-        reducer(defaultState /* state */, { type: 'anything' } /* action */)
+        reducer(defaultState /* state */, {type: 'anything'} /* action */)
     ).toBeNull();
 });
 
@@ -37,7 +37,7 @@ test('clearHoveredItem', () => {
 test('invalidSetHoveredItem', () => {
     let defaultState;
     const item = 1;
-    const nonItem = { random: 'object' };
+    const nonItem = {random: 'object'};
     let undef;
     expect(
         reducer(defaultState /* state */, setHoveredItem(nonItem) /* action */)

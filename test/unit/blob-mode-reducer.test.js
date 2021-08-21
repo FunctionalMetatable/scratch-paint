@@ -1,7 +1,7 @@
 /* eslint-env jest */
-import brushReducer, { changeBrushSize } from '../../src/reducers/brush-mode';
+import brushReducer, {changeBrushSize} from '../../src/reducers/brush-mode';
 import eraserReducer, {
-    changeBrushSize as changeEraserSize,
+    changeBrushSize as changeEraserSize
 } from '../../src/reducers/eraser-mode';
 
 test('initialState', () => {
@@ -10,26 +10,26 @@ test('initialState', () => {
     expect(
         brushReducer(
             defaultState /* state */,
-            { type: 'anything' } /* action */
+            {type: 'anything'} /* action */
         )
     ).toBeDefined();
     expect(
         brushReducer(
             defaultState /* state */,
-            { type: 'anything' } /* action */
+            {type: 'anything'} /* action */
         ).brushSize
     ).toBeGreaterThan(0);
 
     expect(
         eraserReducer(
             defaultState /* state */,
-            { type: 'anything' } /* action */
+            {type: 'anything'} /* action */
         )
     ).toBeTruthy();
     expect(
         eraserReducer(
             defaultState /* state */,
-            { type: 'anything' } /* action */
+            {type: 'anything'} /* action */
         ).brushSize
     ).toBeGreaterThan(0);
 });
@@ -43,27 +43,27 @@ test('changeBrushSize', () => {
             defaultState /* state */,
             changeBrushSize(newBrushSize) /* action */
         )
-    ).toEqual({ brushSize: newBrushSize });
+    ).toEqual({brushSize: newBrushSize});
     expect(
         brushReducer(1 /* state */, changeBrushSize(newBrushSize) /* action */)
-    ).toEqual({ brushSize: newBrushSize });
+    ).toEqual({brushSize: newBrushSize});
 
     expect(
         eraserReducer(
             defaultState /* state */,
             changeEraserSize(newBrushSize) /* action */
         )
-    ).toEqual({ brushSize: newBrushSize });
+    ).toEqual({brushSize: newBrushSize});
     expect(
         eraserReducer(
             1 /* state */,
             changeEraserSize(newBrushSize) /* action */
         )
-    ).toEqual({ brushSize: newBrushSize });
+    ).toEqual({brushSize: newBrushSize});
 });
 
 test('invalidChangeBrushSize', () => {
-    const origState = { brushSize: 1 };
+    const origState = {brushSize: 1};
 
     expect(
         brushReducer(

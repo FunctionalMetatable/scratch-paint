@@ -7,14 +7,14 @@ const initialState = 40;
 const reducer = function (state, action) {
     if (typeof state === 'undefined') state = initialState;
     switch (action.type) {
-        case CHANGE_BIT_ERASER_SIZE:
-            if (isNaN(action.eraserSize)) {
-                log.warn(`Invalid eraser size: ${action.eraserSize}`);
-                return state;
-            }
-            return Math.max(1, action.eraserSize);
-        default:
+    case CHANGE_BIT_ERASER_SIZE:
+        if (isNaN(action.eraserSize)) {
+            log.warn(`Invalid eraser size: ${action.eraserSize}`);
             return state;
+        }
+        return Math.max(1, action.eraserSize);
+    default:
+        return state;
     }
 };
 
@@ -22,8 +22,8 @@ const reducer = function (state, action) {
 const changeBitEraserSize = function (eraserSize) {
     return {
         type: CHANGE_BIT_ERASER_SIZE,
-        eraserSize: eraserSize,
+        eraserSize: eraserSize
     };
 };
 
-export { reducer as default, changeBitEraserSize };
+export {reducer as default, changeBitEraserSize};

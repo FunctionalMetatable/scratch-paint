@@ -12,7 +12,7 @@ class RoundedRectTool extends paper.Tool {
      * @param {function} clearSelectedItems Callback to clear the set of selected items in the Redux state
      * @param {!function} onUpdateImage A callback to call when the image visibly changes
      */
-    constructor(
+    constructor (
         setHoveredItem,
         clearHoveredItem,
         setSelectedItems,
@@ -41,16 +41,16 @@ class RoundedRectTool extends paper.Tool {
      * @param {paper.Item} prevHoveredItemId ID of the highlight item that indicates the mouse is
      *     over a given item currently
      */
-    setPrevHoveredItemId(prevHoveredItemId) {
+    setPrevHoveredItemId (prevHoveredItemId) {
         this.prevHoveredItemId = prevHoveredItemId;
     }
-    handleMouseDown() {
+    handleMouseDown () {
         log.warn('Rounded Rectangle tool not yet implemented');
     }
-    handleMouseMove() {}
-    handleMouseDrag() {}
-    handleMouseUp() {}
-    deactivateTool() {}
+    handleMouseMove () {}
+    handleMouseDrag () {}
+    handleMouseUp () {}
+    deactivateTool () {}
 }
 
 export default RoundedRectTool;

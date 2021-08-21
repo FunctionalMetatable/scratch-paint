@@ -1,17 +1,17 @@
 import paper from '@scratch/paper';
-import { getSelectedLeafItems, getItems } from './selection';
-import { isPointTextItem } from './item';
-import { isGroup } from './group';
+import {getSelectedLeafItems, getItems} from './selection';
+import {isPointTextItem} from './item';
+import {isGroup} from './group';
 import GradientTypes from '../lib/gradient-types';
-import { DEFAULT_COLOR } from '../reducers/fill-style';
-import { isCompoundPathChild } from '../helper/compound-path';
+import {DEFAULT_COLOR} from '../reducers/fill-style';
+import {isCompoundPathChild} from '../helper/compound-path';
 import log from '../log/log';
 
 const MIXED = 'scratch-paint/style-path/mixed';
 
-const _isBlack = (hsbColor) => hsbColor.brightness === 0;
+const _isBlack = hsbColor => hsbColor.brightness === 0;
 
-const _isWhite = (hsbColor) =>
+const _isWhite = hsbColor =>
     hsbColor.brightness === 100 && hsbColor.saturation === 100;
 
 // Check if two colors, possibly null, are (approximately) equal.
@@ -51,7 +51,7 @@ const _getColorStateListeners = function (textEditTargetId) {
     const items = getSelectedLeafItems();
     if (textEditTargetId) {
         const matches = getItems({
-            match: (item) => item.id === textEditTargetId,
+            match: item => item.id === textEditTargetId
         });
         if (matches.length) {
             items.push(matches[0]);
@@ -73,7 +73,7 @@ const getColorForTransparent = function (colorToMatch) {
             hue: 0,
             saturation: 0,
             brightness: 0,
-            alpha: 0,
+            alpha: 0
         });
     }
     const color = colorToMatch.clone();
@@ -145,50 +145,50 @@ const createGradientObject = function (
     let start;
     let end;
     switch (gradientType) {
-        case GradientTypes.HORIZONTAL: {
-            // clone these points so that adding/subtracting doesn't affect actual bounds
-            start = bounds.leftCenter.clone();
-            end = bounds.rightCenter.clone();
+    case GradientTypes.HORIZONTAL: {
+        // clone these points so that adding/subtracting doesn't affect actual bounds
+        start = bounds.leftCenter.clone();
+        end = bounds.rightCenter.clone();
 
-            const gradientSize = Math.abs(end.x - start.x);
-            if (gradientSize < minSize) {
-                const sizeDiff = (minSize - gradientSize) / 2;
-                end.x += sizeDiff;
-                start.x -= sizeDiff;
-            }
-            break;
+        const gradientSize = Math.abs(end.x - start.x);
+        if (gradientSize < minSize) {
+            const sizeDiff = (minSize - gradientSize) / 2;
+            end.x += sizeDiff;
+            start.x -= sizeDiff;
         }
-        case GradientTypes.VERTICAL: {
-            // clone these points so that adding/subtracting doesn't affect actual bounds
-            start = bounds.topCenter.clone();
-            end = bounds.bottomCenter.clone();
+        break;
+    }
+    case GradientTypes.VERTICAL: {
+        // clone these points so that adding/subtracting doesn't affect actual bounds
+        start = bounds.topCenter.clone();
+        end = bounds.bottomCenter.clone();
 
-            const gradientSize = Math.abs(end.y - start.y);
-            if (gradientSize < minSize) {
-                const sizeDiff = (minSize - gradientSize) / 2;
-                end.y += sizeDiff;
-                start.y -= sizeDiff;
-            }
-            break;
+        const gradientSize = Math.abs(end.y - start.y);
+        if (gradientSize < minSize) {
+            const sizeDiff = (minSize - gradientSize) / 2;
+            end.y += sizeDiff;
+            start.y -= sizeDiff;
         }
+        break;
+    }
 
-        case GradientTypes.RADIAL: {
-            const halfLongestDimension =
+    case GradientTypes.RADIAL: {
+        const halfLongestDimension =
                 Math.max(bounds.width, bounds.height) / 2;
-            start = radialCenter || bounds.center;
-            end = start.add(
-                new paper.Point(Math.max(halfLongestDimension, minSize / 2), 0)
-            );
-            break;
-        }
+        start = radialCenter || bounds.center;
+        end = start.add(
+            new paper.Point(Math.max(halfLongestDimension, minSize / 2), 0)
+        );
+        break;
+    }
     }
     return {
         gradient: {
             stops: [color1, color2],
-            radial: gradientType === GradientTypes.RADIAL,
+            radial: gradientType === GradientTypes.RADIAL
         },
         origin: start,
-        destination: end,
+        destination: end
     };
 };
 
@@ -258,7 +258,7 @@ const applyColorToSelection = function (
             // There seems to be a bug where setting colors on stops doesn't always update the view, so set gradient.
             itemColor.gradient = {
                 stops: colors,
-                radial: itemColor.gradient.radial,
+                radial: itemColor.gradient.radial
             };
         }
     }
@@ -297,12 +297,12 @@ const swapColorsInSelection = function (applyToStroke, textEditTargetId) {
             changed = true;
             const colors = [
                 itemColor.gradient.stops[1].color,
-                itemColor.gradient.stops[0].color,
+                itemColor.gradient.stops[0].color
             ];
             // There seems to be a bug where setting colors on stops doesn't always update the view, so set gradient.
             itemColor.gradient = {
                 stops: colors,
-                radial: itemColor.gradient.radial,
+                radial: itemColor.gradient.radial
             };
         }
     }
@@ -406,30 +406,30 @@ const applyGradientTypeToSelection = function (
         let gradientTypeDiffers = false;
         // If the item's gradient type differs from the gradient type we want to apply, then we change it
         switch (gradientType) {
-            case GradientTypes.RADIAL: {
-                const hasRadialGradient =
+        case GradientTypes.RADIAL: {
+            const hasRadialGradient =
                     hasDisplayGradient && itemColor.gradient.radial;
-                gradientTypeDiffers = !hasRadialGradient;
-                break;
-            }
-            case GradientTypes.HORIZONTAL: {
-                const hasHorizontalGradient =
+            gradientTypeDiffers = !hasRadialGradient;
+            break;
+        }
+        case GradientTypes.HORIZONTAL: {
+            const hasHorizontalGradient =
                     hasDisplayGradient &&
                     !itemColor.gradient.radial &&
                     Math.abs(itemColor.origin.y - itemColor.destination.y) <
                         1e-8;
-                gradientTypeDiffers = !hasHorizontalGradient;
-                break;
-            }
-            case GradientTypes.VERTICAL: {
-                const hasVerticalGradient =
+            gradientTypeDiffers = !hasHorizontalGradient;
+            break;
+        }
+        case GradientTypes.VERTICAL: {
+            const hasVerticalGradient =
                     hasDisplayGradient &&
                     !itemColor.gradient.radial &&
                     Math.abs(itemColor.origin.x - itemColor.destination.x) <
                         1e-8;
-                gradientTypeDiffers = !hasVerticalGradient;
-                break;
-            }
+            gradientTypeDiffers = !hasVerticalGradient;
+            break;
+        }
         }
 
         if (gradientTypeDiffers) {
@@ -470,7 +470,7 @@ const applyStrokeWidthToSelection = function (value, textEditTargetId) {
     return changed;
 };
 
-const _colorStateFromGradient = (gradient) => {
+const _colorStateFromGradient = gradient => {
     const colorState = {};
     // Scratch only recognizes 2 color gradients
     if (gradient.stops.length === 2) {
@@ -482,13 +482,13 @@ const _colorStateFromGradient = (gradient) => {
             colorState.gradientType = GradientTypes.HORIZONTAL;
         }
         colorState.primary =
-            gradient.stops[0].color.alpha === 0
-                ? null
-                : gradient.stops[0].color;
+            gradient.stops[0].color.alpha === 0 ?
+                null :
+                gradient.stops[0].color;
         colorState.secondary =
-            gradient.stops[1].color.alpha === 0
-                ? null
-                : gradient.stops[1].color;
+            gradient.stops[1].color.alpha === 0 ?
+                null :
+                gradient.stops[1].color;
     } else {
         if (gradient.stops.length < 2) {
             log.warn(`Gradient has ${gradient.stops.length} stop(s)`);
@@ -541,7 +541,7 @@ const getColorsFromSelection = function (selectedItems, bitmapMode) {
                 if (isPointTextItem(item) && item.fillColor.alpha === 0) {
                     itemFillColor = null;
                 } else if (item.fillColor.type === 'gradient') {
-                    const { primary, secondary, gradientType } =
+                    const {primary, secondary, gradientType} =
                         _colorStateFromGradient(item.fillColor.gradient);
                     itemFillColor = primary;
                     itemFillColor2 = secondary;
@@ -554,7 +554,7 @@ const getColorsFromSelection = function (selectedItems, bitmapMode) {
             }
             if (item.strokeColor) {
                 if (item.strokeColor.type === 'gradient') {
-                    const { primary, secondary, gradientType } =
+                    const {primary, secondary, gradientType} =
                         _colorStateFromGradient(item.strokeColor.gradient);
 
                     let strokeColor = primary;
@@ -581,9 +581,9 @@ const getColorsFromSelection = function (selectedItems, bitmapMode) {
                     }
                 } else {
                     const strokeColor =
-                        item.strokeColor.alpha === 0 || !item.strokeWidth
-                            ? null
-                            : item.strokeColor;
+                        item.strokeColor.alpha === 0 || !item.strokeWidth ?
+                            null :
+                            item.strokeColor;
 
                     // Stroke color is fill color in bitmap
                     if (bitmapMode) {
@@ -655,9 +655,9 @@ const getColorsFromSelection = function (selectedItems, bitmapMode) {
             // Stroke color is fill color in bitmap if fill color is missing
             // TODO: this whole "treat horizontal/vertical gradients specially" logic is janky; refactor at some point
             const firstItemColor =
-                bitmapMode && firstItem.strokeColor
-                    ? firstItem.strokeColor
-                    : firstItem.fillColor;
+                bitmapMode && firstItem.strokeColor ?
+                    firstItem.strokeColor :
+                    firstItem.fillColor;
             const direction = firstItemColor.destination.subtract(
                 firstItemColor.origin
             );
@@ -680,7 +680,7 @@ const getColorsFromSelection = function (selectedItems, bitmapMode) {
             fillColor: selectionFillColor ? selectionFillColor : null,
             fillColor2: selectionFillColor2 ? selectionFillColor2 : null,
             fillGradientType: selectionFillGradientType,
-            thickness: selectionThickness,
+            thickness: selectionThickness
         };
     }
     return {
@@ -691,9 +691,9 @@ const getColorsFromSelection = function (selectedItems, bitmapMode) {
         strokeColor2: selectionStrokeColor2 ? selectionStrokeColor2 : null,
         strokeGradientType: selectionStrokeGradientType,
         strokeWidth:
-            selectionStrokeWidth || selectionStrokeWidth === null
-                ? selectionStrokeWidth
-                : 0,
+            selectionStrokeWidth || selectionStrokeWidth === null ?
+                selectionStrokeWidth :
+                0
     };
 };
 
@@ -728,7 +728,7 @@ const styleShape = function (path, options) {
         } else if (options[colorKey].gradientType === GradientTypes.SOLID) {
             path[colorKey] = options[colorKey].primary;
         } else {
-            const { primary, secondary, gradientType } = options[colorKey];
+            const {primary, secondary, gradientType} = options[colorKey];
             path[colorKey] = createGradientObject(
                 primary,
                 secondary,
@@ -757,5 +757,5 @@ export {
     styleBlob,
     styleShape,
     styleCursorPreview,
-    swapColorsInSelection,
+    swapColorsInSelection
 };

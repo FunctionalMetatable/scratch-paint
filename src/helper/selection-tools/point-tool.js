@@ -1,9 +1,9 @@
-import { HANDLE_RATIO, snapDeltaToAngle } from '../math';
-import { getActionBounds } from '../view';
+import {HANDLE_RATIO, snapDeltaToAngle} from '../math';
+import {getActionBounds} from '../view';
 import {
     clearSelection,
     getSelectedLeafItems,
-    getSelectedSegments,
+    getSelectedSegments
 } from '../selection';
 
 /** Subtool of ReshapeTool for moving control points. */
@@ -13,7 +13,7 @@ class PointTool {
      * @param {function} clearSelectedItems Callback to clear the set of selected items in the Redux state
      * @param {!function} onUpdateImage A callback to call when the image visibly changes
      */
-    constructor(setSelectedItems, clearSelectedItems, onUpdateImage) {
+    constructor (setSelectedItems, clearSelectedItems, onUpdateImage) {
         /**
          * Deselection often does not happen until mouse up. If the mouse is dragged before
          * mouse up, deselection is cancelled. This variable keeps track of which paper.Item to deselect.
@@ -42,7 +42,7 @@ class PointTool {
      * @param {?boolean} hitProperties.multiselect Whether to multiselect on mouse down (e.g. shift key held)
      * @param {?boolean} hitProperties.doubleClicked Whether this is the second click in a short time
      */
-    onMouseDown(hitProperties) {
+    onMouseDown (hitProperties) {
         // Remove point
         if (hitProperties.doubleClicked) {
             this.deleteOnMouseUp = hitProperties.hitResult;
@@ -70,7 +70,7 @@ class PointTool {
      * @param {!paper.HitResult} hitProperties.hitResult Data about the location of the mouse click
      * @param {?boolean} hitProperties.multiselect Whether to multiselect on mouse down (e.g. shift key held)
      */
-    addPoint(hitProperties) {
+    addPoint (hitProperties) {
         const newSegment = hitProperties.hitResult.item.divideAt(
             hitProperties.hitResult.location
         );
@@ -84,18 +84,18 @@ class PointTool {
         }
         newSegment.selected = true;
     }
-    removePoint(hitResult) {
+    removePoint (hitResult) {
         const index = hitResult.segment.index;
         hitResult.item.removeSegment(index);
 
         // Adjust handles of curve before and curve after to account for new curve length
         const beforeSegment = hitResult.item.segments[index - 1];
         const afterSegment = hitResult.item.segments[index];
-        const curveLength = beforeSegment
-            ? beforeSegment.curve
-                ? beforeSegment.curve.length
-                : null
-            : null;
+        const curveLength = beforeSegment ?
+            beforeSegment.curve ?
+                beforeSegment.curve.length :
+                null :
+            null;
         if (beforeSegment && beforeSegment.handleOut) {
             if (afterSegment) {
                 beforeSegment.handleOut = beforeSegment.handleOut.multiply(
@@ -116,7 +116,7 @@ class PointTool {
             }
         }
     }
-    onMouseDrag(event) {
+    onMouseDrag (event) {
         // A click will deselect, but a drag will not
         this.deselectOnMouseUp = null;
         this.invertDeselect = false;
@@ -149,7 +149,7 @@ class PointTool {
             }
         }
     }
-    onMouseUp() {
+    onMouseUp () {
         this.lastPoint = null;
 
         // resetting the items and segments origin points for the next usage

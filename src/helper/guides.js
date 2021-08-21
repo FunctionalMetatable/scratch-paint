@@ -1,6 +1,6 @@
 import paper from '@scratch/paper';
-import { getGuideLayer } from './layer';
-import { getAllRootItems } from './selection';
+import {getGuideLayer} from './layer';
+import {getAllRootItems} from './selection';
 
 const GUIDE_BLUE = '#009dec';
 const GUIDE_GREY = '#aaaaaa';
@@ -94,7 +94,7 @@ const removeBoundsPath = function () {
     _removePaperItemsByDataTags([
         'isSelectionBound',
         'isRotHandle',
-        'isScaleHandle',
+        'isScaleHandle'
     ]);
 };
 
@@ -136,5 +136,5 @@ export {
     drawHitPoint,
     removeHitPoint,
     getGuideColor,
-    setDefaultGuideStyle,
+    setDefaultGuideStyle
 };

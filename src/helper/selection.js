@@ -1,20 +1,20 @@
 import paper from '@scratch/paper';
 import Modes from '../lib/modes';
 
-import { getItemsGroup, isGroup } from './group';
+import {getItemsGroup, isGroup} from './group';
 import {
     getRootItem,
     isCompoundPathItem,
     isBoundsItem,
     isPathItem,
-    isPGTextItem,
+    isPGTextItem
 } from './item';
 import {
     getItemsCompoundPath,
     isCompoundPath,
-    isCompoundPathChild,
+    isCompoundPathChild
 } from './compound-path';
-import { sortItemsByZIndex } from './math';
+import {sortItemsByZIndex} from './math';
 
 /**
  * Wrapper for paper.project.getItems that excludes our helper items
@@ -33,7 +33,7 @@ const getItems = function (options) {
             (!options.match || options.match(item))
         );
     };
-    const newOptions = { ...options, match: newMatcher };
+    const newOptions = {...options, match: newMatcher};
     return paper.project.getItems(newOptions);
 };
 
@@ -281,9 +281,9 @@ const deleteSelection = function (mode, onUpdateImage) {
 };
 
 const cloneSelection = function (recursive, onUpdateImage) {
-    const selectedItems = recursive
-        ? getSelectedLeafItems()
-        : getSelectedRootItems();
+    const selectedItems = recursive ?
+        getSelectedLeafItems() :
+        getSelectedRootItems();
     for (let i = 0; i < selectedItems.length; i++) {
         const item = selectedItems[i];
         item.clone();
@@ -297,7 +297,7 @@ const _checkBoundsItem = function (selectionRect, item, event) {
         item.localToGlobal(item.internalBounds.topLeft),
         item.localToGlobal(item.internalBounds.topRight),
         item.localToGlobal(item.internalBounds.bottomRight),
-        item.localToGlobal(item.internalBounds.bottomLeft),
+        item.localToGlobal(item.internalBounds.bottomLeft)
     ]);
     itemBounds.closed = true;
     itemBounds.guide = true;
@@ -470,5 +470,5 @@ export {
     getSelectedRootItems,
     getSelectedSegments,
     processRectangularSelection,
-    selectRootItem,
+    selectRootItem
 };

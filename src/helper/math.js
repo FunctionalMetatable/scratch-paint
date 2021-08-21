@@ -87,7 +87,8 @@ const expandBy = function (path, amount) {
     const center = path.position;
     let pathArea = path.area;
     for (const seg of path.segments) {
-        const delta = seg.point.subtract(center).normalize().multiply(amount);
+        const delta = seg.point.subtract(center).normalize()
+            .multiply(amount);
         seg.point = seg.point.add(delta);
         // If that made the path area smaller, go the other way.
         if (path.area < pathArea) {
@@ -110,7 +111,7 @@ const _doRecursively = function (item, func) {
 
 // Make item clockwise. Drill down into groups.
 const ensureClockwise = function (root) {
-    _doRecursively(root, (item) => {
+    _doRecursively(root, item => {
         if (item instanceof paper.PathItem) {
             item.clockwise = true;
         }
@@ -119,7 +120,7 @@ const ensureClockwise = function (root) {
 
 // Scale item and its strokes by factor
 const scaleWithStrokes = function (root, factor, pivot) {
-    _doRecursively(root, (item) => {
+    _doRecursively(root, item => {
         if (item instanceof paper.PointText) {
             // Text outline size is controlled by text transform matrix, thus it's already scaled.
             return;
@@ -161,7 +162,7 @@ const getSquareDimensions = function (startPos, eventPoint) {
 
     const position = startPos.add(size.multiply(0.5));
 
-    return { size, position };
+    return {size, position};
 };
 
 export {
@@ -174,5 +175,5 @@ export {
     getSquareDimensions,
     scaleWithStrokes,
     snapDeltaToAngle,
-    sortItemsByZIndex,
+    sortItemsByZIndex
 };

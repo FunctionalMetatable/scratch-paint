@@ -2,10 +2,10 @@ import paper from '@scratch/paper';
 import log from '../../log/log';
 import BroadBrushHelper from './broad-brush-helper';
 import SegmentBrushHelper from './segment-brush-helper';
-import { MIXED, styleCursorPreview } from '../../helper/style-path';
-import { clearSelection, getItems } from '../../helper/selection';
-import { getGuideLayer, setGuideItem } from '../../helper/layer';
-import { isCompoundPathChild } from '../compound-path';
+import {MIXED, styleCursorPreview} from '../../helper/style-path';
+import {clearSelection, getItems} from '../../helper/selection';
+import {getGuideLayer, setGuideItem} from '../../helper/layer';
+import {isCompoundPathChild} from '../compound-path';
 
 /**
  * Shared code for the brush and eraser mode. Adds functions on the paper tool object
@@ -13,17 +13,17 @@ import { isCompoundPathChild } from '../compound-path';
  * based on the brushSize in the state.
  */
 class Blobbiness {
-    static get BROAD() {
+    static get BROAD () {
         return 'broadbrush';
     }
-    static get SEGMENT() {
+    static get SEGMENT () {
         return 'segmentbrush';
     }
 
     // If brush size >= threshold use segment brush, else use broadbrush
     // Segment brush has performance issues at low threshold, but broad brush has weird corners
     // which get more obvious the bigger it is
-    static get THRESHOLD() {
+    static get THRESHOLD () {
         return 30 / paper.view.zoom;
     }
 
@@ -31,7 +31,7 @@ class Blobbiness {
      * @param {function} onUpdateImage call when the drawing has changed to let listeners know
      * @param {function} clearSelectedItems Callback to clear the set of selected items in the Redux state
      */
-    constructor(onUpdateImage, clearSelectedItems) {
+    constructor (onUpdateImage, clearSelectedItems) {
         this.broadBrushHelper = new BroadBrushHelper();
         this.segmentBrushHelper = new SegmentBrushHelper();
         this.onUpdateImage = onUpdateImage;
@@ -53,7 +53,7 @@ class Blobbiness {
      * @param {?string} options.strokeColor Color of the brush outline.
      * @param {?number} options.strokeWidth Width of the brush outline.
      */
-    setOptions(options) {
+    setOptions (options) {
         const oldFillColor = this.options ? this.options.fillColor : 'black';
         const oldStrokeColor = this.options ? this.options.strokeColor : null;
         const oldStrokeWidth = this.options ? this.options.strokeWidth : null;
@@ -65,13 +65,13 @@ class Blobbiness {
             fillColor:
                 options.fillColor === MIXED ? oldFillColor : options.fillColor,
             strokeColor:
-                options.strokeColor === MIXED
-                    ? oldStrokeColor
-                    : options.strokeColor,
+                options.strokeColor === MIXED ?
+                    oldStrokeColor :
+                    options.strokeColor,
             strokeWidth:
-                options.strokeWidth === null
-                    ? oldStrokeWidth
-                    : options.strokeWidth,
+                options.strokeWidth === null ?
+                    oldStrokeWidth :
+                    options.strokeWidth
         };
         this.resizeCursorIfNeeded();
     }
@@ -86,7 +86,7 @@ class Blobbiness {
      * @param {?string} options.strokeColor Color of the brush outline.
      * @param {?number} options.strokeWidth Width of the brush outline.
      */
-    activateTool(options) {
+    activateTool (options) {
         this.tool = new paper.Tool();
         this.cursorPreviewLastPoint = new paper.Point(-10000, -10000);
         this.setOptions(options);
@@ -186,7 +186,7 @@ class Blobbiness {
         this.tool.activate();
     }
 
-    resizeCursorIfNeeded(point) {
+    resizeCursorIfNeeded (point) {
         if (!this.options) {
             return;
         }
@@ -211,7 +211,7 @@ class Blobbiness {
         if (!this.cursorPreview) {
             this.cursorPreview = new paper.Shape.Ellipse({
                 point: this.cursorPreviewLastPoint,
-                size: this.options.brushSize / 2,
+                size: this.options.brushSize / 2
             });
             this.cursorPreview.parent = getGuideLayer();
             this.cursorPreview.data.isHelperItem = true;
@@ -225,7 +225,7 @@ class Blobbiness {
         styleCursorPreview(this.cursorPreview, this.options);
     }
 
-    mergeBrush(lastPath) {
+    mergeBrush (lastPath) {
         const blob = this;
 
         // Get all path items to merge with
@@ -235,7 +235,7 @@ class Blobbiness {
                     blob.isMergeable(lastPath, item) &&
                     item.parent instanceof paper.Layer
                 ); // don't merge with nested in group
-            },
+            }
         });
 
         let mergedPath = lastPath;
@@ -282,7 +282,7 @@ class Blobbiness {
         }
     }
 
-    mergeEraser(lastPath) {
+    mergeEraser (lastPath) {
         const blob = this;
 
         // Get all path items to merge with
@@ -298,7 +298,7 @@ class Blobbiness {
                     !isCompoundPathChild(item)
                 );
             },
-            class: paper.PathItem,
+            class: paper.PathItem
         });
         // Eraser didn't hit anything selected, so assume they meant to erase from all instead of from subset
         // and deselect the selection
@@ -312,7 +312,7 @@ class Blobbiness {
                         !isCompoundPathChild(item)
                     );
                 },
-                class: paper.PathItem,
+                class: paper.PathItem
             });
         }
 
@@ -390,7 +390,7 @@ class Blobbiness {
         lastPath.remove();
     }
 
-    separateCompoundPath(compoundPath) {
+    separateCompoundPath (compoundPath) {
         if (!compoundPath.isClockwise()) {
             compoundPath.reverse();
         }
@@ -435,7 +435,7 @@ class Blobbiness {
         }
     }
 
-    colorMatch(existingPath, addedPath) {
+    colorMatch (existingPath, addedPath) {
         // Note: transparent fill colors do notdetect as touching
         return (
             existingPath.getFillColor().equals(addedPath.getFillColor()) &&
@@ -449,7 +449,7 @@ class Blobbiness {
         );
     }
 
-    touches(path1, path2) {
+    touches (path1, path2) {
         // Two shapes are touching if their paths intersect
         if (path1 && path2 && path1.intersects(path2)) {
             return true;
@@ -460,7 +460,7 @@ class Blobbiness {
         );
     }
 
-    firstEnclosesSecond(path1, path2) {
+    firstEnclosesSecond (path1, path2) {
         // Two shapes are also touching if one is completely inside the other
         if (
             path1 &&
@@ -475,7 +475,7 @@ class Blobbiness {
         return false;
     }
 
-    matchesAnyChild(group, path) {
+    matchesAnyChild (group, path) {
         for (const child of group.children) {
             if (child.children && this.matchesAnyChild(path, child)) {
                 return true;
@@ -487,7 +487,7 @@ class Blobbiness {
         return false;
     }
 
-    isMergeable(newPath, existingPath) {
+    isMergeable (newPath, existingPath) {
         // Path or compound path
         if (!(existingPath instanceof paper.PathItem)) {
             return;
@@ -501,7 +501,7 @@ class Blobbiness {
         return existingPath !== newPath; // don't merge with self
     }
 
-    deactivateTool() {
+    deactivateTool () {
         if (this.cursorPreview) {
             this.cursorPreview.remove();
             this.cursorPreview = null;

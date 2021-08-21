@@ -1,17 +1,17 @@
 import paper from '@scratch/paper';
-import Modes, { BitmapModes } from '../../lib/modes';
-import { isGroup } from '../group';
-import { isCompoundPathItem, getRootItem } from '../item';
-import { checkPointsClose, snapDeltaToAngle } from '../math';
-import { getActionBounds, CENTER } from '../view';
+import Modes, {BitmapModes} from '../../lib/modes';
+import {isGroup} from '../group';
+import {isCompoundPathItem, getRootItem} from '../item';
+import {checkPointsClose, snapDeltaToAngle} from '../math';
+import {getActionBounds, CENTER} from '../view';
 import {
     clearSelection,
     cloneSelection,
     getSelectedLeafItems,
     getSelectedRootItems,
-    setItemSelection,
+    setItemSelection
 } from '../selection';
-import { getDragCrosshairLayer, CROSSHAIR_FULL_OPACITY } from '../layer';
+import {getDragCrosshairLayer, CROSSHAIR_FULL_OPACITY} from '../layer';
 
 /** Snap to align selection center to rotation center within this distance */
 const SNAPPING_THRESHOLD = 4;
@@ -28,7 +28,7 @@ class MoveTool {
      * @param {!function} onUpdateImage A callback to call when the image visibly changes
      * @param {?function} switchToTextTool A callback to call to switch to the text tool
      */
-    constructor(
+    constructor (
         mode,
         setSelectedItems,
         clearSelectedItems,
@@ -55,14 +55,14 @@ class MoveTool {
      * @param {?boolean} hitProperties.subselect True if we allow selection of subgroups, false if we should
      *     select the whole group.
      */
-    onMouseDown(hitProperties) {
+    onMouseDown (hitProperties) {
         let item = hitProperties.hitResult.item;
         if (!hitProperties.subselect) {
             const root = getRootItem(hitProperties.hitResult.item);
             item =
-                isCompoundPathItem(root) || isGroup(root)
-                    ? root
-                    : hitProperties.hitResult.item;
+                isCompoundPathItem(root) || isGroup(root) ?
+                    root :
+                    hitProperties.hitResult.item;
         }
         if (item.selected) {
             // Double click causes all points to be selected in subselect mode. If the target is text, it
@@ -99,9 +99,9 @@ class MoveTool {
         }
 
         this.selectedItems =
-            this.mode === Modes.RESHAPE
-                ? getSelectedLeafItems()
-                : getSelectedRootItems();
+            this.mode === Modes.RESHAPE ?
+                getSelectedLeafItems() :
+                getSelectedRootItems();
         if (this.selectedItems.length === 0) {
             return;
         }
@@ -122,7 +122,7 @@ class MoveTool {
 
         this.firstDrag = true;
     }
-    setBoundsPath(boundsPath) {
+    setBoundsPath (boundsPath) {
         this.boundsPath = boundsPath;
     }
     /**
@@ -135,7 +135,7 @@ class MoveTool {
      *     control points should be selected. False if the item should be selected but not its
      *     points. Only relevant when subselect is true.
      */
-    _select(item, state, subselect, fullySelect) {
+    _select (item, state, subselect, fullySelect) {
         if (subselect) {
             item.selected = false;
             if (fullySelect) {
@@ -148,7 +148,7 @@ class MoveTool {
         }
         this.setSelectedItems();
     }
-    onMouseDrag(event) {
+    onMouseDrag (event) {
         const point = event.point;
         const actionBounds = getActionBounds(this.mode in BitmapModes);
 
@@ -255,7 +255,7 @@ class MoveTool {
         getDragCrosshairLayer().opacity =
             CROSSHAIR_FULL_OPACITY * opacityMultiplier;
     }
-    onMouseUp() {
+    onMouseUp () {
         this.firstDrag = false;
         let moved = false;
         // resetting the items origin point for the next usage

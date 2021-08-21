@@ -1,10 +1,10 @@
 import paper from '@scratch/paper';
 import Modes from '../../lib/modes';
-import { styleShape } from '../style-path';
-import { commitOvalToBitmap } from '../bitmap';
-import { getRaster } from '../layer';
-import { clearSelection } from '../selection';
-import { getSquareDimensions } from '../math';
+import {styleShape} from '../style-path';
+import {commitOvalToBitmap} from '../bitmap';
+import {getRaster} from '../layer';
+import {clearSelection} from '../selection';
+import {getSquareDimensions} from '../math';
 import BoundingBoxTool from '../selection-tools/bounding-box-tool';
 import NudgeTool from '../selection-tools/nudge-tool';
 
@@ -12,7 +12,7 @@ import NudgeTool from '../selection-tools/nudge-tool';
  * Tool for drawing ovals.
  */
 class OvalTool extends paper.Tool {
-    static get TOLERANCE() {
+    static get TOLERANCE () {
         return 2;
     }
     /**
@@ -21,7 +21,7 @@ class OvalTool extends paper.Tool {
      * @param {function} setCursor Callback to set the visible mouse cursor
      * @param {!function} onUpdateImage A callback to call when the image visibly changes
      */
-    constructor(
+    constructor (
         setSelectedItems,
         clearSelectedItems,
         setCursor,
@@ -57,26 +57,26 @@ class OvalTool extends paper.Tool {
         this.color = null;
         this.active = false;
     }
-    getHitOptions() {
+    getHitOptions () {
         return {
             segments: false,
             stroke: true,
             curves: false,
             fill: true,
             guide: false,
-            match: (hitResult) =>
+            match: hitResult =>
                 (hitResult.item.data &&
                     (hitResult.item.data.isScaleHandle ||
                         hitResult.item.data.isRotHandle)) ||
                 hitResult.item.selected, // Allow hits on bounding box and selected only
-            tolerance: OvalTool.TOLERANCE / paper.view.zoom,
+            tolerance: OvalTool.TOLERANCE / paper.view.zoom
         };
     }
     /**
      * Should be called if the selection changes to update the bounds of the bounding box.
      * @param {Array<paper.Item>} selectedItems Array of selected items.
      */
-    onSelectionChanged(selectedItems) {
+    onSelectionChanged (selectedItems) {
         this.boundingBoxTool.onSelectionChanged(selectedItems);
         if (
             (!this.oval || !this.oval.isInserted()) &&
@@ -101,18 +101,18 @@ class OvalTool extends paper.Tool {
             this.commitOval();
         }
     }
-    styleOval() {
+    styleOval () {
         styleShape(this.oval, {
             fillColor: this.filled ? this.color : null,
             strokeColor: this.filled ? null : this.color,
-            strokeWidth: this.filled ? 0 : this.thickness,
+            strokeWidth: this.filled ? 0 : this.thickness
         });
     }
-    setColor(color) {
+    setColor (color) {
         this.color = color;
         if (this.oval) this.styleOval();
     }
-    setFilled(filled) {
+    setFilled (filled) {
         if (this.filled === filled) return;
         this.filled = filled;
         if (this.oval && this.oval.isInserted()) {
@@ -120,7 +120,7 @@ class OvalTool extends paper.Tool {
             this.onUpdateImage();
         }
     }
-    setThickness(thickness) {
+    setThickness (thickness) {
         if (this.thickness === thickness * paper.view.zoom) return;
         this.thickness = thickness * paper.view.zoom;
         if (this.oval && this.oval.isInserted() && !this.filled) {
@@ -131,7 +131,7 @@ class OvalTool extends paper.Tool {
             this.onUpdateImage();
         }
     }
-    handleMouseDown(event) {
+    handleMouseDown (event) {
         if (event.event.button > 0) return; // only first mouse button
         this.active = true;
 
@@ -152,13 +152,13 @@ class OvalTool extends paper.Tool {
             this.oval = new paper.Shape.Ellipse({
                 point: event.downPoint,
                 size: 0,
-                strokeScaling: false,
+                strokeScaling: false
             });
             this.styleOval();
-            this.oval.data = { zoomLevel: paper.view.zoom };
+            this.oval.data = {zoomLevel: paper.view.zoom};
         }
     }
-    handleMouseDrag(event) {
+    handleMouseDrag (event) {
         if (event.event.button > 0 || !this.active) return; // only first mouse button
 
         if (this.isBoundingBoxMode) {
@@ -189,10 +189,10 @@ class OvalTool extends paper.Tool {
         }
         this.styleOval();
     }
-    handleMouseMove(event) {
+    handleMouseMove (event) {
         this.boundingBoxTool.onMouseMove(event, this.getHitOptions());
     }
-    handleMouseUp(event) {
+    handleMouseUp (event) {
         if (event.event.button > 0 || !this.active) return; // only first mouse button
 
         if (this.isBoundingBoxMode) {
@@ -223,14 +223,14 @@ class OvalTool extends paper.Tool {
         this.active = false;
         this.onUpdateImage();
     }
-    commitOval() {
+    commitOval () {
         if (!this.oval || !this.oval.isInserted()) return;
 
         commitOvalToBitmap(this.oval, getRaster());
         this.oval.remove();
         this.oval = null;
     }
-    deactivateTool() {
+    deactivateTool () {
         this.commitOval();
         this.boundingBoxTool.deactivateTool();
     }

@@ -1,11 +1,11 @@
 /* eslint-env jest */
 import Modes from '../../src/lib/modes';
-import reducer, { changeMode } from '../../src/reducers/modes';
+import reducer, {changeMode} from '../../src/reducers/modes';
 
 test('initialState', () => {
     let defaultState;
     expect(
-        reducer(defaultState /* state */, { type: 'anything' } /* action */) in
+        reducer(defaultState /* state */, {type: 'anything'} /* action */) in
             Modes
     ).toBeTruthy();
 });

@@ -1,7 +1,7 @@
 import paper from '@scratch/paper';
-import { floodFill, floodFillAll, getHitBounds } from '../bitmap';
-import { createGradientObject } from '../style-path';
-import { createCanvas, getRaster } from '../layer';
+import {floodFill, floodFillAll, getHitBounds} from '../bitmap';
+import {createGradientObject} from '../style-path';
+import {createCanvas, getRaster} from '../layer';
 import GradientTypes from '../../lib/gradient-types';
 
 const TRANSPARENT = 'rgba(0,0,0,0)';
@@ -12,7 +12,7 @@ class FillTool extends paper.Tool {
     /**
      * @param {!function} onUpdateImage A callback to call when the image visibly changes
      */
-    constructor(onUpdateImage) {
+    constructor (onUpdateImage) {
         super();
         this.onUpdateImage = onUpdateImage;
 
@@ -26,22 +26,22 @@ class FillTool extends paper.Tool {
         this.gradientType = null;
         this.active = false;
     }
-    setColor(color) {
+    setColor (color) {
         this.color = color;
     }
-    setColor2(color2) {
+    setColor2 (color2) {
         this.color2 = color2;
     }
-    setGradientType(gradientType) {
+    setGradientType (gradientType) {
         this.gradientType = gradientType;
     }
-    handleMouseDown(event) {
+    handleMouseDown (event) {
         this.paint(event);
     }
-    handleMouseDrag(event) {
+    handleMouseDrag (event) {
         this.paint(event);
     }
-    paint(event) {
+    paint (event) {
         const sourceContext = getRaster().getContext('2d');
         let destContext = sourceContext;
         let color = this.color;
@@ -73,7 +73,7 @@ class FillTool extends paper.Tool {
             );
         }
         if (changed && this.gradientType !== GradientTypes.SOLID) {
-            const raster = new paper.Raster({ insert: false });
+            const raster = new paper.Raster({insert: false});
             raster.canvas = destContext.canvas;
             raster.onLoad = () => {
                 raster.position = getRaster().position;
@@ -91,8 +91,8 @@ class FillTool extends paper.Tool {
                     insert: false,
                     rectangle: {
                         topLeft: hitBounds.topLeft,
-                        bottomRight: hitBounds.bottomRight,
-                    },
+                        bottomRight: hitBounds.bottomRight
+                    }
                 });
                 gradient.fillColor = createGradientObject(
                     this.color,
@@ -121,7 +121,7 @@ class FillTool extends paper.Tool {
             this.onUpdateImage();
         }
     }
-    deactivateTool() {}
+    deactivateTool () {}
 }
 
 export default FillTool;

@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+import {combineReducers} from 'redux';
 import modeReducer from './modes';
 import bitBrushSizeReducer from './bit-brush-size';
 import bitEraserSizeReducer from './bit-eraser-size';
@@ -40,5 +40,5 @@ export default combineReducers({
     textEditTarget: textEditTargetReducer,
     undo: undoReducer,
     viewBounds: viewBoundsReducer,
-    zoomLevels: zoomLevelsReducer,
+    zoomLevels: zoomLevelsReducer
 });

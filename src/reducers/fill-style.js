@@ -11,7 +11,7 @@ const CHANGE_FILL_COLOR_INDEX =
 const DEFAULT_COLOR = new paper.Color({
     hue: 259,
     saturation: 0.6,
-    brightness: 1,
+    brightness: 1
 });
 
 const reducer = makeColorStyleReducer({
@@ -23,41 +23,41 @@ const reducer = makeColorStyleReducer({
     defaultColor: DEFAULT_COLOR,
     selectionPrimaryColorKey: 'fillColor',
     selectionSecondaryColorKey: 'fillColor2',
-    selectionGradientTypeKey: 'fillGradientType',
+    selectionGradientTypeKey: 'fillGradientType'
 });
 
 // Action creators ==================================
 const changeFillColor = function (fillColor) {
     return {
         type: CHANGE_FILL_COLOR,
-        color: fillColor,
+        color: fillColor
     };
 };
 
 const changeFillColor2 = function (fillColor) {
     return {
         type: CHANGE_FILL_COLOR_2,
-        color: fillColor,
+        color: fillColor
     };
 };
 
 const changeFillGradientType = function (gradientType) {
     return {
         type: CHANGE_FILL_GRADIENT_TYPE,
-        gradientType,
+        gradientType
     };
 };
 
 const clearFillGradient = function () {
     return {
-        type: CLEAR_FILL_GRADIENT,
+        type: CLEAR_FILL_GRADIENT
     };
 };
 
 const changeFillColorIndex = function (index) {
     return {
         type: CHANGE_FILL_COLOR_INDEX,
-        index: index,
+        index: index
     };
 };
 
@@ -69,5 +69,5 @@ export {
     changeFillColorIndex,
     clearFillGradient,
     DEFAULT_COLOR,
-    CHANGE_FILL_GRADIENT_TYPE,
+    CHANGE_FILL_GRADIENT_TYPE
 };

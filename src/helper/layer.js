@@ -5,10 +5,10 @@ import {
     ART_BOARD_WIDTH,
     ART_BOARD_HEIGHT,
     CENTER,
-    MAX_WORKSPACE_BOUNDS,
+    MAX_WORKSPACE_BOUNDS
 } from './view';
-import { isGroupItem } from './item';
-import { isBitmap, isVector } from '../lib/format';
+import {isGroupItem} from './item';
+import {isBitmap, isVector} from '../lib/format';
 
 const CHECKERBOARD_SIZE = 8;
 const CROSSHAIR_SIZE = 16;
@@ -128,7 +128,7 @@ const hideGuideLayers = function (includeRaster) {
         outlineLayer: outlineLayer,
         guideLayer: guideLayer,
         backgroundGuideLayer: backgroundGuideLayer,
-        rasterLayer: rasterLayer,
+        rasterLayer: rasterLayer
     };
 };
 
@@ -383,5 +383,5 @@ export {
     clearRaster,
     getRaster,
     setGuideItem,
-    setupLayers,
+    setupLayers
 };

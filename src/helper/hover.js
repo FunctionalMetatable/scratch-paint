@@ -1,8 +1,8 @@
 import paper from '@scratch/paper';
-import { isBoundsItem, getRootItem } from './item';
-import { hoverBounds, hoverItem } from './guides';
-import { isGroupChild } from './group';
-import { sortItemsByZIndex } from './math';
+import {isBoundsItem, getRootItem} from './item';
+import {hoverBounds, hoverItem} from './guides';
+import {isGroupChild} from './group';
+import {sortItemsByZIndex} from './math';
 
 /**
  * @param {!MouseEvent} event mouse event
@@ -13,7 +13,7 @@ import { sortItemsByZIndex } from './math';
  */
 const getHoveredItem = function (event, hitOptions, subselect) {
     const oldMatch = hitOptions.match;
-    hitOptions.match = (hitResult) => {
+    hitOptions.match = hitResult => {
         if (hitResult.item.data && hitResult.item.data.noHover) return false;
         return oldMatch ? oldMatch(hitResult) : true;
     };
@@ -48,4 +48,4 @@ const getHoveredItem = function (event, hitOptions, subselect) {
     return hoverGuide;
 };
 
-export { getHoveredItem };
+export {getHoveredItem};

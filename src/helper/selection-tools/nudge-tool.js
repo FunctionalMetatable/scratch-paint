@@ -1,7 +1,7 @@
 import paper from '@scratch/paper';
-import { getSelectedRootItems } from '../selection';
-import { getActionBounds } from '../view';
-import { BitmapModes } from '../../lib/modes';
+import {getSelectedRootItems} from '../selection';
+import {getActionBounds} from '../view';
+import {BitmapModes} from '../../lib/modes';
 
 const NUDGE_MORE_MULTIPLIER = 15;
 
@@ -15,12 +15,12 @@ class NudgeTool {
      * @param {function} boundingBoxTool to control the bounding box
      * @param {!function} onUpdateImage A callback to call when the image visibly changes
      */
-    constructor(mode, boundingBoxTool, onUpdateImage) {
+    constructor (mode, boundingBoxTool, onUpdateImage) {
         this.boundingBoxTool = boundingBoxTool;
         this.onUpdateImage = onUpdateImage;
         this.boundingBoxTool.isBitmap = mode in BitmapModes;
     }
-    onKeyDown(event) {
+    onKeyDown (event) {
         if (event.event.target instanceof HTMLInputElement) {
             // Ignore nudge if a text input field is focused
             return;
@@ -78,7 +78,7 @@ class NudgeTool {
             event.preventDefault();
         }
     }
-    onKeyUp(event) {
+    onKeyUp (event) {
         const selected = getSelectedRootItems();
         if (selected.length === 0) return;
 

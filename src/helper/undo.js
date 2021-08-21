@@ -1,9 +1,9 @@
 // undo functionality
 // modifed from https://github.com/memononen/stylii
 import paper from '@scratch/paper';
-import { hideGuideLayers, showGuideLayers, getRaster } from '../helper/layer';
-import { getSelectedLeafItems } from '../helper/selection';
-import Formats, { isVector, isBitmap } from '../lib/format';
+import {hideGuideLayers, showGuideLayers, getRaster} from '../helper/layer';
+import {getSelectedLeafItems} from '../helper/selection';
+import Formats, {isVector, isBitmap} from '../lib/format';
 import log from '../log/log';
 
 /**
@@ -17,8 +17,8 @@ const performSnapshot = function (dispatchPerformSnapshot, format) {
     }
     const guideLayers = hideGuideLayers();
     dispatchPerformSnapshot({
-        json: paper.project.exportJSON({ asString: false }),
-        paintEditorFormat: format,
+        json: paper.project.exportJSON({asString: false}),
+        paintEditorFormat: format
     });
     showGuideLayers(guideLayers);
 };
@@ -91,11 +91,11 @@ const performUndo = function (
             onUpdateImage,
             isBitmap(state.paintEditorFormat)
         );
-        const format = isVector(state.paintEditorFormat)
-            ? Formats.VECTOR_SKIP_CONVERT
-            : isBitmap(state.paintEditorFormat)
-            ? Formats.BITMAP_SKIP_CONVERT
-            : null;
+        const format = isVector(state.paintEditorFormat) ?
+            Formats.VECTOR_SKIP_CONVERT :
+            isBitmap(state.paintEditorFormat) ?
+                Formats.BITMAP_SKIP_CONVERT :
+                null;
         dispatchPerformUndo(format);
     }
 };
@@ -117,11 +117,11 @@ const performRedo = function (
             onUpdateImage,
             isBitmap(state.paintEditorFormat)
         );
-        const format = isVector(state.paintEditorFormat)
-            ? Formats.VECTOR_SKIP_CONVERT
-            : isBitmap(state.paintEditorFormat)
-            ? Formats.BITMAP_SKIP_CONVERT
-            : null;
+        const format = isVector(state.paintEditorFormat) ?
+            Formats.VECTOR_SKIP_CONVERT :
+            isBitmap(state.paintEditorFormat) ?
+                Formats.BITMAP_SKIP_CONVERT :
+                null;
         dispatchPerformRedo(format);
     }
 };
@@ -142,5 +142,5 @@ export {
     performUndo,
     performRedo,
     shouldShowUndo,
-    shouldShowRedo,
+    shouldShowRedo
 };

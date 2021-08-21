@@ -4,29 +4,29 @@ import undoReducer, {
     undo,
     redo,
     clearUndoState,
-    MAX_STACK_SIZE,
+    MAX_STACK_SIZE
 } from '../../src/reducers/undo';
 
 test('initialState', () => {
     let defaultState;
 
     expect(
-        undoReducer(defaultState /* state */, { type: 'anything' } /* action */)
+        undoReducer(defaultState /* state */, {type: 'anything'} /* action */)
     ).toBeDefined();
     expect(
-        undoReducer(defaultState /* state */, { type: 'anything' } /* action */)
+        undoReducer(defaultState /* state */, {type: 'anything'} /* action */)
             .pointer
     ).toEqual(-1);
     expect(
-        undoReducer(defaultState /* state */, { type: 'anything' } /* action */)
+        undoReducer(defaultState /* state */, {type: 'anything'} /* action */)
             .stack
     ).toHaveLength(0);
 });
 
 test('snapshot', () => {
     let defaultState;
-    const state1 = { state: 1 };
-    const state2 = { state: 2 };
+    const state1 = {state: 1};
+    const state2 = {state: 2};
 
     let reduxState = undoReducer(
         defaultState /* state */,
@@ -48,7 +48,7 @@ test('snapshot', () => {
 
 test('invalidSnapshot', () => {
     let defaultState;
-    const state1 = { state: 1 };
+    const state1 = {state: 1};
 
     const reduxState = undoReducer(
         defaultState /* state */,
@@ -63,8 +63,8 @@ test('invalidSnapshot', () => {
 
 test('clearUndoState', () => {
     let defaultState;
-    const state1 = { state: 1 };
-    const state2 = { state: 2 };
+    const state1 = {state: 1};
+    const state2 = {state: 2};
 
     // Push 2 states then clear
     const reduxState = undoReducer(
@@ -83,7 +83,7 @@ test('clearUndoState', () => {
 
 test('cantUndo', () => {
     let defaultState;
-    const state1 = { state: 1 };
+    const state1 = {state: 1};
 
     // Undo when there's no undo stack
     let reduxState = undoReducer(defaultState /* state */, undo() /* action */);
@@ -104,7 +104,7 @@ test('cantUndo', () => {
 
 test('cantRedo', () => {
     let defaultState;
-    const state1 = { state: 1 };
+    const state1 = {state: 1};
 
     let reduxState = undoReducer(
         defaultState /* state */,
@@ -120,8 +120,8 @@ test('cantRedo', () => {
 
 test('undo', () => {
     let defaultState;
-    const state1 = { state: 1 };
-    const state2 = { state: 2 };
+    const state1 = {state: 1};
+    const state2 = {state: 2};
 
     // Push 2 states then undo one
     let reduxState = undoReducer(
@@ -142,8 +142,8 @@ test('undo', () => {
 
 test('redo', () => {
     let defaultState;
-    const state1 = { state: 1 };
-    const state2 = { state: 2 };
+    const state1 = {state: 1};
+    const state2 = {state: 2};
 
     // Push 2 states then undo one
     let reduxState = undoReducer(
@@ -169,9 +169,9 @@ test('redo', () => {
 
 test('undoSnapshotCantRedo', () => {
     let defaultState;
-    const state1 = { state: 1 };
-    const state2 = { state: 2 };
-    const state3 = { state: 3 };
+    const state1 = {state: 1};
+    const state2 = {state: 2};
+    const state3 = {state: 3};
 
     // Push 2 states then undo
     let reduxState = undoReducer(
@@ -207,7 +207,7 @@ test('undoSnapshotCantRedo', () => {
 test('snapshotAtMaxStackSize', () => {
     let defaultState;
     const getState = function (num) {
-        return { state: num };
+        return {state: num};
     };
     // Push MAX_STACK_SIZE states
     let num = 1;
@@ -244,7 +244,7 @@ test('snapshotAtMaxStackSize', () => {
 test('undoRedoAtMaxStackSize', () => {
     let defaultState;
     const getState = function (num) {
-        return { state: num };
+        return {state: num};
     };
     // Push MAX_STACK_SIZE states
     let num = 1;
@@ -272,7 +272,7 @@ test('undoRedoAtMaxStackSize', () => {
 test('undoSnapshotAtMaxStackSize', () => {
     let defaultState;
     const getState = function (num) {
-        return { state: num };
+        return {state: num};
     };
     // Push MAX_STACK_SIZE states
     let num = 1;

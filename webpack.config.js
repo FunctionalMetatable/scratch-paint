@@ -28,30 +28,30 @@ const base = {
                                 browsers: [
                                     'last 3 versions',
                                     'Safari >= 8',
-                                    'iOS >= 8',
-                                ],
-                            },
+                                    'iOS >= 8'
+                                ]
+                            }
                         ],
-                        'react',
-                    ],
-                },
+                        'react'
+                    ]
+                }
             },
             {
                 test: /\.css$/,
                 use: [
                     {
-                        loader: 'style-loader',
+                        loader: 'style-loader'
                     },
                     {
                         loader: 'css-loader',
                         options: {
                             modules: {
                                 localIdentName:
-                                    '[name]_[local]_[hash:base64:5]',
+                                    '[name]_[local]_[hash:base64:5]'
                             },
                             importLoaders: 1,
-                            localsConvention: 'camelCase',
-                        },
+                            localsConvention: 'camelCase'
+                        }
                     },
                     {
                         loader: 'postcss-loader',
@@ -65,33 +65,33 @@ const base = {
                                         browsers: [
                                             'last 3 versions',
                                             'Safari >= 8',
-                                            'iOS >= 8',
-                                        ],
-                                    }),
+                                            'iOS >= 8'
+                                        ]
+                                    })
                                 ];
-                            },
-                        },
-                    },
-                ],
+                            }
+                        }
+                    }
+                ]
             },
             {
                 test: /\.png$/i,
-                loader: 'url-loader',
+                loader: 'url-loader'
             },
             {
                 test: /\.svg$/,
-                loader: 'svg-url-loader?noquotes',
-            },
-        ],
+                loader: 'svg-url-loader?noquotes'
+            }
+        ]
     },
     optimization: {
         minimizer: [
             new UglifyJsPlugin({
-                include: /\.min\.js$/,
-            }),
-        ],
+                include: /\.min\.js$/
+            })
+        ]
     },
-    plugins: [],
+    plugins: []
 };
 
 module.exports = [
@@ -100,28 +100,28 @@ module.exports = [
         devServer: {
             contentBase: path.resolve(__dirname, 'playground'),
             host: '0.0.0.0',
-            port: process.env.PORT || 8078,
+            port: process.env.PORT || 8078
         },
         entry: {
-            playground: './src/playground/playground.jsx',
+            playground: './src/playground/playground.jsx'
         },
         output: {
             path: path.resolve(__dirname, 'playground'),
-            filename: '[name].js',
+            filename: '[name].js'
         },
         plugins: base.plugins.concat([
             new HtmlWebpackPlugin({
                 template: 'src/playground/index.ejs',
-                title: 'EpicYeet Paint - Scratch 3.0 Paint Editor Mod',
-            }),
-        ]),
+                title: 'EpicYeet Paint - Scratch 3.0 Paint Editor Mod'
+            })
+        ])
     }),
     // For use as a library
     defaultsDeep({}, base, {
         externals: {
-            minilog: 'minilog',
+            'minilog': 'minilog',
             'prop-types': 'prop-types',
-            react: 'react',
+            'react': 'react',
             'react-dom': 'react-dom',
             'react-intl': 'react-intl',
             'react-intl-redux': 'react-intl-redux',
@@ -130,15 +130,15 @@ module.exports = [
             'react-responsive': 'react-responsive',
             'react-style-proptype': 'react-style-proptype',
             'react-tooltip': 'react-tooltip',
-            redux: 'redux',
+            'redux': 'redux'
         },
         entry: {
-            'scratch-paint': './src/index.js',
+            'scratch-paint': './src/index.js'
         },
         output: {
             path: path.resolve(__dirname, 'dist'),
             filename: '[name].js',
-            libraryTarget: 'commonjs2',
-        },
-    }),
+            libraryTarget: 'commonjs2'
+        }
+    })
 ];

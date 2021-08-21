@@ -2,7 +2,7 @@
 import clipboardReducer, {
     clearPasteOffset,
     incrementPasteOffset,
-    setClipboardItems,
+    setClipboardItems
 } from '../../src/reducers/clipboard';
 
 test('initialState', () => {
@@ -11,13 +11,13 @@ test('initialState', () => {
     expect(
         clipboardReducer(
             defaultState /* state */,
-            { type: 'anything' } /* action */
+            {type: 'anything'} /* action */
         ).items
     ).toBeDefined();
     expect(
         clipboardReducer(
             defaultState /* state */,
-            { type: 'anything' } /* action */
+            {type: 'anything'} /* action */
         ).pasteOffset
     ).toBeDefined();
 });
@@ -56,7 +56,7 @@ test('setClipboardItems', () => {
 test('incrementPasteOffset', () => {
     const origState = {
         items: ['selected1', 'selected2'],
-        pasteOffset: 1,
+        pasteOffset: 1
     };
 
     expect(
@@ -73,7 +73,7 @@ test('incrementPasteOffset', () => {
 test('clearPasteOffset', () => {
     const origState = {
         items: ['selected1', 'selected2'],
-        pasteOffset: 1,
+        pasteOffset: 1
     };
 
     expect(
@@ -88,7 +88,7 @@ test('clearPasteOffset', () => {
 test('invalidSetClipboardItems', () => {
     const origState = {
         items: ['selected1', 'selected2'],
-        pasteOffset: 1,
+        pasteOffset: 1
     };
     const nothingSelected = [];
 

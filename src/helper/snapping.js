@@ -1,5 +1,5 @@
 import paper from '@scratch/paper';
-import { getItems } from './selection';
+import {getItems} from './selection';
 
 /**
  * @param {paper.Point} point1 point 1
@@ -24,7 +24,7 @@ const touching = function (point1, point2, tolerance) {
  */
 const endPointHit = function (point, tolerance, excludePath) {
     const lines = getItems({
-        class: paper.Path,
+        class: paper.Path
     });
     // Prefer more recent lines
     for (let i = lines.length - 1; i >= 0; i--) {
@@ -45,7 +45,7 @@ const endPointHit = function (point, tolerance, excludePath) {
             return {
                 path: lines[i],
                 segment: lines[i].firstSegment,
-                isFirst: true,
+                isFirst: true
             };
         }
         if (
@@ -55,11 +55,11 @@ const endPointHit = function (point, tolerance, excludePath) {
             return {
                 path: lines[i],
                 segment: lines[i].lastSegment,
-                isFirst: false,
+                isFirst: false
             };
         }
     }
     return null;
 };
 
-export { endPointHit, touching };
+export {endPointHit, touching};

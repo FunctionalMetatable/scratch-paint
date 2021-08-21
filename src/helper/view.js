@@ -3,10 +3,10 @@ import {
     CROSSHAIR_SIZE,
     getBackgroundGuideLayer,
     getDragCrosshairLayer,
-    getRaster,
+    getRaster
 } from './layer';
-import { getAllRootItems, getSelectedRootItems } from './selection';
-import { getHitBounds } from './bitmap';
+import {getAllRootItems, getSelectedRootItems} from './selection';
+import {getHitBounds} from './bitmap';
 import log from '../log/log';
 
 // Vectors are imported and exported at SVG_ART_BOARD size.
@@ -52,7 +52,7 @@ const getWorkspaceBounds = () => _workspaceBounds;
  * false unless the viewport is going to move discontinuously anyway
  * (such as in a zoom button click)
  */
-const setWorkspaceBounds = (clipEmpty) => {
+const setWorkspaceBounds = clipEmpty => {
     const items = getAllRootItems();
     // Include the artboard and what's visible in the viewport
     let bounds = ART_BOARD_BOUNDS;
@@ -93,7 +93,7 @@ const setWorkspaceBounds = (clipEmpty) => {
 };
 
 const clampViewBounds = () => {
-    const { left, right, top, bottom } = paper.project.view.bounds;
+    const {left, right, top, bottom} = paper.project.view.bounds;
     if (left < _workspaceBounds.left) {
         paper.project.view.scrollBy(
             new paper.Point(_workspaceBounds.left - left, 0)
@@ -154,7 +154,7 @@ const zoomOnFixedPoint = (deltaZoom, fixedPoint) => {
 };
 
 // Zoom keeping the selection center (if any) fixed.
-const zoomOnSelection = (deltaZoom) => {
+const zoomOnSelection = deltaZoom => {
     let fixedPoint;
     const items = getSelectedRootItems();
     if (items.length > 0) {
@@ -190,7 +190,7 @@ const pan = (dx, dy) => {
  * @param {boolean} isBitmap True if the editor is in bitmap mode, false if it is in vector mode
  * @returns {paper.Rectangle} the bounds within which mouse events should work in the paint editor
  */
-const getActionBounds = (isBitmap) => {
+const getActionBounds = isBitmap => {
     if (isBitmap) {
         return ART_BOARD_BOUNDS;
     }
@@ -199,7 +199,7 @@ const getActionBounds = (isBitmap) => {
         .intersect(MAX_WORKSPACE_BOUNDS);
 };
 
-const zoomToFit = (isBitmap) => {
+const zoomToFit = isBitmap => {
     resetZoom();
     let bounds;
     if (isBitmap) {
@@ -256,5 +256,5 @@ export {
     resizeCrosshair,
     zoomOnSelection,
     zoomOnFixedPoint,
-    zoomToFit,
+    zoomToFit
 };

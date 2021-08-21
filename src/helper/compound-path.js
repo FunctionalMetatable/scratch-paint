@@ -18,4 +18,4 @@ const getItemsCompoundPath = function (item) {
     return null;
 };
 
-export { isCompoundPath, isCompoundPathChild, getItemsCompoundPath };
+export {isCompoundPath, isCompoundPathChild, getItemsCompoundPath};

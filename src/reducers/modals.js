@@ -6,36 +6,36 @@ const MODAL_STROKE_COLOR = 'strokeColor';
 
 const initialState = {
     [MODAL_FILL_COLOR]: false,
-    [MODAL_STROKE_COLOR]: false,
+    [MODAL_STROKE_COLOR]: false
 };
 
 const reducer = function (state, action) {
     if (typeof state === 'undefined') state = initialState;
     switch (action.type) {
-        case OPEN_MODAL:
-            return Object.assign({}, initialState, {
-                [action.modal]: true,
-            });
-        case CLOSE_MODAL:
-            return Object.assign({}, initialState, {
-                [action.modal]: false,
-            });
-        default:
-            return state;
+    case OPEN_MODAL:
+        return Object.assign({}, initialState, {
+            [action.modal]: true
+        });
+    case CLOSE_MODAL:
+        return Object.assign({}, initialState, {
+            [action.modal]: false
+        });
+    default:
+        return state;
     }
 };
 
 const openModal = function (modal) {
     return {
         type: OPEN_MODAL,
-        modal: modal,
+        modal: modal
     };
 };
 
 const closeModal = function (modal) {
     return {
         type: CLOSE_MODAL,
-        modal: modal,
+        modal: modal
     };
 };
 
@@ -62,5 +62,5 @@ export {
     openFillColor,
     openStrokeColor,
     closeFillColor,
-    closeStrokeColor,
+    closeStrokeColor
 };

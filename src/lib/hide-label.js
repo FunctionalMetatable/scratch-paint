@@ -24,9 +24,9 @@ const localeTooBig = [
     'sw',
     'vi',
     'tr',
-    'uk',
+    'uk'
 ];
 
-const hideLabel = (locale) => localeTooBig.includes(locale);
+const hideLabel = locale => localeTooBig.includes(locale);
 
-export { hideLabel };
+export {hideLabel};

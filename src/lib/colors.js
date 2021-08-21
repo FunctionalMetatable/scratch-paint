@@ -1,8 +1,8 @@
-import { MIXED } from '../helper/style-path';
+import {MIXED} from '../helper/style-path';
 import paper from '@scratch/paper';
 
 const makeColor = function (h, s, v) {
-    const color = new paper.Color({ hue: h, saturation: s, brightness: v });
+    const color = new paper.Color({hue: h, saturation: s, brightness: v});
 
     // Convert color's backing components to HSV a.k.a. HSB
     color.type = 'hsb';
@@ -16,7 +16,7 @@ const ROW_1_COLORS = {
     GREEN: makeColor(128, 0.67, 0.88),
     LIGHT_BLUE: makeColor(197, 0.5, 1),
     BLUE: makeColor(226, 0.8, 1),
-    PURPLE: makeColor(259, 0.6, 1),
+    PURPLE: makeColor(259, 0.6, 1)
 };
 
 const ROW_2_COLORS = {
@@ -26,7 +26,7 @@ const ROW_2_COLORS = {
     CHOCOLATE: makeColor(25, 0.62, 0.51), // #825331
     BROWN: makeColor(30, 0.54, 0.71), // #B68554
     TAN: makeColor(32, 0.43, 0.89), // #E4B681
-    PEACH: makeColor(32, 0.29, 0.99), // #FDDBB4
+    PEACH: makeColor(32, 0.29, 0.99) // #FDDBB4
 };
 
 const _getColors = function (colorEnum) {
@@ -57,17 +57,17 @@ const getColorName = function (key) {
 const getHsv = function (colorObj) {
     const isTransparent = colorObj === null;
     const isMixed = colorObj === MIXED;
-    return isTransparent || isMixed
-        ? [50, 100, 100]
-        : [
-              colorObj.hue * (100 / 360),
-              colorObj.saturation * 100,
-              colorObj.brightness * 100,
-          ];
+    return isTransparent || isMixed ?
+        [50, 100, 100] :
+        [
+            colorObj.hue * (100 / 360),
+            colorObj.saturation * 100,
+            colorObj.brightness * 100
+        ];
 };
 
 const getColorObj = function (key) {
     return ROW_1_COLORS[key] ? ROW_1_COLORS[key] : ROW_2_COLORS[key];
 };
 
-export { getRow1Colors, getRow2Colors, getColorObj, getColorName, getHsv };
+export {getRow1Colors, getRow2Colors, getColorObj, getColorName, getHsv};

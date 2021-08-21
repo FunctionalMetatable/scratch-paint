@@ -69,5 +69,5 @@ export {
     setPivot,
     getPositionInView,
     setPositionInView,
-    getRootItem,
+    getRootItem
 };

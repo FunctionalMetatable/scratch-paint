@@ -1,8 +1,8 @@
 import paper from '@scratch/paper';
 import Modes from '../../lib/modes';
-import { styleShape } from '../style-path';
-import { clearSelection } from '../selection';
-import { getSquareDimensions } from '../math';
+import {styleShape} from '../style-path';
+import {clearSelection} from '../selection';
+import {getSquareDimensions} from '../math';
 import BoundingBoxTool from '../selection-tools/bounding-box-tool';
 import NudgeTool from '../selection-tools/nudge-tool';
 
@@ -10,7 +10,7 @@ import NudgeTool from '../selection-tools/nudge-tool';
  * Tool for drawing ovals.
  */
 class OvalTool extends paper.Tool {
-    static get TOLERANCE() {
+    static get TOLERANCE () {
         return 2;
     }
     /**
@@ -19,7 +19,7 @@ class OvalTool extends paper.Tool {
      * @param {function} setCursor Callback to set the visible mouse cursor
      * @param {!function} onUpdateImage A callback to call when the image visibly changes
      */
-    constructor(
+    constructor (
         setSelectedItems,
         clearSelectedItems,
         setCursor,
@@ -56,32 +56,32 @@ class OvalTool extends paper.Tool {
         this.isBoundingBoxMode = null;
         this.active = false;
     }
-    getHitOptions() {
+    getHitOptions () {
         return {
             segments: true,
             stroke: true,
             curves: true,
             fill: true,
             guide: false,
-            match: (hitResult) =>
+            match: hitResult =>
                 (hitResult.item.data &&
                     (hitResult.item.data.isScaleHandle ||
                         hitResult.item.data.isRotHandle)) ||
                 hitResult.item.selected, // Allow hits on bounding box and selected only
-            tolerance: OvalTool.TOLERANCE / paper.view.zoom,
+            tolerance: OvalTool.TOLERANCE / paper.view.zoom
         };
     }
     /**
      * Should be called if the selection changes to update the bounds of the bounding box.
      * @param {Array<paper.Item>} selectedItems Array of selected items.
      */
-    onSelectionChanged(selectedItems) {
+    onSelectionChanged (selectedItems) {
         this.boundingBoxTool.onSelectionChanged(selectedItems);
     }
-    setColorState(colorState) {
+    setColorState (colorState) {
         this.colorState = colorState;
     }
-    handleMouseDown(event) {
+    handleMouseDown (event) {
         if (event.event.button > 0) return; // only first mouse button
         this.active = true;
 
@@ -100,12 +100,12 @@ class OvalTool extends paper.Tool {
             clearSelection(this.clearSelectedItems);
             this.oval = new paper.Shape.Ellipse({
                 point: event.downPoint,
-                size: 0,
+                size: 0
             });
             styleShape(this.oval, this.colorState);
         }
     }
-    handleMouseDrag(event) {
+    handleMouseDrag (event) {
         if (event.event.button > 0 || !this.active) return; // only first mouse button
 
         if (this.isBoundingBoxMode) {
@@ -137,10 +137,10 @@ class OvalTool extends paper.Tool {
 
         styleShape(this.oval, this.colorState);
     }
-    handleMouseMove(event) {
+    handleMouseMove (event) {
         this.boundingBoxTool.onMouseMove(event, this.getHitOptions());
     }
-    handleMouseUp(event) {
+    handleMouseUp (event) {
         if (event.event.button > 0 || !this.active) return; // only first mouse button
 
         if (this.isBoundingBoxMode) {
@@ -169,7 +169,7 @@ class OvalTool extends paper.Tool {
         }
         this.active = false;
     }
-    deactivateTool() {
+    deactivateTool () {
         this.boundingBoxTool.deactivateTool();
     }
 }
